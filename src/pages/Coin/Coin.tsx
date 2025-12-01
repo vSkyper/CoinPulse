@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import {
-  Exchange,
+  CurrencyConverter,
   Links,
   PriceCard,
   Sparkline,
@@ -10,7 +10,7 @@ import {
   Skeleton,
 } from './components';
 import { ErrorModal } from 'components';
-import { ICoin } from 'interfaces';
+import { CoinResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
 import { useStaggeredAnimation } from 'hooks/useStaggeredAnimation';
 import { API_ENDPOINTS } from 'config/api';
@@ -19,13 +19,13 @@ const ANIMATION_DELAYS = {
   chart: 100,
   priceCard: 200,
   stackData: 300,
-  exchange: 400,
+  currencyConverter: 400,
   links: 500,
 };
 
 export default function Coin() {
   const { id } = useParams();
-  const { data, error } = useFetch<ICoin>(
+  const { data, error } = useFetch<CoinResponse>(
     id ? API_ENDPOINTS.coin(id) : undefined
   );
 
@@ -60,7 +60,7 @@ export default function Coin() {
           </div>
         </div>
 
-        {/* Stats, Exchange & Links Row */}
+        {/* Stats, Currency Converter & Links Row */}
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-12'>
           <div className='lg:col-span-8'>
             <AnimatedSection show={animations.stackData}>
@@ -69,8 +69,12 @@ export default function Coin() {
           </div>
 
           <div className='lg:col-span-4 flex flex-col gap-1.5 sm:gap-2 md:gap-4'>
-            <AnimatedSection show={animations.exchange}>
-              <Exchange id={id} symbol={data.symbol} />
+            <AnimatedSection show={animations.currencyConverter}>
+              <CurrencyConverter
+                id={id}
+                symbol={data.symbol}
+                image={data.image?.large}
+              />
             </AnimatedSection>
 
             <AnimatedSection show={animations.links}>

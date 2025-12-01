@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { ButtonComponent, ChartComponent } from './components';
 import { InlineLoader } from 'components';
-import { ISparkline } from 'interfaces';
+import { SparklineResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
 import { buttons } from 'constants/coin';
 import { SparklineProps } from './interface';
@@ -20,7 +20,7 @@ const formatSparklineData = (prices: number[][]) => {
 export default function Sparkline({ id }: SparklineProps) {
   const [days, setDays] = useState<string>(DEFAULT_DAYS);
 
-  const { data, error } = useFetch<ISparkline>(
+  const { data, error } = useFetch<SparklineResponse>(
     API_ENDPOINTS.coinMarketChart(id, days)
   );
 
@@ -43,7 +43,7 @@ export default function Sparkline({ id }: SparklineProps) {
       </div>
 
       {/* Chart Container */}
-      <div className='relative w-full rounded-3xl overflow-hidden sm:p-0 bg-transparent h-[250px] sm:h-[350px] md:h-[450px] transition-all duration-500'>
+      <div className='relative w-full overflow-hidden sm:p-0 bg-transparent h-[250px] sm:h-[350px] md:h-[450px] transition-all duration-500'>
         {/* Loading State */}
         {!data && !error && (
           <div className='absolute inset-0 z-20 flex items-center justify-center bg-transparent'>

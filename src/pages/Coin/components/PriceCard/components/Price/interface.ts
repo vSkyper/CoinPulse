@@ -1,5 +1,5 @@
-import { IMarketData } from 'interfaces';
+import { MarketDataResponse } from 'interfaces';
 
 export interface PriceProps {
-  marketData: IMarketData;
+  marketData: MarketDataResponse;
 }

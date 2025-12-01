@@ -1,7 +1,7 @@
 import Sparkline from './Sparkline';
 import PriceCard from './PriceCard';
 import StackData from './StackData';
-import Exchange from './Exchange';
+import CurrencyConverter from './CurrencyConverter';
 import Links from './Links';
 import CoinHeader from './CoinHeader';
 import AnimatedSection from './AnimatedSection';
@@ -11,7 +11,7 @@ export {
   Sparkline,
   PriceCard,
   StackData,
-  Exchange,
+  CurrencyConverter,
   Links,
   CoinHeader,
   AnimatedSection,

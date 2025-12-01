@@ -1,4 +1,4 @@
-export interface ICoin {
+export interface CoinResponse {
   id: string;
   symbol: string;
   name?: string;
@@ -24,7 +24,7 @@ export interface ICoin {
   community_score?: number;
   liquidity_score?: number;
   public_interest_score?: number;
-  market_data: IMarketData;
+  market_data: MarketDataResponse;
   community_data?: CommunityData;
   developer_data?: DeveloperData;
   public_interest_stats?: PublicInterestStats;
@@ -58,7 +58,7 @@ interface Image {
   large?: string;
 }
 
-export interface IMarketData {
+export interface MarketDataResponse {
   current_price?: { [key: string]: number };
   total_value_locked?: null;
   mcap_to_tvl_ratio?: null;

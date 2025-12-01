@@ -4,6 +4,7 @@ export default function CurrencyInput({
   label,
   symbol,
   value,
+  image,
   onChange,
   children,
 }: CurrencyInputProps) {
@@ -11,9 +12,17 @@ export default function CurrencyInput({
     <div className='w-full'>
       <div className='flex flex-col gap-1.5 sm:gap-2 w-full'>
         <div className='flex items-center gap-2 mb-1 sm:mb-1'>
-          <div className='w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-[0.85rem] sm:text-sm font-bold bg-linear-to-br from-(--brand-blue) to-(--brand-blue-light) text-black shadow-[0_0_15px_rgba(0,240,255,0.3)]'>
-            {symbol.charAt(0).toUpperCase()}
-          </div>
+          {image ? (
+            <img
+              src={image}
+              alt={symbol}
+              className='w-7 h-7 sm:w-9 sm:h-9 rounded-full object-cover shadow-[0_0_15px_rgba(0,240,255,0.2)]'
+            />
+          ) : (
+            <div className='w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[0.85rem] sm:text-sm font-bold bg-linear-to-br from-(--brand-blue) to-(--brand-blue-light) text-black shadow-[0_0_15px_rgba(0,240,255,0.3)]'>
+              {symbol.charAt(0).toUpperCase()}
+            </div>
+          )}
           {children || (
             <div className='font-bold uppercase text-xs sm:text-sm text-white/60 tracking-wider'>
               {label}

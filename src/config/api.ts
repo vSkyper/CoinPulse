@@ -83,6 +83,8 @@ export const API_ENDPOINTS = {
     buildUrl('/simple/price', {
       ids: id,
       vs_currencies: vsCurrency,
+      include_last_updated_at: 'true',
+      include_24hr_change: 'true',
     }),
 } as const;
 

@@ -31,11 +31,11 @@ export default function StackData({ marketData }: StackDataProps) {
         label='24h Low / 24h High'
         value={
           <div className='flex flex-col items-end justify-center h-full sm:block sm:text-right'>
-            <div className='font-bold text-red-400 text-sm sm:text-lg md:text-xl leading-tight'>
+            <div className='font-bold text-(--brand-negative) text-sm sm:text-lg md:text-xl leading-tight'>
               {formatCurrency(marketData.low_24h?.usd || 0)}
             </div>
             <div className='hidden sm:inline text-white/40 mx-2'>/</div>
-            <div className='font-bold text-green-400 text-sm sm:text-lg md:text-xl leading-tight'>
+            <div className='font-bold text-(--brand-positive) text-sm sm:text-lg md:text-xl leading-tight'>
               {formatCurrency(marketData.high_24h?.usd || 0)}
             </div>
           </div>

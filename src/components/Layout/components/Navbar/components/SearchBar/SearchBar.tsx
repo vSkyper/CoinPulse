@@ -7,7 +7,7 @@ import {
   ComboboxOptions,
   Transition,
 } from '@headlessui/react';
-import { ICoinsList } from 'interfaces';
+import { CoinsListResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
 import { ErrorModal } from 'components';
 import { CoinOption, EmptyState, SearchIconContainer } from './components';
@@ -18,10 +18,14 @@ const BLUR_DELAY = 100;
 
 export default function SearchBar() {
   const [query, setQuery] = useState<string>('');
-  const [selectedCoin, setSelectedCoin] = useState<ICoinsList | null>(null);
+  const [selectedCoin, setSelectedCoin] = useState<CoinsListResponse | null>(
+    null
+  );
 
   const navigate = useNavigate();
-  const { data, error } = useFetch<ICoinsList[]>(API_ENDPOINTS.coinsList());
+  const { data, error } = useFetch<CoinsListResponse[]>(
+    API_ENDPOINTS.coinsList()
+  );
 
   const filteredCoins =
     query === ''
@@ -32,7 +36,7 @@ export default function SearchBar() {
           )
           .slice(0, MAX_RESULTS);
 
-  const handleChange = (coin: ICoinsList | null) => {
+  const handleChange = (coin: CoinsListResponse | null) => {
     if (!coin) return;
     setSelectedCoin(null);
     setQuery('');
@@ -49,7 +53,7 @@ export default function SearchBar() {
     }
   };
 
-  const displayValue = (coin: ICoinsList | null) =>
+  const displayValue = (coin: CoinsListResponse | null) =>
     coin ? `${coin.name} (${coin.symbol?.toUpperCase()})` : '';
 
   if (error) return <ErrorModal />;

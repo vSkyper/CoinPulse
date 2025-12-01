@@ -1,5 +1,5 @@
-import { ICoins } from 'interfaces';
+import { CoinsResponse } from 'interfaces';
 
 export interface TableProps {
-  coins: ICoins[];
+  coins: CoinsResponse[];
 }

@@ -1,4 +1,4 @@
-export interface IGlobalData {
+export interface GlobalDataResponse {
   data: Data;
 }
 

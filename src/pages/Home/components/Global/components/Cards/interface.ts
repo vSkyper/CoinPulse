@@ -1,6 +1,6 @@
-import { IGlobalData } from 'interfaces';
+import { GlobalDataResponse } from 'interfaces';
 
 export interface CardsProps {
   toggle: boolean;
-  globalData: IGlobalData;
+  globalData: GlobalDataResponse;
 }

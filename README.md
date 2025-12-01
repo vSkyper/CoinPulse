@@ -16,7 +16,7 @@
 ## Technologies Used
 
 - React - version 19.2.0
-- Vite - version 7.2.2
+- Vite - version 7.2.6
 - TypeScript - version 5.9.3
 - Tailwind CSS - version 4.1.17
 

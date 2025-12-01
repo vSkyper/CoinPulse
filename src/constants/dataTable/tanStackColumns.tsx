@@ -7,14 +7,14 @@ import {
   formatCompactCurrency,
   formatPercentage,
 } from 'utils/formatters';
-import { ICoins } from 'interfaces';
+import { CoinsResponse } from 'interfaces';
 
-const columnHelper = createColumnHelper<ICoins>();
+const columnHelper = createColumnHelper<CoinsResponse>();
 
 const COIN_NAME_CLASSES =
   'text-white/95 font-bold truncate group-hover:text-(--brand-blue) text-sm sm:text-base transition-colors duration-300 leading-tight';
 
-function CoinName({ row, value }: { row: ICoins; value: string }) {
+function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
   return (
     <RouterLink
       to={`/coins/${row.id}`}
@@ -68,9 +68,9 @@ function PercentageChange({ value }: { value: number }) {
   );
 }
 
-function SparklineChart({ row, value }: { row: ICoins; value: any }) {
+function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
   const isNegative = (row.price_change_percentage_7d_in_currency ?? 0) < 0;
-  const color = isNegative ? '#ff3b30' : '#34c759';
+  const color = isNegative ? 'var(--brand-positive)' : 'var(--brand-negative)';
   const gradientId = `linearColor${row.id}`;
 
   const prices = value.price;

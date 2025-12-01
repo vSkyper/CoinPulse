@@ -1,6 +1,6 @@
-import { IMarketData } from 'interfaces';
+import { MarketDataResponse } from 'interfaces';
 
 export interface PriceChangeProps {
-  marketData: IMarketData;
+  marketData: MarketDataResponse;
   days: string;
 }

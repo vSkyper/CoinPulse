@@ -50,7 +50,7 @@ export default function Skeleton() {
           </div>
         </div>
 
-        {/* Stats, Exchange & Links placeholders */}
+        {/* Stats, Currency Converter & Links placeholders */}
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-12'>
           {/* Stats Grid */}
           <div className='lg:col-span-8'>
@@ -64,11 +64,11 @@ export default function Skeleton() {
             </div>
           </div>
 
-          {/* Exchange & Links */}
+          {/* Currency Converter & Links */}
           <div className='lg:col-span-4 flex flex-col gap-6'>
-            {/* Exchange */}
+            {/* Currency Converter */}
             <div className='h-[300px] rounded-3xl bg-white/5 animate-pulse border border-white/5 flex items-center justify-center'>
-              <InlineLoader text='Loading exchange...' />
+              <InlineLoader text='Loading currency converter...' />
             </div>
 
             {/* Links */}

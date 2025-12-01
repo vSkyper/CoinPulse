@@ -36,8 +36,8 @@ export default function StatCard({
     : 'opacity-0 scale-90 -translate-y-8 blur-[4px]';
 
   const badgeColorClasses = isNegative
-    ? 'bg-red-500/10 text-red-400 border-red-500/20'
-    : 'bg-green-500/10 text-green-400 border-green-500/20';
+    ? 'bg-(--brand-negative)/10 text-(--brand-negative) border-(--brand-negative)/20'
+    : 'bg-(--brand-positive)/10 text-(--brand-positive) border-(--brand-positive)/20';
 
   const TrendIcon = isNegative ? TrendingDownIcon : TrendingUpIcon;
 

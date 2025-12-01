@@ -1,16 +1,16 @@
-import { ICoins } from './coins';
-import { ICoinsList } from './coinsList';
-import { IGlobalData } from './globalData';
-import { ICoin, IMarketData } from './coin';
-import { ISparkline } from './sparkline';
-import { IExchange } from './exchange';
+import { CoinsResponse } from './coins';
+import { CoinsListResponse } from './coinsList';
+import { GlobalDataResponse } from './globalData';
+import { CoinResponse, MarketDataResponse } from './coin';
+import { SparklineResponse } from './sparkline';
+import { CryptoPriceResponse } from './cryptoPrice';
 
 export type {
-  ICoins,
-  ICoinsList,
-  IGlobalData,
-  ICoin,
-  IMarketData,
-  ISparkline,
-  IExchange,
+  CoinsResponse,
+  CoinsListResponse,
+  GlobalDataResponse,
+  CoinResponse,
+  MarketDataResponse,
+  SparklineResponse,
+  CryptoPriceResponse,
 };

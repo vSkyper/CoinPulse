@@ -9,16 +9,20 @@ import {
   Transition,
 } from '@headlessui/react';
 import useFetch from 'hooks/useFetch';
-import { IExchange } from 'interfaces';
+import { CryptoPriceResponse } from 'interfaces';
 import { ErrorModal } from 'components';
-import { ExchangeProps } from './interface';
+import { CurrencyConverterProps } from './interface';
 import { CurrencyInput } from './components';
 import { API_ENDPOINTS } from 'config/api';
 import { formatRateWithSuffix } from 'utils/formatters';
 
 const MAX_DROPDOWN_ITEMS = 5;
 
-export default function Exchange({ id, symbol }: ExchangeProps) {
+export default function CurrencyConverter({
+  id,
+  symbol,
+  image,
+}: CurrencyConverterProps) {
   const [currencyOption, setCurrencyOption] = useState<string>('usd');
   const [cryptoAmount, setCryptoAmount] = useState<string>('');
   const [currencyAmount, setCurrencyAmount] = useState<string>('');
@@ -31,15 +35,22 @@ export default function Exchange({ id, symbol }: ExchangeProps) {
   const { data: currencies, error: currenciesError } = useFetch<string[]>(
     API_ENDPOINTS.supportedCurrencies()
   );
-  const { data: exchangeRate, error: exchangeRateError } = useFetch<IExchange>(
-    API_ENDPOINTS.exchangeRate(id, currencyOption)
-  );
+  const { data: exchangeRate, error: exchangeRateError } =
+    useFetch<CryptoPriceResponse>(
+      API_ENDPOINTS.exchangeRate(id, currencyOption)
+    );
 
   const currentRate = exchangeRate?.[id]?.[currencyOption];
+  const lastUpdated = exchangeRate?.[id]?.last_updated_at;
+  const change24h = exchangeRate?.[id]?.[`${currencyOption}_24h_change`];
 
   const formattedRate = currentRate
     ? formatRateWithSuffix(currentRate, currencyOption)
     : '';
+
+  const [rateValue, rateSymbol] = formattedRate
+    ? formattedRate.split(' ')
+    : ['', ''];
 
   const filteredCurrencies = (currencies ?? [])
     .filter((c) => c.startsWith((query ?? currencyOption ?? '').toLowerCase()))
@@ -97,10 +108,12 @@ export default function Exchange({ id, symbol }: ExchangeProps) {
 
     if (value && exchangeRate) {
       const rate = exchangeRate[id]?.[currencyOption];
-      const currencyValue = Number(value) * rate;
-      setCurrencyAmount(
-        isFinite(currencyValue) ? currencyValue.toString() : ''
-      );
+      if (rate) {
+        const currencyValue = Number(value) * rate;
+        setCurrencyAmount(
+          isFinite(currencyValue) ? currencyValue.toString() : ''
+        );
+      }
     } else {
       setCurrencyAmount('');
     }
@@ -115,8 +128,10 @@ export default function Exchange({ id, symbol }: ExchangeProps) {
 
     if (value && exchangeRate) {
       const rate = exchangeRate[id]?.[currencyOption];
-      const cryptoValue = Number(value) / rate;
-      setCryptoAmount(isFinite(cryptoValue) ? cryptoValue.toString() : '');
+      if (rate) {
+        const cryptoValue = Number(value) / rate;
+        setCryptoAmount(isFinite(cryptoValue) ? cryptoValue.toString() : '');
+      }
     } else {
       setCryptoAmount('');
     }
@@ -130,7 +145,7 @@ export default function Exchange({ id, symbol }: ExchangeProps) {
         {/* Header */}
         <div className='flex items-center justify-between mb-3 sm:mb-5'>
           <h3 className='text-lg sm:text-xl font-black text-white tracking-tighter'>
-            Exchange Calculator
+            Currency Converter
           </h3>
         </div>
 
@@ -141,6 +156,7 @@ export default function Exchange({ id, symbol }: ExchangeProps) {
             label={symbol.toUpperCase()}
             symbol={symbol}
             value={cryptoAmount}
+            image={image}
             onChange={handleCryptoInputChange}
           />
 
@@ -212,16 +228,45 @@ export default function Exchange({ id, symbol }: ExchangeProps) {
         </div>
 
         {/* Exchange Rate Display */}
-        <div className='flex h-8 items-center justify-center gap-2 mt-3 sm:mt-5 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 bg-black/20 text-white/60 font-mono text-[0.6rem] sm:text-[0.65rem] font-bold tracking-wide uppercase'>
-          {isLoadingRate ? (
-            <div className='animate-spin h-[18px] w-[18px] border-2 border-white/10 border-t-(--brand-blue) rounded-full' />
-          ) : (
-            currentRate && (
-              <div className='font-semibold text-xs sm:text-sm text-(--text-secondary)'>
-                1 {symbol.toUpperCase()} = {formattedRate}
-              </div>
-            )
-          )}
+        <div className='flex flex-col gap-2 mt-3 sm:mt-5'>
+          <div className='flex min-h-12 items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 bg-black/20 text-white/60 font-mono text-[0.6rem] sm:text-[0.65rem] font-bold tracking-wide uppercase'>
+            {isLoadingRate ? (
+              <div className='animate-spin h-[18px] w-[18px] border-2 border-white/10 border-t-(--brand-blue) rounded-full' />
+            ) : (
+              currentRate && (
+                <div className='flex items-center gap-2'>
+                  <div className='font-semibold text-xs sm:text-sm text-(--text-secondary)'>
+                    1{' '}
+                    <span className='text-(--brand-blue)'>
+                      {symbol.toUpperCase()}
+                    </span>{' '}
+                    ≈ {rateValue}{' '}
+                    <span className='text-(--brand-blue)'>{rateSymbol}</span>
+                  </div>
+                  {change24h !== undefined && change24h !== null && (
+                    <div
+                      className={`flex items-center gap-0.5 px-2 py-1 rounded text-[10px] sm:text-xs font-bold border ${
+                        change24h >= 0
+                          ? 'bg-(--brand-positive)/10 text-(--brand-positive) border-(--brand-positive)/20'
+                          : 'bg-(--brand-negative)/10 text-(--brand-negative) border-(--brand-negative)/20'
+                      }`}
+                    >
+                      {change24h >= 0 ? '+' : ''}
+                      <span>{change24h.toFixed(2)}%</span>
+                    </div>
+                  )}
+                </div>
+              )
+            )}
+          </div>
+
+          <div className='text-center text-[10px] sm:text-xs text-white/40 font-medium min-h-5 flex items-center justify-center'>
+            {lastUpdated ? (
+              `Last updated: ${new Date(lastUpdated * 1000).toLocaleString()}`
+            ) : isLoadingRate ? (
+              <span className='animate-pulse'>Updating...</span>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

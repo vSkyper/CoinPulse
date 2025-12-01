@@ -1,9 +1,9 @@
-import { IMarketData } from 'interfaces';
+import { MarketDataResponse } from 'interfaces';
 import { PriceChangeProps } from './interface';
 import { formatPercentage } from 'utils/formatters';
 
 export default function PriceChange({ marketData, days }: PriceChangeProps) {
-  const key = `price_change_percentage_${days}` as keyof IMarketData;
+  const key = `price_change_percentage_${days}` as keyof MarketDataResponse;
   const priceChange = (marketData[key] as number) || 0;
   const isPositive = priceChange >= 0;
 

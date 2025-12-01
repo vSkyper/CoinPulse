@@ -569,7 +569,7 @@ export default function Table({ coins }: TableProps) {
                             className={`flex items-center ${
                               header.column.id === 'name'
                                 ? ''
-                                : 'absolute right-full mr-1'
+                                : 'absolute right-full mr-1 top-1/2 -translate-y-1/2'
                             }`}
                           >
                             {{
@@ -582,12 +582,12 @@ export default function Table({ coins }: TableProps) {
                                 'price_change_percentage_7d_in_currency',
                               ].includes(header.column.id) ? (
                                 <MdArrowDownward
-                                  size='1.2rem'
+                                  size='1rem'
                                   className='text-white/60'
                                 />
                               ) : (
                                 <MdArrowUpward
-                                  size='1.2rem'
+                                  size='1rem'
                                   className='text-white/60'
                                 />
                               ),

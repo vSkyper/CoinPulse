@@ -1,5 +1,5 @@
-import { IGlobalData } from 'interfaces';
+import { GlobalDataResponse } from 'interfaces';
 
 export interface GlobalProps {
-  globalData: IGlobalData;
+  globalData: GlobalDataResponse;
 }
