@@ -1,5 +1,5 @@
-import { ICoin } from 'interfaces';
+import { CoinResponse } from 'interfaces';
 
 export interface PriceCardProps {
-  data: ICoin;
+  data: CoinResponse;
 }

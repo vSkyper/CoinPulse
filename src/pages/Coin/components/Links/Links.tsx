@@ -83,7 +83,7 @@ export default function Links({ data }: LinksProps) {
           </div>
           <div className='flex flex-wrap gap-2'>
             {links?.blockchain_site?.slice(0, 3).map(
-              (blockchain) =>
+              (blockchain: string | null) =>
                 blockchain && (
                   <ChipLink
                     key={blockchain}

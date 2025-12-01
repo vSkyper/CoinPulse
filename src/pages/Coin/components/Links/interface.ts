@@ -1,5 +1,5 @@
-import { ICoin } from 'interfaces';
+import { CoinResponse } from 'interfaces';
 
 export interface LinksProps {
-  data: ICoin;
+  data: CoinResponse;
 }
