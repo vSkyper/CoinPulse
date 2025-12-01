@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className='w-full bg-[#050505] relative z-10 mt-auto'>
       {/* Gradient Top Border */}
-      <div className='absolute top-0 left-0 right-0 h-[1px] bg-linear-to-r from-transparent via-(--brand-blue)/30 to-transparent' />
+      <div className='absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-(--brand-blue)/30 to-transparent' />
 
       <div className='px-4 py-3 sm:py-6 flex items-center justify-center'>
         <div className='flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-6 w-full max-w-7xl mx-auto'>
