@@ -34,7 +34,7 @@ export default function CoinHeader({
             </span>
 
             {marketCapRank && (
-              <span className='text-[0.65rem] sm:text-xs font-bold rounded-full px-2.5 py-1 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 bg-(--brand-blue)/10 border border-(--brand-blue)/20 text-(--brand-blue) tracking-wide shadow-[0_0_10px_rgba(0,240,255,0.1)]'>
+              <span className='text-[0.65rem] sm:text-xs font-bold rounded-full px-2.5 py-1 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 bg-(--brand-violet)/10 border border-(--brand-violet)/20 text-(--brand-violet) tracking-wide shadow-[0_0_10px_rgba(0,240,255,0.1)]'>
                 #{marketCapRank}
               </span>
             )}

@@ -1,4 +1,4 @@
-# Cryptocurrency
+# CoinPulse
 
 > The goal of the project is to provide a cryptocurrency dashboard.
 
@@ -11,7 +11,7 @@
 
 ## Demo
 
-> Working live demo is [_here_](https://vcryptocurrency.netlify.app/).
+> Working live demo is [_here_](https://vcoinpulse.netlify.app/).
 
 ## Technologies Used
 

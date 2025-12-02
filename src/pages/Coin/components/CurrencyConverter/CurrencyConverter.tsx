@@ -231,17 +231,17 @@ export default function CurrencyConverter({
         <div className='flex flex-col gap-2 mt-3 sm:mt-5'>
           <div className='flex min-h-12 items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 bg-black/20 text-white/60 font-mono text-[0.6rem] sm:text-[0.65rem] font-bold tracking-wide uppercase'>
             {isLoadingRate ? (
-              <div className='animate-spin h-[18px] w-[18px] border-2 border-white/10 border-t-(--brand-blue) rounded-full' />
+              <div className='animate-spin h-[18px] w-[18px] border-2 border-white/10 border-t-(--brand-violet) rounded-full' />
             ) : (
               currentRate && (
                 <div className='flex items-center gap-2'>
-                  <div className='font-semibold text-xs sm:text-sm text-(--text-secondary)'>
+                  <div className='font-semibold text-xs sm:text-sm'>
                     1{' '}
-                    <span className='text-(--brand-blue)'>
+                    <span className='text-(--brand-violet)'>
                       {symbol.toUpperCase()}
                     </span>{' '}
                     ≈ {rateValue}{' '}
-                    <span className='text-(--brand-blue)'>{rateSymbol}</span>
+                    <span className='text-(--brand-violet)'>{rateSymbol}</span>
                   </div>
                   {change24h !== undefined && change24h !== null && (
                     <div

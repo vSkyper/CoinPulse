@@ -68,7 +68,7 @@ export default function SearchBar() {
           <SearchIconContainer isLoading={!data} />
 
           <ComboboxInput
-            className='w-full bg-white/5 text-white rounded-lg sm:rounded-xl py-2 sm:py-3 pl-10 sm:pl-16 pr-3 sm:pr-4 text-xs sm:text-base font-medium placeholder:text-white/30 transition-all duration-200 focus:outline-none focus:bg-white/10 focus:ring-1 focus:ring-(--brand-blue)/50 hover:bg-white/10 border border-white/5'
+            className='w-full bg-white/5 text-white rounded-lg sm:rounded-xl py-2 sm:py-3 pl-10 sm:pl-16 pr-3 sm:pr-4 text-xs sm:text-base font-medium placeholder:text-white/30 transition-all duration-200 focus:outline-none focus:bg-white/10 focus:ring-1 focus:ring-(--brand-violet)/50 hover:bg-white/10 border border-white/5'
             placeholder={placeholder}
             displayValue={displayValue}
             onChange={(event) => setQuery(event.target.value)}
@@ -87,7 +87,7 @@ export default function SearchBar() {
           >
             <ComboboxOptions
               modal={false}
-              className='absolute mt-2 w-full overflow-hidden rounded-2xl bg-[#0a0a0a]/95 backdrop-blur-3xl border border-white/10 shadow-(--shadow-dropdown) z-50'
+              className='absolute mt-2 w-full overflow-hidden rounded-2xl bg-[#0a0a0a]/95 backdrop-blur-3xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50'
             >
               {filteredCoins.length === 0 ? (
                 <EmptyState />
@@ -98,7 +98,7 @@ export default function SearchBar() {
                     value={coin}
                     className={({ focus }) =>
                       `relative cursor-pointer select-none px-3 sm:px-4 py-2 sm:py-3 transition-all duration-150 border-b border-white/5 last:border-0 ${
-                        focus ? 'bg-(--brand-blue)/10' : 'bg-transparent'
+                        focus ? 'bg-(--brand-violet)/10' : 'bg-transparent'
                       }`
                     }
                   >

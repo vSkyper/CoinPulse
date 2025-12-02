@@ -63,11 +63,11 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
     if (!active || !payload || !payload.length) return null;
 
     return (
-      <div className='bg-[rgba(10,10,15,0.9)] border border-(--brand-blue)/30 rounded-xl px-3 py-2 shadow-[0_0_20px_rgba(0,0,0,0.5)] text-xs backdrop-blur-xl'>
+      <div className='bg-[rgba(10,10,15,0.9)] border border-(--brand-violet)/30 rounded-xl px-3 py-2 shadow-[0_0_20px_rgba(0,0,0,0.5)] text-xs backdrop-blur-xl'>
         <div className='text-[0.65rem] text-white/50 mb-1 font-medium uppercase tracking-wide'>
           {format(new Date(label ?? 0), 'eeee, d MMM, yyyy')}
         </div>
-        <div className='font-bold text-(--brand-blue) text-base'>
+        <div className='font-bold text-(--brand-violet) text-base'>
           {formatCurrency(Number(payload[0].value))}
         </div>
       </div>
@@ -84,8 +84,8 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
       {/* Gradient Definition */}
       <defs>
         <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
-          <stop offset='5%' stopColor='var(--brand-blue)' stopOpacity={0.45} />
-          <stop offset='75%' stopColor='var(--brand-blue)' stopOpacity={0.06} />
+          <stop offset='5%' stopColor='var(--brand-violet)' stopOpacity={0.45} />
+          <stop offset='75%' stopColor='var(--brand-violet)' stopOpacity={0.06} />
         </linearGradient>
 
         {/* Glow Filter */}
@@ -100,13 +100,13 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
 
       <Area
         dataKey='value'
-        stroke='var(--brand-blue)'
+        stroke='var(--brand-violet)'
         strokeWidth={2}
         fill='url(#color)'
         filter='url(#glow)'
         activeDot={{
           r: 5,
-          stroke: 'var(--brand-blue)',
+          stroke: 'var(--brand-violet)',
           strokeWidth: 2,
           fill: '#000',
         }}

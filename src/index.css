@@ -4,8 +4,8 @@
 @layer base {
   :root {
     /* Custom brand color variables - change these to update colors across the entire app */
-    --brand-blue: #8b5cf6;
-    --brand-blue-light: #a78bfa;
+    --brand-violet: #8b5cf6;
+    --brand-violet-light: #a78bfa;
     --brand-positive: #00ff9d;
     --brand-negative: #ff0055;
     --brand-bitcoin: #f7931a;
@@ -13,20 +13,8 @@
 
     /* Background color variables - change these to update the app background */
     --bg-primary: #050505;
-    --bg-secondary: #0a0a0a;
-    --bg-tertiary: rgba(20, 20, 30, 0.4);
-    --bg-tertiary-dark: rgba(10, 10, 15, 0.8);
-    --bg-dropdown: rgba(15, 10, 20, 0.95);
-    --bg-gradient-1: color-mix(in srgb, var(--brand-blue) 8%, transparent);
+    --bg-gradient-1: color-mix(in srgb, var(--brand-violet) 8%, transparent);
     --bg-gradient-2: color-mix(in srgb, #ec4899 5%, transparent);
-
-    /* Chip/Badge colors for crypto symbols */
-    --chip-bg: rgba(255, 255, 255, 0.05);
-    --chip-border: rgba(255, 255, 255, 0.1);
-
-    /* Shadow variables */
-    --shadow-dropdown: 0 8px 32px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.25);
   }
 
   html,

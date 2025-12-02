@@ -38,7 +38,7 @@ export default function PriceCard({ data }: PriceCardProps) {
         <div className='relative'>
           <div className='h-1.5 w-full bg-white/10 rounded-full overflow-hidden'>
             <div
-              className='h-full bg-linear-to-r from-(--brand-blue) to-(--brand-positive) rounded-full shadow-[0_0_10px_rgba(0,240,255,0.5)]'
+              className='h-full bg-linear-to-r from-(--brand-violet) to-(--brand-positive) rounded-full shadow-[0_0_10px_rgba(0,240,255,0.5)]'
               style={{ width: `${progressBar}%` }}
             />
           </div>

@@ -16,7 +16,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
       value: formatCompactCurrency(data.total_market_cap.usd),
       mobileValue: formatCompactNumber(data.total_market_cap.usd),
       label: 'Market Cap',
-      color: 'var(--brand-blue)',
+      color: 'var(--brand-violet)',
       percentage: {
         value: formatPercentage(data.market_cap_change_percentage_24h_usd),
         change: data.market_cap_change_percentage_24h_usd,
@@ -28,7 +28,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
       value: formatCompactCurrency(data.total_volume.usd),
       mobileValue: formatCompactNumber(data.total_volume.usd),
       label: '24h Volume',
-      color: 'var(--brand-blue-light)',
+      color: 'var(--brand-violet-light)',
       timeout: 100,
     },
     {

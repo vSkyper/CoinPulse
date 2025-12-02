@@ -14,7 +14,7 @@ export default function Switch({ toggle, setToggle, mobile }: SwitchProps) {
   const sizeClasses = mobile ? 'px-4 py-2 text-xs' : 'px-6 py-2.5 text-base';
 
   const stateClasses = toggle
-    ? 'bg-(--brand-blue) border-(--brand-blue) text-black shadow-[0_0_15px_rgba(0,240,255,0.3)] hover:bg-(--brand-blue-light)'
+    ? 'bg-(--brand-violet) border-(--brand-violet) text-black shadow-[0_0_15px_rgba(0,240,255,0.3)] hover:bg-(--brand-violet-light)'
     : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white hover:border-white/20';
 
   const buttonClasses = `flex items-center justify-center gap-2 font-bold rounded-full backdrop-blur-md border transition-all duration-300 ease-out relative overflow-hidden group active:translate-y-0 ${sizeClasses} ${stateClasses}`;

@@ -9,7 +9,7 @@ export default function PoweredBySection() {
           href={COINGECKO_URL}
           target='_blank'
           rel='noopener noreferrer'
-          className='text-white/90 font-bold hover:text-(--brand-blue) transition-colors duration-300'
+          className='text-white/90 font-bold hover:text-(--brand-violet) transition-colors duration-300'
         >
           CoinGecko
         </a>
