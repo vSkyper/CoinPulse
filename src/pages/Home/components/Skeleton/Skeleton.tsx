@@ -22,7 +22,7 @@ export default function Skeleton() {
         </div>
 
         {/* Table Skeleton */}
-        <div className='mt-6 sm:mt-8 w-full rounded-3xl bg-[#0a0a0f]/40 backdrop-blur-[20px] border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex flex-col'>
+        <div className='mt-6 sm:mt-8 w-full rounded-3xl bg-bg-glass/40 backdrop-blur-[20px] border border-white/5 shadow-glass flex flex-col'>
           {/* Market Overview Header */}
           <div className='p-3 sm:p-5 border-b border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-black/20 rounded-t-3xl'>
             <div className='h-7 w-40 bg-white/5 rounded-lg animate-pulse hidden sm:block' />

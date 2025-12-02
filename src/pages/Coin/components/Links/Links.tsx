@@ -113,7 +113,7 @@ export default function Links({ data }: LinksProps) {
             <ChipLink
               href={links.subreddit_url}
               left={<RedditIcon size={16} />}
-              className='hover:border-[#FF4500]/50 hover:shadow-[0_0_20px_rgba(255,69,0,0.2)]'
+              className='hover:border-brand-reddit/50 hover:shadow-glow-reddit'
             >
               {SOCIAL_LINKS.reddit.label}
             </ChipLink>
@@ -123,7 +123,7 @@ export default function Links({ data }: LinksProps) {
             <ChipLink
               href={SOCIAL_LINKS.twitter.getUrl(links.twitter_screen_name)}
               left={<TwitterIcon size={16} />}
-              className='hover:border-[#1DA1F2]/50 hover:shadow-[0_0_20px_rgba(29,161,242,0.2)]'
+              className='hover:border-brand-twitter/50 hover:shadow-glow-twitter'
             >
               {SOCIAL_LINKS.twitter.label}
             </ChipLink>
@@ -133,7 +133,7 @@ export default function Links({ data }: LinksProps) {
             <ChipLink
               href={SOCIAL_LINKS.facebook.getUrl(links.facebook_username)}
               left={<FacebookIcon size={16} />}
-              className='hover:border-[#1877F2]/50 hover:shadow-[0_0_20px_rgba(24,119,242,0.2)]'
+              className='hover:border-brand-facebook/50 hover:shadow-glow-facebook'
             >
               {SOCIAL_LINKS.facebook.label}
             </ChipLink>
@@ -143,7 +143,7 @@ export default function Links({ data }: LinksProps) {
             <ChipLink
               href={links.repos_url.github[0]}
               left={<GitHubIcon size={16} />}
-              className='hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]'
+              className='hover:border-white/50 hover:shadow-glow-white'
             >
               {SOCIAL_LINKS.github.label}
             </ChipLink>

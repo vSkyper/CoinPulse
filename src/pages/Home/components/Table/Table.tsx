@@ -279,7 +279,7 @@ export default function Table({ coins }: TableProps) {
 
   return (
     <div className='mt-6 sm:mt-8 relative transform-gpu will-change-transform'>
-      <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-[#0a0a0f]/40 backdrop-blur-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.4)]'>
+      <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-bg-glass/40 backdrop-blur-[20px] shadow-glass'>
         <div className='p-3 sm:p-5 border-b border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-20 bg-black/20 rounded-t-3xl'>
           <h2 className='text-lg sm:text-xl font-bold text-white/90 tracking-tight hidden sm:block'>
             Market Overview
@@ -323,7 +323,7 @@ export default function Table({ coins }: TableProps) {
           >
             <div
               ref={filterRef}
-              className='absolute right-0 sm:right-4 top-full mt-2 z-50 w-[calc(100%-1rem)] sm:w-[600px] mx-2 sm:mx-0 bg-[#0a0a0f]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-2 sm:p-5 ring-1 ring-white/5'
+              className='absolute right-0 sm:right-4 top-full mt-2 z-50 w-[calc(100%-1rem)] sm:w-[600px] mx-2 sm:mx-0 bg-bg-glass/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass-lg p-2 sm:p-5 ring-1 ring-white/5'
               onMouseDown={(e) => e.stopPropagation()}
             >
               <div className='flex items-center justify-between mb-2 pb-2 sm:mb-5 sm:pb-4 border-b border-white/5'>
@@ -375,7 +375,7 @@ export default function Table({ coins }: TableProps) {
                         leaveFrom='opacity-100'
                         leaveTo='opacity-0'
                       >
-                        <ListboxOptions className='absolute mt-2 max-h-48 sm:max-h-60 w-full overflow-auto rounded-xl bg-[#1a1a20] py-1 text-xs sm:text-sm shadow-xl ring-1 ring-black/5 focus:outline-none border border-white/10 z-50'>
+                        <ListboxOptions className='absolute mt-2 max-h-48 sm:max-h-60 w-full overflow-auto rounded-xl bg-bg-surface py-1 text-xs sm:text-sm shadow-xl ring-1 ring-black/5 focus:outline-none border border-white/10 z-50'>
                           {table.getAllColumns().map((column) => (
                             <ListboxOption
                               key={column.id}
@@ -441,7 +441,7 @@ export default function Table({ coins }: TableProps) {
                         leaveFrom='opacity-100'
                         leaveTo='opacity-0'
                       >
-                        <ListboxOptions className='absolute mt-2 max-h-48 sm:max-h-60 w-full overflow-auto rounded-xl bg-[#1a1a20] py-1 text-xs sm:text-sm shadow-xl ring-1 ring-black/5 focus:outline-none border border-white/10 z-50'>
+                        <ListboxOptions className='absolute mt-2 max-h-48 sm:max-h-60 w-full overflow-auto rounded-xl bg-bg-surface py-1 text-xs sm:text-sm shadow-xl ring-1 ring-black/5 focus:outline-none border border-white/10 z-50'>
                           {getOperatorsForColumn(activeFilterColumn).map(
                             (op) => (
                               <ListboxOption
@@ -643,7 +643,7 @@ export default function Table({ coins }: TableProps) {
                           <MenuItems
                             transition
                             anchor={{ to: 'bottom end', gap: 8 }}
-                            className='w-40 sm:w-48 origin-top-right divide-y divide-white/5 rounded-xl bg-[#0a0a0f]/95 backdrop-blur-xl shadow-xl ring-1 ring-white/10 focus:outline-none border border-white/10 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
+                            className='w-40 sm:w-48 origin-top-right divide-y divide-white/5 rounded-xl bg-bg-glass/95 backdrop-blur-xl shadow-xl ring-1 ring-white/10 focus:outline-none border border-white/10 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
                           >
                             <div className='px-1 py-1'>
                               <MenuItem>
@@ -821,7 +821,7 @@ export default function Table({ coins }: TableProps) {
                   <option
                     key={pageSize}
                     value={pageSize}
-                    className='bg-[#1a1a20]'
+                    className='bg-bg-surface'
                   >
                     {pageSize}
                   </option>

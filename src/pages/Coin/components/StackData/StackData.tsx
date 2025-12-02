@@ -45,7 +45,7 @@ export default function StackData({ marketData }: StackDataProps) {
       <StatRow
         label='Market Cap Rank'
         value={
-          <div className='w-fit px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-brand-violet/10 border border-brand-violet/20 text-brand-violet font-bold text-[0.7rem] sm:text-base shadow-[0_0_15px_rgba(0,240,255,0.15)] backdrop-blur-xl backdrop-saturate-150'>
+          <div className='w-fit px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-brand-violet/10 border border-brand-violet/20 text-brand-violet font-bold text-[0.7rem] sm:text-base shadow-glow-cyan-sm backdrop-blur-xl backdrop-saturate-150'>
             {marketData.market_cap_rank
               ? `#${marketData.market_cap_rank}`
               : 'N/A'}

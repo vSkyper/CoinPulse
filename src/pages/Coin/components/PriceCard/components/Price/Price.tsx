@@ -11,13 +11,13 @@ export default function Price({ marketData }: PriceProps) {
   const isPositive = priceChange >= 0;
 
   const badgeColorClass = isPositive
-    ? 'border-brand-positive/30 bg-brand-positive/10 text-brand-positive shadow-[0_0_10px_rgba(0,255,157,0.1)]'
-    : 'border-brand-negative/30 bg-brand-negative/10 text-brand-negative shadow-[0_0_10px_rgba(255,0,85,0.1)]';
+    ? 'border-brand-positive/30 bg-brand-positive/10 text-brand-positive shadow-glow-positive'
+    : 'border-brand-negative/30 bg-brand-negative/10 text-brand-negative shadow-glow-negative-sm';
   const TrendIcon = isPositive ? TrendingUpIcon : TrendingDownIcon;
 
   return (
     <div className='flex items-center justify-start'>
-      <h3 className='text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]'>
+      <h3 className='text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white drop-shadow-glow-white'>
         {formatCurrency(currentPrice)}
       </h3>
 

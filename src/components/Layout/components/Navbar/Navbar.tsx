@@ -3,7 +3,7 @@ import { SearchBar, Title, Tooltips } from './components';
 export default function Navbar() {
   return (
     <div className='grow'>
-      <nav className='fixed top-2 sm:top-6 left-0 right-0 mx-auto w-[calc(100%-1rem)] sm:w-[calc(100%-3rem)] max-w-7xl z-50 bg-[#0a0a0f]/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl transition-all duration-300'>
+      <nav className='fixed top-2 sm:top-6 left-0 right-0 mx-auto w-[calc(100%-1rem)] sm:w-[calc(100%-3rem)] max-w-7xl z-50 bg-bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl transition-all duration-300'>
         <div className='container mx-auto px-1 sm:px-2'>
           <div className='flex items-center justify-between gap-2 sm:gap-6 px-2 sm:px-6 py-2 sm:py-3 relative z-10'>
             {/* Left Section */}
