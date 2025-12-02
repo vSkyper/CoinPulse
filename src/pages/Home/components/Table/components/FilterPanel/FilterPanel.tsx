@@ -91,7 +91,7 @@ export default function FilterPanel({
               </span>
               <Listbox value={activeFilterColumn} onChange={handleColumnChange}>
                 <div className='relative'>
-                  <ListboxButton className='relative w-full cursor-default rounded-xl bg-black/20 py-1.5 sm:py-3 pl-2.5 sm:pl-4 pr-6 sm:pr-10 text-left text-[10px] sm:text-sm text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-black/30 hover:border-white/10 transition-all'>
+                  <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1.5 sm:py-3 pl-2.5 sm:pl-4 pr-6 sm:pr-10 text-left text-[10px] sm:text-sm text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'>
                     <span className='block truncate font-medium'>
                       {
                         table
@@ -160,7 +160,7 @@ export default function FilterPanel({
               </span>
               <Listbox value={activeOperator} onChange={setActiveOperator}>
                 <div className='relative'>
-                  <ListboxButton className='relative w-full cursor-default rounded-xl bg-black/20 py-1.5 sm:py-3 pl-2.5 sm:pl-4 pr-6 sm:pr-10 text-left text-[10px] sm:text-sm text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-black/30 hover:border-white/10 transition-all'>
+                  <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1.5 sm:py-3 pl-2.5 sm:pl-4 pr-6 sm:pr-10 text-left text-[10px] sm:text-sm text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'>
                     <span className='block truncate font-medium'>
                       {activeOperator}
                     </span>
@@ -228,7 +228,7 @@ export default function FilterPanel({
                 value={activeValue}
                 onChange={(e) => setActiveValue(e.target.value)}
                 placeholder='Enter value...'
-                className='w-full bg-black/20 border border-white/5 rounded-xl py-1.5 sm:py-3 px-2.5 sm:px-4 text-[10px] sm:text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-black/30 hover:border-white/10 transition-all'
+                className='w-full bg-white/5 border border-white/5 rounded-xl py-1.5 sm:py-3 px-2.5 sm:px-4 text-[10px] sm:text-sm text-white placeholder-white/30 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'
               />
             </div>
           )}
