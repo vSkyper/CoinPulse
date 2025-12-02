@@ -21,6 +21,7 @@ export default function PriceChange({ marketData, days }: PriceChangeProps) {
         />
 
         <div className='font-bold text-lg sm:text-xl mb-1 tracking-tight'>
+          {isPositive && '+'}
           {formatPercentage(priceChange)}
         </div>
 

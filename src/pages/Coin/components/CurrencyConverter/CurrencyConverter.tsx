@@ -245,14 +245,14 @@ export default function CurrencyConverter({
                   </div>
                   {change24h !== undefined && change24h !== null && (
                     <div
-                      className={`flex items-center gap-0.5 px-2 py-1 rounded text-[10px] sm:text-xs font-bold border ${
+                      className={`px-2 py-1 rounded text-[10px] sm:text-xs font-bold border ${
                         change24h >= 0
                           ? 'bg-brand-positive/10 text-brand-positive border-brand-positive/20'
                           : 'bg-brand-negative/10 text-brand-negative border-brand-negative/20'
                       }`}
                     >
-                      {change24h >= 0 ? '+' : ''}
-                      <span>{change24h.toFixed(2)}%</span>
+                      {change24h >= 0 && '+'}
+                      {change24h.toFixed(2)}%
                     </div>
                   )}
                 </div>

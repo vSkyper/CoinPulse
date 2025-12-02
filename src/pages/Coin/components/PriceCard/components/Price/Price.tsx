@@ -24,6 +24,7 @@ export default function Price({ marketData }: PriceProps) {
       <span
         className={`ml-3 sm:ml-4 inline-flex items-center font-bold text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl border backdrop-blur-md transition-all duration-300 tracking-wide ${badgeColorClass}`}
       >
+        {isPositive && '+'}
         {formatPercentage(priceChange)}
         <TrendIcon size='1rem' className='ml-1' />
       </span>

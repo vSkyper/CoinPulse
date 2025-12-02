@@ -14,7 +14,9 @@ export default function Description({ globalData }: DescriptionProps) {
 
     return {
       marketCap: formatCompactCurrency(data.total_market_cap.usd),
-      marketCapChange: formatPercentage(marketCapChange),
+      marketCapChange: `${marketCapChange >= 0 ? '+' : ''}${formatPercentage(
+        marketCapChange
+      )}`,
       totalVolume: formatCompactCurrency(data.total_volume.usd),
       btcDominance: formatPercentage(data.market_cap_percentage.btc),
       ethDominance: formatPercentage(data.market_cap_percentage.eth),

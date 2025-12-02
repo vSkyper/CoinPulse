@@ -72,6 +72,7 @@ export default function StatCard({
               <span
                 className={`inline-flex items-center gap-0.5 sm:gap-1 text-[0.65rem] sm:text-xs font-bold border rounded-full px-1.5 py-0.5 sm:px-2.5 sm:py-1 backdrop-blur-sm shadow-sm ${badgeColorClasses}`}
               >
+                {config.percentage.change >= 0 && '+'}
                 {config.percentage.value}
                 <TrendIcon className='text-[0.7rem] sm:text-[0.9rem]' />
               </span>
