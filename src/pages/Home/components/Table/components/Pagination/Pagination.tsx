@@ -1,67 +1,127 @@
+import { Fragment } from 'react';
 import {
   MdKeyboardArrowDown,
   MdChevronLeft,
   MdChevronRight,
+  MdCheck,
 } from 'react-icons/md';
-import { Table } from '@tanstack/react-table';
+import { Table, PaginationState } from '@tanstack/react-table';
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+  Transition,
+} from '@headlessui/react';
 
 interface PaginationProps {
   table: Table<any>;
+  pagination: PaginationState;
+  totalRows: number;
 }
 
-export default function Pagination({ table }: PaginationProps) {
+export default function Pagination({
+  table,
+  pagination,
+  totalRows,
+}: PaginationProps) {
+  const { pageIndex, pageSize } = pagination;
+  const pageCount = Math.ceil(totalRows / pageSize);
+  const canPreviousPage = pageIndex > 0;
+  const canNextPage = pageIndex < pageCount - 1;
+
   return (
-    <div className='flex items-center justify-end gap-4 p-4 border-t border-white/5 text-sm text-white/60 rounded-b-3xl'>
-      <div className='flex items-center gap-2'>
-        <span>Rows per page:</span>
-        <div className='relative'>
-          <select
-            value={table.getState().pagination.pageSize}
-            onChange={(e) => {
-              table.setPageSize(Number(e.target.value));
-            }}
-            className='appearance-none bg-white/5 border border-white/10 rounded px-2 py-1 pr-6 focus:outline-none focus:border-brand-violet cursor-pointer'
+    <div className='flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 p-3 sm:p-6 border-t border-white/5 text-[10px] sm:text-sm text-white/60 rounded-b-3xl bg-black/20'>
+      <div className='flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start'>
+        <div className='flex items-center gap-2 sm:gap-3'>
+          <span className='font-medium text-white/40'>Rows per page:</span>
+          <Listbox
+            value={pageSize}
+            onChange={(value) => table.setPageSize(Number(value))}
           >
-            {[50, 100].map((pageSize) => (
-              <option key={pageSize} value={pageSize} className='bg-surface'>
-                {pageSize}
-              </option>
-            ))}
-          </select>
-          <MdKeyboardArrowDown className='absolute right-1 top-1/2 -translate-y-1/2 h-4 w-4 pointer-events-none text-white/40' />
+            <div className='relative'>
+              <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1 sm:py-2 pl-2.5 sm:pl-3 pr-7 sm:pr-8 text-left text-[10px] sm:text-sm text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'>
+                <span className='block truncate font-medium'>{pageSize}</span>
+                <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1.5 sm:pr-2'>
+                  <MdKeyboardArrowDown
+                    className='h-3 w-3 sm:h-4 sm:w-4 text-white/40'
+                    aria-hidden='true'
+                  />
+                </span>
+              </ListboxButton>
+              <Transition
+                as={Fragment}
+                leave='transition ease-in duration-100'
+                leaveFrom='opacity-100'
+                leaveTo='opacity-0'
+              >
+                <ListboxOptions className='absolute bottom-full mb-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-sm shadow-xl ring-1 ring-white/5 focus:outline-none z-50 min-w-[60px] sm:min-w-20'>
+                  {[50, 100].map((size) => (
+                    <ListboxOption
+                      key={size}
+                      className={({ focus }) =>
+                        `relative cursor-default select-none py-1.5 sm:py-2 pl-6 sm:pl-8 pr-3 sm:pr-4 transition-colors ${
+                          focus ? 'bg-white/5 text-white' : 'text-white/70'
+                        }`
+                      }
+                      value={size}
+                    >
+                      {({ selected }) => (
+                        <>
+                          <span
+                            className={`block truncate ${
+                              selected ? 'font-bold text-white' : 'font-normal'
+                            }`}
+                          >
+                            {size}
+                          </span>
+                          {selected ? (
+                            <span className='absolute inset-y-0 left-0 flex items-center pl-1.5 sm:pl-2 text-white'>
+                              <MdCheck
+                                className='h-3 w-3 sm:h-4 sm:w-4'
+                                aria-hidden='true'
+                              />
+                            </span>
+                          ) : null}
+                        </>
+                      )}
+                    </ListboxOption>
+                  ))}
+                </ListboxOptions>
+              </Transition>
+            </div>
+          </Listbox>
+        </div>
+
+        <div className='hidden sm:block w-px h-4 bg-white/10' />
+
+        <div className='text-white/40 font-medium'>
+          Total: <span className='text-white font-bold'>{totalRows}</span> coins
         </div>
       </div>
-      <div className='flex items-center gap-1 min-w-[100px] justify-center'>
-        <span>
-          {table.getFilteredRowModel().rows.length === 0
-            ? 0
-            : table.getState().pagination.pageIndex *
-                table.getState().pagination.pageSize +
-              1}
-          -
-          {Math.min(
-            (table.getState().pagination.pageIndex + 1) *
-              table.getState().pagination.pageSize,
-            table.getFilteredRowModel().rows.length
-          )}{' '}
-          of {table.getFilteredRowModel().rows.length}
-        </span>
-      </div>
-      <div className='flex gap-1'>
-        <button
-          className='p-1 hover:text-white disabled:opacity-30 disabled:hover:text-white/60 transition-colors'
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          <MdChevronLeft size={24} />
-        </button>
-        <button
-          className='p-1 hover:text-white disabled:opacity-30 disabled:hover:text-white/60 transition-colors'
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          <MdChevronRight size={24} />
-        </button>
+
+      <div className='flex items-center gap-4 sm:gap-6 w-full sm:w-auto justify-between sm:justify-end'>
+        <div className='text-white/40 font-medium'>
+          Page <span className='text-white font-bold'>{pageIndex + 1}</span> of{' '}
+          <span className='text-white font-bold'>{pageCount || 1}</span>
+        </div>
+
+        <div className='flex items-center gap-2'>
+          <button
+            className='p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/5 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/10 disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-white/60 transition-all duration-200'
+            onClick={() => table.setPageIndex(pageIndex - 1)}
+            disabled={!canPreviousPage}
+          >
+            <MdChevronLeft className='w-4 h-4 sm:w-5 sm:h-5' />
+          </button>
+          <button
+            className='p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/5 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/10 disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-white/60 transition-all duration-200'
+            onClick={() => table.setPageIndex(pageIndex + 1)}
+            disabled={!canNextPage}
+          >
+            <MdChevronRight className='w-4 h-4 sm:w-5 sm:h-5' />
+          </button>
+        </div>
       </div>
     </div>
   );

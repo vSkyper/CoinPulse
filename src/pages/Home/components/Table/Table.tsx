@@ -247,7 +247,11 @@ export default function Table({ coins }: TableProps) {
           </table>
         </div>
 
-        <Pagination table={table} />
+        <Pagination
+          table={table}
+          pagination={pagination}
+          totalRows={table.getFilteredRowModel().rows.length}
+        />
       </div>
     </div>
   );
