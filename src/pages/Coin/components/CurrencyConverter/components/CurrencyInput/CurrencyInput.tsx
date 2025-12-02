@@ -19,7 +19,7 @@ export default function CurrencyInput({
               className='w-7 h-7 sm:w-9 sm:h-9 rounded-full object-cover shadow-[0_0_15px_rgba(0,240,255,0.2)]'
             />
           ) : (
-            <div className='w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[0.85rem] sm:text-sm font-bold bg-linear-to-br from-(--brand-violet) to-(--brand-violet-light) text-black shadow-[0_0_15px_rgba(0,240,255,0.3)]'>
+            <div className='w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[0.85rem] sm:text-sm font-bold bg-linear-to-br from-brand-violet to-brand-violet-light text-black shadow-[0_0_15px_rgba(0,240,255,0.3)]'>
               {symbol.charAt(0).toUpperCase()}
             </div>
           )}
@@ -30,7 +30,7 @@ export default function CurrencyInput({
           )}
         </div>
 
-        <div className='px-3 sm:px-4 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 w-full h-11 sm:h-14 flex items-center focus-within:bg-white/10 focus-within:border-(--brand-violet)/50 focus-within:shadow-[0_0_30px_rgba(0,240,255,0.1)]'>
+        <div className='px-3 sm:px-4 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 w-full h-11 sm:h-14 flex items-center focus-within:bg-white/10 focus-within:border-brand-violet/50 focus-within:shadow-[0_0_30px_rgba(0,240,255,0.1)]'>
           <input
             className='w-full bg-transparent focus:outline-none text-white/95 font-mono text-right text-lg sm:text-xl font-bold tracking-tight outline-none placeholder-white/10'
             type='number'

@@ -16,7 +16,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
       value: formatCompactCurrency(data.total_market_cap.usd),
       mobileValue: formatCompactNumber(data.total_market_cap.usd),
       label: 'Market Cap',
-      color: 'var(--brand-violet)',
+      color: 'var(--color-brand-violet)',
       percentage: {
         value: formatPercentage(data.market_cap_change_percentage_24h_usd),
         change: data.market_cap_change_percentage_24h_usd,
@@ -28,21 +28,21 @@ export default function Cards({ toggle, globalData }: CardsProps) {
       value: formatCompactCurrency(data.total_volume.usd),
       mobileValue: formatCompactNumber(data.total_volume.usd),
       label: '24h Volume',
-      color: 'var(--brand-violet-light)',
+      color: 'var(--color-brand-violet-light)',
       timeout: 100,
     },
     {
       key: 'btcDominance',
       value: formatPercentage(data.market_cap_percentage.btc),
       label: 'BTC Dominance',
-      color: 'var(--brand-bitcoin)',
+      color: 'var(--color-brand-bitcoin)',
       timeout: 200,
     },
     {
       key: 'ethDominance',
       value: formatPercentage(data.market_cap_percentage.eth),
       label: 'ETH Dominance',
-      color: 'var(--brand-ethereum)',
+      color: 'var(--color-brand-ethereum)',
       timeout: 300,
     },
     {

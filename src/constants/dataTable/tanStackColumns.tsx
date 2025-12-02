@@ -12,7 +12,7 @@ import { CoinsResponse } from 'interfaces';
 const columnHelper = createColumnHelper<CoinsResponse>();
 
 const COIN_NAME_CLASSES =
-  'text-white/95 font-bold truncate group-hover:text-(--brand-violet) text-sm sm:text-base transition-colors duration-300 leading-tight';
+  'text-white/95 font-bold truncate group-hover:text-brand-violet text-sm sm:text-base transition-colors duration-300 leading-tight';
 
 function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
   return (
@@ -31,7 +31,7 @@ function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
         <span className={COIN_NAME_CLASSES} title={String(value)}>
           {value}
         </span>
-        <span className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-wider group-hover:text-(--brand-violet) transition-colors duration-300 leading-tight mt-0.5'>
+        <span className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-wider group-hover:text-brand-violet transition-colors duration-300 leading-tight mt-0.5'>
           {row.symbol}
         </span>
       </div>
@@ -43,7 +43,7 @@ function SymbolBadge({ value }: { value: string }) {
   const label = String(value ?? '').toUpperCase();
   return (
     <div className='flex items-center justify-center w-full'>
-      <span className='flex items-center justify-center w-fit h-fit max-h-6 font-bold rounded-full backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 bg-(--brand-violet)/10 border border-(--brand-violet)/20 text-(--brand-violet) tracking-wide text-[0.65rem]! sm:text-xs! px-2! sm:px-2.5! py-0.5! sm:py-1! shadow-[0_0_10px_rgba(0,240,255,0.1)]'>
+      <span className='flex items-center justify-center w-fit h-fit max-h-6 font-bold rounded-full backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 bg-brand-violet/10 border border-brand-violet/20 text-brand-violet tracking-wide text-[0.65rem]! sm:text-xs! px-2! sm:px-2.5! py-0.5! sm:py-1! shadow-[0_0_10px_rgba(0,240,255,0.1)]'>
         {label}
       </span>
     </div>
@@ -54,8 +54,8 @@ function PercentageChange({ value }: { value: number }) {
   const label = formatPercentage(Math.abs(value)); // Format absolute value
   const isPositive = value >= 0;
   const colorClass = isPositive
-    ? 'text-(--brand-positive)'
-    : 'text-(--brand-negative)';
+    ? 'text-brand-positive'
+    : 'text-brand-negative';
   const Icon = isPositive ? MdArrowDropUp : MdArrowDropDown;
 
   return (
@@ -70,7 +70,7 @@ function PercentageChange({ value }: { value: number }) {
 
 function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
   const isNegative = (row.price_change_percentage_7d_in_currency ?? 0) < 0;
-  const color = isNegative ? 'var(--brand-positive)' : 'var(--brand-negative)';
+  const color = isNegative ? 'var(--color-brand-positive)' : 'var(--color-brand-negative)';
   const gradientId = `linearColor${row.id}`;
 
   const prices = value.price;

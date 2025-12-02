@@ -9,7 +9,7 @@ export default function CoinGeckoBadge() {
       rel='noopener noreferrer'
       className='group relative flex items-center justify-center p-1 sm:p-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/5 hover:border-white/20 overflow-hidden'
     >
-      <div className='absolute inset-0 bg-linear-to-tr from-(--brand-violet)/0 via-(--brand-violet)/0 to-(--brand-violet)/0 group-hover:via-(--brand-violet)/5 transition-all duration-500' />
+      <div className='absolute inset-0 bg-linear-to-tr from-brand-violet/0 via-brand-violet/0 to-brand-violet/0 group-hover:via-brand-violet/5 transition-all duration-500' />
       <img
         alt='CoinGecko'
         src={COINGECKO_BADGE_URL}

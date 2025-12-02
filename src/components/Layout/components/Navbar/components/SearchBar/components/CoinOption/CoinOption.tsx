@@ -13,7 +13,7 @@ export default function CoinOption({ coin, isFocused }: CoinOptionProps) {
           {coin.name}
         </span>
         <div className='flex items-center justify-center gap-2 mt-2.5'>
-          <span className='inline-flex items-center justify-center text-[0.6rem] sm:text-[0.7rem] px-1.5 sm:px-2 h-4 sm:h-5 font-semibold rounded-full backdrop-blur-sm bg-white/5 border border-white/10 text-(--brand-violet)'>
+          <span className='inline-flex items-center justify-center text-[0.6rem] sm:text-[0.7rem] px-1.5 sm:px-2 h-4 sm:h-5 font-semibold rounded-full backdrop-blur-sm bg-white/5 border border-white/10 text-brand-violet'>
             {coin.symbol?.toUpperCase()}
           </span>
           <span className='text-[0.65rem] sm:text-[0.75rem] text-white/40 truncate flex-1'>
@@ -25,7 +25,7 @@ export default function CoinOption({ coin, isFocused }: CoinOptionProps) {
         size='0.9rem'
         className={`transition-all duration-200 shrink-0 ${
           isFocused
-            ? 'text-(--brand-violet) translate-x-1'
+            ? 'text-brand-violet translate-x-1'
             : 'text-white/20 translate-x-0'
         }`}
       />

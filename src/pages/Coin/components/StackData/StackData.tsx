@@ -8,7 +8,7 @@ export default function StackData({ marketData }: StackDataProps) {
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-10'>
-      <div className='hidden font-bold text-base sm:text-lg md:text-xl bg-clip-text text-transparent bg-linear-to-r from-white via-(--brand-violet-light) to-(--brand-violet)'>
+      <div className='hidden font-bold text-base sm:text-lg md:text-xl bg-clip-text text-transparent bg-linear-to-r from-white via-brand-violet-light to-brand-violet'>
         Market Statistics
       </div>
 
@@ -31,11 +31,11 @@ export default function StackData({ marketData }: StackDataProps) {
         label='24h Low / 24h High'
         value={
           <div className='flex flex-col items-end justify-center h-full sm:block sm:text-right'>
-            <div className='font-bold text-(--brand-negative) text-sm sm:text-lg md:text-xl leading-tight'>
+            <div className='font-bold text-brand-negative text-sm sm:text-lg md:text-xl leading-tight'>
               {formatCurrency(marketData.low_24h?.usd || 0)}
             </div>
             <div className='hidden sm:inline text-white/40 mx-2'>/</div>
-            <div className='font-bold text-(--brand-positive) text-sm sm:text-lg md:text-xl leading-tight'>
+            <div className='font-bold text-brand-positive text-sm sm:text-lg md:text-xl leading-tight'>
               {formatCurrency(marketData.high_24h?.usd || 0)}
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function StackData({ marketData }: StackDataProps) {
       <StatRow
         label='Market Cap Rank'
         value={
-          <div className='w-fit px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-(--brand-violet)/10 border border-(--brand-violet)/20 text-(--brand-violet) font-bold text-[0.7rem] sm:text-base shadow-[0_0_15px_rgba(0,240,255,0.15)] backdrop-blur-xl backdrop-saturate-150'>
+          <div className='w-fit px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl bg-brand-violet/10 border border-brand-violet/20 text-brand-violet font-bold text-[0.7rem] sm:text-base shadow-[0_0_15px_rgba(0,240,255,0.15)] backdrop-blur-xl backdrop-saturate-150'>
             {marketData.market_cap_rank
               ? `#${marketData.market_cap_rank}`
               : 'N/A'}

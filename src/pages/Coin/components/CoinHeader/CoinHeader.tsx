@@ -10,7 +10,7 @@ export default function CoinHeader({
     <div className='mb-6 sm:mb-12 relative z-10'>
       <div className='flex items-center gap-4 sm:gap-6'>
         {/* Coin Image */}
-        <div className='relative w-12! h-12! sm:w-20! sm:h-20! rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-transform duration-500 hover:scale-105 border border-white/10 bg-[#0a0a0f]/60 p-1.5 sm:p-2 backdrop-blur-xl backdrop-saturate-150'>
+        <div className='relative w-12! h-12! sm:w-20! sm:h-20! rounded-2xl shadow-dropdown transition-transform duration-500 hover:scale-105 border border-white/10 bg-[#0a0a0f]/60 p-1.5 sm:p-2 backdrop-blur-xl backdrop-saturate-150'>
           {image ? (
             <img
               src={image}
@@ -34,7 +34,7 @@ export default function CoinHeader({
             </span>
 
             {marketCapRank && (
-              <span className='text-[0.65rem] sm:text-xs font-bold rounded-full px-2.5 py-1 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 bg-(--brand-violet)/10 border border-(--brand-violet)/20 text-(--brand-violet) tracking-wide shadow-[0_0_10px_rgba(0,240,255,0.1)]'>
+              <span className='text-[0.65rem] sm:text-xs font-bold rounded-full px-2.5 py-1 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 bg-brand-violet/10 border border-brand-violet/20 text-brand-violet tracking-wide shadow-[0_0_10px_rgba(0,240,255,0.1)]'>
                 #{marketCapRank}
               </span>
             )}

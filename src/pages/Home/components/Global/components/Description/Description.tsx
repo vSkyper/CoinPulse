@@ -24,8 +24,8 @@ export default function Description({ globalData }: DescriptionProps) {
   };
 
   const changeColorClass = stats().isNegative
-    ? 'text-(--brand-negative) bg-(--brand-negative)/10 border-(--brand-negative)/20'
-    : 'text-(--brand-positive) bg-(--brand-positive)/10 border-(--brand-positive)/20';
+    ? 'text-brand-negative bg-brand-negative/10 border-brand-negative/20'
+    : 'text-brand-positive bg-brand-positive/10 border-brand-positive/20';
 
   return (
     <p className='text-sm sm:text-base text-white/70 leading-relaxed max-w-4xl font-medium tracking-wide'>
@@ -38,11 +38,11 @@ export default function Description({ globalData }: DescriptionProps) {
       last day is at{' '}
       <Highlight className='text-white'>{stats().totalVolume}</Highlight>.
       Bitcoin dominance is at{' '}
-      <Highlight className='text-(--brand-bitcoin) bg-(--brand-bitcoin)/10 border-(--brand-bitcoin)/20'>
+      <Highlight className='text-brand-bitcoin bg-brand-bitcoin/10 border-brand-bitcoin/20'>
         {stats().btcDominance}
       </Highlight>{' '}
       and Ethereum dominance is at{' '}
-      <Highlight className='text-(--brand-ethereum) bg-(--brand-ethereum)/10 border-(--brand-ethereum)/20'>
+      <Highlight className='text-brand-ethereum bg-brand-ethereum/10 border-brand-ethereum/20'>
         {stats().ethDominance}
       </Highlight>
       . CoinGecko API is now tracking{' '}

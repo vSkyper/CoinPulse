@@ -1,37 +1,53 @@
 @config "../tailwind.config.ts";
 @import 'tailwindcss';
 
+@theme {
+  --color-brand-violet: #8b5cf6;
+  --color-brand-violet-light: #a78bfa;
+  --color-brand-positive: #00ff9d;
+  --color-brand-negative: #ff0055;
+  --color-brand-bitcoin: #f7931a;
+  --color-brand-ethereum: #627eea;
+
+  --color-bg-primary: #050505;
+  --color-bg-secondary: #0a0a0a;
+  --color-bg-tertiary: rgba(20, 20, 30, 0.4);
+  --color-bg-tertiary-dark: rgba(10, 10, 15, 0.8);
+  --color-bg-dropdown: rgba(15, 10, 20, 0.95);
+  --color-bg-gradient-1: color-mix(
+    in srgb,
+    var(--color-brand-violet) 8%,
+    transparent
+  );
+  --color-bg-gradient-2: color-mix(in srgb, #ec4899 5%, transparent);
+
+  --shadow-dropdown: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
 @layer base {
-  :root {
-    /* Custom brand color variables - change these to update colors across the entire app */
-    --brand-violet: #8b5cf6;
-    --brand-violet-light: #a78bfa;
-    --brand-positive: #00ff9d;
-    --brand-negative: #ff0055;
-    --brand-bitcoin: #f7931a;
-    --brand-ethereum: #627eea;
-
-    /* Background color variables - change these to update the app background */
-    --bg-primary: #050505;
-    --bg-gradient-1: color-mix(in srgb, var(--brand-violet) 8%, transparent);
-    --bg-gradient-2: color-mix(in srgb, #ec4899 5%, transparent);
-  }
-
   html,
   body {
     overscroll-behavior-y: none;
     overscroll-behavior-x: none;
     overflow-x: hidden;
     min-width: 100%;
-    background-color: var(--bg-primary);
+    background-color: var(--color-bg-primary);
     background-attachment: fixed;
     background-image: radial-gradient(
         circle at 50% 0%,
-        var(--bg-gradient-1),
+        var(--color-bg-gradient-1),
         transparent 50%
       ),
-      radial-gradient(circle at 90% 10%, var(--bg-gradient-2), transparent 40%),
-      radial-gradient(circle at 10% 10%, var(--bg-gradient-1), transparent 40%);
+      radial-gradient(
+        circle at 90% 10%,
+        var(--color-bg-gradient-2),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 10% 10%,
+        var(--color-bg-gradient-1),
+        transparent 40%
+      );
     color: #ffffff;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }

@@ -30,7 +30,7 @@ export default function Sparkline({ id }: SparklineProps) {
     <>
       {/* Time Period Buttons */}
       <div className='mb-4 sm:mb-6 flex justify-end'>
-        <div className='flex gap-1.5 p-1 bg-[#0a0a0f]/60 backdrop-blur-xl backdrop-saturate-150 rounded-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'>
+        <div className='flex gap-1.5 p-1 bg-[#0a0a0f]/60 backdrop-blur-xl backdrop-saturate-150 rounded-xl border border-white/10 shadow-dropdown'>
           {buttons.map((button) => (
             <ButtonComponent
               key={button.days}

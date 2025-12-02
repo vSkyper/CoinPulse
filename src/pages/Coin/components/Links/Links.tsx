@@ -68,7 +68,7 @@ export default function Links({ data }: LinksProps) {
         {links?.official_forum_url?.[0] && (
           <ChipLink
             href={links.official_forum_url[0]}
-            left={<ForumIcon size={16} className='text-(--brand-violet)' />}
+            left={<ForumIcon size={16} className='text-brand-violet' />}
           >
             Official Forum
           </ChipLink>
@@ -78,7 +78,7 @@ export default function Links({ data }: LinksProps) {
       {/* Blockchain Explorer Links */}
       {hasBlockchainSites && (
         <div className='mb-4'>
-          <div className='text-center text-[0.65rem] sm:text-xs md:text-xs uppercase tracking-[0.2em] font-bold text-(--brand-violet) mb-3 sm:mb-4 md:mb-5 select-none'>
+          <div className='text-center text-[0.65rem] sm:text-xs md:text-xs uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-4 md:mb-5 select-none'>
             Blockchain Explorers
           </div>
           <div className='flex flex-wrap gap-2'>
@@ -91,7 +91,7 @@ export default function Links({ data }: LinksProps) {
                     left={
                       <WebsiteIcon
                         size={16}
-                        className='text-(--brand-violet-light)'
+                        className='text-brand-violet-light'
                       />
                     }
                   >
@@ -105,7 +105,7 @@ export default function Links({ data }: LinksProps) {
 
       {/* Social Media Links */}
       <div>
-        <div className='text-center text-[0.65rem] sm:text-xs md:text-xs uppercase tracking-[0.2em] font-bold text-(--brand-violet) mb-3 sm:mb-4 md:mb-5 select-none'>
+        <div className='text-center text-[0.65rem] sm:text-xs md:text-xs uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-4 md:mb-5 select-none'>
           Social Media
         </div>
         <div className='flex flex-wrap gap-2'>

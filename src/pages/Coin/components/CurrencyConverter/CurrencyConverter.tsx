@@ -140,7 +140,7 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-4 sm:p-5 rounded-3xl bg-[#0a0a0f]/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'>
+    <div className='relative z-10 p-4 sm:p-5 rounded-3xl bg-[#0a0a0f]/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
       <div>
         {/* Header */}
         <div className='flex items-center justify-between mb-3 sm:mb-5'>
@@ -231,24 +231,24 @@ export default function CurrencyConverter({
         <div className='flex flex-col gap-2 mt-3 sm:mt-5'>
           <div className='flex min-h-12 items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 bg-black/20 text-white/60 font-mono text-[0.6rem] sm:text-[0.65rem] font-bold tracking-wide uppercase'>
             {isLoadingRate ? (
-              <div className='animate-spin h-[18px] w-[18px] border-2 border-white/10 border-t-(--brand-violet) rounded-full' />
+              <div className='animate-spin h-[18px] w-[18px] border-2 border-white/10 border-t-brand-violet rounded-full' />
             ) : (
               currentRate && (
                 <div className='flex items-center gap-2'>
                   <div className='font-semibold text-xs sm:text-sm'>
                     1{' '}
-                    <span className='text-(--brand-violet)'>
+                    <span className='text-brand-violet'>
                       {symbol.toUpperCase()}
                     </span>{' '}
                     ≈ {rateValue}{' '}
-                    <span className='text-(--brand-violet)'>{rateSymbol}</span>
+                    <span className='text-brand-violet'>{rateSymbol}</span>
                   </div>
                   {change24h !== undefined && change24h !== null && (
                     <div
                       className={`flex items-center gap-0.5 px-2 py-1 rounded text-[10px] sm:text-xs font-bold border ${
                         change24h >= 0
-                          ? 'bg-(--brand-positive)/10 text-(--brand-positive) border-(--brand-positive)/20'
-                          : 'bg-(--brand-negative)/10 text-(--brand-negative) border-(--brand-negative)/20'
+                          ? 'bg-brand-positive/10 text-brand-positive border-brand-positive/20'
+                          : 'bg-brand-negative/10 text-brand-negative border-brand-negative/20'
                       }`}
                     >
                       {change24h >= 0 ? '+' : ''}

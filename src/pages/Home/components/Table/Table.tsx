@@ -286,12 +286,12 @@ export default function Table({ coins }: TableProps) {
           </h2>
           <div className='flex items-center gap-2 sm:gap-3 w-full sm:w-auto'>
             <div className='relative group flex-1 sm:flex-none'>
-              <MdSearch className='absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-(--brand-violet) transition-colors duration-200 w-4 h-4 sm:w-5 sm:h-5' />
+              <MdSearch className='absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-brand-violet transition-colors duration-200 w-4 h-4 sm:w-5 sm:h-5' />
               <input
                 value={globalFilter ?? ''}
                 onChange={(e) => setGlobalFilter(e.target.value)}
                 placeholder='Search coins...'
-                className='bg-white/5 border border-white/10 rounded-xl py-1.5 sm:py-2 pl-8 sm:pl-10 pr-3 sm:pr-4 text-xs sm:text-sm text-white/90 placeholder-white/40 focus:outline-none focus:border-(--brand-violet)/50 focus:bg-white/10 transition-all duration-200 w-full sm:w-64 shadow-inner'
+                className='bg-white/5 border border-white/10 rounded-xl py-1.5 sm:py-2 pl-8 sm:pl-10 pr-3 sm:pr-4 text-xs sm:text-sm text-white/90 placeholder-white/40 focus:outline-none focus:border-brand-violet/50 focus:bg-white/10 transition-all duration-200 w-full sm:w-64 shadow-inner'
               />
             </div>
             <button
@@ -299,7 +299,7 @@ export default function Table({ coins }: TableProps) {
               onClick={handleFilterClick}
               className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl transition-all duration-200 border ${
                 isFilterOpen
-                  ? 'bg-(--brand-violet)/10 text-(--brand-violet) border-(--brand-violet)/20'
+                  ? 'bg-brand-violet/10 text-brand-violet border-brand-violet/20'
                   : 'bg-white/5 text-white/60 border-white/10 hover:text-white hover:bg-white/10 hover:border-white/20'
               }`}
             >
@@ -328,7 +328,7 @@ export default function Table({ coins }: TableProps) {
             >
               <div className='flex items-center justify-between mb-2 pb-2 sm:mb-5 sm:pb-4 border-b border-white/5'>
                 <div className='flex items-center gap-2'>
-                  <div className='p-1.5 rounded-lg bg-(--brand-violet)/10 text-(--brand-violet)'>
+                  <div className='p-1.5 rounded-lg bg-brand-violet/10 text-brand-violet'>
                     <MdFilterList size={20} />
                   </div>
                   <span className='font-bold text-sm text-white/90'>
@@ -353,7 +353,7 @@ export default function Table({ coins }: TableProps) {
                     onChange={handleColumnChange}
                   >
                     <div className='relative'>
-                      <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left text-xs sm:text-sm text-white border border-white/10 focus:outline-none focus-visible:border-(--brand-violet) focus-visible:ring-2 focus-visible:ring-white/75 hover:bg-white/10 hover:border-white/20 transition-all'>
+                      <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left text-xs sm:text-sm text-white border border-white/10 focus:outline-none focus-visible:border-brand-violet focus-visible:ring-2 focus-visible:ring-white/75 hover:bg-white/10 hover:border-white/20 transition-all'>
                         <span className='block truncate font-medium'>
                           {
                             table
@@ -400,7 +400,7 @@ export default function Table({ coins }: TableProps) {
                                     {column.columnDef.header as string}
                                   </span>
                                   {selected ? (
-                                    <span className='absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-(--brand-violet)'>
+                                    <span className='absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-brand-violet'>
                                       <MdCheck
                                         className='h-4 w-4 sm:h-5 sm:w-5'
                                         aria-hidden='true'
@@ -424,7 +424,7 @@ export default function Table({ coins }: TableProps) {
                   </span>
                   <Listbox value={activeOperator} onChange={setActiveOperator}>
                     <div className='relative'>
-                      <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left text-xs sm:text-sm text-white border border-white/10 focus:outline-none focus-visible:border-(--brand-violet) focus-visible:ring-2 focus-visible:ring-white/75 hover:bg-white/10 hover:border-white/20 transition-all'>
+                      <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1.5 sm:py-2.5 pl-3 sm:pl-4 pr-8 sm:pr-10 text-left text-xs sm:text-sm text-white border border-white/10 focus:outline-none focus-visible:border-brand-violet focus-visible:ring-2 focus-visible:ring-white/75 hover:bg-white/10 hover:border-white/20 transition-all'>
                         <span className='block truncate font-medium'>
                           {activeOperator}
                         </span>
@@ -467,7 +467,7 @@ export default function Table({ coins }: TableProps) {
                                       {op}
                                     </span>
                                     {selected ? (
-                                      <span className='absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-(--brand-violet)'>
+                                      <span className='absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-brand-violet'>
                                         <MdCheck
                                           className='h-4 w-4 sm:h-5 sm:w-5'
                                           aria-hidden='true'
@@ -495,7 +495,7 @@ export default function Table({ coins }: TableProps) {
                       value={activeValue}
                       onChange={(e) => setActiveValue(e.target.value)}
                       placeholder='Enter value...'
-                      className='w-full bg-white/5 border border-white/10 rounded-xl py-1.5 sm:py-2.5 px-3 sm:px-4 text-xs sm:text-sm text-white placeholder-white/30 focus:outline-none focus:border-(--brand-violet) focus:bg-white/10 hover:border-white/20 transition-all'
+                      className='w-full bg-white/5 border border-white/10 rounded-xl py-1.5 sm:py-2.5 px-3 sm:px-4 text-xs sm:text-sm text-white placeholder-white/30 focus:outline-none focus:border-brand-violet focus:bg-white/10 hover:border-white/20 transition-all'
                     />
                   </div>
                 )}
@@ -509,7 +509,7 @@ export default function Table({ coins }: TableProps) {
                 </button>
                 <button
                   onClick={handleFilterSave}
-                  className='px-3 sm:px-6 py-1.5 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-(--brand-violet) rounded-xl shadow-lg shadow-(--brand-violet)/20 border border-white/10 hover:shadow-(--brand-violet)/40 hover:brightness-110 transition-all duration-200'
+                  className='px-3 sm:px-6 py-1.5 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-brand-violet rounded-xl shadow-lg shadow-brand-violet/20 border border-white/10 hover:shadow-brand-violet/40 hover:brightness-110 transition-all duration-200'
                 >
                   Apply Filter
                 </button>
@@ -744,7 +744,7 @@ export default function Table({ coins }: TableProps) {
                 table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className='border-b border-white/3 last:border-b-0 transition-colors duration-150 ease-out hover:bg-white/3 focus-within:bg-(--brand-violet)/5 active:bg-(--brand-violet)/10'
+                    className='border-b border-white/3 last:border-b-0 transition-colors duration-150 ease-out hover:bg-white/3 focus-within:bg-brand-violet/5 active:bg-brand-violet/10'
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td
@@ -793,7 +793,7 @@ export default function Table({ coins }: TableProps) {
                           setGlobalFilter('');
                           setColumnFilters([]);
                         }}
-                        className='mt-3 text-xs text-(--brand-violet) hover:text-(--brand-violet)/80 hover:underline transition-all'
+                        className='mt-3 text-xs text-brand-violet hover:text-brand-violet/80 hover:underline transition-all'
                       >
                         Clear all filters
                       </button>
@@ -815,7 +815,7 @@ export default function Table({ coins }: TableProps) {
                 onChange={(e) => {
                   table.setPageSize(Number(e.target.value));
                 }}
-                className='appearance-none bg-white/5 border border-white/10 rounded px-2 py-1 pr-6 focus:outline-none focus:border-(--brand-violet) cursor-pointer'
+                className='appearance-none bg-white/5 border border-white/10 rounded px-2 py-1 pr-6 focus:outline-none focus:border-brand-violet cursor-pointer'
               >
                 {[50, 100].map((pageSize) => (
                   <option

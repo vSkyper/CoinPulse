@@ -36,8 +36,8 @@ export default function StatCard({
     : 'opacity-0 scale-90 -translate-y-8 blur-[4px]';
 
   const badgeColorClasses = isNegative
-    ? 'bg-(--brand-negative)/10 text-(--brand-negative) border-(--brand-negative)/20'
-    : 'bg-(--brand-positive)/10 text-(--brand-positive) border-(--brand-positive)/20';
+    ? 'bg-brand-negative/10 text-brand-negative border-brand-negative/20'
+    : 'bg-brand-positive/10 text-brand-positive border-brand-positive/20';
 
   const TrendIcon = isNegative ? TrendingDownIcon : TrendingUpIcon;
 
@@ -48,7 +48,7 @@ export default function StatCard({
         transitionDelay: show ? `${config.timeout}ms` : '0ms',
       }}
     >
-      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-[#0a0a0f]/60 backdrop-blur-xl backdrop-saturate-150 rounded-2xl p-3 sm:p-5 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] group'>
+      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-[#0a0a0f]/60 backdrop-blur-xl backdrop-saturate-150 rounded-2xl p-3 sm:p-5 border border-white/10 shadow-dropdown group'>
         <div className='flex flex-col gap-2 w-full items-center relative z-10'>
           <div className='flex items-center justify-center gap-2'>
             {/* Mobile value - shorter */}
