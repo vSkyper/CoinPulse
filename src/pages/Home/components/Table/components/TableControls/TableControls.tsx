@@ -29,7 +29,7 @@ export default function TableControls({
             value={globalFilter ?? ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
             placeholder='Search coins...'
-            className='bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl py-2 sm:py-2.5 pl-9 sm:pl-11 pr-3 sm:pr-4 text-xs sm:text-sm text-white/90 placeholder-white/40 focus:outline-none focus:border-white/20 focus:bg-white/10 focus:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all duration-300 w-full sm:w-72'
+            className='bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl py-2 sm:py-2.5 pl-9 sm:pl-11 pr-3 sm:pr-4 text-xs sm:text-sm text-white/90 placeholder-white/40 focus:outline-none focus:border-white/20 focus:bg-white/10 focus:shadow-glow-white-sm transition-all duration-300 w-full sm:w-72'
           />
         </div>
         <button
@@ -37,7 +37,7 @@ export default function TableControls({
           onClick={handleFilterClick}
           className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl transition-all duration-300 border font-medium text-xs sm:text-sm ${
             isFilterOpen
-              ? 'bg-brand-violet/10 text-brand-violet border-brand-violet/20 shadow-[0_0_15px_rgba(139,92,246,0.1)]'
+              ? 'bg-brand-violet/10 text-brand-violet border-brand-violet/20 shadow-glow-violet-xs'
               : 'bg-white/5 text-white/70 border-white/10 hover:text-white hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-white/5'
           }`}
         >

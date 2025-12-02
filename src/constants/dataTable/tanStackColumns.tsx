@@ -69,8 +69,8 @@ function PercentageChange({ value }: { value: number }) {
 function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
   const isNegative = (row.price_change_percentage_7d_in_currency ?? 0) < 0;
   const color = isNegative
-    ? 'var(--color-brand-positive)'
-    : 'var(--color-brand-negative)';
+    ? 'var(--color-brand-negative)'
+    : 'var(--color-brand-positive)';
   const gradientId = `linearColor${row.id}`;
 
   const prices = value.price;
@@ -151,6 +151,11 @@ export const columns = [
     cell: (info) => (
       <SparklineChart row={info.row.original} value={info.getValue()} />
     ),
+    sortingFn: (rowA, rowB) => {
+      const valA = rowA.original.price_change_percentage_7d_in_currency ?? 0;
+      const valB = rowB.original.price_change_percentage_7d_in_currency ?? 0;
+      return valA - valB;
+    },
     size: 130,
   }),
 ];

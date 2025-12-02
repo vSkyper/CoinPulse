@@ -39,6 +39,7 @@
 
   --shadow-glow-violet: 0 0 20px rgba(139, 92, 246, 0.4);
   --shadow-glow-violet-sm: 0 0 15px rgba(139, 92, 246, 0.2);
+  --shadow-glow-violet-xs: 0 0 15px rgba(139, 92, 246, 0.1);
 
   --shadow-glow-cyan: 0 0 15px rgba(0, 240, 255, 0.3);
   --shadow-glow-cyan-sm: 0 0 10px rgba(0, 240, 255, 0.1);
@@ -48,6 +49,7 @@
   --shadow-glow-negative-sm: 0 0 10px rgba(255, 0, 85, 0.1);
 
   --shadow-glow-white: 0 0 20px rgba(255, 255, 255, 0.2);
+  --shadow-glow-white-sm: 0 0 15px rgba(255, 255, 255, 0.05);
   --drop-shadow-glow-white: 0 0 20px rgba(255, 255, 255, 0.2);
   --drop-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
 
