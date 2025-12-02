@@ -4,4 +4,5 @@ export interface ButtonProps {
   days: string;
   daysFormatted: string;
   mobileDisappear: boolean;
+  layoutId: string;
 }

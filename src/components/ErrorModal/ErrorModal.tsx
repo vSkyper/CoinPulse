@@ -11,7 +11,7 @@ export default function ErrorModal({
 
   const modal = (
     <div className='fixed inset-0 z-9999 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-in fade-in duration-200'>
-      <div className='relative w-full max-w-md overflow-hidden rounded-3xl bg-bg-modal/90 border border-white/10 shadow-modal backdrop-blur-xl p-6 sm:p-8 transform transition-all animate-in zoom-in-95 duration-200'>
+      <div className='relative w-full max-w-md overflow-hidden rounded-3xl bg-modal/90 border border-white/10 shadow-modal backdrop-blur-xl p-6 sm:p-8 transform transition-all animate-in zoom-in-95 duration-200'>
         <div className='mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10 mb-6 border border-red-500/20 shadow-glow-negative'>
           <svg
             className='h-8 w-8 text-red-500'

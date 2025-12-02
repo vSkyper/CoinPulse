@@ -2,7 +2,7 @@ import { CoinGeckoBadge, PoweredBySection } from './components';
 
 export default function Footer() {
   return (
-    <footer className='w-full bg-bg-primary relative z-10 mt-auto'>
+    <footer className='w-full bg-primary relative z-10 mt-auto'>
       {/* Gradient Top Border */}
       <div className='absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-brand-violet/30 to-transparent' />
 

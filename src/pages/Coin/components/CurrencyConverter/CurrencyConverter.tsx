@@ -140,7 +140,7 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-4 sm:p-5 rounded-3xl bg-bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
+    <div className='relative z-10 p-4 sm:p-5 rounded-3xl bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
       <div>
         {/* Header */}
         <div className='flex items-center justify-between mb-3 sm:mb-5'>
@@ -199,7 +199,7 @@ export default function CurrencyConverter({
                       <ComboboxOptions
                         modal={false}
                         anchor='bottom start'
-                        className='z-20 mt-2 max-h-48 sm:max-h-60 w-18 sm:w-20 overflow-auto rounded-xl bg-bg-surface py-1 text-xs sm:text-sm shadow-xl ring-1 ring-black/5 focus:outline-none border border-white/10 backdrop-blur-xl'
+                        className='z-20 mt-2 max-h-48 sm:max-h-60 w-20 sm:w-24 overflow-auto rounded-xl bg-surface-dropdown py-1 text-xs sm:text-sm shadow-xl ring-1 ring-white/10 focus:outline-none'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption
@@ -208,7 +208,7 @@ export default function CurrencyConverter({
                             className={({ focus }) =>
                               `relative cursor-default select-none py-1.5 sm:py-2.5 px-3 sm:px-4 transition-colors ${
                                 focus
-                                  ? 'bg-white/10 text-white'
+                                  ? 'bg-white/5 text-white'
                                   : 'text-white/70'
                               }`
                             }
