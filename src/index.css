@@ -11,7 +11,6 @@
 
   --color-bg-primary: #050505;
   --color-bg-secondary: #0a0a0a;
-  --color-bg-dropdown: rgba(15, 10, 20, 0.95);
   --color-bg-gradient-1: color-mix(
     in srgb,
     var(--color-brand-violet) 8%,
