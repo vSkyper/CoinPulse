@@ -30,7 +30,9 @@ export function useFilterPosition(
       panel: HTMLElement
     ): { top: number; left: number; strategy: 'fixed' | 'absolute' } => {
       const anchorRect = anchor.getBoundingClientRect();
-      const panelRect = panel.getBoundingClientRect();
+      // Use offsetWidth/Height to get dimensions ignoring transforms (like scale-95)
+      const panelWidth = panel.offsetWidth;
+      const panelHeight = panel.offsetHeight;
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
 
@@ -41,20 +43,20 @@ export function useFilterPosition(
 
       // Mobile: Center horizontally
       if (viewportWidth < 640) {
-        left = (viewportWidth - panelRect.width) / 2;
+        left = (viewportWidth - panelWidth) / 2;
         // Ensure minimum margin
         if (left < 16) left = 16;
       } else {
         // Desktop: Align right edge of panel with right edge of anchor
-        left = anchorRect.right - panelRect.width;
+        left = anchorRect.right - panelWidth;
 
         // Boundary checks for desktop
         if (left < 16) {
           left = 16;
         }
 
-        if (left + panelRect.width > viewportWidth - 16) {
-          left = viewportWidth - panelRect.width - 16;
+        if (left + panelWidth > viewportWidth - 16) {
+          left = viewportWidth - panelWidth - 16;
         }
       }
 
@@ -71,10 +73,10 @@ export function useFilterPosition(
       }
 
       // Check if panel goes off screen vertically
-      if (top + panelRect.height > viewportHeight) {
+      if (top + panelHeight > viewportHeight) {
         // Only flip if there is enough space above
-        if (anchorRect.top > panelRect.height + 16) {
-          top = anchorRect.top - panelRect.height - 8;
+        if (anchorRect.top > panelHeight + 16) {
+          top = anchorRect.top - panelHeight - 8;
         }
       }
 
