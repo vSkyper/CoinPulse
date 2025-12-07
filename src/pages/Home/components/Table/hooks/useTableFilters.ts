@@ -63,7 +63,7 @@ export function useTableFilters({
       }, 350);
       return () => clearTimeout(timer);
     }
-  }, [isHeaderVisible, isFilterOpen, activeFilterColumn]);
+  }, [isHeaderVisible, isFilterOpen]);
 
   const updateFilterStateForColumn = useCallback(
     (columnId: string) => {

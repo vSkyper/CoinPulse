@@ -42,9 +42,20 @@ export function useFilterPosition(
       // Mobile: Center horizontally
       if (viewportWidth < 640) {
         left = (viewportWidth - panelRect.width) / 2;
+        // Ensure minimum margin
+        if (left < 16) left = 16;
       } else {
         // Desktop: Align right edge of panel with right edge of anchor
         left = anchorRect.right - panelRect.width;
+
+        // Boundary checks for desktop
+        if (left < 16) {
+          left = 16;
+        }
+
+        if (left + panelRect.width > viewportWidth - 16) {
+          left = viewportWidth - panelRect.width - 16;
+        }
       }
 
       // Add padding from top (navbar)
@@ -57,15 +68,6 @@ export function useFilterPosition(
 
       if (top < minTop) {
         top = minTop;
-      }
-
-      // Boundary checks
-      if (left < 16) {
-        left = 16;
-      }
-
-      if (left + panelRect.width > viewportWidth - 16) {
-        left = viewportWidth - panelRect.width - 16;
       }
 
       // Check if panel goes off screen vertically
