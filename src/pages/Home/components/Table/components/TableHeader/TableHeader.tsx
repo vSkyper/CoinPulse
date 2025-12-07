@@ -1,6 +1,6 @@
 import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 import { flexRender, Table } from '@tanstack/react-table';
-import ColumnMenu from './ColumnMenu';
+import { ColumnMenu } from './components';
 
 interface TableHeaderProps {
   table: Table<any>;

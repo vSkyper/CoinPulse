@@ -132,6 +132,7 @@ export default function Table({ coins }: TableProps) {
             handleFilterSave={handleFilterSave}
             anchorEl={filterAnchor}
             isAnchoring={isAnchoring}
+            isHeaderVisible={isHeaderVisible}
           />
         </TableControls>
 

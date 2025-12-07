@@ -7,13 +7,7 @@ import {
   MdClose,
   MdFilterList,
 } from 'react-icons/md';
-
-interface ColumnMenuProps {
-  header: any;
-  handleFilterOpenFromMenu: (columnId: string, target: HTMLElement) => void;
-  handleMenuOpen: () => void;
-  context: string;
-}
+import { ColumnMenuProps } from './interface';
 
 export default function ColumnMenu({
   header,

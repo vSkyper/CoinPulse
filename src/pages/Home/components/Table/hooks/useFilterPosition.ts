@@ -1,22 +1,10 @@
 import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
 
-// Helper to check if element is in a fixed container
-const isFixed = (element: HTMLElement | null): boolean => {
-  let current = element;
-  while (current && current !== document.body) {
-    const style = window.getComputedStyle(current);
-    if (style.position === 'fixed' || style.position === 'sticky') {
-      return true;
-    }
-    current = current.parentElement;
-  }
-  return false;
-};
-
 export function useFilterPosition(
   isFilterOpen: boolean,
   anchorEl: HTMLElement | null,
-  filterRef: React.RefObject<HTMLDivElement | null>
+  filterRef: React.RefObject<HTMLDivElement | null>,
+  isHeaderVisible: boolean
 ) {
   const [position, setPosition] = useState<{
     top: number;
@@ -28,26 +16,27 @@ export function useFilterPosition(
     (
       anchor: HTMLElement,
       panel: HTMLElement
-    ): { top: number; left: number; strategy: 'fixed' | 'absolute' } => {
+    ): { top: number; left: number; strategy: 'fixed' | 'absolute' } | null => {
+      const viewportWidth = window.innerWidth;
+      const isMobile = viewportWidth < 640;
+
       const anchorRect = anchor.getBoundingClientRect();
       // Use offsetWidth/Height to get dimensions ignoring transforms (like scale-95)
       const panelWidth = panel.offsetWidth;
       const panelHeight = panel.offsetHeight;
-      const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
-      const isMobile = viewportWidth < 640;
 
-      // Force fixed on mobile for better stability, otherwise detect
-      const strategy = isMobile
-        ? 'fixed'
-        : isFixed(anchor)
-        ? 'fixed'
-        : 'absolute';
+      // Detect strategy based on anchor position
+      // If anchor is fixed/sticky (header visible), use fixed positioning for panel
+      // Otherwise use absolute positioning so it scrolls with the page
+      const strategy = isHeaderVisible ? 'fixed' : 'absolute';
 
       // Gap calculation
       let gap = 8;
-      if (!isMobile && strategy === 'fixed') {
-        gap = 32; // Bigger padding for desktop sticky header
+      if (strategy === 'fixed') {
+        gap = isMobile ? 8 : 32; // Bigger padding for desktop sticky header
+      } else {
+        gap = isMobile ? 12 : 30; // Push below header for main view
       }
 
       let top = anchorRect.bottom + gap;
@@ -74,10 +63,8 @@ export function useFilterPosition(
 
       // Add padding from top (navbar)
       let minTop = 0;
-      if (isMobile) {
-        minTop = 60; // Mobile padding
-      } else if (strategy === 'fixed') {
-        minTop = 80; // Desktop sticky header padding
+      if (strategy === 'fixed') {
+        minTop = isMobile ? 60 : 80; // Desktop sticky header padding
       }
 
       if (top < minTop) {
@@ -100,7 +87,7 @@ export function useFilterPosition(
 
       return { top, left, strategy };
     },
-    []
+    [isHeaderVisible]
   );
 
   const setRefs = useCallback(
@@ -144,7 +131,19 @@ export function useFilterPosition(
       if (now - startTime > 600) return; // Stop after 600ms
 
       if (anchorEl && filterRef.current) {
-        setPosition(calculatePosition(anchorEl, filterRef.current));
+        const newPos = calculatePosition(anchorEl, filterRef.current);
+        setPosition((prev) => {
+          if (
+            prev &&
+            newPos &&
+            prev.top === newPos.top &&
+            prev.left === newPos.left &&
+            prev.strategy === newPos.strategy
+          ) {
+            return prev;
+          }
+          return newPos;
+        });
       }
       frameId = requestAnimationFrame(update);
     };
@@ -157,16 +156,26 @@ export function useFilterPosition(
   useEffect(() => {
     const handleUpdate = () => {
       if (isFilterOpen && anchorEl && filterRef.current) {
-        setPosition(calculatePosition(anchorEl, filterRef.current));
+        const newPos = calculatePosition(anchorEl, filterRef.current);
+        setPosition((prev) => {
+          if (
+            prev &&
+            newPos &&
+            prev.top === newPos.top &&
+            prev.left === newPos.left &&
+            prev.strategy === newPos.strategy
+          ) {
+            return prev;
+          }
+          return newPos;
+        });
       }
     };
 
     window.addEventListener('resize', handleUpdate);
-    window.addEventListener('scroll', handleUpdate, { passive: true });
 
     return () => {
       window.removeEventListener('resize', handleUpdate);
-      window.removeEventListener('scroll', handleUpdate);
     };
   }, [isFilterOpen, anchorEl, calculatePosition]);
 

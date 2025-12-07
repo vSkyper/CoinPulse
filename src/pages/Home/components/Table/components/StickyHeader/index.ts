@@ -1,1 +1,3 @@
-export { default } from './StickyHeader';
+import StickyHeader from './StickyHeader';
+
+export default StickyHeader;
