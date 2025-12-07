@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Transition,
   Listbox,
@@ -14,6 +15,7 @@ import {
 } from 'react-icons/md';
 import { Table } from '@tanstack/react-table';
 import { getOperatorsForColumn } from 'utils/table';
+import { useFilterPosition } from '../../hooks/useFilterPosition';
 
 interface FilterPanelProps {
   isFilterOpen: boolean;
@@ -28,6 +30,7 @@ interface FilterPanelProps {
   setActiveValue: (value: string) => void;
   handleFilterClear: () => void;
   handleFilterSave: () => void;
+  anchorEl: HTMLElement | null;
 }
 
 export default function FilterPanel({
@@ -43,8 +46,15 @@ export default function FilterPanel({
   setActiveValue,
   handleFilterClear,
   handleFilterSave,
+  anchorEl,
 }: FilterPanelProps) {
-  return (
+  const { position, setRefs } = useFilterPosition(
+    isFilterOpen,
+    anchorEl,
+    filterRef
+  );
+
+  return createPortal(
     <Transition
       show={isFilterOpen}
       as={Fragment}
@@ -56,8 +66,22 @@ export default function FilterPanel({
       leaveTo='opacity-0 translate-y-2 scale-95'
     >
       <div
-        ref={filterRef}
-        className='absolute top-full left-1/2 -translate-x-1/2 sm:translate-x-0 sm:inset-auto sm:right-0 sm:top-full z-50 w-[90vw] sm:w-[480px] h-fit bg-glass/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass-lg p-3 sm:p-6 ring-1 ring-white/5'
+        ref={setRefs}
+        style={
+          position
+            ? {
+                position: position.strategy,
+                top: position.top,
+                left: position.left,
+                zIndex: 100,
+              }
+            : undefined
+        }
+        className={
+          position
+            ? 'w-[90vw] sm:w-[480px] h-fit bg-glass/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass-lg p-3 sm:p-6 ring-1 ring-white/5'
+            : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-[90vw] sm:w-[480px] h-fit bg-glass/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass-lg p-3 sm:p-6 ring-1 ring-white/5'
+        }
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className='flex items-center justify-between mb-3 sm:mb-6'>
@@ -113,7 +137,10 @@ export default function FilterPanel({
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'
                   >
-                    <ListboxOptions className='absolute mt-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-sm shadow-xl ring-1 ring-white/5 focus:outline-none z-50'>
+                    <ListboxOptions
+                      modal={false}
+                      className='absolute mt-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-sm shadow-xl ring-1 ring-white/5 focus:outline-none z-50'
+                    >
                       {table.getAllColumns().map((column) => (
                         <ListboxOption
                           key={column.id}
@@ -177,7 +204,10 @@ export default function FilterPanel({
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'
                   >
-                    <ListboxOptions className='absolute mt-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-sm shadow-xl ring-1 ring-white/5 focus:outline-none z-50'>
+                    <ListboxOptions
+                      modal={false}
+                      className='absolute mt-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-sm shadow-xl ring-1 ring-white/5 focus:outline-none z-50'
+                    >
                       {getOperatorsForColumn(activeFilterColumn).map((op) => (
                         <ListboxOption
                           key={op}
@@ -249,6 +279,7 @@ export default function FilterPanel({
           </button>
         </div>
       </div>
-    </Transition>
+    </Transition>,
+    document.body
   );
 }

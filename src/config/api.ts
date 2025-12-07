@@ -3,7 +3,6 @@
  * Centralized API configuration for the application
  */
 
-// API Key - should be moved to environment variable in production
 export const COINGECKO_API_KEY = import.meta.env.VITE_COINGECKO_API_KEY;
 
 // Base URL

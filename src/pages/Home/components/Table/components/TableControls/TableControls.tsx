@@ -1,13 +1,5 @@
 import { MdSearch, MdFilterList } from 'react-icons/md';
-
-interface TableControlsProps {
-  globalFilter: string;
-  setGlobalFilter: (value: string) => void;
-  handleFilterClick: (e: React.MouseEvent) => void;
-  isFilterOpen: boolean;
-  filterButtonRef: React.RefObject<HTMLButtonElement | null>;
-  children?: React.ReactNode;
-}
+import { TableControlsProps } from './interface';
 
 export default function TableControls({
   globalFilter,

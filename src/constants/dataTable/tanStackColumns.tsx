@@ -18,6 +18,7 @@ function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
   return (
     <RouterLink
       to={`/coins/${row.id}`}
+      onClick={(e) => e.stopPropagation()}
       className='flex items-center gap-3 group relative w-full'
     >
       <div className='w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-sm group-hover:scale-110 transition-transform duration-300'>
@@ -51,7 +52,7 @@ function SymbolBadge({ value }: { value: string }) {
 }
 
 function PercentageChange({ value }: { value: number }) {
-  const label = formatPercentage(Math.abs(value)); // Format absolute value
+  const label = formatPercentage(Math.abs(value));
   const isPositive = value >= 0;
   const colorClass = isPositive ? 'text-brand-positive' : 'text-brand-negative';
   const Icon = isPositive ? MdArrowDropUp : MdArrowDropDown;
@@ -109,7 +110,7 @@ export const columns = [
     cell: (info) => (
       <CoinName row={info.row.original} value={info.getValue()} />
     ),
-    size: 160, // flex 1 minWidth 140
+    size: 160,
   }),
   columnHelper.accessor('symbol', {
     header: 'Symbol',

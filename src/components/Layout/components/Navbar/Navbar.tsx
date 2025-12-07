@@ -1,26 +1,62 @@
 import { SearchBar, Title, Tooltips } from './components';
+import { useNavbar } from 'context/NavbarContext';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Navbar() {
+  const { isHeaderVisible, headerContent } = useNavbar();
+
   return (
     <div className='grow'>
-      <nav className='fixed top-2 sm:top-6 left-0 right-0 mx-auto w-[calc(100%-1rem)] sm:w-[calc(100%-3rem)] max-w-7xl z-50 bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl transition-all duration-300'>
-        <div className='container mx-auto px-1 sm:px-2'>
-          <div className='flex items-center justify-between gap-2 sm:gap-6 px-2 sm:px-6 py-2 sm:py-3 relative z-10'>
-            {/* Left Section */}
-            <div className='flex items-center justify-center sm:justify-start shrink-0 sm:flex-1 min-w-auto gap-1 sm:gap-4'>
-              <Title />
-            </div>
+      <nav
+        className={`fixed top-2 sm:top-6 left-0 right-0 mx-auto z-110 pointer-events-none transition-all duration-300 ${
+          isHeaderVisible
+            ? 'container px-4 sm:px-6 lg:px-8'
+            : 'w-[calc(100%-1rem)] sm:w-[calc(100%-3rem)] max-w-7xl'
+        }`}
+      >
+        <div className='pointer-events-auto'>
+          <AnimatePresence mode='wait'>
+            {!isHeaderVisible ? (
+              <motion.div
+                key='navbar-default'
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className='mx-auto w-full bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl'
+              >
+                <div className='container mx-auto px-1 sm:px-2'>
+                  <div className='flex items-center justify-between gap-2 sm:gap-6 px-2 sm:px-6 py-2 sm:py-3 relative z-10'>
+                    {/* Left Section */}
+                    <div className='flex items-center justify-center sm:justify-start shrink-0 sm:flex-1 min-w-auto gap-1 sm:gap-4'>
+                      <Title />
+                    </div>
 
-            {/* Search Section */}
-            <div className='grow sm:grow-0 min-w-0 mx-1.5 sm:mx-6 w-full max-w-[500px]'>
-              <SearchBar />
-            </div>
+                    {/* Search Section */}
+                    <div className='grow sm:grow-0 min-w-0 mx-1.5 sm:mx-6 w-full max-w-[500px]'>
+                      <SearchBar />
+                    </div>
 
-            {/* Right Section */}
-            <div className='flex items-center justify-center sm:justify-end shrink-0 sm:flex-1 min-w-auto gap-2 sm:gap-3'>
-              <Tooltips />
-            </div>
-          </div>
+                    {/* Right Section */}
+                    <div className='flex items-center justify-center sm:justify-end shrink-0 sm:flex-1 min-w-auto gap-2 sm:gap-3'>
+                      <Tooltips />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key='navbar-header'
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className='mx-auto w-full bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl'
+              >
+                {headerContent}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </nav>
 

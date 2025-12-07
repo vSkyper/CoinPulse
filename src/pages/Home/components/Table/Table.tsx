@@ -9,19 +9,19 @@ import {
   PaginationState,
   ColumnFiltersState,
 } from '@tanstack/react-table';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { MdSearchOff } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import { TableProps } from './interface';
 import { columns } from 'constants/dataTable';
-import {
-  PAGINATION_CONFIG,
-  getOperatorsForColumn,
-  customFilterFn,
-} from 'utils/table';
+import { PAGINATION_CONFIG, customFilterFn } from 'utils/table';
 import TableControls from './components/TableControls';
 import FilterPanel from './components/FilterPanel';
 import TableHeader from './components/TableHeader';
 import Pagination from './components/Pagination';
+import StickyHeader from './components/StickyHeader';
+import { useTableFilters } from './hooks/useTableFilters';
+import { useStickyHeader } from './hooks/useStickyHeader';
 
 export default function Table({ coins }: TableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -32,13 +32,11 @@ export default function Table({ coins }: TableProps) {
     pageSize: PAGINATION_CONFIG.pageSize,
   });
 
-  // Filter State
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [activeFilterColumn, setActiveFilterColumn] = useState<string>('');
-  const [activeOperator, setActiveOperator] = useState<string>('contains');
-  const [activeValue, setActiveValue] = useState<string>('');
-  const filterRef = useRef<HTMLDivElement>(null);
-  const filterButtonRef = useRef<HTMLButtonElement>(null);
+  const navigate = useNavigate();
+
+  // Custom Hooks
+  const { setHeaderContent, isHeaderVisible, tableRef, scrollContainerRef } =
+    useStickyHeader();
 
   const table = useReactTable({
     data: coins,
@@ -62,90 +60,51 @@ export default function Table({ coins }: TableProps) {
     },
   });
 
-  // Close filter when clicking outside
+  const {
+    isFilterOpen,
+    setIsFilterOpen,
+    activeFilterColumn,
+    activeOperator,
+    setActiveOperator,
+    activeValue,
+    setActiveValue,
+    filterAnchor,
+    filterRef,
+    filterButtonRef,
+    handleFilterClick,
+    handleFilterOpenFromMenu,
+    handleFilterSave,
+    handleFilterClear,
+    handleColumnChange,
+    handleMenuOpen,
+  } = useTableFilters({ table, columnFilters, isHeaderVisible });
+
+  // Sticky Header Content
+  const headerContent = useMemo(
+    () => (
+      <StickyHeader
+        table={table}
+        handleFilterOpenFromMenu={handleFilterOpenFromMenu}
+        scrollContainerRef={scrollContainerRef}
+        sorting={sorting}
+        columnFilters={columnFilters}
+        handleMenuOpen={handleMenuOpen}
+      />
+    ),
+    [
+      table,
+      handleFilterOpenFromMenu,
+      sorting,
+      columnFilters,
+      handleMenuOpen,
+      scrollContainerRef,
+    ]
+  );
+
+  // Update header content in context
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        filterRef.current &&
-        !filterRef.current.contains(event.target as Node) &&
-        filterButtonRef.current &&
-        !filterButtonRef.current.contains(event.target as Node)
-      ) {
-        setIsFilterOpen(false);
-      }
-    }
-    if (isFilterOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isFilterOpen]);
-
-  const updateFilterStateForColumn = (columnId: string) => {
-    const existingFilter = columnFilters.find((f) => f.id === columnId)
-      ?.value as any;
-    const validOperators = getOperatorsForColumn(columnId);
-
-    if (existingFilter) {
-      setActiveOperator(existingFilter.operator);
-      setActiveValue(existingFilter.value);
-    } else {
-      setActiveOperator(validOperators[0]);
-      setActiveValue('');
-    }
-  };
-
-  const handleFilterClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!isFilterOpen) {
-      if (!activeFilterColumn) {
-        const firstCol = table.getAllColumns()[0]?.id;
-        if (firstCol) {
-          setActiveFilterColumn(firstCol);
-          updateFilterStateForColumn(firstCol);
-        }
-      } else {
-        updateFilterStateForColumn(activeFilterColumn);
-      }
-    }
-    setIsFilterOpen(!isFilterOpen);
-  };
-
-  const handleFilterOpenFromMenu = (columnId: string) => {
-    if (activeFilterColumn && activeFilterColumn !== columnId) {
-      table.getColumn(activeFilterColumn)?.setFilterValue(undefined);
-    }
-    setActiveFilterColumn(columnId);
-    updateFilterStateForColumn(columnId);
-    setIsFilterOpen(true);
-  };
-
-  const handleFilterSave = () => {
-    if (activeFilterColumn) {
-      table.getColumn(activeFilterColumn)?.setFilterValue({
-        operator: activeOperator,
-        value: activeValue,
-      });
-    }
-  };
-
-  const handleFilterClear = () => {
-    if (activeFilterColumn) {
-      table.getColumn(activeFilterColumn)?.setFilterValue(undefined);
-      setActiveValue('');
-      const validOperators = getOperatorsForColumn(activeFilterColumn);
-      setActiveOperator(validOperators[0]);
-    }
-  };
-
-  const handleColumnChange = (newCol: string) => {
-    if (activeFilterColumn && activeFilterColumn !== newCol) {
-      table.getColumn(activeFilterColumn)?.setFilterValue(undefined);
-    }
-    setActiveFilterColumn(newCol);
-    updateFilterStateForColumn(newCol);
-  };
+    setHeaderContent(headerContent);
+  }, [headerContent, setHeaderContent]);
 
   return (
     <div className='mt-6 sm:mt-8 relative transform-gpu will-change-transform'>
@@ -170,23 +129,31 @@ export default function Table({ coins }: TableProps) {
             setActiveValue={setActiveValue}
             handleFilterClear={handleFilterClear}
             handleFilterSave={handleFilterSave}
+            anchorEl={filterAnchor}
           />
         </TableControls>
 
         <div className='h-px w-full bg-linear-to-r from-transparent via-white/10 to-transparent' />
 
-        <div className='overflow-x-auto'>
-          <table className='w-full border-collapse border-spacing-0 table-fixed'>
+        <div ref={scrollContainerRef} className='overflow-x-auto'>
+          <table
+            ref={tableRef}
+            className='w-full border-collapse border-spacing-0 table-fixed'
+          >
             <TableHeader
               table={table}
               handleFilterOpenFromMenu={handleFilterOpenFromMenu}
+              handleMenuOpen={handleMenuOpen}
+              className={isHeaderVisible ? 'opacity-0 pointer-events-none' : ''}
+              context='main'
             />
             <tbody>
               {table.getRowModel().rows.length > 0 ? (
                 table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className='border-b border-white/3 last:border-b-0 transition-colors duration-150 ease-out hover:bg-white/3 focus-within:bg-brand-violet/5 active:bg-brand-violet/10'
+                    onClick={() => navigate(`/coins/${row.original.id}`)}
+                    className='cursor-pointer border-b border-white/3 last:border-b-0 transition-colors duration-150 ease-out hover:bg-white/3 focus-within:bg-brand-violet/5 active:bg-brand-violet/10'
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td
