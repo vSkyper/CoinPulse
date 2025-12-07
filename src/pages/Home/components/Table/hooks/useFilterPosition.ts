@@ -133,6 +133,9 @@ export function useFilterPosition(
   useEffect(() => {
     if (!isFilterOpen || !anchorEl || !filterRef.current) return;
 
+    // Skip animation loop on mobile to improve performance
+    if (window.innerWidth < 640) return;
+
     let startTime = performance.now();
     let frameId: number;
 
