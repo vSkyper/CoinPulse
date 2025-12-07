@@ -35,14 +35,26 @@ export function useFilterPosition(
       const panelHeight = panel.offsetHeight;
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
+      const isMobile = viewportWidth < 640;
 
-      const strategy = isFixed(anchor) ? 'fixed' : 'absolute';
+      // Force fixed on mobile for better stability, otherwise detect
+      const strategy = isMobile
+        ? 'fixed'
+        : isFixed(anchor)
+        ? 'fixed'
+        : 'absolute';
 
-      let top = anchorRect.bottom + 8;
+      // Gap calculation
+      let gap = 8;
+      if (!isMobile && strategy === 'fixed') {
+        gap = 32; // Bigger padding for desktop sticky header
+      }
+
+      let top = anchorRect.bottom + gap;
       let left = 0;
 
       // Mobile: Center horizontally
-      if (viewportWidth < 640) {
+      if (isMobile) {
         left = (viewportWidth - panelWidth) / 2;
         // Ensure minimum margin
         if (left < 16) left = 16;
@@ -62,7 +74,7 @@ export function useFilterPosition(
 
       // Add padding from top (navbar)
       let minTop = 0;
-      if (viewportWidth < 640) {
+      if (isMobile) {
         minTop = 60; // Mobile padding
       } else if (strategy === 'fixed') {
         minTop = 80; // Desktop sticky header padding
@@ -117,15 +129,42 @@ export function useFilterPosition(
     }
   }, [isFilterOpen, anchorEl, calculatePosition]);
 
+  // Track position for a short duration when anchor changes (to handle animations)
   useEffect(() => {
-    const handleResize = () => {
+    if (!isFilterOpen || !anchorEl || !filterRef.current) return;
+
+    let startTime = performance.now();
+    let frameId: number;
+
+    const update = () => {
+      const now = performance.now();
+      if (now - startTime > 600) return; // Stop after 600ms
+
+      if (anchorEl && filterRef.current) {
+        setPosition(calculatePosition(anchorEl, filterRef.current));
+      }
+      frameId = requestAnimationFrame(update);
+    };
+
+    update();
+
+    return () => cancelAnimationFrame(frameId);
+  }, [isFilterOpen, anchorEl, calculatePosition]);
+
+  useEffect(() => {
+    const handleUpdate = () => {
       if (isFilterOpen && anchorEl && filterRef.current) {
         setPosition(calculatePosition(anchorEl, filterRef.current));
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', handleUpdate);
+    window.addEventListener('scroll', handleUpdate, { passive: true });
+
+    return () => {
+      window.removeEventListener('resize', handleUpdate);
+      window.removeEventListener('scroll', handleUpdate);
+    };
   }, [isFilterOpen, anchorEl, calculatePosition]);
 
   return { position, setRefs };

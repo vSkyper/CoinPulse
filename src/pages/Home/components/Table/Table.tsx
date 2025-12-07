@@ -77,6 +77,7 @@ export default function Table({ coins }: TableProps) {
     handleFilterClear,
     handleColumnChange,
     handleMenuOpen,
+    isAnchoring,
   } = useTableFilters({ table, columnFilters, isHeaderVisible });
 
   // Sticky Header Content
@@ -130,6 +131,7 @@ export default function Table({ coins }: TableProps) {
             handleFilterClear={handleFilterClear}
             handleFilterSave={handleFilterSave}
             anchorEl={filterAnchor}
+            isAnchoring={isAnchoring}
           />
         </TableControls>
 

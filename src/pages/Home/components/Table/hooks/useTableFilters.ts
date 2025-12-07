@@ -1,4 +1,10 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
+import {
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+} from 'react';
 import { Table, ColumnFiltersState } from '@tanstack/react-table';
 import { getOperatorsForColumn } from 'utils/table';
 
@@ -18,6 +24,7 @@ export function useTableFilters({
   const [activeOperator, setActiveOperator] = useState<string>('contains');
   const [activeValue, setActiveValue] = useState<string>('');
   const [filterAnchor, setFilterAnchor] = useState<HTMLElement | null>(null);
+  const [isAnchoring, setIsAnchoring] = useState(false);
 
   const filterRef = useRef<HTMLDivElement>(null);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
@@ -43,25 +50,35 @@ export function useTableFilters({
   }, [isFilterOpen]);
 
   // Update anchor when switching between sticky and main header
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isFilterOpen && activeFilterColumn) {
+      setIsAnchoring(true);
       if (!isHeaderVisible) {
         // When switching to main view, anchor to the main Filters button
         if (filterButtonRef.current) {
           setFilterAnchor(filterButtonRef.current);
+          setIsAnchoring(false);
         }
         return;
       }
 
-      const timer = setTimeout(() => {
+      const findAnchor = (retries = 0) => {
         const elementId = `sticky-menu-${activeFilterColumn}`;
         const newAnchor = document.getElementById(elementId);
 
         if (newAnchor) {
           setFilterAnchor(newAnchor);
+          setIsAnchoring(false);
+        } else if (retries < 10) {
+          // Retry for up to 500ms (10 * 50ms)
+          setTimeout(() => findAnchor(retries + 1), 50);
+        } else {
+          setIsAnchoring(false);
         }
-      }, 350);
-      return () => clearTimeout(timer);
+      };
+
+      // Start trying to find the anchor
+      findAnchor();
     }
   }, [isHeaderVisible, isFilterOpen]);
 
@@ -171,5 +188,6 @@ export function useTableFilters({
     handleFilterClear,
     handleColumnChange,
     handleMenuOpen,
+    isAnchoring,
   };
 }
