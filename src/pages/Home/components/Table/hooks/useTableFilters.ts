@@ -51,7 +51,6 @@ export function useTableFilters({
 
   // Update anchor when switching between sticky and main header
   useLayoutEffect(() => {
-    if (window.innerWidth < 640) return;
     if (isFilterOpen && activeFilterColumn) {
       setIsAnchoring(true);
       if (!isHeaderVisible) {
