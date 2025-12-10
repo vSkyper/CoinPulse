@@ -9,7 +9,7 @@ import {
   PaginationState,
   ColumnFiltersState,
 } from '@tanstack/react-table';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { MdSearchOff } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { TableProps } from './interface';
@@ -81,25 +81,15 @@ export default function Table({ coins }: TableProps) {
   } = useTableFilters({ table, columnFilters, isHeaderVisible });
 
   // Sticky Header Content
-  const headerContent = useMemo(
-    () => (
-      <StickyHeader
-        table={table}
-        handleFilterOpenFromMenu={handleFilterOpenFromMenu}
-        scrollContainerRef={scrollContainerRef}
-        sorting={sorting}
-        columnFilters={columnFilters}
-        handleMenuOpen={handleMenuOpen}
-      />
-    ),
-    [
-      table,
-      handleFilterOpenFromMenu,
-      sorting,
-      columnFilters,
-      handleMenuOpen,
-      scrollContainerRef,
-    ]
+  const headerContent = (
+    <StickyHeader
+      table={table}
+      handleFilterOpenFromMenu={handleFilterOpenFromMenu}
+      scrollContainerRef={scrollContainerRef}
+      sorting={sorting}
+      columnFilters={columnFilters}
+      handleMenuOpen={handleMenuOpen}
+    />
   );
 
   // Update header content in context
