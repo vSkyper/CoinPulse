@@ -35,7 +35,7 @@ export default function Global({ globalData }: GlobalProps) {
 
       {/* Stats Cards with Animation */}
       <div
-        className={`transition-all duration-700 ease-out transform-gpu will-change-[max-height,opacity] ${cardsTransitionClasses}`}
+        className={`transition-all duration-700 ease-out ${cardsTransitionClasses}`}
         style={{
           transitionDelay: toggle ? '0ms' : '500ms',
           marginBottom: toggle ? '1.5rem' : '0',

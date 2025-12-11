@@ -23,6 +23,15 @@ import StickyHeader from './components/StickyHeader';
 import { useTableFilters } from './hooks/useTableFilters';
 import { useStickyHeader } from './hooks/useStickyHeader';
 
+const DEFAULT_COLUMN = {
+  filterFn: customFilterFn,
+};
+
+const CORE_ROW_MODEL = getCoreRowModel();
+const PAGINATION_ROW_MODEL = getPaginationRowModel();
+const SORTED_ROW_MODEL = getSortedRowModel();
+const FILTERED_ROW_MODEL = getFilteredRowModel();
+
 export default function Table({ coins }: TableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -41,13 +50,11 @@ export default function Table({ coins }: TableProps) {
   const table = useReactTable({
     data: coins,
     columns,
-    defaultColumn: {
-      filterFn: customFilterFn,
-    },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
+    defaultColumn: DEFAULT_COLUMN,
+    getCoreRowModel: CORE_ROW_MODEL,
+    getPaginationRowModel: PAGINATION_ROW_MODEL,
+    getSortedRowModel: SORTED_ROW_MODEL,
+    getFilteredRowModel: FILTERED_ROW_MODEL,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onPaginationChange: setPagination,
@@ -80,25 +87,30 @@ export default function Table({ coins }: TableProps) {
     isAnchoring,
   } = useTableFilters({ table, columnFilters, isHeaderVisible });
 
-  // Sticky Header Content
-  const headerContent = (
-    <StickyHeader
-      table={table}
-      handleFilterOpenFromMenu={handleFilterOpenFromMenu}
-      scrollContainerRef={scrollContainerRef}
-      sorting={sorting}
-      columnFilters={columnFilters}
-      handleMenuOpen={handleMenuOpen}
-    />
-  );
-
   // Update header content in context
   useEffect(() => {
-    setHeaderContent(headerContent);
-  }, [headerContent, setHeaderContent]);
+    setHeaderContent(
+      <StickyHeader
+        table={table}
+        handleFilterOpenFromMenu={handleFilterOpenFromMenu}
+        scrollContainerRef={scrollContainerRef}
+        sorting={sorting}
+        columnFilters={columnFilters}
+        handleMenuOpen={handleMenuOpen}
+      />
+    );
+  }, [
+    table,
+    handleFilterOpenFromMenu,
+    sorting,
+    columnFilters,
+    handleMenuOpen,
+    scrollContainerRef,
+    setHeaderContent,
+  ]);
 
   return (
-    <div className='mt-6 sm:mt-8 relative transform-gpu will-change-transform'>
+    <div className='mt-6 sm:mt-8 relative'>
       <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-glass/40 backdrop-blur-[20px] shadow-glass'>
         <TableControls
           globalFilter={globalFilter}
