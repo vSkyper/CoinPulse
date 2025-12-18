@@ -33,7 +33,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Search Section */}
-                    <div className='grow sm:grow-0 min-w-0 mx-1.5 sm:mx-6 w-full max-w-[500px]'>
+                    <div className='grow sm:grow-0 min-w-0 mx-1.5 sm:mx-6 w-full max-w-125'>
                       <SearchBar />
                     </div>
 
