@@ -12,16 +12,16 @@ import { CoinsResponse } from 'interfaces';
 const columnHelper = createColumnHelper<CoinsResponse>();
 
 const COIN_NAME_CLASSES =
-  'text-white/95 font-bold truncate group-hover:text-brand-violet text-sm sm:text-base transition-colors duration-300 leading-tight';
+  'text-white/95 font-bold truncate group-hover:text-brand-violet text-sm sm:text-sm transition-colors duration-300 leading-tight';
 
 function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
   return (
     <RouterLink
       to={`/coins/${row.id}`}
       onClick={(e) => e.stopPropagation()}
-      className='flex items-center gap-3 group relative w-full'
+      className='flex items-center gap-3 sm:gap-2 group relative w-full'
     >
-      <div className='w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-sm group-hover:scale-110 transition-transform duration-300'>
+      <div className='w-8 h-8 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-sm group-hover:scale-110 transition-transform duration-300'>
         <img
           src={row.image}
           alt={`${value} logo`}
@@ -32,7 +32,7 @@ function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
         <span className={COIN_NAME_CLASSES} title={String(value)}>
           {value}
         </span>
-        <span className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-wider group-hover:text-brand-violet transition-colors duration-300 leading-tight mt-0.5'>
+        <span className='text-[0.65rem] sm:text-[0.6rem] font-bold text-white/40 uppercase tracking-wider group-hover:text-brand-violet transition-colors duration-300 leading-tight mt-0.5'>
           {row.symbol}
         </span>
       </div>
@@ -62,7 +62,7 @@ function PercentageChange({ value }: { value: number }) {
       className={`flex items-center justify-center gap-0.5 font-bold ${colorClass}`}
     >
       <Icon className='text-lg! sm:text-xl!' />
-      <span className='text-xs sm:text-sm'>{label}</span>
+      <span className='text-xs sm:text-xs'>{label}</span>
     </div>
   );
 }
@@ -81,7 +81,7 @@ function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
 
   return (
     <div className='w-full h-full flex items-center justify-center py-1'>
-      <AreaChart data={sampledData} width={150} height={50}>
+      <AreaChart data={sampledData} width={120} height={40}>
         <defs>
           <linearGradient id={gradientId} x1='0' y1='0' x2='0' y2='1'>
             <stop offset='5%' stopColor={color} stopOpacity={0.3} />

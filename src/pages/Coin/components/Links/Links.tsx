@@ -38,18 +38,18 @@ export default function Links({ data }: LinksProps) {
     new URL(url).hostname.replace('www.', '');
 
   return (
-    <div className='mt-6 sm:mt-10'>
+    <div className='mt-6 sm:mt-4'>
       {/* Header */}
-      <div className='flex items-center gap-4 mb-4 sm:mb-6 opacity-50'>
+      <div className='flex items-center gap-4 mb-4 sm:mb-3 opacity-50'>
         <div className='h-px flex-1 bg-linear-to-r from-transparent via-white/20 to-transparent'></div>
-        <h2 className='text-xs font-bold uppercase tracking-[0.2em] text-white'>
+        <h2 className='text-xs sm:text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white'>
           Official Links
         </h2>
         <div className='h-px flex-1 bg-linear-to-r from-transparent via-white/20 to-transparent'></div>
       </div>
 
       {/* Primary Links Section */}
-      <div className='flex flex-wrap gap-2 sm:gap-3 mb-4'>
+      <div className='flex flex-wrap gap-2 sm:gap-2 mb-4 sm:mb-3'>
         {links?.homepage?.[0] && (
           <ChipLink
             href={links.homepage[0]}
@@ -77,11 +77,11 @@ export default function Links({ data }: LinksProps) {
 
       {/* Blockchain Explorer Links */}
       {hasBlockchainSites && (
-        <div className='mb-4'>
-          <div className='text-center text-[0.65rem] sm:text-xs md:text-xs uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-4 md:mb-5 select-none'>
+        <div className='mb-4 sm:mb-3'>
+          <div className='text-center text-[0.65rem] sm:text-[0.6rem] uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-2 select-none'>
             Blockchain Explorers
           </div>
-          <div className='flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2 sm:gap-1.5'>
             {links?.blockchain_site?.slice(0, 3).map(
               (blockchain: string | null) =>
                 blockchain && (
@@ -105,10 +105,10 @@ export default function Links({ data }: LinksProps) {
 
       {/* Social Media Links */}
       <div>
-        <div className='text-center text-[0.65rem] sm:text-xs md:text-xs uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-4 md:mb-5 select-none'>
+        <div className='text-center text-[0.65rem] sm:text-[0.6rem] uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-2 select-none'>
           Social Media
         </div>
-        <div className='flex flex-wrap gap-2'>
+        <div className='flex flex-wrap gap-2 sm:gap-1.5'>
           {links?.subreddit_url && (
             <ChipLink
               href={links.subreddit_url}

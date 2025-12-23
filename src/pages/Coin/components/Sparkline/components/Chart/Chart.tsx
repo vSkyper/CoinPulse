@@ -126,6 +126,7 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
         tickLine={false}
         tickFormatter={handleTickFormatterXAxis}
         hide={isMobile}
+        tick={{ fontSize: 12 }}
       />
 
       <YAxis
@@ -135,8 +136,9 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
         tickLine={false}
         tickCount={6}
         tickFormatter={handleTickFormatterYAxis}
-        width={60}
+        width={50}
         hide={isMobile}
+        tick={{ fontSize: 12 }}
       />
 
       <Tooltip content={CustomTooltip} />

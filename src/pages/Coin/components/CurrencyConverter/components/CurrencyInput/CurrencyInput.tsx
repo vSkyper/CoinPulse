@@ -10,16 +10,16 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
   return (
     <div className='w-full'>
-      <div className='flex flex-col gap-1.5 sm:gap-2 w-full'>
-        <div className='flex items-center gap-2 mb-1 sm:mb-1'>
+      <div className='flex flex-col gap-1.5 sm:gap-1.5 w-full'>
+        <div className='flex items-center gap-2 mb-1 sm:mb-0.5'>
           {image ? (
             <img
               src={image}
               alt={symbol}
-              className='w-7 h-7 sm:w-9 sm:h-9 rounded-full object-cover shadow-glow-cyan-sm'
+              className='w-7 h-7 sm:w-7 sm:h-7 rounded-full object-cover shadow-glow-cyan-sm'
             />
           ) : (
-            <div className='w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[0.85rem] sm:text-sm font-bold bg-linear-to-br from-brand-violet to-brand-violet-light text-black shadow-glow-cyan'>
+            <div className='w-7 h-7 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[0.85rem] sm:text-xs font-bold bg-linear-to-br from-brand-violet to-brand-violet-light text-black shadow-glow-cyan'>
               {symbol.charAt(0).toUpperCase()}
             </div>
           )}
@@ -30,9 +30,9 @@ export default function CurrencyInput({
           )}
         </div>
 
-        <div className='px-3 sm:px-4 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 w-full h-11 sm:h-14 flex items-center focus-within:bg-white/10 focus-within:border-brand-violet/50 focus-within:shadow-glow-cyan-lg'>
+        <div className='px-3 sm:px-3 rounded-xl sm:rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 w-full h-11 sm:h-10 flex items-center focus-within:bg-white/10 focus-within:border-brand-violet/50 focus-within:shadow-glow-cyan-lg'>
           <input
-            className='w-full bg-transparent focus:outline-none text-white/95 font-mono text-right text-lg sm:text-xl font-bold tracking-tight outline-none placeholder-white/10'
+            className='w-full bg-transparent focus:outline-none text-white/95 font-mono text-right text-lg sm:text-base font-bold tracking-tight outline-none placeholder-white/10'
             type='number'
             value={value}
             onChange={onChange}

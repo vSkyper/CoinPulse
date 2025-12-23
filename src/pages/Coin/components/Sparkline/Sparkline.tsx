@@ -29,8 +29,8 @@ export default function Sparkline({ id }: SparklineProps) {
   return (
     <>
       {/* Time Period Buttons */}
-      <div className='mb-4 sm:mb-6 flex justify-end'>
-        <div className='flex gap-1.5 p-1 bg-glass/60 backdrop-blur-xl backdrop-saturate-150 rounded-xl border border-white/10 shadow-dropdown'>
+      <div className='mb-4 sm:mb-3 flex justify-end'>
+        <div className='flex gap-1.5 sm:gap-1.5 p-1 sm:p-1 bg-glass/60 backdrop-blur-xl backdrop-saturate-150 rounded-xl sm:rounded-xl border border-white/10 shadow-dropdown'>
           {buttons.map((button) => (
             <ButtonComponent
               key={button.days}
@@ -44,7 +44,7 @@ export default function Sparkline({ id }: SparklineProps) {
       </div>
 
       {/* Chart Container */}
-      <div className='relative w-full overflow-hidden sm:p-0 bg-transparent h-[250px] sm:h-[350px] md:h-[450px] transition-all duration-500'>
+      <div className='relative w-full overflow-hidden sm:p-0 bg-transparent h-[250px] sm:h-[450px] transition-all duration-500'>
         {/* Loading State */}
         {!data && !error && (
           <div className='absolute inset-0 z-20 flex items-center justify-center bg-transparent'>

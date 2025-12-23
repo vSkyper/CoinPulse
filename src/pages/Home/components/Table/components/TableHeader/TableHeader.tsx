@@ -29,7 +29,7 @@ export default function TableHeader({
               key={header.id}
               tabIndex={0}
               onClick={header.column.getToggleSortingHandler()}
-              className={`relative group px-4 py-3 sm:py-4 text-white/40 font-extrabold text-[10px] sm:text-[0.7rem] tracking-widest uppercase transition-colors duration-200 select-none hover:text-white/90 focus:text-white/90 focus:outline-none cursor-pointer ${
+              className={`relative group px-4 sm:px-3 py-3 sm:py-2.5 text-white/40 font-extrabold text-[10px] sm:text-[0.65rem] tracking-widest uppercase transition-colors duration-200 select-none hover:text-white/90 focus:text-white/90 focus:outline-none cursor-pointer ${
                 header.column.id === 'name'
                   ? 'text-left'
                   : ['current_price', 'total_volume', 'market_cap'].includes(

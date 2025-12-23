@@ -31,7 +31,7 @@ export default function Pagination({
   const canNextPage = pageIndex < pageCount - 1;
 
   return (
-    <div className='flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 p-3 sm:p-6 border-t border-white/5 text-[10px] sm:text-sm text-white/60 rounded-b-3xl bg-black/20'>
+    <div className='flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-3 p-3 sm:p-4 border-t border-white/5 text-[10px] sm:text-xs text-white/60 rounded-b-3xl bg-black/20'>
       <div className='flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start'>
         <div className='flex items-center gap-2 sm:gap-3'>
           <span className='font-medium text-white/40'>Rows per page:</span>
@@ -55,7 +55,7 @@ export default function Pagination({
                 leaveFrom='opacity-100'
                 leaveTo='opacity-0'
               >
-                <ListboxOptions className='absolute bottom-full mb-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-sm shadow-xl ring-1 ring-white/5 focus:outline-none z-50 min-w-[60px] sm:min-w-20'>
+                <ListboxOptions className='absolute bottom-full mb-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-sm shadow-xl ring-1 ring-white/5 focus:outline-none z-50 min-w-15 sm:min-w-20'>
                   {[50, 100].map((size) => (
                     <ListboxOption
                       key={size}

@@ -48,9 +48,9 @@ export default function StatCard({
         transitionDelay: show ? `${config.timeout}ms` : '0ms',
       }}
     >
-      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-glass/60 backdrop-blur-xl backdrop-saturate-150 rounded-2xl p-3 sm:p-5 border border-white/10 shadow-dropdown group'>
-        <div className='flex flex-col gap-2 w-full items-center relative z-10'>
-          <div className='flex items-center justify-center gap-2'>
+      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-glass/60 backdrop-blur-xl backdrop-saturate-150 rounded-2xl p-3 sm:p-4 border border-white/10 shadow-dropdown group'>
+        <div className='flex flex-col gap-2 sm:gap-1.5 w-full items-center relative z-10'>
+          <div className='flex items-center justify-center gap-2 sm:gap-1.5'>
             {/* Mobile value - shorter */}
             {config.mobileValue && (
               <h3 className='block sm:hidden text-base font-bold text-white text-center wrap-break-word'>
@@ -61,8 +61,8 @@ export default function StatCard({
             <h3
               className={
                 config.mobileValue
-                  ? 'hidden sm:block text-xl sm:text-2xl font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
-                  : 'text-xl sm:text-2xl font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
+                  ? 'hidden sm:block text-xl sm:text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
+                  : 'text-xl sm:text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
               }
             >
               {config.value}
@@ -70,17 +70,17 @@ export default function StatCard({
 
             {hasPercentage && config.percentage && (
               <span
-                className={`inline-flex items-center gap-0.5 sm:gap-1 text-[0.65rem] sm:text-xs font-bold border rounded-full px-1.5 py-0.5 sm:px-2.5 sm:py-1 backdrop-blur-sm shadow-sm ${badgeColorClasses}`}
+                className={`inline-flex items-center gap-0.5 sm:gap-0.5 text-[0.65rem] sm:text-[0.65rem] font-bold border rounded-full px-1.5 py-0.5 sm:px-1.5 sm:py-0.5 backdrop-blur-sm shadow-sm ${badgeColorClasses}`}
               >
                 {config.percentage.change >= 0 && '+'}
                 {config.percentage.value}
-                <TrendIcon className='text-[0.7rem] sm:text-[0.9rem]' />
+                <TrendIcon className='text-[0.7rem] sm:text-[0.7rem]' />
               </span>
             )}
           </div>
         </div>
 
-        <p className='mt-1 text-[0.65rem] sm:text-xs text-white/50 font-bold text-center uppercase tracking-widest transition-colors'>
+        <p className='mt-1 text-[0.65rem] sm:text-[0.6rem] text-white/50 font-bold text-center uppercase tracking-widest transition-colors'>
           {config.label}
         </p>
       </div>

@@ -16,13 +16,13 @@ export default function Price({ marketData }: PriceProps) {
   const TrendIcon = isPositive ? TrendingUpIcon : TrendingDownIcon;
 
   return (
-    <div className='flex items-center justify-start'>
-      <h3 className='text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white drop-shadow-glow-white'>
+    <div className='flex items-center justify-start mt-5 sm:mt-0'>
+      <h3 className='text-2xl sm:text-3xl font-black tracking-tighter text-white drop-shadow-glow-white'>
         {formatCurrency(currentPrice)}
       </h3>
 
       <span
-        className={`ml-3 sm:ml-4 inline-flex items-center font-bold text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl border backdrop-blur-md transition-all duration-300 tracking-wide ${badgeColorClass}`}
+        className={`ml-3 sm:ml-3 inline-flex items-center font-bold text-xs sm:text-xs px-3 sm:px-2 py-1.5 sm:py-1 rounded-xl sm:rounded-lg border backdrop-blur-md transition-all duration-300 tracking-wide ${badgeColorClass}`}
       >
         {isPositive && '+'}
         {formatPercentage(priceChange)}

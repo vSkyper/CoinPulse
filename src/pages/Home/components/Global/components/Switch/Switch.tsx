@@ -9,9 +9,9 @@ export default function Switch({ toggle, setToggle, mobile }: SwitchProps) {
     setToggle((prev) => !prev);
   };
 
-  const iconSize = mobile ? '1rem' : '1.2rem';
+  const iconSize = mobile ? '1rem' : '1rem';
 
-  const sizeClasses = mobile ? 'px-4 py-2 text-xs' : 'px-6 py-2.5 text-base';
+  const sizeClasses = mobile ? 'px-4 py-2 text-xs' : 'px-5 py-2 text-sm';
 
   const stateClasses = toggle
     ? 'bg-brand-violet border-brand-violet text-black shadow-glow-cyan hover:bg-brand-violet-light'

@@ -68,7 +68,7 @@ export default function SearchBar() {
           <SearchIconContainer isLoading={!data} />
 
           <ComboboxInput
-            className='w-full bg-white/5 text-white rounded-lg sm:rounded-xl py-2 sm:py-3 pl-10 sm:pl-16 pr-3 sm:pr-4 text-xs sm:text-base font-medium placeholder:text-white/30 transition-all duration-200 focus:outline-none focus:bg-white/10 focus:ring-1 focus:ring-white/10 hover:bg-white/10 border border-white/5'
+            className='w-full bg-white/5 text-white rounded-lg sm:rounded-lg py-2 sm:py-1.5 pl-10 sm:pl-9 pr-3 sm:pr-3 text-xs sm:text-sm font-medium placeholder:text-white/30 transition-all duration-200 focus:outline-none focus:bg-white/10 focus:ring-1 focus:ring-white/10 hover:bg-white/10 border border-white/5'
             placeholder={placeholder}
             displayValue={displayValue}
             onChange={(event) => setQuery(event.target.value)}
@@ -87,7 +87,7 @@ export default function SearchBar() {
           >
             <ComboboxOptions
               modal={false}
-              className='absolute mt-2 w-full overflow-hidden rounded-2xl bg-surface-dropdown backdrop-blur-3xl border border-white/10 shadow-dropdown z-50'
+              className='absolute mt-2 sm:mt-1.5 w-full overflow-hidden rounded-2xl sm:rounded-xl bg-surface-dropdown backdrop-blur-3xl border border-white/10 shadow-dropdown z-50'
             >
               {filteredCoins.length === 0 ? (
                 <EmptyState />
@@ -97,7 +97,7 @@ export default function SearchBar() {
                     key={coin.id}
                     value={coin}
                     className={({ focus }) =>
-                      `relative cursor-pointer select-none px-3 sm:px-4 py-2 sm:py-3 transition-all duration-150 border-b border-white/5 last:border-0 ${
+                      `relative cursor-pointer select-none px-3 sm:px-3 py-2 sm:py-2 transition-all duration-150 border-b border-white/5 last:border-0 ${
                         focus ? 'bg-white/5' : 'bg-transparent'
                       }`
                     }

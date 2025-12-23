@@ -8,9 +8,9 @@ export default function Navbar() {
   return (
     <div className='grow'>
       <nav
-        className={`fixed top-2 sm:top-6 left-0 right-0 mx-auto z-110 pointer-events-none transition-all duration-300 ${
+        className={`fixed top-2 sm:top-4 left-0 right-0 mx-auto z-110 pointer-events-none transition-all duration-300 ${
           isHeaderVisible
-            ? 'container px-4 sm:px-6 lg:px-8'
+            ? 'container px-4 sm:px-8'
             : 'w-[calc(100%-1rem)] sm:w-[calc(100%-3rem)] max-w-7xl'
         }`}
       >
@@ -26,7 +26,7 @@ export default function Navbar() {
                 className='mx-auto w-full bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl'
               >
                 <div className='container mx-auto px-1 sm:px-2'>
-                  <div className='flex items-center justify-between gap-2 sm:gap-6 px-2 sm:px-6 py-2 sm:py-3 relative z-10'>
+                  <div className='flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-4 py-2 sm:py-2.5 relative z-10'>
                     {/* Left Section */}
                     <div className='flex items-center justify-center sm:justify-start shrink-0 sm:flex-1 min-w-auto gap-1 sm:gap-4'>
                       <Title />
@@ -61,7 +61,7 @@ export default function Navbar() {
       </nav>
 
       {/* Spacer */}
-      <div className='h-24 sm:h-38' />
+      <div className='h-24 sm:h-32' />
     </div>
   );
 }

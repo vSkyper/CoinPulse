@@ -7,9 +7,9 @@ export default function Footer() {
       <div className='absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-brand-violet/30 to-transparent' />
 
       <div className='px-4 py-3 sm:py-6 flex items-center justify-center'>
-        <div className='flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-6 w-full max-w-7xl mx-auto'>
+        <div className='flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6 w-full max-w-7xl mx-auto'>
           {/* Branding & Copyright */}
-          <div className='flex flex-col items-center md:items-start gap-0.5'>
+          <div className='flex flex-col items-center sm:items-start gap-0.5'>
             <h3 className='text-sm sm:text-lg font-black tracking-tighter text-white'>
               COIN<span className='text-brand-violet'>PULSE</span>
             </h3>

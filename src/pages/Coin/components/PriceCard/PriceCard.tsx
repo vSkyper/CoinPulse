@@ -26,12 +26,12 @@ export default function PriceCard({ data }: PriceCardProps) {
   return (
     <div className='relative z-10'>
       {/* Current Price */}
-      <div className='text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tighter mb-2'>
+      <div className='text-2xl sm:text-3xl font-black text-white tracking-tighter mb-2'>
         <Price marketData={market_data} />
       </div>
 
       {/* 24h Price Range */}
-      <div className='mt-4 sm:mt-6 p-4 sm:p-5 rounded-2xl bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
+      <div className='mt-4 sm:mt-4 p-4 sm:p-4 rounded-2xl bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
         <div className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-wider mb-2 sm:mb-3'>
           24h Price Range
         </div>
@@ -51,7 +51,7 @@ export default function PriceCard({ data }: PriceCardProps) {
       </div>
 
       {/* Price Change Grid */}
-      <div className='grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mt-4'>
+      <div className='grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2 mt-4 sm:mt-3'>
         {priceChange.map((days) => (
           <PriceChange key={days} marketData={market_data} days={days} />
         ))}

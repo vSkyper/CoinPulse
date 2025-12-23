@@ -34,9 +34,9 @@ export function useFilterPosition(
       // Gap calculation
       let gap = 8;
       if (strategy === 'fixed') {
-        gap = isMobile ? 8 : 32; // Bigger padding for desktop sticky header
+        gap = isMobile ? 8 : 16;
       } else {
-        gap = isMobile ? 12 : 30; // Push below header for main view
+        gap = isMobile ? 12 : 12;
       }
 
       let top = anchorRect.bottom + gap;
@@ -64,7 +64,7 @@ export function useFilterPosition(
       // Add padding from top (navbar)
       let minTop = 0;
       if (strategy === 'fixed') {
-        minTop = isMobile ? 60 : 80; // Desktop sticky header padding
+        minTop = isMobile ? 60 : 16; // Desktop sticky header padding
       }
 
       if (top < minTop) {
@@ -97,8 +97,7 @@ export function useFilterPosition(
         if (typeof filterRef === 'function') {
           (filterRef as any)(node);
         } else {
-          (filterRef as React.MutableRefObject<HTMLDivElement | null>).current =
-            node;
+          (filterRef as React.RefObject<HTMLDivElement | null>).current = node;
         }
       }
 

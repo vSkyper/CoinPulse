@@ -30,7 +30,7 @@ export default function Description({ globalData }: DescriptionProps) {
     : 'text-brand-positive bg-brand-positive/10 border-brand-positive/20';
 
   return (
-    <p className='text-sm sm:text-base text-white/70 leading-relaxed max-w-4xl font-medium tracking-wide'>
+    <p className='text-sm sm:text-sm text-white/70 leading-relaxed max-w-3xl font-medium tracking-wide'>
       The global cryptocurrency market cap today is{' '}
       <Highlight className='text-white'>{stats().marketCap}</Highlight>, a{' '}
       <Highlight className={changeColorClass}>

@@ -110,7 +110,7 @@ export default function Table({ coins }: TableProps) {
   ]);
 
   return (
-    <div className='mt-6 sm:mt-8 relative'>
+    <div className='mt-6 sm:mt-6 relative'>
       <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-glass/40 backdrop-blur-[20px] shadow-glass'>
         <TableControls
           globalFilter={globalFilter}
@@ -163,16 +163,16 @@ export default function Table({ coins }: TableProps) {
                     {row.getVisibleCells().map((cell) => (
                       <td
                         key={cell.id}
-                        className={`py-0.5 sm:py-2.5 text-white/90 text-xs sm:text-sm font-medium ${
+                        className={`py-0.5 sm:py-1.5 text-white/90 text-xs sm:text-xs font-medium ${
                           cell.column.id === 'name'
-                            ? 'pl-4 pr-2 sm:px-4 text-left'
+                            ? 'pl-4 pr-2 sm:px-3 text-left'
                             : [
                                 'current_price',
                                 'total_volume',
                                 'market_cap',
                               ].includes(cell.column.id)
-                            ? 'px-2 sm:px-4 text-right'
-                            : 'px-2 sm:px-4 text-center'
+                            ? 'px-2 sm:px-3 text-right'
+                            : 'px-2 sm:px-3 text-center'
                         }`}
                       >
                         {flexRender(

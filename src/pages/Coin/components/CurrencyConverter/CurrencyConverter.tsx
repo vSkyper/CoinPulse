@@ -140,11 +140,11 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-4 sm:p-5 rounded-3xl bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
+    <div className='relative z-10 p-4 sm:p-4 rounded-3xl bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
       <div>
         {/* Header */}
-        <div className='flex items-center justify-between mb-3 sm:mb-5'>
-          <h3 className='text-lg sm:text-xl font-black text-white tracking-tighter'>
+        <div className='flex items-center justify-between mb-3 sm:mb-3'>
+          <h3 className='text-lg sm:text-base font-black text-white tracking-tighter'>
             Currency Converter
           </h3>
         </div>
@@ -161,8 +161,8 @@ export default function CurrencyConverter({
           />
 
           {/* Swap Icon */}
-          <div className='flex items-center justify-center text-white/20 mx-auto my-1 sm:my-2'>
-            <MdArrowDownward size={25} />
+          <div className='flex items-center justify-center text-white/20 mx-auto my-1 sm:my-1'>
+            <MdArrowDownward size={20} />
           </div>
 
           {/* Fiat Currency Input with Combobox */}
@@ -228,10 +228,10 @@ export default function CurrencyConverter({
         </div>
 
         {/* Exchange Rate Display */}
-        <div className='flex flex-col gap-2 mt-3 sm:mt-5'>
-          <div className='flex min-h-12 items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 bg-black/20 text-white/60 font-mono text-[0.6rem] sm:text-[0.65rem] font-bold tracking-wide uppercase'>
+        <div className='flex flex-col gap-2 mt-3 sm:mt-3'>
+          <div className='flex min-h-10 sm:min-h-10 items-center justify-center gap-2 rounded-xl px-3 sm:px-3 py-2 sm:py-2 bg-black/20 text-white/60 font-mono text-[0.6rem] sm:text-[0.6rem] font-bold tracking-wide uppercase'>
             {isLoadingRate ? (
-              <div className='animate-spin h-[18px] w-[18px] border-2 border-white/10 border-t-brand-violet rounded-full' />
+              <div className='animate-spin h-4.5 w-4.5 border-2 border-white/10 border-t-brand-violet rounded-full' />
             ) : (
               currentRate && (
                 <div className='flex items-center gap-2'>
