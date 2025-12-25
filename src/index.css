@@ -15,8 +15,10 @@
   --color-primary: #050505;
   --color-secondary: #0a0a0a;
   --color-glass: #0a0a0f;
-  --color-surface: #1a1a20;
   --color-surface-dropdown: #15151a;
+  --color-surface-elevated: #18181b;
+  --color-surface-input: #202024;
+  --color-surface-input-hover: #27272a;
   --color-modal: #0f0f16;
 
   --color-border-dim: rgba(255, 255, 255, 0.05);

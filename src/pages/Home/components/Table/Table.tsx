@@ -198,8 +198,8 @@ export default function Table({ coins }: TableProps) {
                           No coins found
                         </span>
                         <span className='text-xs sm:text-sm'>
-                          Try adjusting your search or filters to find what
-                          you're looking for.
+                          Try adjusting your search query or filters to find
+                          what you're looking for.
                         </span>
                       </div>
                       <button

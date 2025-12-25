@@ -140,12 +140,14 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-5 sm:p-5 rounded-3xl bg-linear-to-br from-glass/80 via-glass/60 to-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown overflow-hidden'>
+    <div className='relative z-10 p-5 sm:p-5 rounded-3xl bg-linear-to-br from-glass/80 via-glass/60 to-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
       {/* Background Decor */}
-      <div className='absolute -top-24 -right-24 w-48 h-48 bg-brand-violet/20 blur-[80px] rounded-full pointer-events-none opacity-50' />
-      <div className='absolute -bottom-24 -left-24 w-48 h-48 bg-brand-violet-light/10 blur-[80px] rounded-full pointer-events-none opacity-50' />
+      <div className='absolute inset-0 overflow-hidden rounded-3xl pointer-events-none'>
+        <div className='absolute -top-24 -right-24 w-48 h-48 bg-brand-violet/20 blur-[80px] rounded-full pointer-events-none opacity-50' />
+        <div className='absolute -bottom-24 -left-24 w-48 h-48 bg-brand-violet-light/10 blur-[80px] rounded-full pointer-events-none opacity-50' />
+      </div>
 
-      <div>
+      <div className='relative'>
         {/* Header */}
         <div className='flex items-center justify-between mb-5 sm:mb-5 relative z-10'>
           <h3 className='text-lg sm:text-lg font-black text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/60 tracking-tighter'>
@@ -154,7 +156,7 @@ export default function CurrencyConverter({
         </div>
 
         {/* Currency Input Grid */}
-        <div className='flex flex-col gap-2 relative z-10'>
+        <div className='flex flex-col gap-2 relative z-20'>
           {/* Crypto Input */}
           <CurrencyInput
             label={symbol.toUpperCase()}
@@ -196,26 +198,26 @@ export default function CurrencyConverter({
                     leave='transition ease-in duration-100'
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'
+                    afterLeave={() => setQuery('')}
                   >
                     {filteredCurrencies.length > 0 && (
                       <ComboboxOptions
                         modal={false}
-                        anchor='bottom start'
-                        className='z-50 -ml-2.5 mt-3 max-h-40 sm:max-h-48 w-28 sm:w-30 overflow-auto rounded-xl bg-linear-to-br from-surface-dropdown via-surface-dropdown to-brand-violet/5 py-1.5 text-[0.65rem] sm:text-xs shadow-2xl ring-1 ring-brand-violet/20 focus:outline-none backdrop-blur-xl border border-brand-violet/10'
+                        className='absolute top-full left-0 z-50 mt-1 max-h-40 sm:max-h-48 w-18 sm:w-19 overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl py-1 text-[0.65rem] sm:text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none border border-white/5'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption
                             key={option}
                             value={option}
                             className={({ focus }) =>
-                              `relative cursor-pointer select-none py-2 px-3 transition-all duration-200 ${
+                              `relative cursor-pointer select-none py-2 sm:py-1.5 px-3 transition-all duration-200 ${
                                 focus
-                                  ? 'bg-brand-violet/25 text-white shadow-[inset_0_0_12px_rgba(139,92,246,0.2)]'
-                                  : 'text-white/70 hover:text-white/90'
+                                  ? 'bg-brand-violet/10 text-white'
+                                  : 'text-zinc-400'
                               }`
                             }
                           >
-                            <span className='block truncate font-black tracking-wide'>
+                            <span className='block truncate font-bold tracking-wide'>
                               {option.toUpperCase()}
                             </span>
                           </ComboboxOption>

@@ -69,7 +69,10 @@ export default function Coin() {
           </div>
 
           <div className='sm:col-span-4 flex flex-col gap-1.5 sm:gap-3'>
-            <AnimatedSection show={animations.currencyConverter}>
+            <AnimatedSection
+              show={animations.currencyConverter}
+              className='relative z-20'
+            >
               <CurrencyConverter
                 id={id}
                 symbol={data.symbol}

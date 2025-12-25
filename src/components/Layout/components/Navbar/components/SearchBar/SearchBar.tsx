@@ -63,12 +63,12 @@ export default function SearchBar() {
 
   return (
     <Combobox value={selectedCoin} onChange={handleChange}>
-      <div className='relative w-full'>
-        <div className='relative'>
+      <div className='relative w-full group'>
+        <div className='relative transform transition-transform duration-300'>
           <SearchIconContainer isLoading={!data} />
 
           <ComboboxInput
-            className='w-full bg-white/5 text-white rounded-lg sm:rounded-lg py-2 sm:py-1.5 pl-10 sm:pl-9 pr-3 sm:pr-3 text-xs sm:text-sm font-medium placeholder:text-white/30 transition-all duration-200 focus:outline-none focus:bg-white/10 focus:ring-1 focus:ring-white/10 hover:bg-white/10 border border-white/5'
+            className='w-full bg-surface-elevated text-white rounded-xl py-2 pl-10 pr-4 text-sm font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-surface-input focus:ring-1 focus:ring-brand-violet/40 hover:bg-surface-input border border-white/5 hover:border-white/10 shadow-lg shadow-black/20'
             placeholder={placeholder}
             displayValue={displayValue}
             onChange={(event) => setQuery(event.target.value)}
@@ -77,40 +77,39 @@ export default function SearchBar() {
           />
         </div>
 
-        {hasQuery && (
-          <Transition
-            as={Fragment}
-            show={hasQuery}
-            leave='transition ease-in duration-100'
-            leaveFrom='opacity-100'
-            leaveTo='opacity-0'
+        <Transition
+          as={Fragment}
+          show={hasQuery}
+          enter='transition duration-200 ease-out'
+          enterFrom='transform scale-95 opacity-0 translate-y-2'
+          enterTo='transform scale-100 opacity-100 translate-y-0'
+          leave='transition duration-150 ease-in'
+          leaveFrom='opacity-100 translate-y-0'
+          leaveTo='opacity-0 translate-y-2'
+        >
+          <ComboboxOptions
+            modal={false}
+            className='absolute mt-3 w-full overflow-hidden rounded-2xl bg-surface-elevated/95 backdrop-blur-xl border border-white/5 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] z-50 p-1.5'
           >
-            <ComboboxOptions
-              modal={false}
-              className='absolute mt-2 sm:mt-1.5 w-full overflow-hidden rounded-2xl sm:rounded-xl bg-surface-dropdown backdrop-blur-3xl border border-white/10 shadow-dropdown z-50'
-            >
-              {filteredCoins.length === 0 ? (
-                <EmptyState />
-              ) : (
-                filteredCoins.map((coin) => (
-                  <ComboboxOption
-                    key={coin.id}
-                    value={coin}
-                    className={({ focus }) =>
-                      `relative cursor-pointer select-none px-3 sm:px-3 py-2 sm:py-2 transition-all duration-150 border-b border-white/5 last:border-0 ${
-                        focus ? 'bg-white/5' : 'bg-transparent'
-                      }`
-                    }
-                  >
-                    {({ focus }) => (
-                      <CoinOption coin={coin} isFocused={focus} />
-                    )}
-                  </ComboboxOption>
-                ))
-              )}
-            </ComboboxOptions>
-          </Transition>
-        )}
+            {filteredCoins.length === 0 ? (
+              <EmptyState />
+            ) : (
+              filteredCoins.map((coin) => (
+                <ComboboxOption
+                  key={coin.id}
+                  value={coin}
+                  className={({ focus }) =>
+                    `relative cursor-pointer select-none rounded-xl transition-all duration-200 ${
+                      focus ? 'bg-brand-violet/10' : 'bg-transparent'
+                    }`
+                  }
+                >
+                  {({ focus }) => <CoinOption coin={coin} isFocused={focus} />}
+                </ComboboxOption>
+              ))
+            )}
+          </ComboboxOptions>
+        </Transition>
       </div>
     </Combobox>
   );
