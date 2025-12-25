@@ -1,6 +1,6 @@
 import Sparkline from './Sparkline';
 import PriceCard from './PriceCard';
-import StackData from './StackData';
+import MarketStats from './MarketStats';
 import CurrencyConverter from './CurrencyConverter';
 import Links from './Links';
 import CoinHeader from './CoinHeader';
@@ -10,7 +10,7 @@ import Skeleton from './Skeleton';
 export {
   Sparkline,
   PriceCard,
-  StackData,
+  MarketStats,
   CurrencyConverter,
   Links,
   CoinHeader,

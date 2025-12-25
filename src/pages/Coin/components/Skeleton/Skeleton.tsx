@@ -58,7 +58,7 @@ export default function Skeleton() {
               {[...Array(9)].map((_, i) => (
                 <div
                   key={i}
-                  className='h-24 sm:h-[90px] rounded-2xl bg-white/5 animate-pulse border border-white/5'
+                  className='h-24 sm:h-[72px] rounded-2xl bg-white/5 animate-pulse border border-white/5'
                 />
               ))}
             </div>

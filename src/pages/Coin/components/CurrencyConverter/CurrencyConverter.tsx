@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { MdArrowDownward, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import {
   Combobox,
   ComboboxButton,
@@ -140,17 +139,21 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-4 sm:p-4 rounded-3xl bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
+    <div className='relative z-10 p-5 sm:p-5 rounded-3xl bg-linear-to-br from-glass/80 via-glass/60 to-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown overflow-hidden'>
+      {/* Background Decor */}
+      <div className='absolute -top-24 -right-24 w-48 h-48 bg-brand-violet/20 blur-[80px] rounded-full pointer-events-none opacity-50' />
+      <div className='absolute -bottom-24 -left-24 w-48 h-48 bg-brand-violet-light/10 blur-[80px] rounded-full pointer-events-none opacity-50' />
+
       <div>
         {/* Header */}
-        <div className='flex items-center justify-between mb-3 sm:mb-3'>
-          <h3 className='text-lg sm:text-base font-black text-white tracking-tighter'>
-            Currency Converter
+        <div className='flex items-center justify-between mb-5 sm:mb-5 relative z-10'>
+          <h3 className='text-lg sm:text-lg font-black text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/60 tracking-tighter'>
+            Converter
           </h3>
         </div>
 
         {/* Currency Input Grid */}
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col gap-2 relative z-10'>
           {/* Crypto Input */}
           <CurrencyInput
             label={symbol.toUpperCase()}
@@ -160,11 +163,6 @@ export default function CurrencyConverter({
             onChange={handleCryptoInputChange}
           />
 
-          {/* Swap Icon */}
-          <div className='flex items-center justify-center text-white/20 mx-auto my-1 sm:my-1'>
-            <MdArrowDownward size={20} />
-          </div>
-
           {/* Fiat Currency Input with Combobox */}
           <CurrencyInput
             label={currencyOption.toUpperCase()}
@@ -172,22 +170,23 @@ export default function CurrencyConverter({
             value={currencyAmount}
             onChange={handleCurrencyInputChange}
           >
-            <div className='w-14 sm:w-16'>
+            <div className='w-15 sm:w-18'>
               <Combobox
                 value={currencyOption}
                 onChange={handleChangeAutocomplete}
               >
-                <div className='relative flex items-center'>
-                  <ComboboxInput
-                    className='w-full bg-transparent text-xs sm:text-sm font-bold uppercase focus:outline-none pr-6 text-white/95 tracking-wide'
-                    displayValue={() => currencyOption.toUpperCase()}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setQuery(e.target.value)
-                    }
-                  />
-                  <ComboboxButton className='absolute right-0 p-1'>
-                    <MdOutlineKeyboardArrowDown />
-                  </ComboboxButton>
+                <div className='relative'>
+                  <div className='relative flex items-center gap-1 cursor-pointer group'>
+                    <ComboboxInput
+                      className='w-full bg-transparent text-xs sm:text-sm font-bold uppercase focus:outline-none text-white tracking-wide cursor-pointer'
+                      displayValue={() => currencyOption.toUpperCase()}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setQuery(e.target.value)
+                      }
+                    />
+                  </div>
+
+                  <ComboboxButton className='absolute inset-0 w-full h-full opacity-0 cursor-pointer' />
 
                   <Transition
                     as='div'
@@ -199,16 +198,16 @@ export default function CurrencyConverter({
                       <ComboboxOptions
                         modal={false}
                         anchor='bottom start'
-                        className='z-20 mt-2 max-h-48 sm:max-h-60 w-20 sm:w-24 overflow-auto rounded-xl bg-surface-dropdown py-1 text-xs sm:text-sm shadow-xl ring-1 ring-white/10 focus:outline-none'
+                        className='z-50 mt-2 max-h-40 sm:max-h-48 w-28 sm:w-28 overflow-auto rounded-xl bg-surface-dropdown py-1 text-[0.65rem] sm:text-xs shadow-xl ring-1 ring-white/10 focus:outline-none backdrop-blur-xl'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption
                             key={option}
                             value={option}
                             className={({ focus }) =>
-                              `relative cursor-default select-none py-1.5 sm:py-2.5 px-3 sm:px-4 transition-colors ${
+                              `relative cursor-pointer select-none py-1.5 px-3 transition-colors ${
                                 focus
-                                  ? 'bg-white/5 text-white'
+                                  ? 'bg-brand-violet/20 text-white'
                                   : 'text-white/70'
                               }`
                             }
@@ -228,24 +227,33 @@ export default function CurrencyConverter({
         </div>
 
         {/* Exchange Rate Display */}
-        <div className='flex flex-col gap-2 mt-3 sm:mt-3'>
-          <div className='flex min-h-10 sm:min-h-10 items-center justify-center gap-2 rounded-xl px-3 sm:px-3 py-2 sm:py-2 bg-black/20 text-white/60 font-mono text-[0.6rem] sm:text-[0.6rem] font-bold tracking-wide uppercase'>
+        <div className='flex flex-col gap-1.5 mt-4 sm:mt-4 relative z-10'>
+          <div className='flex items-center justify-between px-1 sm:px-1 py-0 min-h-[36px] sm:min-h-[40px]'>
+            <div className='text-[0.6rem] sm:text-[0.65rem] font-bold text-white/50 uppercase tracking-wider'>
+              Exchange Rate
+            </div>
+
             {isLoadingRate ? (
-              <div className='animate-spin h-4.5 w-4.5 border-2 border-white/10 border-t-brand-violet rounded-full' />
+              <div className='flex items-center gap-2'>
+                <div className='animate-spin h-3 w-3 border-2 border-white/10 border-t-brand-violet rounded-full' />
+              </div>
             ) : (
               currentRate && (
-                <div className='flex items-center gap-2'>
-                  <div className='font-semibold text-xs sm:text-sm'>
-                    1{' '}
-                    <span className='text-brand-violet'>
+                <div className='flex items-center gap-1.5 sm:gap-2'>
+                  <div className='font-bold text-[0.65rem] sm:text-xs text-white flex items-center gap-1'>
+                    <span>1</span>
+                    <span className='text-brand-violet font-black'>
                       {symbol.toUpperCase()}
-                    </span>{' '}
-                    ≈ {rateValue}{' '}
-                    <span className='text-brand-violet'>{rateSymbol}</span>
+                    </span>
+                    <span className='text-white/40'>≈</span>
+                    <span>{rateValue}</span>
+                    <span className='text-brand-violet font-black'>
+                      {rateSymbol}
+                    </span>
                   </div>
                   {change24h !== undefined && change24h !== null && (
                     <div
-                      className={`px-2 py-1 rounded text-[10px] sm:text-xs font-bold border ${
+                      className={`px-1 py-0.5 rounded text-[0.55rem] sm:text-[0.6rem] font-black border backdrop-blur-md ${
                         change24h >= 0
                           ? 'bg-brand-positive/10 text-brand-positive border-brand-positive/20'
                           : 'bg-brand-negative/10 text-brand-negative border-brand-negative/20'
@@ -260,12 +268,10 @@ export default function CurrencyConverter({
             )}
           </div>
 
-          <div className='text-center text-[10px] sm:text-xs text-white/40 font-medium min-h-5 flex items-center justify-center'>
-            {lastUpdated ? (
-              `Last updated: ${new Date(lastUpdated * 1000).toLocaleString()}`
-            ) : isLoadingRate ? (
-              <span className='animate-pulse'>Updating...</span>
-            ) : null}
+          <div className='text-right text-[9px] sm:text-[9px] text-white/30 font-medium min-h-[14px]'>
+            {lastUpdated
+              ? `Updated: ${new Date(lastUpdated * 1000).toLocaleString()}`
+              : null}
           </div>
         </div>
       </div>

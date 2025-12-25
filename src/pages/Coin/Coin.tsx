@@ -4,7 +4,7 @@ import {
   Links,
   PriceCard,
   Sparkline,
-  StackData,
+  MarketStats,
   CoinHeader,
   AnimatedSection,
   Skeleton,
@@ -18,7 +18,7 @@ import { API_ENDPOINTS } from 'config/api';
 const ANIMATION_DELAYS = {
   chart: 100,
   priceCard: 200,
-  stackData: 300,
+  marketStats: 300,
   currencyConverter: 400,
   links: 500,
 };
@@ -63,8 +63,8 @@ export default function Coin() {
         {/* Stats, Currency Converter & Links Row */}
         <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-8 sm:mt-6'>
           <div className='sm:col-span-8'>
-            <AnimatedSection show={animations.stackData}>
-              <StackData marketData={data.market_data} />
+            <AnimatedSection show={animations.marketStats}>
+              <MarketStats marketData={data.market_data} />
             </AnimatedSection>
           </div>
 

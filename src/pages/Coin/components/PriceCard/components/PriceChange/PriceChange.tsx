@@ -20,12 +20,12 @@ export default function PriceChange({ marketData, days }: PriceChangeProps) {
           className={`absolute top-0 left-0 right-0 h-1 rounded-t-xl opacity-100 ${topBarClass}`}
         />
 
-        <div className='font-bold text-lg sm:text-base mb-1 tracking-tight'>
+        <div className='font-bold text-sm sm:text-base mb-1 tracking-tight'>
           {isPositive && '+'}
           {formatPercentage(priceChange)}
         </div>
 
-        <div className='text-[0.65rem] sm:text-xs text-white/40 font-bold uppercase tracking-wide whitespace-nowrap'>
+        <div className='text-[0.6rem] sm:text-xs text-white/40 font-bold uppercase tracking-wide whitespace-nowrap'>
           {days} Change
         </div>
       </div>

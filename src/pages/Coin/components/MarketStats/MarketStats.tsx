@@ -1,8 +1,19 @@
-import { StackDataProps } from './interface';
+import { MarketStatsProps } from './interface';
 import { ExtremeValueRow, StatRow } from './components';
 import { formatCurrency, formatNumber } from 'utils/formatters';
+import {
+  MdEmojiEvents,
+  MdAttachMoney,
+  MdBarChart,
+  MdPieChart,
+  MdTimeline,
+  MdToken,
+  MdDataSaverOff,
+  MdTrendingUp,
+  MdTrendingDown,
+} from 'react-icons/md';
 
-export default function StackData({ marketData }: StackDataProps) {
+export default function MarketStats({ marketData }: MarketStatsProps) {
   const volumeToMarketCap =
     (marketData.total_volume?.usd || 0) / (marketData.market_cap?.usd || 1);
 
@@ -15,52 +26,65 @@ export default function StackData({ marketData }: StackDataProps) {
       <StatRow
         label='Market Capitalization'
         value={formatCurrency(marketData.market_cap?.usd || 0)}
+        icon={MdAttachMoney}
       />
 
       <StatRow
         label='24h Trading Volume'
         value={formatCurrency(marketData.total_volume?.usd || 0)}
+        icon={MdBarChart}
       />
 
       <StatRow
         label='Volume / Market Cap'
         value={formatNumber(volumeToMarketCap, 8)}
+        icon={MdPieChart}
       />
 
       <StatRow
         label='24h Low / 24h High'
         value={
-          <div className='flex flex-col items-end justify-center h-full sm:block sm:text-right'>
-            <div className='font-bold text-brand-negative text-sm sm:text-base leading-tight'>
+          <div className='flex flex-col items-end justify-center h-full sm:flex-row sm:items-center sm:justify-end sm:gap-1.5'>
+            <span className='font-bold text-brand-negative text-sm sm:text-base leading-tight'>
               {formatCurrency(marketData.low_24h?.usd || 0)}
-            </div>
-            <div className='hidden sm:inline text-white/40 mx-2'>/</div>
-            <div className='font-bold text-brand-positive text-sm sm:text-base leading-tight'>
+            </span>
+            <span className='hidden sm:inline text-white/40'>/</span>
+            <span className='font-bold text-brand-positive text-sm sm:text-base leading-tight'>
               {formatCurrency(marketData.high_24h?.usd || 0)}
-            </div>
+            </span>
           </div>
         }
+        icon={MdTimeline}
       />
 
       <StatRow
         label='Market Cap Rank'
         value={
-          <div className='w-fit px-2 py-0.5 sm:px-2 sm:py-0.5 rounded-lg sm:rounded-lg bg-brand-violet/10 border border-brand-violet/20 text-brand-violet font-bold text-[0.7rem] sm:text-sm shadow-glow-cyan-sm backdrop-blur-xl backdrop-saturate-150'>
-            {marketData.market_cap_rank
-              ? `#${marketData.market_cap_rank}`
-              : 'N/A'}
+          <div className='flex items-center gap-1.5'>
+            <div className='flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-linear-to-tr from-amber-400/20 to-amber-600/20 border border-amber-400/30 text-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.2)]'>
+              <MdEmojiEvents size={14} className='sm:hidden' />
+              <MdEmojiEvents size={16} className='hidden sm:block' />
+            </div>
+            <span className='font-black text-sm sm:text-lg text-white tracking-tight drop-shadow-sm'>
+              {marketData.market_cap_rank
+                ? `#${marketData.market_cap_rank}`
+                : 'N/A'}
+            </span>
           </div>
         }
+        icon={MdEmojiEvents}
       />
 
       <StatRow
         label='Circulating Supply'
         value={formatNumber(marketData.circulating_supply || 0)}
+        icon={MdToken}
       />
 
       <StatRow
         label='Total Supply'
         value={formatNumber(marketData.total_supply || 0)}
+        icon={MdDataSaverOff}
       />
 
       <ExtremeValueRow
@@ -68,6 +92,7 @@ export default function StackData({ marketData }: StackDataProps) {
         price={marketData.ath?.usd || 0}
         percentage={marketData.ath_change_percentage?.usd || 0}
         date={marketData.ath_date?.usd || 0}
+        icon={MdTrendingUp}
       />
 
       <ExtremeValueRow
@@ -75,6 +100,7 @@ export default function StackData({ marketData }: StackDataProps) {
         price={marketData.atl?.usd || 0}
         percentage={marketData.atl_change_percentage?.usd || 0}
         date={marketData.atl_date?.usd || 0}
+        icon={MdTrendingDown}
       />
     </div>
   );

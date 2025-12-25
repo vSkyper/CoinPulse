@@ -1,5 +1,5 @@
 import { MarketDataResponse } from 'interfaces';
 
-export interface StackDataProps {
+export interface MarketStatsProps {
   marketData: MarketDataResponse;
 }

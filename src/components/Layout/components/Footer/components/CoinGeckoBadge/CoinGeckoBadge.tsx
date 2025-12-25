@@ -13,7 +13,7 @@ export default function CoinGeckoBadge() {
       <img
         alt='CoinGecko'
         src={COINGECKO_BADGE_URL}
-        className='h-4 sm:h-5 w-auto opacity-40 group-hover:opacity-100 transition-all duration-300 filter'
+        className='h-4 sm:h-4.5 w-auto opacity-40 group-hover:opacity-100 transition-all duration-300 filter'
       />
     </a>
   );

@@ -9,7 +9,7 @@ export default function PercentageBadge({ value }: PercentageBadgeProps) {
 
   return (
     <span
-      className={`inline-flex items-center justify-center px-1.5 py-0.5 text-[0.6rem] sm:px-2.5 sm:py-1 sm:text-xs font-bold rounded-lg backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 border shadow-sm ${badgeClasses}`}
+      className={`inline-flex items-center justify-center px-1.5 py-0.5 text-[0.6rem] sm:px-2 sm:py-0.5 sm:text-[0.65rem] font-bold rounded-lg backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 border shadow-sm ${badgeClasses}`}
     >
       {value > 0 && '+'}
       {formatPercentage(value)}
