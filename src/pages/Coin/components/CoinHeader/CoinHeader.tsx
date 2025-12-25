@@ -10,7 +10,7 @@ export default function CoinHeader({
     <div className='mb-6 sm:mb-8 relative z-10'>
       <div className='flex items-center gap-4 sm:gap-4'>
         {/* Coin Image */}
-        <div className='relative w-12! h-12! sm:w-14! sm:h-14! rounded-2xl shadow-dropdown transition-transform duration-500 hover:scale-105 border border-white/10 bg-glass/60 p-1.5 sm:p-2 backdrop-blur-xl backdrop-saturate-150'>
+        <div className='relative w-12! h-12! sm:w-14! sm:h-14! rounded-2xl shadow-dropdown border border-white/10 bg-glass/60 p-1.5 sm:p-2 backdrop-blur-xl backdrop-saturate-150'>
           {image ? (
             <img
               src={image}
@@ -29,12 +29,12 @@ export default function CoinHeader({
           </h1>
 
           <div className='flex items-center gap-2 sm:gap-2'>
-            <span className='text-[0.65rem] sm:text-[0.65rem] font-bold text-white/60 uppercase tracking-widest bg-white/5 px-2 sm:px-2 py-0.5 sm:py-0.5 rounded-lg sm:rounded-md border border-white/10 hover:bg-white/10 transition-colors'>
+            <span className='text-[0.65rem] sm:text-[0.65rem] font-bold text-white/60 uppercase tracking-widest bg-white/5 px-2 sm:px-2 py-0.5 sm:py-0.5 rounded-lg sm:rounded-md border border-white/10 transition-colors'>
               {symbol}
             </span>
 
             {marketCapRank && (
-              <span className='text-[0.65rem] sm:text-[0.65rem] font-bold rounded-full sm:rounded-md px-2.5 sm:px-2 py-1 sm:py-0.5 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 bg-brand-violet/10 border border-brand-violet/20 text-brand-violet tracking-wide shadow-glow-cyan-sm'>
+              <span className='text-[0.65rem] sm:text-[0.65rem] font-bold rounded-full sm:rounded-md px-2.5 sm:px-2 py-1 sm:py-0.5 backdrop-blur-md bg-brand-violet/10 border border-brand-violet/20 text-brand-violet tracking-wide shadow-glow-cyan-sm'>
                 #{marketCapRank}
               </span>
             )}
