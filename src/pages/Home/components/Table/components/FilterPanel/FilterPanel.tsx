@@ -119,8 +119,8 @@ export default function FilterPanel({
             </span>
             <Listbox value={activeFilterColumn} onChange={handleColumnChange}>
               <div className='relative'>
-                <ListboxButton className='relative w-full cursor-default rounded-xl sm:rounded-lg bg-white/5 py-1.5 sm:py-1.5 pl-2.5 sm:pl-2.5 pr-6 sm:pr-7 text-left text-[10px] sm:text-xs text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'>
-                  <span className='block truncate font-medium'>
+                <ListboxButton className='relative w-full cursor-pointer rounded-xl sm:rounded-lg bg-white/5 hover:bg-white/10 py-1.5 sm:py-1.5 pl-2.5 sm:pl-2.5 pr-6 sm:pr-7 text-left text-[10px] sm:text-xs text-white border border-white/10 hover:border-white/20 focus:outline-none focus:border-brand-violet/40 transition-all duration-200'>
+                  <span className='block truncate font-bold'>
                     {
                       table
                         .getAllColumns()
@@ -130,7 +130,7 @@ export default function FilterPanel({
                   </span>
                   <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-2'>
                     <MdKeyboardArrowDown
-                      className='h-3 w-3 sm:h-4 sm:w-4 text-white/40'
+                      className='h-3 w-3 sm:h-4 sm:w-4 text-white/50'
                       aria-hidden='true'
                     />
                   </span>
@@ -143,14 +143,16 @@ export default function FilterPanel({
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl sm:rounded-lg bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-xs shadow-xl ring-1 ring-white/5 focus:outline-none z-50'
+                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl sm:rounded-lg bg-surface-dropdown border border-brand-violet/15 py-1.5 text-[10px] sm:text-xs shadow-2xl ring-1 ring-brand-violet/10 focus:outline-none z-50'
                   >
                     {table.getAllColumns().map((column) => (
                       <ListboxOption
                         key={column.id}
                         className={({ focus }) =>
-                          `relative cursor-default select-none py-1.5 sm:py-1.5 pl-6 sm:pl-7 pr-3 sm:pr-3 transition-colors ${
-                            focus ? 'bg-white/5 text-white' : 'text-white/70'
+                          `relative cursor-pointer select-none py-2 sm:py-1.5 pl-6 sm:pl-7 pr-3 sm:pr-3 transition-all duration-200 ${
+                            focus
+                              ? 'bg-brand-violet/20 text-white shadow-[inset_0_0_12px_rgba(139,92,246,0.15)]'
+                              : 'text-white/70 hover:text-white/90'
                           }`
                         }
                         value={column.id}
@@ -160,8 +162,8 @@ export default function FilterPanel({
                             <span
                               className={`block truncate ${
                                 selected
-                                  ? 'font-bold text-white'
-                                  : 'font-normal'
+                                  ? 'font-black text-white'
+                                  : 'font-medium'
                               }`}
                             >
                               {column.columnDef.header as string}
@@ -191,13 +193,13 @@ export default function FilterPanel({
             </span>
             <Listbox value={activeOperator} onChange={setActiveOperator}>
               <div className='relative'>
-                <ListboxButton className='relative w-full cursor-default rounded-xl sm:rounded-lg bg-white/5 py-1.5 sm:py-1.5 pl-2.5 sm:pl-2.5 pr-6 sm:pr-7 text-left text-[10px] sm:text-xs text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'>
-                  <span className='block truncate font-medium'>
+                <ListboxButton className='relative w-full cursor-pointer rounded-xl sm:rounded-lg bg-white/5 hover:bg-white/10 py-1.5 sm:py-1.5 pl-2.5 sm:pl-2.5 pr-6 sm:pr-7 text-left text-[10px] sm:text-xs text-white border border-white/10 hover:border-white/20 focus:outline-none focus:border-brand-violet/40 transition-all duration-200'>
+                  <span className='block truncate font-bold'>
                     {activeOperator}
                   </span>
                   <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-2'>
                     <MdKeyboardArrowDown
-                      className='h-3 w-3 sm:h-4 sm:w-4 text-white/40'
+                      className='h-3 w-3 sm:h-4 sm:w-4 text-white/50'
                       aria-hidden='true'
                     />
                   </span>
@@ -210,14 +212,16 @@ export default function FilterPanel({
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl sm:rounded-lg bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-xs shadow-xl ring-1 ring-white/5 focus:outline-none z-50'
+                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl sm:rounded-lg bg-surface-dropdown border border-brand-violet/15 py-1.5 text-[10px] sm:text-xs shadow-2xl ring-1 ring-brand-violet/10 focus:outline-none z-50'
                   >
                     {getOperatorsForColumn(activeFilterColumn).map((op) => (
                       <ListboxOption
                         key={op}
                         className={({ focus }) =>
-                          `relative cursor-default select-none py-1.5 sm:py-1.5 pl-6 sm:pl-7 pr-3 sm:pr-3 transition-colors ${
-                            focus ? 'bg-white/5 text-white' : 'text-white/70'
+                          `relative cursor-pointer select-none py-2 sm:py-1.5 pl-6 sm:pl-7 pr-3 sm:pr-3 transition-all duration-200 ${
+                            focus
+                              ? 'bg-brand-violet/20 text-white shadow-[inset_0_0_12px_rgba(139,92,246,0.15)]'
+                              : 'text-white/70 hover:text-white/90'
                           }`
                         }
                         value={op}
@@ -227,8 +231,8 @@ export default function FilterPanel({
                             <span
                               className={`block truncate ${
                                 selected
-                                  ? 'font-bold text-white'
-                                  : 'font-normal'
+                                  ? 'font-black text-white'
+                                  : 'font-medium'
                               }`}
                             >
                               {op}
@@ -259,10 +263,11 @@ export default function FilterPanel({
               Value
             </span>
             <input
+              autoComplete='off'
               value={activeValue}
               onChange={(e) => setActiveValue(e.target.value)}
               placeholder='Enter value...'
-              className='w-full bg-white/5 border border-white/5 rounded-xl sm:rounded-lg py-1.5 sm:py-1.5 px-2.5 sm:px-2.5 text-[10px] sm:text-xs text-white placeholder-white/30 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'
+              className='w-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl sm:rounded-lg py-1.5 sm:py-1.5 px-2.5 sm:px-2.5 text-[10px] sm:text-xs text-white font-bold placeholder-white/30 focus:outline-none focus:border-brand-violet/40 transition-all duration-200'
             />
           </div>
         )}

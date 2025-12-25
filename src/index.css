@@ -19,6 +19,12 @@
   --color-surface-dropdown: #15151a;
   --color-modal: #0f0f16;
 
+  --color-border-dim: rgba(255, 255, 255, 0.05);
+  --color-border-hover: rgba(255, 255, 255, 0.1);
+
+  --color-field: rgba(255, 255, 255, 0.05);
+  --color-field-hover: rgba(255, 255, 255, 0.1);
+
   --color-gradient-1: color-mix(
     in srgb,
     var(--color-brand-violet) 8%,

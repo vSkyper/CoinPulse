@@ -9,7 +9,7 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
   return (
     <div className='w-full'>
-      <div className='flex items-center gap-2 sm:gap-2 px-2 py-1 sm:p-2 min-h-14 sm:min-h-16 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300 w-full focus-within:bg-white/10 focus-within:border-brand-violet/30 focus-within:shadow-glow-violet-focus group'>
+      <div className='flex items-center gap-2 sm:gap-2 px-2 py-1 sm:p-2 min-h-14 sm:min-h-16 rounded-2xl bg-field border border-border-dim hover:bg-field-hover hover:border-border-hover transition-all duration-300 w-full focus-within:bg-field-hover focus-within:border-brand-violet/30 focus-within:shadow-glow-violet-focus group'>
         {/* Left Side: Avatar/Icon & Symbol */}
         <div className='flex items-center gap-2 sm:gap-2 min-w-fit'>
           {image ? (
@@ -34,23 +34,13 @@ export default function CurrencyInput({
                 {symbol.toUpperCase()}
               </span>
             )}
-
-            <div className='flex items-center gap-1.5'>
-              <span className='text-[0.65rem] font-bold text-white/40 uppercase tracking-wider mt-0.5'>
-                {children ? 'Currency' : 'Asset'}
-              </span>
-              {children && (
-                <div className='bg-white/10 px-1 py-0.5 rounded text-[0.5rem] font-bold text-white/60 uppercase tracking-wide mt-0.5'>
-                  Select
-                </div>
-              )}
-            </div>
           </div>
         </div>
 
         {/* Right Side: Input */}
         <div className='flex-1 flex flex-col items-end'>
           <input
+            autoComplete='off'
             className='w-full bg-transparent focus:outline-none text-white font-mono text-right text-base sm:text-lg font-bold tracking-tight outline-none placeholder-white/10 group-focus-within:placeholder-white/20'
             type='number'
             value={value}

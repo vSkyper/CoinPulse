@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { HiChevronDown } from 'react-icons/hi';
 import {
   Combobox,
   ComboboxButton,
@@ -170,23 +171,25 @@ export default function CurrencyConverter({
             value={currencyAmount}
             onChange={handleCurrencyInputChange}
           >
-            <div className='w-15 sm:w-18'>
+            <div className='w-18 sm:w-19'>
               <Combobox
                 value={currencyOption}
                 onChange={handleChangeAutocomplete}
               >
                 <div className='relative'>
-                  <div className='relative flex items-center gap-1 cursor-pointer group'>
+                  <div className='relative flex items-center justify-between gap-1 sm:gap-1 group bg-white/5 hover:bg-white/10 px-2 sm:px-2 py-1.5 sm:py-1 rounded-lg sm:rounded-xl border border-white/10 hover:border-white/20 transition-all duration-200 w-full focus-within:border-brand-violet/40'>
                     <ComboboxInput
-                      className='w-full bg-transparent text-xs sm:text-sm font-bold uppercase focus:outline-none text-white tracking-wide cursor-pointer'
+                      autoComplete='off'
+                      className='w-full bg-transparent text-xs sm:text-sm font-black uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/30 selection:bg-brand-violet/40'
                       displayValue={() => currencyOption.toUpperCase()}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setQuery(e.target.value)
                       }
                     />
+                    <ComboboxButton className='cursor-pointer p-0.5 sm:p-0.5 rounded-md sm:rounded-lg hover:bg-white/10 active:scale-95 transition-all duration-200'>
+                      <HiChevronDown className='w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-white/50 group-hover:text-white/80 transition-colors duration-200 shrink-0' />
+                    </ComboboxButton>
                   </div>
-
-                  <ComboboxButton className='absolute inset-0 w-full h-full opacity-0 cursor-pointer' />
 
                   <Transition
                     as='div'
@@ -198,21 +201,21 @@ export default function CurrencyConverter({
                       <ComboboxOptions
                         modal={false}
                         anchor='bottom start'
-                        className='z-50 mt-2 max-h-40 sm:max-h-48 w-28 sm:w-28 overflow-auto rounded-xl bg-surface-dropdown py-1 text-[0.65rem] sm:text-xs shadow-xl ring-1 ring-white/10 focus:outline-none backdrop-blur-xl'
+                        className='z-50 -ml-2.5 mt-3 max-h-40 sm:max-h-48 w-28 sm:w-30 overflow-auto rounded-xl bg-linear-to-br from-surface-dropdown via-surface-dropdown to-brand-violet/5 py-1.5 text-[0.65rem] sm:text-xs shadow-2xl ring-1 ring-brand-violet/20 focus:outline-none backdrop-blur-xl border border-brand-violet/10'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption
                             key={option}
                             value={option}
                             className={({ focus }) =>
-                              `relative cursor-pointer select-none py-1.5 px-3 transition-colors ${
+                              `relative cursor-pointer select-none py-2 px-3 transition-all duration-200 ${
                                 focus
-                                  ? 'bg-brand-violet/20 text-white'
-                                  : 'text-white/70'
+                                  ? 'bg-brand-violet/25 text-white shadow-[inset_0_0_12px_rgba(139,92,246,0.2)]'
+                                  : 'text-white/70 hover:text-white/90'
                               }`
                             }
                           >
-                            <span className='block truncate font-bold'>
+                            <span className='block truncate font-black tracking-wide'>
                               {option.toUpperCase()}
                             </span>
                           </ComboboxOption>
@@ -227,7 +230,7 @@ export default function CurrencyConverter({
         </div>
 
         {/* Exchange Rate Display */}
-        <div className='flex flex-col gap-1.5 mt-4 sm:mt-4 relative z-10'>
+        <div className='flex flex-col gap-1.5 mt-2.5 sm:mt-3 relative z-10'>
           <div className='flex items-center justify-between px-1 sm:px-1 py-0 min-h-[36px] sm:min-h-[40px]'>
             <div className='text-[0.6rem] sm:text-[0.65rem] font-bold text-white/50 uppercase tracking-wider'>
               Exchange Rate
