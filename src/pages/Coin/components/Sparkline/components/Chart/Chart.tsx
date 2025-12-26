@@ -63,11 +63,11 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
     if (!active || !payload || !payload.length) return null;
 
     return (
-      <div className='bg-glass/90 border border-brand-violet/30 rounded-xl px-3 py-2 shadow-modal text-xs backdrop-blur-xl'>
-        <div className='text-[0.65rem] text-white/50 mb-1 font-medium uppercase tracking-wide'>
+      <div className='bg-glass/90 border border-brand-violet/30 rounded-lg sm:rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 shadow-modal text-[10px] sm:text-xs backdrop-blur-xl'>
+        <div className='text-[0.55rem] sm:text-[0.65rem] text-white/50 mb-0.5 sm:mb-1 font-medium uppercase tracking-wide'>
           {format(new Date(label ?? 0), 'eeee, d MMM, yyyy')}
         </div>
-        <div className='font-bold text-brand-violet text-base'>
+        <div className='font-bold text-brand-violet text-sm sm:text-base'>
           {formatCurrency(Number(payload[0].value))}
         </div>
       </div>

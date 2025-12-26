@@ -92,7 +92,26 @@ export default function CurrencyConverter({
     currencyAmount,
   ]);
 
-  // Reset query when currency changes
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (filteredCurrencies.length > 0) {
+        handleChangeAutocomplete(filteredCurrencies[0]);
+      }
+
+      // Dispatch Escape to ensure Combobox closes
+      const escapeEvent = new KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+        cancelable: true,
+        view: window,
+      });
+      event.currentTarget.dispatchEvent(escapeEvent);
+
+      event.currentTarget.blur();
+    }
+  };
+
   useEffect(() => {
     setQuery('');
   }, [currencyOption]);
@@ -184,9 +203,11 @@ export default function CurrencyConverter({
                       autoComplete='off'
                       className='w-full bg-transparent text-xs sm:text-sm font-black uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/30 selection:bg-brand-violet/40'
                       displayValue={() => currencyOption.toUpperCase()}
+                      enterKeyHint='done'
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setQuery(e.target.value)
                       }
+                      onKeyDown={handleKeyDown}
                     />
                     <ComboboxButton className='cursor-pointer p-0.5 sm:p-0.5 rounded-md sm:rounded-lg hover:bg-white/10 active:scale-95 transition-all duration-200'>
                       <HiChevronDown className='w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-white/50 group-hover:text-white/80 transition-colors duration-200 shrink-0' />
@@ -203,7 +224,7 @@ export default function CurrencyConverter({
                     {filteredCurrencies.length > 0 && (
                       <ComboboxOptions
                         modal={false}
-                        className='absolute top-full left-0 z-50 mt-1 max-h-40 sm:max-h-48 w-18 sm:w-19 overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl py-1 text-[0.65rem] sm:text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none border border-white/5'
+                        className='absolute top-full left-0 z-50 mt-1 max-h-40 sm:max-h-48 w-18 sm:w-19 overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl py-1 text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none border border-white/5'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption

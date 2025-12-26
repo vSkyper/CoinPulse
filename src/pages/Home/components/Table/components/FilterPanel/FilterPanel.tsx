@@ -143,7 +143,7 @@ export default function FilterPanel({
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl border border-white/5 py-1 text-[10px] sm:text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none z-50'
+                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl border border-white/5 py-1 text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none z-50'
                   >
                     {table.getAllColumns().map((column) => (
                       <ListboxOption
@@ -212,7 +212,7 @@ export default function FilterPanel({
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl border border-white/5 py-1 text-[10px] sm:text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none z-50'
+                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl border border-white/5 py-1 text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none z-50'
                   >
                     {getOperatorsForColumn(activeFilterColumn).map((op) => (
                       <ListboxOption

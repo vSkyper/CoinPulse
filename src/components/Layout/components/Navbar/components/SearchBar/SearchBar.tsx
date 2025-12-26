@@ -47,12 +47,6 @@ export default function SearchBar() {
     setTimeout(() => setQuery(''), BLUR_DELAY);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      setQuery('');
-    }
-  };
-
   const displayValue = (coin: CoinsListResponse | null) =>
     coin ? `${coin.name} (${coin.symbol?.toUpperCase()})` : '';
 
@@ -60,6 +54,20 @@ export default function SearchBar() {
 
   const hasQuery = query.length > 0;
   const placeholder = data ? 'Search coins...' : 'Loading coins...';
+
+  const handleKeyDownInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Escape') {
+      setQuery('');
+    }
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (filteredCoins.length > 0) {
+        const firstResult = filteredCoins[0];
+        handleChange(firstResult);
+        event.currentTarget.blur();
+      }
+    }
+  };
 
   return (
     <Combobox value={selectedCoin} onChange={handleChange}>
@@ -71,9 +79,10 @@ export default function SearchBar() {
             className='w-full bg-surface-elevated text-white rounded-xl py-2 pl-10 pr-4 text-sm font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-surface-input focus:ring-1 focus:ring-brand-violet/40 hover:bg-surface-input border border-white/5 hover:border-white/10 shadow-lg shadow-black/20'
             placeholder={placeholder}
             displayValue={displayValue}
+            enterKeyHint='go'
             onChange={(event) => setQuery(event.target.value)}
             onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
+            onKeyDown={handleKeyDownInput}
           />
         </div>
 
