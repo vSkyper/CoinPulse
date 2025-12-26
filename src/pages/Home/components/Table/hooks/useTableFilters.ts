@@ -144,6 +144,8 @@ export function useTableFilters({
         operator: activeOperator,
         value: activeValue,
       });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsFilterOpen(false);
     }
   }, [activeFilterColumn, table, activeOperator, activeValue]);
 
@@ -153,6 +155,7 @@ export function useTableFilters({
       setActiveValue('');
       const validOperators = getOperatorsForColumn(activeFilterColumn);
       setActiveOperator(validOperators[0]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [activeFilterColumn, table]);
 

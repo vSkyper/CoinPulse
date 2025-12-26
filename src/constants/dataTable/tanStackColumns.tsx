@@ -120,22 +120,22 @@ export const columns = [
   columnHelper.accessor('current_price', {
     header: 'Price',
     cell: (info) => formatCurrency(Number(info.getValue() ?? 0)),
-    size: 100,
+    size: 130,
   }),
   columnHelper.accessor('price_change_percentage_1h_in_currency', {
     header: '1h',
     cell: (info) => <PercentageChange value={Number(info.getValue() ?? 0)} />,
-    size: 75,
+    size: 100,
   }),
   columnHelper.accessor('price_change_percentage_24h_in_currency', {
     header: '24h',
     cell: (info) => <PercentageChange value={Number(info.getValue() ?? 0)} />,
-    size: 75,
+    size: 100,
   }),
   columnHelper.accessor('price_change_percentage_7d_in_currency', {
     header: '7d',
     cell: (info) => <PercentageChange value={Number(info.getValue() ?? 0)} />,
-    size: 75,
+    size: 100,
   }),
   columnHelper.accessor('total_volume', {
     header: '24h Volume',

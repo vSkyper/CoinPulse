@@ -3,7 +3,7 @@ import { useNavbar } from 'context/NavbarContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Navbar() {
-  const { isHeaderVisible, headerContent } = useNavbar();
+  const { isHeaderVisible } = useNavbar();
 
   return (
     <div className='grow'>
@@ -15,15 +15,15 @@ export default function Navbar() {
         }`}
       >
         <div className='pointer-events-auto'>
-          <AnimatePresence mode='wait'>
-            {!isHeaderVisible ? (
+          <AnimatePresence>
+            {!isHeaderVisible && (
               <motion.div
                 key='navbar-default'
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
+                exit={{ y: -20, opacity: 0, position: 'absolute' }}
                 transition={{ duration: 0.3 }}
-                className='mx-auto w-full bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl'
+                className='mx-auto w-full bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl z-10 relative'
               >
                 <div className='container mx-auto px-1 sm:px-2'>
                   <div className='flex items-center justify-between gap-2 sm:gap-4 px-2 sm:px-4 py-2 sm:py-2.5 relative z-10'>
@@ -44,19 +44,24 @@ export default function Navbar() {
                   </div>
                 </div>
               </motion.div>
-            ) : (
-              <motion.div
-                key='navbar-header'
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className='mx-auto w-full bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl'
-              >
-                {headerContent}
-              </motion.div>
             )}
           </AnimatePresence>
+
+          <motion.div
+            key='navbar-header'
+            initial={{ y: -20, opacity: 0 }}
+            animate={{
+              y: isHeaderVisible ? 0 : -20,
+              opacity: isHeaderVisible ? 1 : 0,
+            }}
+            transition={{ duration: 0.3 }}
+            className={`mx-auto w-full bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown rounded-xl sm:rounded-2xl ${
+              isHeaderVisible ? 'relative z-20' : 'absolute top-0 left-0 -z-10'
+            }`}
+            style={{ pointerEvents: isHeaderVisible ? 'auto' : 'none' }}
+          >
+            <div id='sticky-header-portal' />
+          </motion.div>
         </div>
       </nav>
 

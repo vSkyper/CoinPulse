@@ -18,105 +18,144 @@ export default function ColumnMenu({
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <Menu>
-      <MenuButton
-        ref={menuButtonRef}
-        id={`${context}-menu-${header.column.id}`}
-        onClick={handleMenuOpen}
-        className='p-1 rounded hover:bg-white/10 text-white/40 hover:text-white focus:outline-none'
-      >
-        <MdMoreVert size={20} />
-      </MenuButton>
-      <MenuItems
-        transition
-        modal={false}
-        portal
-        anchor={{ to: 'bottom end', gap: context === 'sticky' ? 24 : 8 }}
-        className='w-40 sm:w-48 origin-top-right divide-y divide-white/5 rounded-xl bg-glass/95 backdrop-blur-xl shadow-xl ring-1 ring-white/10 focus:outline-none border border-white/10 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
-      >
-        <div className='px-1 py-1'>
-          <MenuItem>
-            {({ focus }) => {
-              const isSorted = header.column.getIsSorted();
-              const showDesc = !isSorted || isSorted === 'asc';
-              return (
-                <button
-                  className={`${
-                    focus
-                      ? 'bg-white/10 text-white'
-                      : 'text-white/70 hover:text-white'
-                  } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
-                  onClick={() => header.column.toggleSorting(showDesc)}
-                >
-                  {showDesc ? (
-                    <MdArrowDownward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                  ) : (
-                    <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                  )}
-                  {showDesc ? 'Sort by DESC' : 'Sort by ASC'}
-                </button>
-              );
+    <Menu
+      as='div'
+      className={`absolute top-1/2 -translate-y-1/2 transition-opacity duration-200 ${
+        ['current_price', 'total_volume', 'market_cap'].includes(
+          header.column.id
+        )
+          ? 'left-1 sm:left-2'
+          : 'right-1 sm:right-2'
+      }`}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {({ open }) => (
+        <>
+          <MenuButton
+            ref={menuButtonRef}
+            id={`${context}-menu-${header.column.id}`}
+            type='button'
+            onClick={(e) => {
+              e.stopPropagation();
+              handleMenuOpen();
             }}
-          </MenuItem>
-          <MenuItem>
-            {({ focus }) => {
-              const isSorted = header.column.getIsSorted();
-              if (isSorted) {
-                return (
+            className={`p-2 sm:p-1 rounded sm:hover:bg-white/10 text-white/40 hover:text-white focus:outline-none transition-opacity duration-200 ${
+              open
+                ? 'opacity-100'
+                : 'opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100'
+            }`}
+          >
+            <MdMoreVert className='w-4 h-4 sm:w-5 sm:h-5' />
+          </MenuButton>
+          <MenuItems
+            transition
+            modal={false}
+            portal
+            anchor={{ to: 'bottom end', gap: context === 'sticky' ? 16 : 8 }}
+            className='w-40 sm:w-48 origin-top-right divide-y divide-white/5 rounded-xl bg-glass/95 backdrop-blur-xl shadow-xl ring-1 ring-white/10 focus:outline-none border border-white/10 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
+          >
+            <div className='px-1 py-1'>
+              <MenuItem>
+                {({ focus, close }) => {
+                  const isSorted = header.column.getIsSorted();
+                  const showDesc = !isSorted || isSorted === 'asc';
+                  return (
+                    <button
+                      type='button'
+                      className={`${
+                        focus
+                          ? 'bg-white/10 text-white'
+                          : 'text-white/70 hover:text-white'
+                      } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        header.column.toggleSorting(showDesc);
+                        close();
+                      }}
+                    >
+                      {showDesc ? (
+                        <MdArrowDownward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                      ) : (
+                        <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                      )}
+                      {showDesc ? 'Sort by DESC' : 'Sort by ASC'}
+                    </button>
+                  );
+                }}
+              </MenuItem>
+              <MenuItem>
+                {({ focus, close }) => {
+                  const isSorted = header.column.getIsSorted();
+                  if (isSorted) {
+                    return (
+                      <button
+                        type='button'
+                        className={`${
+                          focus
+                            ? 'bg-white/10 text-white'
+                            : 'text-white/70 hover:text-white'
+                        } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          header.column.clearSorting();
+                          close();
+                        }}
+                      >
+                        <MdClose className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                        Unsort
+                      </button>
+                    );
+                  }
+                  return (
+                    <button
+                      type='button'
+                      className={`${
+                        focus
+                          ? 'bg-white/10 text-white'
+                          : 'text-white/70 hover:text-white'
+                      } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        header.column.toggleSorting(false);
+                        close();
+                      }}
+                    >
+                      <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                      Sort by ASC
+                    </button>
+                  );
+                }}
+              </MenuItem>
+            </div>
+            <div className='px-1 py-1'>
+              <MenuItem>
+                {({ focus, close }) => (
                   <button
+                    type='button'
                     className={`${
                       focus
                         ? 'bg-white/10 text-white'
                         : 'text-white/70 hover:text-white'
                     } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
-                    onClick={() => header.column.clearSorting()}
+                    onClick={() => {
+                      if (menuButtonRef.current) {
+                        handleFilterOpenFromMenu(
+                          header.column.id,
+                          menuButtonRef.current
+                        );
+                        close();
+                      }
+                    }}
                   >
-                    <MdClose className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                    Unsort
+                    <MdFilterList className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                    Filter
                   </button>
-                );
-              }
-              return (
-                <button
-                  className={`${
-                    focus
-                      ? 'bg-white/10 text-white'
-                      : 'text-white/70 hover:text-white'
-                  } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
-                  onClick={() => header.column.toggleSorting(false)}
-                >
-                  <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                  Sort by ASC
-                </button>
-              );
-            }}
-          </MenuItem>
-        </div>
-        <div className='px-1 py-1'>
-          <MenuItem>
-            {({ focus }) => (
-              <button
-                className={`${
-                  focus
-                    ? 'bg-white/10 text-white'
-                    : 'text-white/70 hover:text-white'
-                } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
-                onClick={() => {
-                  if (menuButtonRef.current) {
-                    handleFilterOpenFromMenu(
-                      header.column.id,
-                      menuButtonRef.current
-                    );
-                  }
-                }}
-              >
-                <MdFilterList className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                Filter
-              </button>
-            )}
-          </MenuItem>
-        </div>
-      </MenuItems>
+                )}
+              </MenuItem>
+            </div>
+          </MenuItems>
+        </>
+      )}
     </Menu>
   );
 }

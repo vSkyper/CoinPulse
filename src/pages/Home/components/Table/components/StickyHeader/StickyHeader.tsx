@@ -35,8 +35,8 @@ export default function StickyHeader({
           table={table}
           handleFilterOpenFromMenu={handleFilterOpenFromMenu}
           handleMenuOpen={handleMenuOpen}
-          key={JSON.stringify(sorting)}
           context='sticky'
+          sorting={sorting}
         />
       </table>
     </div>

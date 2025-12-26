@@ -267,6 +267,11 @@ export default function FilterPanel({
               value={activeValue}
               onChange={(e) => setActiveValue(e.target.value)}
               placeholder='Enter value...'
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleFilterSave();
+                }
+              }}
               className='w-full bg-surface-input hover:bg-surface-input-hover border border-white/5 hover:border-white/10 rounded-xl py-2 px-3 text-xs text-white font-medium placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'
             />
           </div>

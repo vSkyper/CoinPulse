@@ -9,6 +9,7 @@ import {
   PaginationState,
   ColumnFiltersState,
 } from '@tanstack/react-table';
+import { createPortal } from 'react-dom';
 import { useState, useEffect } from 'react';
 import { MdSearchOff } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
@@ -41,11 +42,15 @@ export default function Table({ coins }: TableProps) {
     pageSize: PAGINATION_CONFIG.pageSize,
   });
 
+  // Scroll to top on sort change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [sorting]);
+
   const navigate = useNavigate();
 
   // Custom Hooks
-  const { setHeaderContent, isHeaderVisible, tableRef, scrollContainerRef } =
-    useStickyHeader();
+  const { isHeaderVisible, tableRef, scrollContainerRef } = useStickyHeader();
 
   const table = useReactTable({
     data: coins,
@@ -87,27 +92,20 @@ export default function Table({ coins }: TableProps) {
     isAnchoring,
   } = useTableFilters({ table, columnFilters, isHeaderVisible });
 
-  // Update header content in context
-  useEffect(() => {
-    setHeaderContent(
-      <StickyHeader
-        table={table}
-        handleFilterOpenFromMenu={handleFilterOpenFromMenu}
-        scrollContainerRef={scrollContainerRef}
-        sorting={sorting}
-        columnFilters={columnFilters}
-        handleMenuOpen={handleMenuOpen}
-      />
-    );
-  }, [
-    table,
-    handleFilterOpenFromMenu,
-    sorting,
-    columnFilters,
-    handleMenuOpen,
-    scrollContainerRef,
-    setHeaderContent,
-  ]);
+  // Portal logic for sticky header
+  const stickyHeaderPortal = document.getElementById('sticky-header-portal')
+    ? createPortal(
+        <StickyHeader
+          table={table}
+          handleFilterOpenFromMenu={handleFilterOpenFromMenu}
+          scrollContainerRef={scrollContainerRef}
+          sorting={sorting}
+          columnFilters={columnFilters}
+          handleMenuOpen={handleMenuOpen}
+        />,
+        document.getElementById('sticky-header-portal') as HTMLElement
+      )
+    : null;
 
   return (
     <div className='mt-6 sm:mt-6 relative'>
@@ -151,6 +149,7 @@ export default function Table({ coins }: TableProps) {
               handleMenuOpen={handleMenuOpen}
               className={isHeaderVisible ? 'opacity-0 pointer-events-none' : ''}
               context='main'
+              sorting={sorting}
             />
             <tbody>
               {table.getRowModel().rows.length > 0 ? (
@@ -225,6 +224,7 @@ export default function Table({ coins }: TableProps) {
           totalRows={table.getFilteredRowModel().rows.length}
         />
       </div>
+      {stickyHeaderPortal}
     </div>
   );
 }

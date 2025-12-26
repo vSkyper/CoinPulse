@@ -2,12 +2,15 @@ import { MdArrowUpward, MdArrowDownward } from 'react-icons/md';
 import { flexRender, Table } from '@tanstack/react-table';
 import { ColumnMenu } from './components';
 
+import { SortingState } from '@tanstack/react-table';
+
 interface TableHeaderProps {
   table: Table<any>;
   handleFilterOpenFromMenu: (columnId: string, target: HTMLElement) => void;
   handleMenuOpen: () => void;
   className?: string;
   context?: string;
+  sorting?: SortingState;
 }
 
 export default function TableHeader({
@@ -16,9 +19,13 @@ export default function TableHeader({
   handleMenuOpen,
   className = '',
   context = 'main',
+  sorting,
 }: TableHeaderProps) {
   return (
-    <thead className={`h-auto border-b border-white/5 ${className}`}>
+    <thead
+      className={`h-auto border-b border-white/5 ${className}`}
+      data-sorting={JSON.stringify(sorting)}
+    >
       {table.getHeaderGroups().map((headerGroup) => (
         <tr
           key={headerGroup.id}
@@ -27,8 +34,11 @@ export default function TableHeader({
           {headerGroup.headers.map((header) => (
             <th
               key={header.id}
-              tabIndex={0}
-              onClick={header.column.getToggleSortingHandler()}
+              tabIndex={context === 'sticky' ? -1 : 0}
+              onClick={(e) => {
+                e.preventDefault();
+                header.column.getToggleSortingHandler()?.(e);
+              }}
               className={`relative group px-4 sm:px-3 py-3 sm:py-2.5 text-white/40 font-extrabold text-[10px] sm:text-[0.65rem] tracking-widest uppercase transition-colors duration-200 select-none hover:text-white/90 focus:text-white/90 focus:outline-none cursor-pointer ${
                 header.column.id === 'name'
                   ? 'text-left'
@@ -119,23 +129,12 @@ export default function TableHeader({
               </div>
 
               {/* Column Menu */}
-              <div
-                className={`absolute top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 ${
-                  ['current_price', 'total_volume', 'market_cap'].includes(
-                    header.column.id
-                  )
-                    ? 'left-1 sm:left-2'
-                    : 'right-1 sm:right-2'
-                }`}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ColumnMenu
-                  header={header}
-                  handleFilterOpenFromMenu={handleFilterOpenFromMenu}
-                  handleMenuOpen={handleMenuOpen}
-                  context={context}
-                />
-              </div>
+              <ColumnMenu
+                header={header}
+                handleFilterOpenFromMenu={handleFilterOpenFromMenu}
+                handleMenuOpen={handleMenuOpen}
+                context={context}
+              />
             </th>
           ))}
         </tr>

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useNavbar } from 'context/NavbarContext';
 
 export function useStickyHeader() {
-  const { setHeaderContent, isHeaderVisible, setIsHeaderVisible } = useNavbar();
+  const { isHeaderVisible, setIsHeaderVisible } = useNavbar();
   const tableRef = useRef<HTMLTableElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -21,12 +21,7 @@ export function useStickyHeader() {
     };
   }, [setIsHeaderVisible]);
 
-  useEffect(() => {
-    return () => setHeaderContent(null);
-  }, [setHeaderContent]);
-
   return {
-    setHeaderContent,
     isHeaderVisible,
     tableRef,
     scrollContainerRef,

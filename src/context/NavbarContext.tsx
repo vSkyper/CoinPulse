@@ -1,8 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface NavbarContextType {
-  headerContent: ReactNode | null;
-  setHeaderContent: (content: ReactNode | null) => void;
   isHeaderVisible: boolean;
   setIsHeaderVisible: (visible: boolean) => void;
 }
@@ -10,14 +8,11 @@ interface NavbarContextType {
 const NavbarContext = createContext<NavbarContextType | undefined>(undefined);
 
 export function NavbarProvider({ children }: { children: ReactNode }) {
-  const [headerContent, setHeaderContent] = useState<ReactNode | null>(null);
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 
   return (
     <NavbarContext.Provider
       value={{
-        headerContent,
-        setHeaderContent,
         isHeaderVisible,
         setIsHeaderVisible,
       }}
