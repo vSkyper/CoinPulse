@@ -21,9 +21,7 @@ export default function ColumnMenu({
     <Menu
       as='div'
       className={`absolute top-1/2 -translate-y-1/2 transition-opacity duration-200 ${
-        ['current_price', 'total_volume', 'market_cap'].includes(
-          header.column.id
-        )
+        header.column.columnDef.meta?.align === 'right'
           ? 'left-1 sm:left-2'
           : 'right-1 sm:right-2'
       }`}
@@ -42,7 +40,7 @@ export default function ColumnMenu({
             className={`p-2 sm:p-1 rounded sm:hover:bg-white/10 text-white/40 hover:text-white focus:outline-none transition-opacity duration-200 ${
               open
                 ? 'opacity-100'
-                : 'opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus-within:opacity-100'
+                : 'opacity-0 group-hover:opacity-100 group-active:opacity-100 focus-visible:opacity-100'
             }`}
           >
             <MdMoreVert className='w-4 h-4 sm:w-5 sm:h-5' />

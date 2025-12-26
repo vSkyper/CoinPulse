@@ -10,7 +10,7 @@ import {
   ColumnFiltersState,
 } from '@tanstack/react-table';
 import { createPortal } from 'react-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MdSearchOff } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { TableProps } from './interface';
@@ -43,7 +43,14 @@ export default function Table({ coins }: TableProps) {
   });
 
   // Scroll to top on sort change
+  const prevSortingRef = useRef(JSON.stringify(sorting));
+
   useEffect(() => {
+    const currentSortingStr = JSON.stringify(sorting);
+    if (prevSortingRef.current === currentSortingStr) {
+      return;
+    }
+    prevSortingRef.current = currentSortingStr;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [sorting]);
 
@@ -162,17 +169,15 @@ export default function Table({ coins }: TableProps) {
                     {row.getVisibleCells().map((cell) => (
                       <td
                         key={cell.id}
-                        className={`py-0.5 sm:py-1.5 text-white/90 text-xs sm:text-xs font-medium ${
-                          cell.column.id === 'name'
-                            ? 'pl-4 pr-2 sm:px-3 text-left'
-                            : [
-                                'current_price',
-                                'total_volume',
-                                'market_cap',
-                              ].includes(cell.column.id)
-                            ? 'px-2 sm:px-3 text-right'
-                            : 'px-2 sm:px-3 text-center'
-                        }`}
+                        className={`py-0.5 sm:py-1.5 text-white/90 text-xs sm:text-xs font-medium ${(() => {
+                          const align =
+                            cell.column.columnDef.meta?.align ?? 'center';
+                          if (align === 'left')
+                            return 'pl-4 pr-2 sm:px-3 text-left';
+                          if (align === 'right')
+                            return 'px-2 sm:px-3 text-right';
+                          return 'px-2 sm:px-3 text-center';
+                        })()}`}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,

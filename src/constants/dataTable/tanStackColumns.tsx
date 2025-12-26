@@ -107,6 +107,9 @@ function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
 export const columns = [
   columnHelper.accessor('name', {
     header: 'Name',
+    meta: {
+      align: 'left',
+    },
     cell: (info) => (
       <CoinName row={info.row.original} value={info.getValue()} />
     ),
@@ -114,41 +117,65 @@ export const columns = [
   }),
   columnHelper.accessor('symbol', {
     header: 'Symbol',
+    meta: {
+      align: 'center',
+    },
     cell: (info) => <SymbolBadge value={info.getValue()} />,
     size: 110,
   }),
   columnHelper.accessor('current_price', {
     header: 'Price',
+    meta: {
+      align: 'right',
+    },
     cell: (info) => formatCurrency(Number(info.getValue() ?? 0)),
     size: 130,
   }),
   columnHelper.accessor('price_change_percentage_1h_in_currency', {
     header: '1h',
+    meta: {
+      align: 'center',
+    },
     cell: (info) => <PercentageChange value={Number(info.getValue() ?? 0)} />,
     size: 100,
   }),
   columnHelper.accessor('price_change_percentage_24h_in_currency', {
     header: '24h',
+    meta: {
+      align: 'center',
+    },
     cell: (info) => <PercentageChange value={Number(info.getValue() ?? 0)} />,
     size: 100,
   }),
   columnHelper.accessor('price_change_percentage_7d_in_currency', {
     header: '7d',
+    meta: {
+      align: 'center',
+    },
     cell: (info) => <PercentageChange value={Number(info.getValue() ?? 0)} />,
     size: 100,
   }),
   columnHelper.accessor('total_volume', {
     header: '24h Volume',
+    meta: {
+      align: 'right',
+    },
     cell: (info) => formatCompactCurrency(Number(info.getValue() ?? 0)),
     size: 150,
   }),
   columnHelper.accessor('market_cap', {
     header: 'Market Cap',
+    meta: {
+      align: 'right',
+    },
     cell: (info) => formatCompactCurrency(Number(info.getValue() ?? 0)),
     size: 150,
   }),
   columnHelper.accessor('sparkline_in_7d', {
     header: 'Last 7 Days',
+    meta: {
+      align: 'center',
+    },
     cell: (info) => (
       <SparklineChart row={info.row.original} value={info.getValue()} />
     ),

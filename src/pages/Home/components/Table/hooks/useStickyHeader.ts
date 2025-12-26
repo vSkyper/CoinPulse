@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { useNavbar } from 'context/NavbarContext';
 
 export function useStickyHeader() {
@@ -6,20 +6,23 @@ export function useStickyHeader() {
   const tableRef = useRef<HTMLTableElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!tableRef.current) return;
-      const rect = tableRef.current.getBoundingClientRect();
-      setIsHeaderVisible(rect.top < 30);
-    };
+  const handleScroll = useCallback(() => {
+    if (!tableRef.current) return;
+    const rect = tableRef.current.getBoundingClientRect();
+    // Show sticky header when table top is near or past top of screen
+    setIsHeaderVisible(rect.top < 30);
+  }, [setIsHeaderVisible]);
 
-    window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Check initial state
     handleScroll();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       setIsHeaderVisible(false);
     };
-  }, [setIsHeaderVisible]);
+  }, [handleScroll, setIsHeaderVisible]);
 
   return {
     isHeaderVisible,

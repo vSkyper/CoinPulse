@@ -54,33 +54,24 @@ export function useTableFilters({
     if (isFilterOpen && activeFilterColumn) {
       setIsAnchoring(true);
       if (!isHeaderVisible) {
-        // When switching to main view, anchor to the main Filters button
         if (filterButtonRef.current) {
           setFilterAnchor(filterButtonRef.current);
-          setIsAnchoring(false);
         }
+        setIsAnchoring(false);
         return;
       }
 
-      const findAnchor = (retries = 0) => {
-        const elementId = `sticky-menu-${activeFilterColumn}`;
-        const newAnchor = document.getElementById(elementId);
+      // Try to find the sticky anchor immediately
+      const elementId = `sticky-menu-${activeFilterColumn}`;
+      const newAnchor = document.getElementById(elementId);
 
-        if (newAnchor) {
-          setFilterAnchor(newAnchor);
-          setIsAnchoring(false);
-        } else if (retries < 10) {
-          // Retry for up to 500ms (10 * 50ms)
-          setTimeout(() => findAnchor(retries + 1), 50);
-        } else {
-          setIsAnchoring(false);
-        }
-      };
-
-      // Start trying to find the anchor
-      findAnchor();
+      if (newAnchor) {
+        setFilterAnchor(newAnchor);
+      }
+      // Regardless found or not, we stop "anchoring" state
+      setIsAnchoring(false);
     }
-  }, [isHeaderVisible, isFilterOpen]);
+  }, [isHeaderVisible, isFilterOpen, activeFilterColumn]);
 
   const updateFilterStateForColumn = useCallback(
     (columnId: string) => {
@@ -114,7 +105,7 @@ export function useTableFilters({
           updateFilterStateForColumn(activeFilterColumn);
         }
       }
-      setIsFilterOpen(!isFilterOpen);
+      setIsFilterOpen((prev) => !prev);
     },
     [isFilterOpen, activeFilterColumn, table, updateFilterStateForColumn]
   );
