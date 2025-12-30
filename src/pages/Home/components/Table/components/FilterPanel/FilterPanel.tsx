@@ -77,8 +77,8 @@ export default function FilterPanel({
       }}
       className={
         position
-          ? `w-[90vw] sm:w-80 h-fit bg-glass/80 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-2xl shadow-glass-lg p-3 sm:p-5 ring-1 ring-white/5`
-          : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-[90vw] sm:w-80 h-fit bg-glass/80 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-2xl shadow-glass-lg p-3 sm:p-5 ring-1 ring-white/5'
+          ? `w-[90vw] sm:w-80 h-fit bg-glass/80 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-2xl shadow-glass-lg p-3 sm:p-5`
+          : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-[90vw] sm:w-80 h-fit bg-glass/80 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-2xl shadow-glass-lg p-3 sm:p-5'
       }
       onMouseDown={(e) => e.stopPropagation()}
       enter='transition ease-out duration-300'

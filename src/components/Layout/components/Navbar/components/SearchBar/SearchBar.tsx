@@ -8,10 +8,9 @@ import {
   Transition,
 } from '@headlessui/react';
 import { CoinsListResponse } from 'interfaces';
-import useFetch from 'hooks/useFetch';
 import { ErrorModal } from 'components';
 import { CoinOption, EmptyState, SearchIconContainer } from './components';
-import { API_ENDPOINTS } from 'config/api';
+import { useNavbar } from 'context/NavbarContext';
 
 const MAX_RESULTS = 8;
 const BLUR_DELAY = 100;
@@ -23,9 +22,7 @@ export default function SearchBar() {
   );
 
   const navigate = useNavigate();
-  const { data, error } = useFetch<CoinsListResponse[]>(
-    API_ENDPOINTS.coinsList()
-  );
+  const { coinsData: data, coinsError: error } = useNavbar();
 
   const filteredCoins =
     query === ''

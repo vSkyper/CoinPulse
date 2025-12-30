@@ -10,7 +10,7 @@ export default function CoinHeader({
     <div className='mb-6 sm:mb-8 relative z-10'>
       <div className='flex items-center gap-4 sm:gap-4'>
         {/* Coin Image */}
-        <div className='relative w-12! h-12! sm:w-14! sm:h-14! rounded-2xl shadow-dropdown border border-white/10 bg-glass/60 p-1.5 sm:p-2 backdrop-blur-xl backdrop-saturate-150'>
+        <div className='relative w-12! h-12! sm:w-14! sm:h-14! rounded-2xl shadow-dropdown border border-white/10 bg-glass/40 p-1.5 sm:p-2 backdrop-blur-xl backdrop-saturate-150'>
           {image ? (
             <img
               src={image}

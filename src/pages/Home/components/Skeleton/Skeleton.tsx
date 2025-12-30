@@ -22,9 +22,9 @@ export default function Skeleton() {
         </div>
 
         {/* Table Skeleton */}
-        <div className='mt-6 sm:mt-6 w-full rounded-3xl sm:rounded-2xl bg-glass/40 backdrop-blur-[20px] border border-white/5 shadow-glass flex flex-col'>
+        <div className='mt-6 sm:mt-6 w-full rounded-3xl sm:rounded-2xl bg-glass/40 backdrop-blur-[20px] border border-white/10 shadow-glass flex flex-col'>
           {/* Market Overview Header */}
-          <div className='p-3 sm:p-3 border-b border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-2 bg-black/20 rounded-t-3xl sm:rounded-t-2xl'>
+          <div className='p-3 sm:p-3 border-b border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-2 bg-black/20 rounded-t-3xl sm:rounded-t-2xl'>
             <div className='h-7 sm:h-5 w-40 sm:w-32 bg-white/5 rounded-lg sm:rounded animate-pulse hidden sm:block' />
             <div className='flex items-center gap-2 sm:gap-2 w-full sm:w-auto'>
               <div className='h-8 sm:h-7 w-full sm:w-48 bg-white/5 rounded-xl sm:rounded-lg animate-pulse' />
@@ -122,9 +122,18 @@ export default function Skeleton() {
           </div>
 
           {/* Pagination Skeleton */}
-          <div className='flex items-center justify-end gap-4 sm:gap-3 p-4 sm:p-3 border-t border-white/5'>
-            <div className='h-8 sm:h-6 w-32 sm:w-24 bg-white/5 rounded animate-pulse' />
-            <div className='h-8 sm:h-6 w-24 sm:w-20 bg-white/5 rounded animate-pulse' />
+          <div className='flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-3 border-t border-white/10'>
+            {/* Rows per page */}
+            <div className='h-8 w-32 bg-white/5 rounded-lg animate-pulse' />
+
+            {/* Navigation */}
+            <div className='flex items-center gap-2'>
+              <div className='h-8 w-24 bg-white/5 rounded-lg animate-pulse' />
+              <div className='flex gap-1'>
+                <div className='h-8 w-8 bg-white/5 rounded-lg animate-pulse' />
+                <div className='h-8 w-8 bg-white/5 rounded-lg animate-pulse' />
+              </div>
+            </div>
           </div>
         </div>
       </div>

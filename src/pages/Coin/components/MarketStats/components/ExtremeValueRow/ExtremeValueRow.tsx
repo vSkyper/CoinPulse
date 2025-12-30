@@ -20,7 +20,7 @@ export default function ExtremeValueRow({
 }: ExtremeValueRowProps) {
   return (
     <>
-      <div className='relative overflow-hidden flex flex-col justify-between min-h-20 sm:min-h-[96px] p-4 sm:p-3 rounded-2xl bg-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 ring-1 ring-white/5 shadow-dropdown transition-all duration-300'>
+      <div className='relative overflow-hidden flex flex-col justify-between min-h-20 sm:min-h-[96px] p-4 sm:p-3 rounded-2xl bg-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown transition-all duration-300'>
         {/* Decorative Watermark */}
         {Icon && (
           <div className='absolute -right-3 -bottom-3 text-white/5 rotate-[-15deg] pointer-events-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-5deg]'>
