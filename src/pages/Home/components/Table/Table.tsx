@@ -116,7 +116,7 @@ export default function Table({ coins }: TableProps) {
 
   return (
     <div className='mt-6 sm:mt-6 relative'>
-      <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-glass/40 backdrop-blur-[20px] shadow-glass'>
+      <div className='flex flex-col w-full rounded-3xl border border-white/10 ring-1 ring-white/5 bg-glass/40 backdrop-blur-[20px] shadow-glass'>
         <TableControls
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}

@@ -76,7 +76,7 @@ export default function SearchBar() {
           <SearchIconContainer isLoading={!data} />
 
           <ComboboxInput
-            className='w-full bg-surface-elevated text-white rounded-xl py-2 pl-10 pr-4 text-sm font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-surface-input focus:ring-1 focus:ring-brand-violet/40 hover:bg-surface-input border border-white/5 hover:border-white/10 shadow-lg shadow-black/20'
+            className='w-full bg-glass/20 backdrop-blur-md text-white rounded-xl py-2 pl-10 pr-4 text-sm font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-glass/40 focus:ring-1 focus:ring-brand-violet/40 hover:bg-glass/40 border border-white/10 hover:border-white/20 ring-1 ring-white/5 shadow-lg shadow-black/20'
             placeholder={placeholder}
             displayValue={displayValue}
             enterKeyHint='go'
@@ -98,7 +98,7 @@ export default function SearchBar() {
         >
           <ComboboxOptions
             modal={false}
-            className='absolute mt-3 w-full overflow-hidden rounded-2xl bg-surface-elevated/95 backdrop-blur-xl border border-white/5 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] z-50 p-1.5'
+            className='absolute mt-3 w-full overflow-hidden rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] z-50 p-1.5'
           >
             {filteredCoins.length === 0 ? (
               <EmptyState />

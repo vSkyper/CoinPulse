@@ -26,29 +26,36 @@ export default function Description({ globalData }: DescriptionProps) {
   };
 
   const changeColorClass = stats().isNegative
-    ? 'text-brand-negative bg-brand-negative/10 border-brand-negative/20'
-    : 'text-brand-positive bg-brand-positive/10 border-brand-positive/20';
+    ? 'text-brand-negative bg-brand-negative/10 border-brand-negative/20 ring-1 ring-brand-negative/20 shadow-glow-negative-sm'
+    : 'text-brand-positive bg-brand-positive/10 border-brand-positive/20 ring-1 ring-brand-positive/20 shadow-glow-positive';
 
   return (
     <p className='text-sm sm:text-sm text-white/70 leading-relaxed max-w-3xl font-medium tracking-wide'>
       The global cryptocurrency market cap today is{' '}
-      <Highlight className='text-white'>{stats().marketCap}</Highlight>, a{' '}
+      <Highlight className='text-white shadow-glow-white-sm'>
+        {stats().marketCap}
+      </Highlight>
+      , a{' '}
       <Highlight className={changeColorClass}>
         {stats().marketCapChange}
       </Highlight>{' '}
       change in the last 24 hours. Total cryptocurrency trading volume in the
       last day is at{' '}
-      <Highlight className='text-white'>{stats().totalVolume}</Highlight>.
-      Bitcoin dominance is at{' '}
-      <Highlight className='text-brand-bitcoin bg-brand-bitcoin/10 border-brand-bitcoin/20'>
+      <Highlight className='text-white shadow-glow-white-sm'>
+        {stats().totalVolume}
+      </Highlight>
+      . Bitcoin dominance is at{' '}
+      <Highlight className='text-brand-bitcoin bg-brand-bitcoin/10 border-brand-bitcoin/20 ring-1 ring-brand-bitcoin/20 shadow-[0_0_10px_rgba(247,147,26,0.2)]'>
         {stats().btcDominance}
       </Highlight>{' '}
       and Ethereum dominance is at{' '}
-      <Highlight className='text-brand-ethereum bg-brand-ethereum/10 border-brand-ethereum/20'>
+      <Highlight className='text-brand-ethereum bg-brand-ethereum/10 border-brand-ethereum/20 ring-1 ring-brand-ethereum/20 shadow-[0_0_10px_rgba(98,126,234,0.2)]'>
         {stats().ethDominance}
       </Highlight>
       . CoinGecko API is now tracking{' '}
-      <Highlight className='text-white'>{stats().cryptocurrencies}</Highlight>{' '}
+      <Highlight className='text-white shadow-glow-white-sm'>
+        {stats().cryptocurrencies}
+      </Highlight>{' '}
       cryptocurrencies.
     </p>
   );

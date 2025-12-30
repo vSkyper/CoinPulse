@@ -159,13 +159,7 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-5 sm:p-5 rounded-3xl bg-linear-to-br from-glass/80 via-glass/60 to-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
-      {/* Background Decor */}
-      <div className='absolute inset-0 overflow-hidden rounded-3xl pointer-events-none'>
-        <div className='absolute -top-24 -right-24 w-48 h-48 bg-brand-violet/20 blur-[80px] rounded-full pointer-events-none opacity-50' />
-        <div className='absolute -bottom-24 -left-24 w-48 h-48 bg-brand-violet-light/10 blur-[80px] rounded-full pointer-events-none opacity-50' />
-      </div>
-
+    <div className='relative z-10 p-5 sm:p-5 rounded-3xl bg-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
       <div className='relative'>
         {/* Header */}
         <div className='flex items-center justify-between mb-5 sm:mb-5 relative z-10'>
@@ -198,7 +192,7 @@ export default function CurrencyConverter({
                 onChange={handleChangeAutocomplete}
               >
                 <div className='relative'>
-                  <div className='relative flex items-center justify-between gap-1 sm:gap-1 group bg-white/5 hover:bg-white/10 px-2 sm:px-2 py-1.5 sm:py-1 rounded-lg sm:rounded-xl border border-white/10 hover:border-white/20 transition-all duration-200 w-full focus-within:border-brand-violet/40'>
+                  <div className='relative flex items-center justify-between gap-1 sm:gap-1 group bg-brand-violet/5 hover:bg-brand-violet/10 px-2 sm:px-2 py-1.5 sm:py-1 rounded-lg sm:rounded-xl border border-white/10 hover:border-white/20 ring-1 ring-white/5 transition-all duration-200 w-full focus-within:border-brand-violet/40'>
                     <ComboboxInput
                       autoComplete='off'
                       className='w-full bg-transparent text-xs sm:text-sm font-black uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/30 selection:bg-brand-violet/40'
@@ -224,7 +218,7 @@ export default function CurrencyConverter({
                     {filteredCurrencies.length > 0 && (
                       <ComboboxOptions
                         modal={false}
-                        className='absolute top-full left-0 z-50 mt-1 max-h-40 sm:max-h-48 w-18 sm:w-19 overflow-auto rounded-xl bg-surface-elevated/95 backdrop-blur-xl py-1 text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none border border-white/5'
+                        className='absolute top-full left-0 z-50 mt-1 max-h-40 sm:max-h-48 w-18 sm:w-19 overflow-auto rounded-xl bg-glass/95 backdrop-blur-xl py-1 text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none border border-white/10'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption

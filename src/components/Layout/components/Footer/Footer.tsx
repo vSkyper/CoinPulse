@@ -1,4 +1,4 @@
-import { CoinGeckoBadge, PoweredBySection } from './components';
+import { CoinGeckoBadge, PoweredBySection, GithubBadge } from './components';
 
 export default function Footer() {
   return (
@@ -23,6 +23,8 @@ export default function Footer() {
             <PoweredBySection />
             <div className='hidden sm:block w-px h-5 bg-white/5' />
             <CoinGeckoBadge />
+            <div className='hidden sm:block w-px h-5 bg-white/5' />
+            <GithubBadge />
           </div>
         </div>
       </div>

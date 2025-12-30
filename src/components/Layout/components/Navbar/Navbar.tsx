@@ -1,4 +1,4 @@
-import { SearchBar, Title, Tooltips } from './components';
+import { SearchBar, Title } from './components';
 import { useNavbar } from 'context/NavbarContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -37,10 +37,8 @@ export default function Navbar() {
                       <SearchBar />
                     </div>
 
-                    {/* Right Section */}
-                    <div className='flex items-center justify-center sm:justify-end shrink-0 sm:flex-1 min-w-auto gap-2 sm:gap-3'>
-                      <Tooltips />
-                    </div>
+                    {/* Spacer for centering */}
+                    <div className='hidden sm:block sm:flex-1' />
                   </div>
                 </div>
               </motion.div>

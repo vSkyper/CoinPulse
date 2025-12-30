@@ -43,14 +43,14 @@ export default function ColumnMenu({
                 : 'opacity-0 group-hover:opacity-100 group-active:opacity-100 focus-visible:opacity-100'
             }`}
           >
-            <MdMoreVert className='w-4 h-4 sm:w-5 sm:h-5' />
+            <MdMoreVert className='w-4 h-4 sm:w-4 sm:h-4' />
           </MenuButton>
           <MenuItems
             transition
             modal={false}
             portal
             anchor={{ to: 'bottom end', gap: context === 'sticky' ? 16 : 8 }}
-            className='w-40 sm:w-48 origin-top-right divide-y divide-white/5 rounded-xl bg-glass/95 backdrop-blur-xl shadow-xl ring-1 ring-white/10 focus:outline-none border border-white/10 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
+            className='w-36 sm:w-36 origin-top-right divide-y divide-white/5 rounded-xl bg-glass/80 backdrop-blur-xl shadow-xl ring-1 ring-white/10 focus:outline-none border border-white/10 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
           >
             <div className='px-1 py-1'>
               <MenuItem>
@@ -64,7 +64,7 @@ export default function ColumnMenu({
                         focus
                           ? 'bg-white/10 text-white'
                           : 'text-white/70 hover:text-white'
-                      } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
+                      } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
                       onClick={(e) => {
                         e.preventDefault();
                         header.column.toggleSorting(showDesc);
@@ -92,7 +92,7 @@ export default function ColumnMenu({
                           focus
                             ? 'bg-white/10 text-white'
                             : 'text-white/70 hover:text-white'
-                        } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
+                        } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
                         onClick={(e) => {
                           e.preventDefault();
                           header.column.clearSorting();
@@ -111,7 +111,7 @@ export default function ColumnMenu({
                         focus
                           ? 'bg-white/10 text-white'
                           : 'text-white/70 hover:text-white'
-                      } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
+                      } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
                       onClick={(e) => {
                         e.preventDefault();
                         header.column.toggleSorting(false);
@@ -134,7 +134,7 @@ export default function ColumnMenu({
                       focus
                         ? 'bg-white/10 text-white'
                         : 'text-white/70 hover:text-white'
-                    } group flex w-full items-center rounded-lg px-2 py-2 text-xs sm:text-sm transition-colors`}
+                    } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
                     onClick={() => {
                       if (menuButtonRef.current) {
                         handleFilterOpenFromMenu(

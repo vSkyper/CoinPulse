@@ -40,7 +40,7 @@ export default function Pagination({
             onChange={(value) => table.setPageSize(Number(value))}
           >
             <div className='relative'>
-              <ListboxButton className='relative w-full cursor-default rounded-xl bg-white/5 py-1 sm:py-1.5 pl-2.5 sm:pl-2.5 pr-7 sm:pr-7 text-left text-[10px] sm:text-xs text-white border border-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-white/10 hover:bg-white/10 hover:border-white/10 transition-all'>
+              <ListboxButton className='relative w-full cursor-default rounded-xl bg-brand-violet/5 py-1 sm:py-1.5 pl-2.5 sm:pl-2.5 pr-7 sm:pr-7 text-left text-[10px] sm:text-xs text-white border border-white/10 hover:border-white/20 ring-1 ring-white/5 focus:outline-none focus:border-white/20 focus:ring-1 focus:ring-brand-violet/40 hover:bg-brand-violet/10 transition-all'>
                 <span className='block truncate font-medium'>{pageSize}</span>
                 <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1.5 sm:pr-2'>
                   <MdKeyboardArrowDown
@@ -55,7 +55,7 @@ export default function Pagination({
                 leaveFrom='opacity-100'
                 leaveTo='opacity-0'
               >
-                <ListboxOptions className='absolute bottom-full mb-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-dropdown border border-white/10 py-1 text-[10px] sm:text-xs shadow-xl ring-1 ring-white/5 focus:outline-none z-50 min-w-15 sm:min-w-20'>
+                <ListboxOptions className='absolute bottom-full mb-2 max-h-60 w-full overflow-auto rounded-xl bg-glass/95 backdrop-blur-xl border border-white/10 py-1 text-[10px] sm:text-xs shadow-xl ring-1 ring-white/5 focus:outline-none z-50 min-w-15 sm:min-w-20'>
                   {[50, 100].map((size) => (
                     <ListboxOption
                       key={size}
@@ -108,14 +108,14 @@ export default function Pagination({
 
         <div className='flex items-center gap-2'>
           <button
-            className='p-1.5 sm:p-1.5 rounded-xl bg-white/5 border border-white/5 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/10 disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-white/60 transition-all duration-200'
+            className='p-1.5 sm:p-1.5 rounded-xl bg-brand-violet/5 border border-white/10 text-white/60 hover:text-white hover:bg-brand-violet/10 hover:border-white/20 ring-1 ring-white/5 disabled:opacity-30 disabled:hover:bg-brand-violet/5 disabled:hover:text-white/60 transition-all duration-200'
             onClick={() => table.setPageIndex(pageIndex - 1)}
             disabled={!canPreviousPage}
           >
             <MdChevronLeft className='w-4 h-4 sm:w-4 sm:h-4' />
           </button>
           <button
-            className='p-1.5 sm:p-1.5 rounded-xl bg-white/5 border border-white/5 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/10 disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-white/60 transition-all duration-200'
+            className='p-1.5 sm:p-1.5 rounded-xl bg-brand-violet/5 border border-white/10 text-white/60 hover:text-white hover:bg-brand-violet/10 hover:border-white/20 ring-1 ring-white/5 disabled:opacity-30 disabled:hover:bg-brand-violet/5 disabled:hover:text-white/60 transition-all duration-200'
             onClick={() => table.setPageIndex(pageIndex + 1)}
             disabled={!canNextPage}
           >

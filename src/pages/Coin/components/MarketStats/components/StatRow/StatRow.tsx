@@ -9,7 +9,7 @@ export default function StatRow({
   return (
     <>
       <div
-        className={`relative overflow-hidden flex flex-col justify-between min-h-16 sm:min-h-[72px] p-4 sm:p-3 rounded-2xl bg-glass/60 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown transition-all duration-300 ${className}`}
+        className={`relative overflow-hidden flex flex-col justify-between min-h-16 sm:min-h-[72px] p-4 sm:p-3 rounded-2xl bg-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 ring-1 ring-white/5 shadow-dropdown transition-all duration-300 ${className}`}
       >
         {/* Decorative Watermark */}
         {Icon && (
