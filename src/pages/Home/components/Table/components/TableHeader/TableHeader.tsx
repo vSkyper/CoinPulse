@@ -28,7 +28,7 @@ export default function TableHeader({
       {table.getHeaderGroups().map((headerGroup) => (
         <tr
           key={headerGroup.id}
-          className='border-b border-white/3 last:border-b-0'
+          className='border-b border-white/5 last:border-b-0'
         >
           {headerGroup.headers.map((header) => {
             const align = header.column.columnDef.meta?.align ?? 'center';

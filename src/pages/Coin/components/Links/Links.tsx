@@ -38,18 +38,12 @@ export default function Links({ data }: LinksProps) {
     new URL(url).hostname.replace('www.', '');
 
   return (
-    <div className='mt-6 sm:mt-4'>
-      {/* Header */}
-      <div className='flex items-center gap-4 mb-4 sm:mb-3 opacity-50'>
-        <div className='h-px flex-1 bg-linear-to-r from-transparent via-white/20 to-transparent'></div>
-        <h2 className='text-xs sm:text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white'>
-          Official Links
-        </h2>
-        <div className='h-px flex-1 bg-linear-to-r from-transparent via-white/20 to-transparent'></div>
-      </div>
-
-      {/* Primary Links Section */}
-      <div className='flex flex-wrap gap-2 sm:gap-2 mb-4 sm:mb-3'>
+    <div className='mt-6 sm:mt-4 p-4 sm:p-5 rounded-3xl bg-white/2 backdrop-blur-xl backdrop-saturate-150 border border-white/5 shadow-dropdown'>
+      {/* Official Links */}
+      <h3 className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-widest mb-3 sm:mb-4'>
+        Official Links
+      </h3>
+      <div className='flex flex-wrap gap-2.5 sm:gap-3 mb-6 sm:mb-6'>
         {links?.homepage?.[0] && (
           <ChipLink
             href={links.homepage[0]}
@@ -57,99 +51,91 @@ export default function Links({ data }: LinksProps) {
               <img
                 src={image?.large}
                 alt='logo'
-                className='w-4 h-4 sm:w-3.5 sm:h-3.5 rounded-full object-cover border border-white/30 shadow-sm'
+                className='w-5 h-5 rounded-full object-cover shadow-sm'
               />
             }
           >
-            Official Website
+            Website
           </ChipLink>
         )}
 
         {links?.official_forum_url?.[0] && (
           <ChipLink
             href={links.official_forum_url[0]}
-            left={<ForumIcon size={14} className='text-brand-violet' />}
+            left={<ForumIcon size={16} className='text-brand-violet' />}
           >
-            Official Forum
+            Forum
           </ChipLink>
         )}
       </div>
 
-      {/* Blockchain Explorer Links */}
+      {/* Social Media */}
+      <h3 className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-widest mb-3 sm:mb-4'>
+        Community
+      </h3>
+      <div className='flex flex-wrap gap-2.5 sm:gap-3 mb-6 sm:mb-6'>
+        {links?.subreddit_url && (
+          <ChipLink
+            href={links.subreddit_url}
+            left={<RedditIcon size={16} />}
+            className='hover:border-brand-reddit/30 hover:bg-brand-reddit/10 hover:text-brand-reddit'
+          >
+            {SOCIAL_LINKS.reddit.label}
+          </ChipLink>
+        )}
+
+        {links?.twitter_screen_name && (
+          <ChipLink
+            href={SOCIAL_LINKS.twitter.getUrl(links.twitter_screen_name)}
+            left={<TwitterIcon size={16} />}
+            className='hover:border-brand-twitter/30 hover:bg-brand-twitter/10 hover:text-brand-twitter'
+          >
+            {SOCIAL_LINKS.twitter.label}
+          </ChipLink>
+        )}
+
+        {links?.facebook_username && (
+          <ChipLink
+            href={SOCIAL_LINKS.facebook.getUrl(links.facebook_username)}
+            left={<FacebookIcon size={16} />}
+            className='hover:border-brand-facebook/30 hover:bg-brand-facebook/10 hover:text-brand-facebook'
+          >
+            {SOCIAL_LINKS.facebook.label}
+          </ChipLink>
+        )}
+
+        {links?.repos_url?.github?.[0] && (
+          <ChipLink
+            href={links.repos_url.github[0]}
+            left={<GitHubIcon size={16} />}
+          >
+            {SOCIAL_LINKS.github.label}
+          </ChipLink>
+        )}
+      </div>
+
+      {/* Blockchain Explorers */}
       {hasBlockchainSites && (
-        <div className='mb-4 sm:mb-3'>
-          <div className='text-center text-[0.65rem] sm:text-[0.6rem] uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-2 select-none'>
-            Blockchain Explorers
-          </div>
-          <div className='flex flex-wrap gap-2 sm:gap-1.5'>
+        <>
+          <h3 className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-widest mb-3 sm:mb-4'>
+            Explorers
+          </h3>
+          <div className='flex flex-wrap gap-2.5 sm:gap-3'>
             {links?.blockchain_site?.slice(0, 3).map(
               (blockchain: string | null) =>
                 blockchain && (
                   <ChipLink
                     key={blockchain}
                     href={blockchain}
-                    left={
-                      <WebsiteIcon
-                        size={14}
-                        className='text-brand-violet-light'
-                      />
-                    }
+                    left={<WebsiteIcon size={16} className='text-white/60' />}
                   >
                     {extractHostname(blockchain)}
                   </ChipLink>
                 )
             )}
           </div>
-        </div>
+        </>
       )}
-
-      {/* Social Media Links */}
-      <div>
-        <div className='text-center text-[0.65rem] sm:text-[0.6rem] uppercase tracking-[0.2em] font-bold text-brand-violet mb-3 sm:mb-2 select-none'>
-          Social Media
-        </div>
-        <div className='flex flex-wrap gap-2 sm:gap-1.5'>
-          {links?.subreddit_url && (
-            <ChipLink
-              href={links.subreddit_url}
-              left={<RedditIcon size={14} />}
-              className='hover:border-brand-reddit/50 hover:shadow-glow-reddit'
-            >
-              {SOCIAL_LINKS.reddit.label}
-            </ChipLink>
-          )}
-
-          {links?.twitter_screen_name && (
-            <ChipLink
-              href={SOCIAL_LINKS.twitter.getUrl(links.twitter_screen_name)}
-              left={<TwitterIcon size={14} />}
-              className='hover:border-brand-twitter/50 hover:shadow-glow-twitter'
-            >
-              {SOCIAL_LINKS.twitter.label}
-            </ChipLink>
-          )}
-
-          {links?.facebook_username && (
-            <ChipLink
-              href={SOCIAL_LINKS.facebook.getUrl(links.facebook_username)}
-              left={<FacebookIcon size={14} />}
-              className='hover:border-brand-facebook/50 hover:shadow-glow-facebook'
-            >
-              {SOCIAL_LINKS.facebook.label}
-            </ChipLink>
-          )}
-
-          {links?.repos_url?.github?.[0] && (
-            <ChipLink
-              href={links.repos_url.github[0]}
-              left={<GitHubIcon size={14} />}
-              className='hover:border-white/50 hover:shadow-glow-white'
-            >
-              {SOCIAL_LINKS.github.label}
-            </ChipLink>
-          )}
-        </div>
-      </div>
     </div>
   );
 }

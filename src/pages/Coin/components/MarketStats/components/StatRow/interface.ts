@@ -5,4 +5,5 @@ export interface StatRowProps {
   value: React.ReactNode;
   className?: string;
   icon?: IconType;
+  variant?: 'default' | 'hero';
 }

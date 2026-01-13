@@ -9,28 +9,28 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
   return (
     <div className='w-full'>
-      <div className='flex items-center gap-2 sm:gap-2 px-2 py-1 sm:p-2 min-h-14 sm:min-h-16 rounded-2xl bg-glass/40 border border-white/10 hover:bg-glass/40 hover:border-white/20 ring-1 ring-white/5 transition-all duration-300 w-full focus-within:bg-glass/40 focus-within:border-brand-violet/30 focus-within:shadow-glow-violet-focus group'>
+      <div className='flex items-center gap-3 px-3 py-2 min-h-[56px] rounded-xl bg-white/2 border border-white/5 transition-all duration-300 w-full focus-within:bg-white/4 focus-within:border-white/10 focus-within:ring-1 focus-within:ring-white/5 group'>
         {/* Left Side: Avatar/Icon & Symbol */}
-        <div className='flex items-center gap-2 sm:gap-2 min-w-fit'>
+        <div className='flex items-center gap-2 min-w-fit'>
           {image ? (
             <img
               src={image}
               alt={symbol}
-              className='w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover shadow-glow-cyan-sm group-focus-within:scale-110 transition-transform duration-300'
+              className='w-6 h-6 rounded-full object-cover opacity-80 group-focus-within:opacity-100 transition-opacity duration-300'
             />
           ) : (
-            <div className='w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-black bg-linear-to-br from-brand-violet to-brand-violet-light text-black shadow-glow-cyan text-xs sm:text-sm'>
+            <div className='w-6 h-6 rounded-full flex items-center justify-center font-bold bg-white/10 text-white/60 text-[0.6rem]'>
               {symbol.charAt(0).toUpperCase()}
             </div>
           )}
 
           <div className='flex flex-col items-start'>
             {children ? (
-              <div className='font-bold text-xs sm:text-sm text-white leading-none tracking-tight'>
+              <div className='font-bold text-sm text-white leading-none tracking-tight'>
                 {children}
               </div>
             ) : (
-              <span className='font-bold text-xs sm:text-sm text-white leading-none tracking-tight'>
+              <span className='font-bold text-sm text-white leading-none tracking-tight'>
                 {symbol.toUpperCase()}
               </span>
             )}
@@ -41,7 +41,7 @@ export default function CurrencyInput({
         <div className='flex-1 flex flex-col items-end'>
           <input
             autoComplete='off'
-            className='w-full bg-transparent focus:outline-none text-white font-mono text-right text-base sm:text-lg font-bold tracking-tight outline-none placeholder-white/10 group-focus-within:placeholder-white/20'
+            className='w-full bg-transparent focus:outline-none text-white font-mono text-right text-lg font-bold tracking-tight outline-none placeholder-white/10 hover:placeholder-white/20 transition-colors'
             type='number'
             value={value}
             onChange={onChange}

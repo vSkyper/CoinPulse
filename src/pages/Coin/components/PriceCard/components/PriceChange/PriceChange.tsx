@@ -14,7 +14,7 @@ export default function PriceChange({ marketData, days }: PriceChangeProps) {
   return (
     <div className='col-span-1'>
       <div
-        className={`flex flex-col items-center justify-center relative overflow-hidden bg-glass/40 backdrop-blur-xl backdrop-saturate-150 rounded-xl p-4 sm:p-3 border border-white/10 shadow-dropdown transition-all duration-300 ${colorClass}`}
+        className={`flex flex-col items-center justify-center relative overflow-hidden bg-white/2 backdrop-blur-xl backdrop-saturate-150 rounded-xl p-4 sm:p-3 border border-white/5 shadow-dropdown transition-all duration-300 ${colorClass}`}
       >
         <div
           className={`absolute top-0 left-0 right-0 h-1 rounded-t-xl opacity-100 ${topBarClass}`}

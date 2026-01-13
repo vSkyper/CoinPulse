@@ -5,31 +5,57 @@ export default function StatRow({
   value,
   className = '',
   icon: Icon,
+  variant = 'default',
 }: StatRowProps) {
+  const isHero = variant === 'hero';
+
   return (
-    <>
-      <div
-        className={`relative overflow-hidden flex flex-col justify-between min-h-16 sm:min-h-[72px] p-4 sm:p-3 rounded-2xl bg-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown transition-all duration-300 ${className}`}
-      >
-        {/* Decorative Watermark */}
+    <div
+      className={`relative overflow-hidden flex flex-col ${
+        isHero ? 'justify-center' : 'justify-start'
+      } gap-1 p-3.5 rounded-2xl backdrop-blur-2xl backdrop-saturate-150 border ${
+        isHero
+          ? 'bg-linear-to-br from-violet-500/10 via-purple-500/5 to-white/5 border-violet-500/20 shadow-[0_8px_32px_rgba(124,58,237,0.1)]'
+          : 'bg-white/2 border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.2)]'
+      } ${className}`}
+    >
+      <div className='relative z-10 flex justify-between items-start w-full'>
+        <div className='flex flex-col gap-1'>
+          <span
+            className={`uppercase tracking-widest font-bold ${
+              isHero
+                ? 'text-[0.6rem] text-violet-200/70'
+                : 'text-[0.55rem] text-white/40'
+            }`}
+          >
+            {label}
+          </span>
+        </div>
+
         {Icon && (
-          <div className='absolute -right-3 -bottom-3 text-white/5 rotate-[-15deg] pointer-events-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-5deg]'>
-            <Icon size={80} />
+          <div
+            className={`transition-colors duration-300 ${
+              isHero ? 'text-violet-200/50' : 'text-white/20'
+            }`}
+          >
+            <Icon size={isHero ? 20 : 16} />
           </div>
         )}
+      </div>
 
-        <div className='relative z-10 text-[0.6rem] sm:text-[0.65rem] font-bold text-white/40 uppercase tracking-wider mb-1 sm:mb-1'>
-          {label}
-        </div>
+      <div className='relative z-10 mt-1 pt-0'>
         {typeof value === 'string' || typeof value === 'number' ? (
-          <div className='relative z-10 text-sm sm:text-base font-bold text-white tracking-tight truncate w-full'>
+          <div
+            className={`font-bold tracking-tight text-white w-full truncate ${
+              isHero ? 'text-lg sm:text-xl' : 'text-lg'
+            }`}
+          >
             {value}
           </div>
         ) : (
           <div className='relative z-10'>{value}</div>
         )}
       </div>
-      <div className='hidden' />
-    </>
+    </div>
   );
 }

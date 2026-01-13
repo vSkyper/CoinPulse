@@ -6,6 +6,7 @@ import {
   AreaChart,
   Area,
   TooltipContentProps,
+  ResponsiveContainer,
 } from 'recharts';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
@@ -19,11 +20,11 @@ import { formatCurrency } from 'utils/formatters';
 const getTickFormat = (days: string, value: string): string => {
   switch (days) {
     case '1':
-      return format(new Date(value), '| hh:mm a |');
+      return format(new Date(value), 'hh:mm a');
     case 'max':
-      return format(new Date(value), '| y MMM |');
+      return format(new Date(value), 'yyyy');
     default:
-      return format(new Date(value), '| MMM, d |');
+      return format(new Date(value), 'MMM d');
   }
 };
 
@@ -63,11 +64,11 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
     if (!active || !payload || !payload.length) return null;
 
     return (
-      <div className='bg-glass/90 border border-brand-violet/30 rounded-lg sm:rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 shadow-modal text-[10px] sm:text-xs backdrop-blur-xl'>
-        <div className='text-[0.55rem] sm:text-[0.65rem] text-white/50 mb-0.5 sm:mb-1 font-medium uppercase tracking-wide'>
-          {format(new Date(label ?? 0), 'eeee, d MMM, yyyy')}
+      <div className='bg-black/80 border border-white/10 rounded-xl px-4 py-3 shadow-glass-lg backdrop-blur-xl'>
+        <div className='text-[0.6rem] text-white/40 mb-1 font-bold uppercase tracking-wider'>
+          {format(new Date(label ?? 0), 'MMM d, yyyy, hh:mm a')}
         </div>
-        <div className='font-bold text-brand-violet text-sm sm:text-base'>
+        <div className='font-mono font-bold text-white text-base'>
           {formatCurrency(Number(payload[0].value))}
         </div>
       </div>
@@ -77,73 +78,84 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
   const handleTickFormatterXAxis = (value: string) =>
     getTickFormat(days, value);
 
-  const handleTickFormatterYAxis = (value: number) => `$${value}`;
-
   return (
-    <AreaChart data={sparkline} responsive width='100%' height='100%'>
-      {/* Gradient Definition */}
-      <defs>
-        <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
-          <stop
-            offset='5%'
-            stopColor='var(--color-brand-violet)'
-            stopOpacity={0.45}
+    <div style={{ width: '100%', height: '100%' }}>
+      <ResponsiveContainer>
+        <AreaChart
+          data={sparkline}
+          margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id='colorViolet' x1='0' y1='0' x2='0' y2='1'>
+              <stop offset='0%' stopColor='#8b5cf6' stopOpacity={0.4} />
+              <stop offset='100%' stopColor='#8b5cf6' stopOpacity={0} />
+            </linearGradient>
+          </defs>
+
+          <CartesianGrid
+            opacity={0.1}
+            vertical={false}
+            strokeDasharray='3 3'
+            stroke='#ffffff'
           />
-          <stop
-            offset='75%'
-            stopColor='var(--color-brand-violet)'
-            stopOpacity={0.06}
+
+          <XAxis
+            dataKey='date'
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={handleTickFormatterXAxis}
+            hide={isMobile}
+            minTickGap={30}
+            tick={{
+              fill: 'rgba(255, 255, 255, 0.4)',
+              fontSize: 10,
+              fontWeight: 500,
+            }}
+            dy={10}
           />
-        </linearGradient>
 
-        {/* Glow Filter */}
-        <filter id='glow' x='-50%' y='-50%' width='200%' height='200%'>
-          <feGaussianBlur stdDeviation='2.5' result='coloredBlur' />
-          <feMerge>
-            <feMergeNode in='coloredBlur' />
-            <feMergeNode in='SourceGraphic' />
-          </feMerge>
-        </filter>
-      </defs>
+          <YAxis
+            dataKey='value'
+            domain={['auto', 'auto']}
+            axisLine={false}
+            tickLine={false}
+            tickCount={6}
+            tickFormatter={(val) => `$${val.toLocaleString()}`}
+            hide={isMobile}
+            width={60}
+            tick={{
+              fill: 'rgba(255, 255, 255, 0.4)',
+              fontSize: 10,
+              fontWeight: 500,
+            }}
+            dx={-10}
+          />
 
-      <Area
-        dataKey='value'
-        stroke='var(--color-brand-violet)'
-        strokeWidth={2}
-        fill='url(#color)'
-        filter='url(#glow)'
-        activeDot={{
-          r: 5,
-          stroke: 'var(--color-brand-violet)',
-          strokeWidth: 2,
-          fill: '#000',
-        }}
-      />
+          <Tooltip
+            content={CustomTooltip}
+            cursor={{
+              stroke: 'rgba(255, 255, 255, 0.1)',
+              strokeWidth: 1,
+              strokeDasharray: '4 4',
+            }}
+          />
 
-      <XAxis
-        dataKey='date'
-        axisLine={false}
-        tickLine={false}
-        tickFormatter={handleTickFormatterXAxis}
-        hide={isMobile}
-        tick={{ fontSize: 12 }}
-      />
-
-      <YAxis
-        dataKey='value'
-        domain={['auto', 'auto']}
-        axisLine={false}
-        tickLine={false}
-        tickCount={6}
-        tickFormatter={handleTickFormatterYAxis}
-        width={50}
-        hide={isMobile}
-        tick={{ fontSize: 12 }}
-      />
-
-      <Tooltip content={CustomTooltip} />
-
-      <CartesianGrid opacity={0.05} vertical={false} strokeDasharray='3 3' />
-    </AreaChart>
+          <Area
+            type='monotone'
+            dataKey='value'
+            stroke='#8b5cf6'
+            strokeWidth={3}
+            fill='url(#colorViolet)'
+            activeDot={{
+              r: 6,
+              stroke: '#8b5cf6',
+              strokeWidth: 0,
+              fill: '#fff',
+            }}
+            animationDuration={1500}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   );
 }

@@ -35,10 +35,6 @@ export default function StatCard({
     ? 'opacity-0 scale-95 translate-y-4 blur-[2px]'
     : 'opacity-0 scale-90 -translate-y-8 blur-[4px]';
 
-  const badgeColorClasses = isNegative
-    ? 'bg-brand-negative/10 text-brand-negative border-brand-negative/20'
-    : 'bg-brand-positive/10 text-brand-positive border-brand-positive/20';
-
   const TrendIcon = isNegative ? TrendingDownIcon : TrendingUpIcon;
 
   return (
@@ -48,12 +44,12 @@ export default function StatCard({
         transitionDelay: show ? `${config.timeout}ms` : '0ms',
       }}
     >
-      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-glass/40 backdrop-blur-xl backdrop-saturate-150 rounded-2xl p-3 sm:p-4 border border-white/10 shadow-dropdown group'>
+      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-white/2 backdrop-blur-xl backdrop-saturate-150 rounded-2xl p-3 sm:p-4 border border-white/5 shadow-dropdown group'>
         <div className='flex flex-col gap-2 sm:gap-1.5 w-full items-center relative z-10'>
-          <div className='flex items-center justify-center gap-2 sm:gap-1.5'>
+          <div className='flex items-center justify-center gap-2 sm:gap-2'>
             {/* Mobile value - shorter */}
             {config.mobileValue && (
-              <h3 className='block sm:hidden text-sm font-bold text-white text-center wrap-break-word'>
+              <h3 className='block sm:hidden text-lg font-bold text-white text-center wrap-break-word'>
                 {config.mobileValue}
               </h3>
             )}
@@ -61,8 +57,8 @@ export default function StatCard({
             <h3
               className={
                 config.mobileValue
-                  ? 'hidden sm:block text-xl sm:text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
-                  : 'text-sm sm:text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
+                  ? 'hidden sm:block text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
+                  : 'text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-sm'
               }
             >
               {config.value}
@@ -70,17 +66,21 @@ export default function StatCard({
 
             {hasPercentage && config.percentage && (
               <span
-                className={`inline-flex items-center gap-0.5 sm:gap-0.5 text-[0.6rem] sm:text-[0.65rem] font-bold border rounded-full px-1.5 py-0.5 sm:px-1.5 sm:py-0.5 backdrop-blur-sm shadow-sm ${badgeColorClasses}`}
+                className={`inline-flex items-center gap-1 text-xs font-bold ${
+                  config.percentage.change >= 0
+                    ? 'text-brand-positive'
+                    : 'text-brand-negative'
+                }`}
               >
                 {config.percentage.change >= 0 && '+'}
                 {config.percentage.value}
-                <TrendIcon className='text-[0.7rem] sm:text-[0.7rem]' />
+                <TrendIcon size={12} />
               </span>
             )}
           </div>
         </div>
 
-        <p className='mt-1 text-[0.6rem] sm:text-[0.6rem] text-white/50 font-bold text-center uppercase tracking-widest transition-colors'>
+        <p className='mt-1 text-[0.6rem] sm:text-[0.6rem] text-white/40 font-bold text-center uppercase tracking-widest transition-colors'>
           {config.label}
         </p>
       </div>

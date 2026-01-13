@@ -30,11 +30,11 @@ export default function ButtonComponent({
       {isActive && (
         <motion.div
           layoutId={layoutId}
-          className='absolute inset-0 bg-linear-to-br from-brand-violet/85 to-brand-violet-light/85 backdrop-blur-md shadow-glow-violet border border-white/20 rounded-lg sm:rounded-lg overflow-hidden'
+          className='absolute inset-0 bg-brand-violet shadow-glow-violet border border-white/20 rounded-lg sm:rounded-lg overflow-hidden'
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
           {/* Shine effect */}
-          <span className='absolute inset-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_infinite]' />
+          <span className='absolute inset-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/10 to-transparent animate-[shine_2s_infinite]' />
         </motion.div>
       )}
 

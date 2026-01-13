@@ -159,17 +159,17 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-5 sm:p-5 rounded-3xl bg-glass/40 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-dropdown'>
+    <div className='relative z-10 p-5 rounded-3xl bg-white/2 backdrop-blur-2xl backdrop-saturate-150 border border-white/5 shadow-xl transition-all duration-300'>
       <div className='relative'>
         {/* Header */}
-        <div className='flex items-center justify-between mb-5 sm:mb-5 relative z-10'>
-          <h3 className='text-lg sm:text-lg font-black text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/60 tracking-tighter'>
+        <div className='flex items-center justify-between mb-4 relative z-10'>
+          <h3 className='text-[0.6rem] uppercase tracking-widest font-bold text-white/50'>
             Converter
           </h3>
         </div>
 
         {/* Currency Input Grid */}
-        <div className='flex flex-col gap-2 relative z-20'>
+        <div className='flex flex-col gap-3 relative z-20'>
           {/* Crypto Input */}
           <CurrencyInput
             label={symbol.toUpperCase()}
@@ -192,10 +192,10 @@ export default function CurrencyConverter({
                 onChange={handleChangeAutocomplete}
               >
                 <div className='relative'>
-                  <div className='relative flex items-center justify-between gap-1 sm:gap-1 group bg-brand-violet/5 hover:bg-brand-violet/10 px-2 sm:px-2 py-1.5 sm:py-1 rounded-lg sm:rounded-xl border border-white/10 hover:border-white/20 ring-1 ring-white/5 transition-all duration-200 w-full focus-within:border-brand-violet/40'>
+                  <div className='relative flex items-center justify-between gap-1 group bg-white/2 hover:bg-white/4 px-2 py-1.5 rounded-lg border border-white/5 hover:border-white/10 transition-all duration-200 w-full focus-within:border-violet-500/30'>
                     <ComboboxInput
                       autoComplete='off'
-                      className='w-full bg-transparent text-xs sm:text-sm font-black uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/30 selection:bg-brand-violet/40'
+                      className='w-full bg-transparent text-xs sm:text-sm font-bold uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/20 selection:bg-violet-500/30'
                       displayValue={() => currencyOption.toUpperCase()}
                       enterKeyHint='done'
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -203,8 +203,8 @@ export default function CurrencyConverter({
                       }
                       onKeyDown={handleKeyDown}
                     />
-                    <ComboboxButton className='cursor-pointer p-0.5 sm:p-0.5 rounded-md sm:rounded-lg hover:bg-white/10 active:scale-95 transition-all duration-200'>
-                      <HiChevronDown className='w-3.5 h-3.5 sm:w-3.5 sm:h-3.5 text-white/50 group-hover:text-white/80 transition-colors duration-200 shrink-0' />
+                    <ComboboxButton className='cursor-pointer p-0.5 rounded-md hover:bg-white/10 active:scale-95 transition-all duration-200'>
+                      <HiChevronDown className='w-3.5 h-3.5 text-white/30 group-hover:text-white/60 transition-colors duration-200 shrink-0' />
                     </ComboboxButton>
                   </div>
 
@@ -218,16 +218,16 @@ export default function CurrencyConverter({
                     {filteredCurrencies.length > 0 && (
                       <ComboboxOptions
                         modal={false}
-                        className='absolute top-full left-0 z-50 mt-1 max-h-40 sm:max-h-48 w-18 sm:w-19 overflow-auto rounded-xl bg-glass/95 backdrop-blur-xl py-1 text-xs shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] focus:outline-none border border-white/10'
+                        className='absolute top-full left-0 z-50 mt-1 max-h-40 w-24 overflow-auto rounded-xl bg-black/90 backdrop-blur-xl py-1 text-xs shadow-glass-lg focus:outline-none border border-white/10'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption
                             key={option}
                             value={option}
                             className={({ focus }) =>
-                              `relative cursor-pointer select-none py-2 sm:py-1.5 px-3 transition-all duration-200 ${
+                              `relative cursor-pointer select-none py-2 px-3 transition-all duration-200 ${
                                 focus
-                                  ? 'bg-brand-violet/10 text-white'
+                                  ? 'bg-white/10 text-white'
                                   : 'text-zinc-400'
                               }`
                             }
@@ -247,50 +247,48 @@ export default function CurrencyConverter({
         </div>
 
         {/* Exchange Rate Display */}
-        <div className='flex flex-col gap-1.5 mt-2.5 sm:mt-3 relative z-10'>
-          <div className='flex items-center justify-between px-1 sm:px-1 py-0 min-h-[36px] sm:min-h-[40px]'>
-            <div className='text-[0.6rem] sm:text-[0.65rem] font-bold text-white/50 uppercase tracking-wider'>
-              Exchange Rate
+        <div className='flex items-center justify-between mt-4 px-1'>
+          {/* Rate */}
+          <div className='flex items-center gap-2'>
+            <div className='text-[0.65rem] font-bold text-white/40 uppercase tracking-widest'>
+              Rate
             </div>
-
             {isLoadingRate ? (
-              <div className='flex items-center gap-2'>
-                <div className='animate-spin h-3 w-3 border-2 border-white/10 border-t-brand-violet rounded-full' />
-              </div>
+              <div className='animate-pulse h-3 w-12 bg-white/10 rounded' />
             ) : (
               currentRate && (
-                <div className='flex items-center gap-1.5 sm:gap-2'>
-                  <div className='font-bold text-[0.65rem] sm:text-xs text-white flex items-center gap-1'>
-                    <span>1</span>
-                    <span className='text-brand-violet font-black'>
-                      {symbol.toUpperCase()}
-                    </span>
-                    <span className='text-white/40'>≈</span>
-                    <span>{rateValue}</span>
-                    <span className='text-brand-violet font-black'>
-                      {rateSymbol}
+                <div className='flex items-center gap-1.5'>
+                  <div className='font-medium text-xs text-white/80 flex items-center gap-1'>
+                    <span>1 {symbol.toUpperCase()}</span>
+                    <span className='text-white/30'>≈</span>
+                    <span>
+                      {rateValue} {rateSymbol}
                     </span>
                   </div>
                   {change24h !== undefined && change24h !== null && (
-                    <div
-                      className={`px-1 py-0.5 rounded text-[0.55rem] sm:text-[0.6rem] font-black border backdrop-blur-md ${
+                    <span
+                      className={`text-[0.6rem] font-bold ${
                         change24h >= 0
-                          ? 'bg-brand-positive/10 text-brand-positive border-brand-positive/20'
-                          : 'bg-brand-negative/10 text-brand-negative border-brand-negative/20'
+                          ? 'text-brand-positive'
+                          : 'text-brand-negative'
                       }`}
                     >
-                      {change24h >= 0 && '+'}
+                      {change24h >= 0 ? '+' : ''}
                       {change24h.toFixed(2)}%
-                    </div>
+                    </span>
                   )}
                 </div>
               )
             )}
           </div>
 
-          <div className='text-right text-[9px] sm:text-[9px] text-white/30 font-medium min-h-[14px]'>
+          {/* Last Update */}
+          <div className='text-[0.6rem] font-medium text-white/20'>
             {lastUpdated
-              ? `Updated: ${new Date(lastUpdated * 1000).toLocaleString()}`
+              ? `Updated ${new Date(lastUpdated * 1000).toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}`
               : null}
           </div>
         </div>

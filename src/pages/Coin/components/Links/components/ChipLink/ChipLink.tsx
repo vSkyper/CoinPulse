@@ -11,7 +11,7 @@ export default function ChipLink({
       href={href}
       target='_blank'
       rel='noopener noreferrer'
-      className={`inline-flex items-center gap-1.5 sm:gap-1.5 px-2.5 sm:px-2 py-1 sm:py-0.5 rounded-lg sm:rounded-md text-[0.6rem] sm:text-[0.55rem] font-bold transition-all duration-300 ease-out relative overflow-hidden backdrop-blur-xl backdrop-saturate-150 group border border-white/10 bg-glass/40 shadow-dropdown hover:bg-white/10 hover:border-white/20 hover:-translate-y-0.5 ${className}`}
+      className={`inline-flex items-center gap-1.5 sm:gap-1.5 px-3 sm:px-2.5 py-1.5 sm:py-1 rounded-lg text-[11px] sm:text-[11px] font-bold transition-all duration-300 ease-out relative overflow-hidden backdrop-blur-xl backdrop-saturate-150 group border border-white/5 bg-white/2 hover:bg-white/5 hover:border-white/10 ${className}`}
     >
       {/* Enhanced shine effect */}
       <span className='absolute inset-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/10 to-transparent transition-all duration-700 group-hover:left-full pointer-events-none' />

@@ -15,7 +15,7 @@ export default function Switch({ toggle, setToggle, mobile }: SwitchProps) {
 
   const stateClasses = toggle
     ? 'bg-brand-violet border-brand-violet/50 text-white shadow-glow-violet hover:bg-brand-violet-light ring-1 ring-brand-violet/50'
-    : 'bg-white/5 border-white/10 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/20 ring-1 ring-white/5';
+    : 'bg-white/2 border-white/5 text-white/60 hover:text-white hover:bg-white/5 hover:border-white/10 ring-1 ring-white/5';
 
   const buttonClasses = `flex items-center justify-center gap-2 font-bold rounded-full backdrop-blur-md border transition-all duration-300 ease-out relative overflow-hidden group active:translate-y-0 ${sizeClasses} ${stateClasses}`;
 

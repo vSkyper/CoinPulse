@@ -116,7 +116,7 @@ export default function Table({ coins }: TableProps) {
 
   return (
     <div className='mt-6 sm:mt-6 relative'>
-      <div className='flex flex-col w-full rounded-3xl border border-white/10 bg-glass/40 backdrop-blur-[20px] shadow-glass'>
+      <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-white/2 backdrop-blur-[20px] shadow-glass'>
         <TableControls
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}
@@ -143,7 +143,7 @@ export default function Table({ coins }: TableProps) {
           />
         </TableControls>
 
-        <div className='h-px w-full bg-linear-to-r from-transparent via-white/10 to-transparent' />
+        <div className='h-px w-full bg-linear-to-r from-transparent via-white/5 to-transparent' />
 
         <div ref={scrollContainerRef} className='overflow-x-auto'>
           <table
@@ -164,7 +164,7 @@ export default function Table({ coins }: TableProps) {
                   <tr
                     key={row.id}
                     onClick={() => navigate(`/coins/${row.original.id}`)}
-                    className='cursor-pointer border-b border-white/3 last:border-b-0 transition-colors duration-150 ease-out hover:bg-white/3 focus-within:bg-brand-violet/5 active:bg-brand-violet/10'
+                    className='cursor-pointer transition-colors duration-150 ease-out hover:bg-white/5 focus-within:bg-brand-violet/5 active:bg-brand-violet/10'
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td
