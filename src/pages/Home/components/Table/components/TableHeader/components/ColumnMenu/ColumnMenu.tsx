@@ -50,7 +50,7 @@ export default function ColumnMenu({
             modal={false}
             portal
             anchor={{ to: 'bottom end', gap: context === 'sticky' ? 16 : 8 }}
-            className='w-36 sm:w-36 origin-top-right divide-y divide-white/5 rounded-xl bg-black/90 backdrop-blur-xl shadow-glass-lg border border-white/10 focus:outline-none z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
+            className='w-36 sm:w-36 origin-top-right divide-y divide-white/5 rounded-xl bg-glass/80 backdrop-blur-xl shadow-xl ring-1 ring-white/10 focus:outline-none border border-white/10 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
           >
             <div className='px-1 py-1'>
               <MenuItem>
