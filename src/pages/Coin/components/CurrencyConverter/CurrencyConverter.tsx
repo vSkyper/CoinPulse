@@ -159,7 +159,7 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-5 rounded-3xl bg-white/2 backdrop-blur-2xl backdrop-saturate-150 border border-white/5 shadow-xl transition-all duration-300 overflow-hidden'>
+    <div className='relative z-10 p-5 rounded-3xl bg-white/2 border border-white/5 shadow-xl transition-all duration-300'>
       <div className='relative'>
         {/* Header */}
         <div className='flex items-center justify-between mb-4 relative z-10'>

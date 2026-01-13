@@ -119,7 +119,7 @@ export default function FilterPanel({
             </span>
             <Listbox value={activeFilterColumn} onChange={handleColumnChange}>
               <div className='relative'>
-                <ListboxButton className='relative w-full cursor-pointer rounded-lg bg-white/2 hover:bg-white/4 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'>
+                <ListboxButton className='relative w-full cursor-pointer rounded-lg bg-white/5 hover:bg-white/10 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'>
                   <span className='block truncate font-bold tracking-wide'>
                     {
                       table
@@ -189,7 +189,7 @@ export default function FilterPanel({
             </span>
             <Listbox value={activeOperator} onChange={setActiveOperator}>
               <div className='relative'>
-                <ListboxButton className='relative w-full cursor-pointer rounded-lg bg-white/2 hover:bg-white/4 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'>
+                <ListboxButton className='relative w-full cursor-pointer rounded-lg bg-white/5 hover:bg-white/10 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'>
                   <span className='block truncate font-bold tracking-wide'>
                     {activeOperator}
                   </span>

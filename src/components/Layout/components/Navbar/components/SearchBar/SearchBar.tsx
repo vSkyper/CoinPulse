@@ -73,7 +73,7 @@ export default function SearchBar() {
           <SearchIconContainer isLoading={!data} />
 
           <ComboboxInput
-            className='w-full bg-white/2 backdrop-blur-md text-white rounded-xl py-2 pl-10 pr-4 text-sm font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-white/4 focus:border-white/10 focus:ring-1 focus:ring-white/5 hover:bg-white/4 border border-white/5 hover:border-white/10 ring-1 ring-white/5'
+            className='w-full bg-white/2 text-white rounded-xl py-2 pl-10 pr-4 text-sm font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-white/4 focus:border-white/10 focus:ring-1 focus:ring-white/5 hover:bg-white/4 border border-white/5 hover:border-white/10 ring-1 ring-white/5'
             placeholder={placeholder}
             displayValue={displayValue}
             enterKeyHint='go'

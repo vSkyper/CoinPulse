@@ -11,7 +11,7 @@ export default function ExtremeValueRow({
   icon: Icon,
 }: ExtremeValueRowProps) {
   return (
-    <div className='flex flex-col h-full bg-white/2 backdrop-blur-2xl backdrop-saturate-150 border border-white/5 rounded-2xl p-3.5 overflow-hidden relative shadow-lg'>
+    <div className='flex flex-col h-full bg-white/2 border border-white/5 rounded-2xl p-2.5 sm:p-3.5 overflow-hidden relative shadow-lg'>
       {/* Header */}
       <div className='flex justify-between items-start w-full mb-1'>
         <span className='text-[0.6rem] uppercase tracking-widest font-bold text-white/50'>

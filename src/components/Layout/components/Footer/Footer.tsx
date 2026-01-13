@@ -2,7 +2,7 @@ import { CoinGeckoBadge, PoweredBySection, GithubBadge } from './components';
 
 export default function Footer() {
   return (
-    <footer className='w-full relative z-10 mt-auto border-t border-white/5 bg-black/40 backdrop-blur-sm'>
+    <footer className='w-full relative z-10 mt-auto border-t border-white/5 bg-black/40'>
       <div className='px-4 py-4 sm:py-6 flex items-center justify-center'>
         <div className='flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 w-full max-w-7xl mx-auto'>
           {/* Branding & Copyright */}

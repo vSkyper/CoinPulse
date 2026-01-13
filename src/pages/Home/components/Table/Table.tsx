@@ -100,23 +100,24 @@ export default function Table({ coins }: TableProps) {
   } = useTableFilters({ table, columnFilters, isHeaderVisible });
 
   // Portal logic for sticky header
-  const stickyHeaderPortal = document.getElementById('sticky-header-portal')
-    ? createPortal(
-        <StickyHeader
-          table={table}
-          handleFilterOpenFromMenu={handleFilterOpenFromMenu}
-          scrollContainerRef={scrollContainerRef}
-          sorting={sorting}
-          columnFilters={columnFilters}
-          handleMenuOpen={handleMenuOpen}
-        />,
-        document.getElementById('sticky-header-portal') as HTMLElement
-      )
-    : null;
+  const stickyHeaderPortal =
+    document.getElementById('sticky-header-portal') && isHeaderVisible
+      ? createPortal(
+          <StickyHeader
+            table={table}
+            handleFilterOpenFromMenu={handleFilterOpenFromMenu}
+            scrollContainerRef={scrollContainerRef}
+            sorting={sorting}
+            columnFilters={columnFilters}
+            handleMenuOpen={handleMenuOpen}
+          />,
+          document.getElementById('sticky-header-portal') as HTMLElement
+        )
+      : null;
 
   return (
     <div className='mt-6 sm:mt-6 relative'>
-      <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-white/2 backdrop-blur-[20px] shadow-glass'>
+      <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-white/2 shadow-glass'>
         <TableControls
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}

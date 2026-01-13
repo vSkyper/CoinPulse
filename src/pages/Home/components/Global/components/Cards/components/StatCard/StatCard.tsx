@@ -44,7 +44,7 @@ export default function StatCard({
         transitionDelay: show ? `${config.timeout}ms` : '0ms',
       }}
     >
-      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-white/2 backdrop-blur-xl backdrop-saturate-150 rounded-2xl p-3 sm:p-4 border border-white/5 shadow-dropdown group'>
+      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-white/2 rounded-2xl p-3 sm:p-4 border border-white/5 shadow-dropdown group'>
         <div className='flex flex-col gap-2 sm:gap-1.5 w-full items-center relative z-10'>
           <div className='flex items-center justify-center gap-2 sm:gap-2'>
             {/* Mobile value - shorter */}

@@ -44,7 +44,7 @@ function SymbolBadge({ value }: { value: string }) {
   const label = String(value ?? '').toUpperCase();
   return (
     <div className='flex items-center justify-center w-full'>
-      <span className='flex items-center justify-center w-fit h-fit font-bold rounded-lg backdrop-blur-md transition-all duration-200 hover:bg-white/10 bg-white/5 border border-white/10 text-white/90 tracking-wide text-[0.65rem] sm:text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1'>
+      <span className='flex items-center justify-center w-fit h-fit font-bold rounded-lg transition-all duration-200 hover:bg-white/10 bg-white/5 border border-white/10 text-white/90 tracking-wide text-[0.65rem] sm:text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1'>
         {label}
       </span>
     </div>

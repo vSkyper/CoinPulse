@@ -13,7 +13,7 @@ export default function StatRow({
     <div
       className={`relative overflow-hidden flex flex-col ${
         isHero ? 'justify-center' : 'justify-start'
-      } gap-1 p-3.5 rounded-2xl backdrop-blur-2xl backdrop-saturate-150 border ${
+      } gap-1 px-3 py-2 sm:p-3.5 rounded-2xl border ${
         isHero
           ? 'bg-linear-to-br from-violet-500/10 via-purple-500/5 to-white/5 border-violet-500/20 shadow-[0_8px_32px_rgba(124,58,237,0.1)]'
           : 'bg-white/2 border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.2)]'

@@ -31,7 +31,7 @@ export default function PriceCard({ data }: PriceCardProps) {
       </div>
 
       {/* 24h Price Range */}
-      <div className='mt-4 sm:mt-4 p-4 sm:p-4 rounded-2xl bg-white/2 backdrop-blur-xl backdrop-saturate-150 border border-white/5 shadow-dropdown'>
+      <div className='mt-4 sm:mt-4 p-4 sm:p-4 rounded-2xl bg-white/2 border border-white/5 shadow-dropdown'>
         <div className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-wider mb-2 sm:mb-3'>
           24h Price Range
         </div>

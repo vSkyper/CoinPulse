@@ -40,7 +40,7 @@ export default function ButtonComponent({
 
       {/* Hover background for inactive state */}
       {!isActive && (
-        <div className='absolute inset-0 rounded-lg sm:rounded-lg bg-linear-to-b from-white/15 to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/0 group-hover:border-white/10 shadow-glass-button group-hover:shadow-glass-button-hover backdrop-blur-sm' />
+        <div className='absolute inset-0 rounded-lg sm:rounded-lg bg-linear-to-b from-white/15 to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/0 group-hover:border-white/10 shadow-glass-button group-hover:shadow-glass-button-hover' />
       )}
 
       <span className='relative z-10'>{daysFormatted}</span>
