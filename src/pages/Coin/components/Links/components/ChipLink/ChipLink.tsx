@@ -17,12 +17,12 @@ export default function ChipLink({
       <span className='absolute inset-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/10 to-transparent transition-all duration-700 group-hover:left-full pointer-events-none' />
 
       {/* Left icon */}
-      <span className='flex items-center justify-center transition-transform duration-300 group-hover:scale-110 text-white/70 group-hover:text-white'>
+      <span className='flex items-center justify-center transition-transform duration-300 group-hover:scale-110 text-white/70 group-hover:text-current'>
         {left}
       </span>
 
       {/* Text */}
-      <span className='leading-none font-bold tracking-wide text-white/70 group-hover:text-white transition-colors'>
+      <span className='leading-none font-bold tracking-wide text-white/70 group-hover:text-current transition-colors'>
         {children}
       </span>
     </a>

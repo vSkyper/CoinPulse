@@ -165,7 +165,7 @@ export default function Table({ coins }: TableProps) {
                   <tr
                     key={row.id}
                     onClick={() => navigate(`/coins/${row.original.id}`)}
-                    className='cursor-pointer transition-colors duration-150 ease-out hover:bg-white/5 focus-within:bg-brand-violet/5 active:bg-brand-violet/10'
+                    className='cursor-pointer transition-colors duration-150 ease-out hover:bg-white/5 focus-within:bg-brand-violet/5 active:bg-brand-violet/10 border-b border-white/5 sm:border-0 last:border-0'
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td

@@ -218,7 +218,7 @@ export default function CurrencyConverter({
                     {filteredCurrencies.length > 0 && (
                       <ComboboxOptions
                         modal={false}
-                        className='absolute top-full left-0 z-50 mt-1 max-h-40 w-24 overflow-auto rounded-xl bg-black/90 backdrop-blur-xl py-1 text-xs shadow-glass-lg focus:outline-none border border-white/10'
+                        className='absolute top-full left-0 z-50 mt-1 w-24 overflow-auto rounded-xl bg-black/90 backdrop-blur-xl py-1 text-xs shadow-glass-lg focus:outline-none border border-white/10'
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption
