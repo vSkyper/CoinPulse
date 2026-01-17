@@ -111,7 +111,7 @@ export default function Table({ coins }: TableProps) {
             columnFilters={columnFilters}
             handleMenuOpen={handleMenuOpen}
           />,
-          document.getElementById('sticky-header-portal') as HTMLElement
+          document.getElementById('sticky-header-portal') as HTMLElement,
         )
       : null;
 
@@ -182,7 +182,7 @@ export default function Table({ coins }: TableProps) {
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </td>
                     ))}

@@ -18,7 +18,7 @@ const BLUR_DELAY = 100;
 export default function SearchBar() {
   const [query, setQuery] = useState<string>('');
   const [selectedCoin, setSelectedCoin] = useState<CoinsListResponse | null>(
-    null
+    null,
   );
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function SearchBar() {
       ? []
       : (data || [])
           .filter((coin) =>
-            coin.name.toLowerCase().startsWith(query.toLowerCase())
+            coin.name.toLowerCase().startsWith(query.toLowerCase()),
           )
           .slice(0, MAX_RESULTS);
 
@@ -95,9 +95,11 @@ export default function SearchBar() {
         >
           <ComboboxOptions
             modal={false}
-            className='absolute mt-3 w-full overflow-hidden rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-1.5'
+            className={`absolute mt-3 w-full overflow-hidden rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-1.5 ${
+              !hasQuery ? 'invisible' : ''
+            }`}
           >
-            {filteredCoins.length === 0 ? (
+            {filteredCoins.length === 0 && query !== '' ? (
               <EmptyState />
             ) : (
               filteredCoins.map((coin) => (

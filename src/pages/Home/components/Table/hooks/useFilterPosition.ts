@@ -9,7 +9,8 @@ interface Position {
 function calculatePosition(
   anchor: HTMLElement,
   panel: HTMLElement,
-  isHeaderVisible: boolean
+  isHeaderVisible: boolean,
+  align: 'left' | 'right' = 'right',
 ): Position {
   const viewportWidth = window.innerWidth;
   const isMobile = viewportWidth < 640;
@@ -33,8 +34,13 @@ function calculatePosition(
     // Ensure minimum margin
     if (left < 16) left = 16;
   } else {
-    // Desktop: Align right edge of panel with right edge of anchor
-    left = anchorRect.right - panelWidth;
+    if (align === 'right') {
+      // Desktop: Align right edge of panel with right edge of anchor
+      left = anchorRect.right - panelWidth;
+    } else {
+      // Desktop: Align left edge of panel with left edge of anchor
+      left = anchorRect.left;
+    }
 
     // Boundary checks for desktop
     if (left < 16) left = 16;
@@ -69,7 +75,8 @@ export function useFilterPosition(
   isFilterOpen: boolean,
   anchorEl: HTMLElement | null,
   filterRef: React.RefObject<HTMLDivElement | null>,
-  isHeaderVisible: boolean
+  isHeaderVisible: boolean,
+  align: 'left' | 'right' = 'right',
 ) {
   const [position, setPosition] = useState<Position | null>(null);
 
@@ -78,7 +85,8 @@ export function useFilterPosition(
       const newPos = calculatePosition(
         anchorEl,
         filterRef.current,
-        isHeaderVisible
+        isHeaderVisible,
+        align,
       );
       setPosition((prev) => {
         if (
@@ -92,7 +100,7 @@ export function useFilterPosition(
         return newPos;
       });
     }
-  }, [isFilterOpen, anchorEl, filterRef, isHeaderVisible]);
+  }, [isFilterOpen, anchorEl, filterRef, isHeaderVisible, align]);
 
   const setRefs = useCallback(
     (node: HTMLDivElement | null) => {
@@ -107,7 +115,7 @@ export function useFilterPosition(
       // Calculate initial position
       if (node) updatePosition();
     },
-    [filterRef, updatePosition]
+    [filterRef, updatePosition],
   );
 
   useLayoutEffect(() => {
@@ -117,8 +125,6 @@ export function useFilterPosition(
   // Track position for a short duration when anchor changes (to handle animations)
   useEffect(() => {
     if (!isFilterOpen || !anchorEl || !filterRef.current) return;
-    // Skip animation loop on mobile to improve performance
-    if (window.innerWidth < 640) return;
 
     let startTime = performance.now();
     let frameId: number;

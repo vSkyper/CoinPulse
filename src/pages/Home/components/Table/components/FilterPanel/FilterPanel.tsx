@@ -52,11 +52,26 @@ export default function FilterPanel({
   isAnchoring = false,
   isHeaderVisible,
 }: FilterPanelProps) {
+  // Determine alignment based on active filter column
+  const column = table
+    .getAllColumns()
+    .find((col) => col.id === activeFilterColumn);
+
+  // Sticky Header: Use ColumnMenu logic (Extend Right for Right-aligned columns).
+  // Main Header ( & Global Filter): Always Anchor Right (Extend Left) to prevent overflow.
+  const isRight = column?.columnDef.meta?.align === 'right';
+
+  // If sticky header is visible (navbar hidden), use ColumnMenu logic (Extend Right for Right col).
+  // If main header is visible, we always anchor to the Global Filter Button (far right),
+  // so we always want to Anchor Right (Extend Left).
+  const align = isHeaderVisible ? (isRight ? 'left' : 'right') : 'right';
+
   const { position, setRefs } = useFilterPosition(
     isFilterOpen,
     anchorEl,
     filterRef,
-    isHeaderVisible
+    isHeaderVisible,
+    align,
   );
 
   return createPortal(
@@ -285,6 +300,6 @@ export default function FilterPanel({
         </button>
       </div>
     </Transition>,
-    document.body
+    document.body,
   );
 }

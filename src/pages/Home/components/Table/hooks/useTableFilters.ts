@@ -87,7 +87,7 @@ export function useTableFilters({
         setActiveValue('');
       }
     },
-    [columnFilters]
+    [columnFilters],
   );
 
   const handleFilterClick = useCallback(
@@ -107,7 +107,7 @@ export function useTableFilters({
       }
       setIsFilterOpen((prev) => !prev);
     },
-    [isFilterOpen, activeFilterColumn, table, updateFilterStateForColumn]
+    [isFilterOpen, activeFilterColumn, table, updateFilterStateForColumn],
   );
 
   const handleFilterOpenFromMenu = useCallback(
@@ -126,7 +126,7 @@ export function useTableFilters({
       updateFilterStateForColumn(columnId);
       setIsFilterOpen(true);
     },
-    [activeFilterColumn, table, updateFilterStateForColumn, isHeaderVisible]
+    [activeFilterColumn, table, updateFilterStateForColumn, isHeaderVisible],
   );
 
   const handleFilterSave = useCallback(() => {
@@ -158,7 +158,7 @@ export function useTableFilters({
       setActiveFilterColumn(newCol);
       updateFilterStateForColumn(newCol);
     },
-    [activeFilterColumn, table, updateFilterStateForColumn]
+    [activeFilterColumn, table, updateFilterStateForColumn],
   );
 
   const handleMenuOpen = useCallback(() => {
