@@ -15,30 +15,42 @@
   --color-secondary: #0a0a0a;
   --color-glass: #0a0a0f;
 
-  --shadow-dropdown: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glass-lg: 0 20px 50px rgba(0, 0, 0, 0.5);
+  /* Premium Gradients */
+  --gradient-background: radial-gradient(
+    circle at 50% 0%,
+    rgba(56, 189, 248, 0.15) 0%,
+    rgba(124, 58, 237, 0.1) 40%,
+    transparent 80%
+  );
 
-  --shadow-glow-reddit: 0 0 20px rgba(255, 69, 0, 0.2);
-  --shadow-glow-twitter: 0 0 20px rgba(29, 161, 242, 0.2);
-  --shadow-glow-facebook: 0 0 20px rgba(24, 119, 242, 0.2);
+  /* Standardized Shadows */
+  --shadow-popover: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+  --shadow-highlight-violet: 0 8px 32px rgba(124, 58, 237, 0.1);
+  --shadow-highlight-neutral: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  /* Semantic Glows */
+  --shadow-glow-primary: 0 0 20px rgba(139, 92, 246, 0.3); /* Violet */
+  --shadow-glow-accent: 0 0 15px rgba(0, 240, 255, 0.3); /* Cyan */
+
+  --shadow-glow-positive-sm: 0 0 10px rgba(0, 255, 157, 0.15);
+
   --shadow-glow-negative: 0 0 20px rgba(239, 68, 68, 0.2);
+  --shadow-glow-negative-lg: 0 0 50px rgba(239, 68, 68, 0.2);
+  --shadow-glow-negative-sm: 0 0 10px rgba(239, 68, 68, 0.15);
 
-  --shadow-glow-violet: 0 0 20px rgba(139, 92, 246, 0.4);
-  --shadow-glow-violet-sm: 0 0 15px rgba(139, 92, 246, 0.2);
-  --shadow-glow-violet-xs: 0 0 15px rgba(139, 92, 246, 0.1);
+  --shadow-glow-neutral: 0 0 20px rgba(255, 255, 255, 0.2); /* White */
+  --shadow-glow-neutral-sm: 0 0 10px rgba(255, 255, 255, 0.2);
+  --shadow-badge: 0 2px 4px rgba(0, 0, 0, 0.2); /* Small elements/icons */
 
-  --shadow-glow-cyan: 0 0 15px rgba(0, 240, 255, 0.3);
-  --shadow-glow-cyan-sm: 0 0 10px rgba(0, 240, 255, 0.1);
-
-  --shadow-glow-white: 0 0 20px rgba(255, 255, 255, 0.2);
-  --shadow-glow-white-sm: 0 0 15px rgba(255, 255, 255, 0.05);
-  --drop-shadow-glow-white: 0 0 20px rgba(255, 255, 255, 0.2);
-  --drop-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Drop Shadows */
+  --drop-shadow-glow-negative: 0 0 8px rgba(239, 68, 68, 0.5);
+  --drop-shadow-text: 0 2px 4px rgba(0, 0, 0, 0.3); /* Slightly darker for text legibility */
+  --drop-shadow-text-lg: 0 4px 6px rgba(0, 0, 0, 0.4);
 
   --shadow-glass-button: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  --shadow-glass-button-hover: 0 0 15px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  --shadow-glass-button-hover:
+    0 0 15px rgba(255, 255, 255, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }
 
 @layer base {
@@ -48,10 +60,23 @@
     overscroll-behavior-x: none;
     overflow-x: hidden;
     min-width: 100%;
-    background-color: #000000;
-    background-attachment: fixed;
+    background-color: #000;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      var(--gradient-background);
+    background-repeat: repeat, repeat, no-repeat;
+    background-size:
+      40px 40px,
+      40px 40px,
+      100% 900px;
+    background-attachment: scroll;
     color: #ffffff;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   #root {
@@ -86,15 +111,21 @@ input[type='number'] {
 .custom-scrollbar::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.02);
   border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 .custom-scrollbar::-webkit-scrollbar-corner {

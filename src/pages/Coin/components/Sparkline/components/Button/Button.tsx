@@ -30,7 +30,7 @@ export default function ButtonComponent({
       {isActive && (
         <motion.div
           layoutId={layoutId}
-          className='absolute inset-0 bg-brand-violet shadow-glow-violet border border-white/20 rounded-lg sm:rounded-lg overflow-hidden'
+          className='absolute inset-0 bg-brand-violet shadow-glow-primary border border-white/20 rounded-lg sm:rounded-lg overflow-hidden'
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
           {/* Shine effect */}

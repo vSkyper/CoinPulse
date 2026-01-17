@@ -8,10 +8,10 @@ export default function Title() {
       <Link
         to='/'
         title='Go to Homepage'
-        className='flex items-center justify-center rounded-lg sm:rounded-lg transition-all duration-300 ease-out relative overflow-hidden group bg-linear-to-br from-brand-violet to-brand-violet-light border border-white/10 hover:-translate-y-0.5 hover:scale-105 hover:shadow-glow-violet active:-translate-y-px active:scale-[1.02] p-1 sm:p-1.5 text-white shadow-glow-violet-sm'
+        className='flex items-center justify-center rounded-lg sm:rounded-lg transition-all duration-300 ease-out relative overflow-hidden group bg-linear-to-br from-brand-violet to-brand-violet-light border border-white/10 hover:-translate-y-0.5 hover:scale-105 active:-translate-y-px active:scale-[1.02] p-1 sm:p-1.5 text-white shadow-glow-primary'
       >
         <span className='absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/30 to-transparent transition-all duration-500 group-hover:left-full' />
-        <TrendingUpIcon className='text-[1rem]! sm:text-[1rem]! drop-shadow-sm' />
+        <TrendingUpIcon className='text-[1rem]! sm:text-[1rem]! drop-shadow-text' />
       </Link>
 
       {/* Desktop Title */}

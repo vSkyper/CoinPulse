@@ -77,8 +77,8 @@ export default function FilterPanel({
       }}
       className={
         position
-          ? `w-[90vw] sm:w-80 h-fit bg-white/2 backdrop-blur-xl border border-white/5 rounded-2xl sm:rounded-2xl shadow-glass-lg p-3 sm:p-5`
-          : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-[90vw] sm:w-80 h-fit bg-white/2 backdrop-blur-xl border border-white/5 rounded-2xl sm:rounded-2xl shadow-glass-lg p-3 sm:p-5'
+          ? `w-[90vw] sm:w-80 h-fit bg-white/2 backdrop-blur-xl border border-white/5 rounded-2xl sm:rounded-2xl shadow-popover p-3 sm:p-5`
+          : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-[90vw] sm:w-80 h-fit bg-white/2 backdrop-blur-xl border border-white/5 rounded-2xl sm:rounded-2xl shadow-popover p-3 sm:p-5'
       }
       onMouseDown={(e) => e.stopPropagation()}
       enter='transition ease-out duration-300'
@@ -143,7 +143,7 @@ export default function FilterPanel({
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl bg-black/90 backdrop-blur-xl border border-white/10 py-1 text-xs shadow-glass-lg focus:outline-none z-50'
+                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-xl bg-black/90 border border-white/10 ring-1 ring-white/5 py-1 text-xs shadow-popover focus:outline-none z-50'
                   >
                     {table.getAllColumns().map((column) => (
                       <ListboxOption
@@ -208,7 +208,7 @@ export default function FilterPanel({
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto rounded-xl bg-black/90 backdrop-blur-xl border border-white/10 py-1 text-xs shadow-glass-lg focus:outline-none z-50'
+                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-xl bg-black/90 border border-white/10 ring-1 ring-white/5 py-1 text-xs shadow-popover focus:outline-none z-50'
                   >
                     {getOperatorsForColumn(activeFilterColumn).map((op) => (
                       <ListboxOption
@@ -279,7 +279,7 @@ export default function FilterPanel({
         </button>
         <button
           onClick={handleFilterSave}
-          className='px-4 py-2 text-xs font-bold text-white bg-brand-violet hover:bg-brand-violet/90 rounded-xl shadow-lg shadow-brand-violet/20 ring-1 ring-white/10 transition-all duration-200'
+          className='px-4 py-2 text-xs font-bold text-white bg-brand-violet hover:bg-brand-violet/90 rounded-xl shadow-glow-primary ring-1 ring-white/10 transition-all duration-200'
         >
           Apply Filter
         </button>

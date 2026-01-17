@@ -38,7 +38,7 @@ export default function Links({ data }: LinksProps) {
     new URL(url).hostname.replace('www.', '');
 
   return (
-    <div className='mt-6 sm:mt-4 p-4 sm:p-5 rounded-3xl bg-white/2 border border-white/5 shadow-dropdown'>
+    <div className='mt-6 sm:mt-4 p-4 sm:p-5 rounded-3xl bg-white/2 border border-white/5 shadow-highlight-neutral'>
       {/* Official Links */}
       <h3 className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-widest mb-3 sm:mb-4'>
         Official Links
@@ -51,7 +51,7 @@ export default function Links({ data }: LinksProps) {
               <img
                 src={image?.large}
                 alt='logo'
-                className='w-5 h-5 rounded-full object-cover shadow-sm'
+                className='w-5 h-5 rounded-full object-cover shadow-badge'
               />
             }
           >

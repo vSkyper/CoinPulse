@@ -64,7 +64,7 @@ export default function ChartComponent({ sparkline, days }: ChartProps) {
     if (!active || !payload || !payload.length) return null;
 
     return (
-      <div className='bg-black/90 border border-white/10 rounded-xl px-4 py-3 shadow-glass-lg'>
+      <div className='bg-black/90 border border-white/10 rounded-xl px-4 py-3 shadow-popover'>
         <div className='text-[0.6rem] text-white/40 mb-1 font-bold uppercase tracking-wider'>
           {format(new Date(label ?? 0), 'MMM d, yyyy, hh:mm a')}
         </div>

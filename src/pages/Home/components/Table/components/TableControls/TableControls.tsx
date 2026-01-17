@@ -21,7 +21,7 @@ export default function TableControls({
             value={globalFilter ?? ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
             placeholder='Search coins...'
-            className='bg-white/2 border border-white/5 ring-1 ring-white/5 rounded-xl sm:rounded-xl py-2 sm:py-1.5 pl-9 sm:pl-9 pr-3 sm:pr-3 text-xs sm:text-xs text-white/90 placeholder-white/40 focus:outline-none focus:border-white/20 focus:bg-white/5 focus:shadow-glow-white-sm focus:ring-brand-violet/40 transition-all duration-300 w-full sm:w-56 hover:bg-white/5 hover:border-white/10'
+            className='bg-white/2 border border-white/5 ring-1 ring-white/5 rounded-xl sm:rounded-xl py-2 sm:py-1.5 pl-9 sm:pl-9 pr-3 sm:pr-3 text-xs sm:text-xs text-white/90 placeholder-white/40 focus:outline-none focus:border-white/20 focus:bg-white/5 focus:shadow-glow-neutral focus:ring-brand-violet/40 transition-all duration-300 w-full sm:w-56 hover:bg-white/5 hover:border-white/10'
           />
         </div>
         <button
@@ -29,8 +29,8 @@ export default function TableControls({
           onClick={handleFilterClick}
           className={`flex items-center gap-1.5 sm:gap-1.5 px-3 sm:px-3 py-2 sm:py-1.5 rounded-xl sm:rounded-xl transition-all duration-300 border font-medium text-xs sm:text-xs ${
             isFilterOpen
-              ? 'bg-brand-violet/10 text-brand-violet border-brand-violet/20 shadow-glow-violet-xs ring-1 ring-brand-violet/20'
-              : 'bg-white/2 text-white/70 border-white/5 hover:text-white hover:bg-white/5 hover:border-white/10 ring-1 ring-white/5 hover:shadow-lg hover:shadow-white/5'
+              ? 'bg-brand-violet/10 text-brand-violet border-brand-violet/20 shadow-glow-primary ring-1 ring-brand-violet/20'
+              : 'bg-white/2 text-white/70 border-white/5 hover:text-white hover:bg-white/5 hover:border-white/10 ring-1 ring-white/5 hover:shadow-glow-neutral'
           }`}
         >
           <MdFilterList className='w-4 h-4 sm:w-4 sm:h-4' />

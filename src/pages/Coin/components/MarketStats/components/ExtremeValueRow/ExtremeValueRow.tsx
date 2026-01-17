@@ -1,4 +1,3 @@
-import { PercentageBadge } from './components';
 import { ExtremeValueRowProps } from './interface';
 import { format } from 'date-fns';
 import { formatCurrency } from 'utils/formatters';
@@ -11,7 +10,7 @@ export default function ExtremeValueRow({
   icon: Icon,
 }: ExtremeValueRowProps) {
   return (
-    <div className='flex flex-col h-full bg-white/2 border border-white/5 rounded-2xl p-2.5 sm:p-3.5 overflow-hidden relative shadow-lg'>
+    <div className='flex flex-col h-full bg-white/2 border border-white/5 rounded-2xl p-2.5 sm:p-3.5 overflow-hidden relative shadow-highlight-neutral'>
       {/* Header */}
       <div className='flex justify-between items-start w-full mb-1'>
         <span className='text-[0.6rem] uppercase tracking-widest font-bold text-white/50'>
@@ -29,7 +28,16 @@ export default function ExtremeValueRow({
         <div className='font-bold text-lg sm:text-xl text-white tracking-tight'>
           {formatCurrency(price)}
         </div>
-        <PercentageBadge value={percentage} />
+        <div
+          className={`text-[0.6rem] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5 ${
+            percentage >= 0
+              ? 'bg-brand-positive/10 text-brand-positive shadow-glow-positive-sm'
+              : 'bg-brand-negative/10 text-brand-negative shadow-glow-negative-sm'
+          }`}
+        >
+          {percentage >= 0 && '+'}
+          {percentage.toFixed(2)}%
+        </div>
       </div>
 
       {/* Footer: Date */}

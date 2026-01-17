@@ -21,7 +21,7 @@ function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
       onClick={(e) => e.stopPropagation()}
       className='flex items-center gap-3 sm:gap-2 group relative w-full'
     >
-      <div className='w-8 h-8 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-sm group-hover:scale-110 transition-transform duration-300'>
+      <div className='w-8 h-8 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-badge group-hover:scale-110 transition-transform duration-300'>
         <img
           src={row.image}
           alt={`${value} logo`}

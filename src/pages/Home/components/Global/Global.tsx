@@ -15,7 +15,7 @@ export default function Global({ globalData }: GlobalProps) {
         <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-3'>
           {/* Header and Description */}
           <div className='flex-1'>
-            <h1 className='text-2xl sm:text-2xl font-black mb-4 sm:mb-1.5 tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40 drop-shadow-sm'>
+            <h1 className='text-2xl sm:text-2xl font-black mb-4 sm:mb-1.5 tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40 drop-shadow-text'>
               Global Cryptocurrency Market
             </h1>
             <Description globalData={globalData} />

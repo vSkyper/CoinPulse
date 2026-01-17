@@ -18,7 +18,7 @@ export default function ErrorModal({
       />
 
       {/* Modal Card */}
-      <div className='relative w-full max-w-sm transform overflow-hidden rounded-3xl bg-[#09090b] border border-red-500/20 shadow-[0_0_50px_rgba(239,68,68,0.15)] transition-all animate-in zoom-in-95 duration-300'>
+      <div className='relative w-full max-w-sm transform overflow-hidden rounded-3xl bg-[#09090b] border border-red-500/20 shadow-glow-negative-lg transition-all animate-in zoom-in-95 duration-300'>
         {/* Glow effect */}
         <div className='absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-red-500/50 to-transparent opacity-50' />
 
@@ -26,7 +26,7 @@ export default function ErrorModal({
           {/* Icon Container */}
           <div className='w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-6 ring-1 ring-red-500/20 shadow-glow-negative animate-pulse'>
             <svg
-              className='w-8 h-8 text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]'
+              className='w-8 h-8 text-red-500 drop-shadow-glow-negative'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'

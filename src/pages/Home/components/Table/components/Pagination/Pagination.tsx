@@ -57,7 +57,7 @@ export default function Pagination({
                 leaveFrom='opacity-100'
                 leaveTo='opacity-0'
               >
-                <ListboxOptions className='absolute bottom-full mb-2 max-h-60 w-full overflow-auto rounded-xl bg-black/90 backdrop-blur-xl border border-white/10 py-1 text-[10px] sm:text-xs shadow-glass-lg ring-1 ring-white/5 focus:outline-none z-50 min-w-15 sm:min-w-20'>
+                <ListboxOptions className='absolute bottom-full mb-2 max-h-60 w-full overflow-auto rounded-xl bg-black/90 backdrop-blur-xl border border-white/10 py-1 text-[10px] sm:text-xs shadow-popover ring-1 ring-white/5 focus:outline-none z-50 min-w-15 sm:min-w-20'>
                   {[50, 100].map((size) => (
                     <ListboxOption
                       key={size}

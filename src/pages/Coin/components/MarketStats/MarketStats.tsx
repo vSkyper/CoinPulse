@@ -43,7 +43,7 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
           label='Market Cap Rank'
           value={
             <div className='flex items-center gap-2'>
-              <span className='font-bold text-lg text-amber-400 drop-shadow-sm'>
+              <span className='font-bold text-lg text-amber-400 drop-shadow-text'>
                 {marketData.market_cap_rank
                   ? `#${marketData.market_cap_rank}`
                   : 'N/A'}
