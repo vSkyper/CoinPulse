@@ -1,3 +1,5 @@
+import BigNumber from 'bignumber.js';
+
 /**
  * Formatting utilities for consistent data display across the application
  */
@@ -56,7 +58,7 @@ export const formatCurrency = (value: number | null | undefined): string => {
  * Format a number as compact currency (no decimals)
  */
 export const formatCompactCurrency = (
-  value: number | null | undefined
+  value: number | null | undefined,
 ): string => {
   if (value == null) return 'N/A';
   return compactCurrencyFormatter.format(value);
@@ -76,7 +78,7 @@ export const formatPercentage = (value: number | null | undefined): string => {
  * Example: 1200000 -> "1.2M"
  */
 export const formatCompactNumber = (
-  value: number | null | undefined
+  value: number | null | undefined,
 ): string => {
   if (value == null) return 'N/A';
   return compactNumberFormatter.format(value);
@@ -88,7 +90,7 @@ export const formatCompactNumber = (
  */
 export const formatNumber = (
   value: number | null | undefined,
-  maximumFractionDigits?: number
+  maximumFractionDigits?: number,
 ): string => {
   if (value == null) return 'N/A';
   if (maximumFractionDigits !== undefined) {
@@ -115,4 +117,17 @@ export const formatRateWithSuffix = (rate: number, currency: string) => {
     .join('')
     .trim();
   return `${val} ${symbol}`;
+};
+
+/**
+ * Format a number to its full string representation without scientific notation
+ * Uses toLocaleString with useGrouping: false to avoid commas and ensure full digits are shown
+ */
+export const formatToFullPrecision = (
+  value: number | string | BigNumber | null | undefined,
+): string => {
+  if (value == null || value === '') return '';
+  const bn = new BigNumber(value);
+  if (bn.isNaN()) return '';
+  return bn.toFixed();
 };

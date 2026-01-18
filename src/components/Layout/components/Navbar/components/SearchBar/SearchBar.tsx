@@ -12,7 +12,6 @@ import { ErrorModal } from 'components';
 import { CoinOption, EmptyState, SearchIconContainer } from './components';
 import { useNavbar } from 'context/NavbarContext';
 
-const MAX_RESULTS = 8;
 const BLUR_DELAY = 100;
 
 export default function SearchBar() {
@@ -31,7 +30,7 @@ export default function SearchBar() {
           .filter((coin) =>
             coin.name.toLowerCase().startsWith(query.toLowerCase()),
           )
-          .slice(0, MAX_RESULTS);
+          .slice(0, 50);
 
   const handleChange = (coin: CoinsListResponse | null) => {
     if (!coin) return;
@@ -95,7 +94,7 @@ export default function SearchBar() {
         >
           <ComboboxOptions
             modal={false}
-            className={`absolute mt-3 w-full overflow-hidden rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-1.5 ${
+            className={`absolute mt-3 w-full overflow-hidden rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-1.5 max-h-75 overflow-y-auto custom-scrollbar ${
               !hasQuery ? 'invisible' : ''
             }`}
           >

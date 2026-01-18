@@ -8,6 +8,7 @@ import {
   CoinHeader,
   AnimatedSection,
   Skeleton,
+  ProjectInfo,
 } from './components';
 import { ErrorModal } from 'components';
 import { CoinResponse } from 'interfaces';
@@ -19,14 +20,15 @@ const ANIMATION_DELAYS = {
   chart: 100,
   priceCard: 200,
   marketStats: 300,
-  currencyConverter: 400,
-  links: 500,
+  projectInfo: 400,
+  currencyConverter: 500,
+  links: 600,
 };
 
 export default function Coin() {
   const { id } = useParams();
   const { data, error } = useFetch<CoinResponse>(
-    id ? API_ENDPOINTS.coin(id) : undefined
+    id ? API_ENDPOINTS.coin(id) : undefined,
   );
 
   const animations = useStaggeredAnimation(ANIMATION_DELAYS, !!data);
@@ -65,6 +67,13 @@ export default function Coin() {
           <div className='sm:col-span-8'>
             <AnimatedSection show={animations.marketStats}>
               <MarketStats marketData={data.market_data} />
+            </AnimatedSection>
+
+            <AnimatedSection show={animations.projectInfo} className='mt-8'>
+              <ProjectInfo
+                description={data.description?.en}
+                developerData={data.developer_data}
+              />
             </AnimatedSection>
           </div>
 

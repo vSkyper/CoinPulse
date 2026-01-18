@@ -3,6 +3,7 @@
 @theme {
   --color-brand-violet: #8b5cf6;
   --color-brand-violet-light: #a78bfa;
+  --color-brand-accent: #38bdf8;
   --color-brand-positive: #00ff9d;
   --color-brand-negative: #ff0055;
   --color-brand-bitcoin: #f7931a;
@@ -10,6 +11,7 @@
   --color-brand-reddit: #ff4500;
   --color-brand-twitter: #1da1f2;
   --color-brand-facebook: #1877f2;
+  --color-brand-github: #ffffff;
 
   --color-primary: #050505;
   --color-secondary: #0a0a0a;

@@ -42,9 +42,49 @@ export default function CurrencyInput({
           <input
             autoComplete='off'
             className='w-full bg-transparent focus:outline-none text-white font-mono text-right text-lg font-bold tracking-tight outline-none placeholder-white/10 hover:placeholder-white/20 transition-colors'
-            type='number'
+            type='text'
+            inputMode='decimal'
             value={value}
-            onChange={onChange}
+            onChange={(e) => {
+              const start = e.target.selectionStart || 0;
+              const originalVal = e.target.value;
+              let val = originalVal;
+
+              // 1. Replace commas with dots
+              val = val.replace(/,/g, '.');
+
+              // 2. Remove anything that is not a digit or a dot
+              let cleanVal = val.replace(/[^0-9.]/g, '');
+
+              // 3. Handle multiple dots
+              // If we have more than one dot, we revert to the previous valid value (prop value)
+              // This effectively blocks the second dot
+              const dotCount = (cleanVal.match(/\./g) || []).length;
+              if (dotCount > 1) {
+                cleanVal = value; // Revert to prop value
+              }
+
+              // Calculate new cursor position
+              // Default: keep cursor where it is
+              let newCursor = start;
+
+              // Adjust cursor based on length difference
+              const diff = originalVal.length - cleanVal.length;
+              if (diff > 0) {
+                newCursor = Math.max(0, start - diff);
+              }
+
+              // If the value changed from what was typed (either sanitized or reverted), update DOM immediately
+              if (originalVal !== cleanVal) {
+                e.target.value = cleanVal;
+                e.target.setSelectionRange(newCursor, newCursor);
+              }
+
+              // Pass the clean value to parent
+              // We modify the event's target value so parent receives clean data
+              e.target.value = cleanVal;
+              onChange(e);
+            }}
             placeholder='0'
           />
         </div>

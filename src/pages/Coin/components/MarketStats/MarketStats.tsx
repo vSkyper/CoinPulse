@@ -1,5 +1,5 @@
 import { MarketStatsProps } from './interface';
-import { ExtremeValueRow, StatRow } from './components';
+import { ExtremeValueRow, StatRow, Tooltip } from './components';
 import { formatCurrency, formatNumber } from 'utils/formatters';
 import {
   MdEmojiEvents,
@@ -20,30 +20,12 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
   return (
     <div className='flex flex-col gap-4 mb-8'>
       {/* Heavy Hero Stats - Row 1 */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4'>
-        <StatRow
-          label='Market Capitalization'
-          value={formatCurrency(marketData.market_cap?.usd || 0)}
-          icon={MdAttachMoney}
-          variant='hero'
-          className='min-h-22.5'
-        />
-        <StatRow
-          label='24h Trading Volume'
-          value={formatCurrency(marketData.total_volume?.usd || 0)}
-          icon={MdBarChart}
-          variant='hero'
-          className='min-h-22.5'
-        />
-      </div>
-
-      {/* Secondary Stats - Row 2 */}
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4'>
         <StatRow
           label='Market Cap Rank'
           value={
             <div className='flex items-center gap-2'>
-              <span className='font-bold text-lg text-amber-400 drop-shadow-text'>
+              <span className='font-bold text-base sm:text-xl text-brand-violet drop-shadow-text'>
                 {marketData.market_cap_rank
                   ? `#${marketData.market_cap_rank}`
                   : 'N/A'}
@@ -51,6 +33,38 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
             </div>
           }
           icon={MdEmojiEvents}
+          variant='hero'
+          className='min-h-20.5'
+        />
+        <StatRow
+          label='Market Capitalization'
+          value={formatCurrency(marketData.market_cap?.usd || 0)}
+          icon={MdAttachMoney}
+          variant='hero'
+          className='min-h-20.5'
+        />
+        <StatRow
+          label='24h Trading Volume'
+          value={formatCurrency(marketData.total_volume?.usd || 0)}
+          icon={MdBarChart}
+          variant='hero'
+          className='min-h-20.5'
+        />
+      </div>
+
+      {/* Secondary Stats - Row 2 */}
+      <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4'>
+        <StatRow
+          label={
+            <>
+              <span className='sm:hidden'>FDV</span>
+              <span className='hidden sm:inline'>Fully Diluted Valuation</span>
+            </>
+          }
+          value={formatCurrency(
+            (marketData.fully_diluted_valuation as { usd: number })?.usd || 0,
+          )}
+          icon={MdToken}
         />
         <StatRow
           label='Volume / Market Cap'
@@ -75,12 +89,14 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
           label='24h Range'
           value={
             <div className='flex items-baseline gap-2 mt-1'>
-              <span className='text-brand-negative font-bold text-lg'>
-                {formatCurrency(marketData.low_24h?.usd || 0)}
+              <span className='text-brand-negative font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]'>
+                <Tooltip value={formatCurrency(marketData.low_24h?.usd || 0)} />
               </span>
-              <span className='text-white/20 text-xs'>/</span>
-              <span className='text-brand-positive font-bold text-lg'>
-                {formatCurrency(marketData.high_24h?.usd || 0)}
+              <span className='text-white/20 text-sm'>/</span>
+              <span className='text-brand-positive font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]'>
+                <Tooltip
+                  value={formatCurrency(marketData.high_24h?.usd || 0)}
+                />
               </span>
             </div>
           }

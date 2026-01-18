@@ -1,7 +1,7 @@
 import { IconType } from 'react-icons';
 
 export interface StatRowProps {
-  label: string;
+  label: React.ReactNode;
   value: React.ReactNode;
   className?: string;
   icon?: IconType;

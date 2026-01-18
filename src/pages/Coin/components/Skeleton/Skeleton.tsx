@@ -54,9 +54,9 @@ export default function Skeleton() {
         <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-8 sm:mt-6'>
           {/* Stats Grid */}
           <div className='sm:col-span-8 flex flex-col gap-4 sm:gap-4'>
-            {/* Row 1: Hero Stats (2 cols) */}
-            <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
-              {[1, 2].map((i) => (
+            {/* Row 1: Hero Stats (3 cols) */}
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4'>
+              {[1, 2, 3].map((i) => (
                 <div
                   key={i}
                   className='h-[90px] rounded-2xl bg-white/2 animate-pulse border border-white/5 shadow-highlight-neutral'
@@ -65,7 +65,7 @@ export default function Skeleton() {
             </div>
 
             {/* Row 2: Secondary Stats (4 cols) */}
-            <div className='grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4'>
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
@@ -75,7 +75,7 @@ export default function Skeleton() {
             </div>
 
             {/* Row 3: Range & Extreme Stats (3 cols) */}
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-3'>
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}

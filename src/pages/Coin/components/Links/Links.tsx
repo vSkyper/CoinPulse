@@ -108,6 +108,7 @@ export default function Links({ data }: LinksProps) {
           <ChipLink
             href={links.repos_url.github[0]}
             left={<GitHubIcon size={16} />}
+            className='hover:border-brand-github/30 hover:bg-brand-github/10 hover:text-brand-github'
           >
             {SOCIAL_LINKS.github.label}
           </ChipLink>
@@ -131,7 +132,7 @@ export default function Links({ data }: LinksProps) {
                   >
                     {extractHostname(blockchain)}
                   </ChipLink>
-                )
+                ),
             )}
           </div>
         </>

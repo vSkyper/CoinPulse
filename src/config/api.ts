@@ -13,7 +13,7 @@ const BASE_URL = 'https://api.coingecko.com/api/v3';
  */
 const buildUrl = (
   endpoint: string,
-  params: Record<string, string | number> = {}
+  params: Record<string, string | number> = {},
 ): string => {
   const url = new URL(`${BASE_URL}${endpoint}`);
 
@@ -62,8 +62,8 @@ export const API_ENDPOINTS = {
       localization: 'false',
       tickers: 'false',
       market_data: 'true',
-      community_data: 'false',
-      developer_data: 'false',
+      community_data: 'true',
+      developer_data: 'true',
       sparkline: 'false',
     }),
 

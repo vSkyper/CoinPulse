@@ -14,7 +14,8 @@ import { ErrorModal } from 'components';
 import { CurrencyConverterProps } from './interface';
 import { CurrencyInput } from './components';
 import { API_ENDPOINTS } from 'config/api';
-import { formatRateWithSuffix } from 'utils/formatters';
+import { formatRateWithSuffix, formatToFullPrecision } from 'utils/formatters';
+import BigNumber from 'bignumber.js';
 
 const MAX_DROPDOWN_ITEMS = 5;
 
@@ -27,17 +28,17 @@ export default function CurrencyConverter({
   const [cryptoAmount, setCryptoAmount] = useState<string>('');
   const [currencyAmount, setCurrencyAmount] = useState<string>('');
   const [lastEditedField, setLastEditedField] = useState<'crypto' | 'currency'>(
-    'crypto'
+    'crypto',
   );
   const [isLoadingRate, setIsLoadingRate] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
 
   const { data: currencies, error: currenciesError } = useFetch<string[]>(
-    API_ENDPOINTS.supportedCurrencies()
+    API_ENDPOINTS.supportedCurrencies(),
   );
   const { data: exchangeRate, error: exchangeRateError } =
     useFetch<CryptoPriceResponse>(
-      API_ENDPOINTS.exchangeRate(id, currencyOption)
+      API_ENDPOINTS.exchangeRate(id, currencyOption),
     );
 
   const currentRate = exchangeRate?.[id]?.[currencyOption];
@@ -75,13 +76,19 @@ export default function CurrencyConverter({
     if (!rate) return;
 
     if (lastEditedField === 'crypto' && cryptoAmount) {
-      const currencyValue = Number(cryptoAmount) * rate;
+      const rateBn = new BigNumber(rate);
+      const cryptoBn = new BigNumber(cryptoAmount);
+      const currencyValue = cryptoBn.multipliedBy(rateBn);
       setCurrencyAmount(
-        isFinite(currencyValue) ? currencyValue.toString() : ''
+        !currencyValue.isNaN() ? formatToFullPrecision(currencyValue) : '',
       );
     } else if (lastEditedField === 'currency' && currencyAmount) {
-      const cryptoValue = Number(currencyAmount) / rate;
-      setCryptoAmount(isFinite(cryptoValue) ? cryptoValue.toString() : '');
+      const rateBn = new BigNumber(rate);
+      const currencyBn = new BigNumber(currencyAmount);
+      const cryptoValue = currencyBn.dividedBy(rateBn);
+      setCryptoAmount(
+        !cryptoValue.isNaN() ? formatToFullPrecision(cryptoValue) : '',
+      );
     }
   }, [
     exchangeRate,
@@ -122,15 +129,18 @@ export default function CurrencyConverter({
 
   const handleCryptoInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
     setCryptoAmount(value);
     setLastEditedField('crypto');
 
-    if (value && exchangeRate) {
+    if (value && value !== '.' && exchangeRate) {
       const rate = exchangeRate[id]?.[currencyOption];
       if (rate) {
-        const currencyValue = Number(value) * rate;
+        const rateBn = new BigNumber(rate);
+        const valueBn = new BigNumber(value);
+        const currencyValue = valueBn.multipliedBy(rateBn);
         setCurrencyAmount(
-          isFinite(currencyValue) ? currencyValue.toString() : ''
+          !currencyValue.isNaN() ? formatToFullPrecision(currencyValue) : '',
         );
       }
     } else {
@@ -139,17 +149,22 @@ export default function CurrencyConverter({
   };
 
   const handleCurrencyInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const value = e.target.value;
+
     setCurrencyAmount(value);
     setLastEditedField('currency');
 
-    if (value && exchangeRate) {
+    if (value && value !== '.' && exchangeRate) {
       const rate = exchangeRate[id]?.[currencyOption];
       if (rate) {
-        const cryptoValue = Number(value) / rate;
-        setCryptoAmount(isFinite(cryptoValue) ? cryptoValue.toString() : '');
+        const rateBn = new BigNumber(rate);
+        const valueBn = new BigNumber(value);
+        const cryptoValue = valueBn.dividedBy(rateBn);
+        setCryptoAmount(
+          !cryptoValue.isNaN() ? formatToFullPrecision(cryptoValue) : '',
+        );
       }
     } else {
       setCryptoAmount('');

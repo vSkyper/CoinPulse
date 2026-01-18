@@ -103,7 +103,7 @@ export interface MarketDataResponse {
   last_updated?: Date;
 }
 
-interface CommunityData {
+export interface CommunityData {
   facebook_likes?: null;
   twitter_followers?: number;
   reddit_average_posts_48h?: number;
@@ -113,7 +113,7 @@ interface CommunityData {
   telegram_channel_user_count?: number;
 }
 
-interface DeveloperData {
+export interface DeveloperData {
   forks?: number;
   stars?: number;
   subscribers?: number;

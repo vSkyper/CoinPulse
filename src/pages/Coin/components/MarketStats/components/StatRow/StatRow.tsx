@@ -1,4 +1,5 @@
 import { StatRowProps } from './interface';
+import TruncatedTooltip from '../Tooltip/Tooltip';
 
 export default function StatRow({
   label,
@@ -45,13 +46,12 @@ export default function StatRow({
 
       <div className='relative z-10 mt-1 pt-0'>
         {typeof value === 'string' || typeof value === 'number' ? (
-          <div
-            className={`font-bold tracking-tight text-white w-full truncate ${
-              isHero ? 'text-lg sm:text-xl' : 'text-lg'
+          <TruncatedTooltip
+            value={value}
+            className={`font-bold tracking-tight text-white w-full truncate text-left focus:outline-none cursor-pointer active:opacity-80 transition-opacity ${
+              isHero ? 'text-base sm:text-xl' : 'text-base sm:text-lg'
             }`}
-          >
-            {value}
-          </div>
+          />
         ) : (
           <div className='relative z-10'>{value}</div>
         )}
