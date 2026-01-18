@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
-import { ButtonComponent, ChartComponent } from './components';
+import { Button, Chart } from './components';
 import { InlineLoader } from 'components';
 import { SparklineResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
@@ -32,7 +32,7 @@ export default function Sparkline({ id }: SparklineProps) {
       <div className='mb-4 sm:mb-3 flex justify-end'>
         <div className='flex gap-1.5 sm:gap-1.5 p-1 sm:p-1 bg-white/2 rounded-xl sm:rounded-xl border border-white/5 shadow-highlight-neutral'>
           {buttons.map((button) => (
-            <ButtonComponent
+            <Button
               key={button.days}
               {...button}
               setDays={setDays}
@@ -44,7 +44,7 @@ export default function Sparkline({ id }: SparklineProps) {
       </div>
 
       {/* Chart Container */}
-      <div className='relative w-full overflow-hidden sm:p-0 bg-transparent h-[250px] sm:h-[450px] transition-all duration-500'>
+      <div className='relative w-full overflow-hidden sm:p-0 bg-transparent h-62.5 sm:h-112.5 transition-all duration-500'>
         {/* Loading State */}
         {!data && !error && (
           <div className='absolute inset-0 z-20 flex items-center justify-center bg-transparent'>
@@ -59,9 +59,7 @@ export default function Sparkline({ id }: SparklineProps) {
           </div>
         )}
 
-        {sparkline && !error && (
-          <ChartComponent sparkline={sparkline} days={days} />
-        )}
+        {sparkline && !error && <Chart sparkline={sparkline} days={days} />}
       </div>
     </>
   );

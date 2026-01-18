@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ButtonProps } from './interface';
 
-export default function ButtonComponent({
+export default function Button({
   days,
   daysFormatted,
   setDays,

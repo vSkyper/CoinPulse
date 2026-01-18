@@ -13,27 +13,9 @@ import {
   MdKeyboardArrowDown,
   MdCheck,
 } from 'react-icons/md';
-import { Table } from '@tanstack/react-table';
 import { getOperatorsForColumn } from 'utils/table';
-import { useFilterPosition } from '../../hooks/useFilterPosition';
-
-interface FilterPanelProps {
-  isFilterOpen: boolean;
-  filterRef: React.RefObject<HTMLDivElement | null>;
-  setIsFilterOpen: (value: boolean) => void;
-  activeFilterColumn: string;
-  handleColumnChange: (newCol: string) => void;
-  table: Table<any>;
-  activeOperator: string;
-  setActiveOperator: (value: string) => void;
-  activeValue: string;
-  setActiveValue: (value: string) => void;
-  handleFilterClear: () => void;
-  handleFilterSave: () => void;
-  anchorEl: HTMLElement | null;
-  isAnchoring?: boolean;
-  isHeaderVisible: boolean;
-}
+import { useFilterPosition } from './hooks';
+import { FilterPanelProps } from './interface';
 
 export default function FilterPanel({
   isFilterOpen,
@@ -71,7 +53,7 @@ export default function FilterPanel({
     anchorEl,
     filterRef,
     isHeaderVisible,
-    align,
+    align
   );
 
   return createPortal(
@@ -300,6 +282,6 @@ export default function FilterPanel({
         </button>
       </div>
     </Transition>,
-    document.body,
+    document.body
   );
 }

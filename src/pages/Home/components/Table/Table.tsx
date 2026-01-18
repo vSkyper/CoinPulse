@@ -16,13 +16,14 @@ import { useNavigate } from 'react-router-dom';
 import { TableProps } from './interface';
 import { columns } from 'constants/dataTable';
 import { PAGINATION_CONFIG, customFilterFn } from 'utils/table';
-import TableControls from './components/TableControls';
-import FilterPanel from './components/FilterPanel';
-import TableHeader from './components/TableHeader';
-import Pagination from './components/Pagination';
-import StickyHeader from './components/StickyHeader';
-import { useTableFilters } from './hooks/useTableFilters';
-import { useStickyHeader } from './hooks/useStickyHeader';
+import { useStickyHeader, useTableFilters } from './hooks';
+import {
+  FilterPanel,
+  Pagination,
+  StickyHeader,
+  TableControls,
+  TableHeader,
+} from './components';
 
 const DEFAULT_COLUMN = {
   filterFn: customFilterFn,
@@ -111,7 +112,7 @@ export default function Table({ coins }: TableProps) {
             columnFilters={columnFilters}
             handleMenuOpen={handleMenuOpen}
           />,
-          document.getElementById('sticky-header-portal') as HTMLElement,
+          document.getElementById('sticky-header-portal') as HTMLElement
         )
       : null;
 
@@ -182,7 +183,7 @@ export default function Table({ coins }: TableProps) {
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext(),
+                          cell.getContext()
                         )}
                       </td>
                     ))}

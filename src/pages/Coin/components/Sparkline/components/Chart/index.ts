@@ -1,3 +1,3 @@
-import ChartComponent from './Chart';
+import Chart from './Chart';
 
-export default ChartComponent;
+export default Chart;

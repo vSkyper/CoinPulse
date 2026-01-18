@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import TableHeader from '../TableHeader';
 import { StickyHeaderProps } from './interface';
+import TableHeader from '../TableHeader';
 
 export default function StickyHeader({
   table,

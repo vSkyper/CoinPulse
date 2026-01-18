@@ -15,4 +15,5 @@ export interface FilterPanelProps {
   handleFilterSave: () => void;
   anchorEl: HTMLElement | null;
   isAnchoring?: boolean;
+  isHeaderVisible: boolean;
 }

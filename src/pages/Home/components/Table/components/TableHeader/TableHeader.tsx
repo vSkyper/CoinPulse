@@ -1,16 +1,6 @@
-import { flexRender, Table } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 import { ColumnMenu, SortIcon } from './components';
-
-import { SortingState } from '@tanstack/react-table';
-
-interface TableHeaderProps {
-  table: Table<any>;
-  handleFilterOpenFromMenu: (columnId: string, target: HTMLElement) => void;
-  handleMenuOpen: () => void;
-  className?: string;
-  context?: string;
-  sorting?: SortingState;
-}
+import { TableHeaderProps } from './interface';
 
 export default function TableHeader({
   table,
@@ -62,8 +52,8 @@ export default function TableHeader({
                     isLeft
                       ? 'justify-start'
                       : isRight
-                      ? 'justify-end'
-                      : 'justify-center'
+                        ? 'justify-end'
+                        : 'justify-center'
                   }`}
                 >
                   <div

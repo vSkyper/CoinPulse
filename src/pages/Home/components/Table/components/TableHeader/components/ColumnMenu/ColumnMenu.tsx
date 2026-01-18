@@ -9,8 +9,8 @@ import {
 } from 'react-icons/md';
 import { createPortal } from 'react-dom';
 import { useNavbar } from 'context/NavbarContext';
-import { useMenuPosition } from '../../../../hooks/useMenuPosition';
 import { ColumnMenuProps } from './interface';
+import { useMenuPosition } from './hooks';
 
 export default function ColumnMenu({
   header,
@@ -35,7 +35,7 @@ export default function ColumnMenu({
     menuButtonRef.current,
     menuRef,
     align,
-    strategy,
+    strategy
   );
 
   return (
@@ -172,7 +172,7 @@ export default function ColumnMenu({
                             if (menuButtonRef.current) {
                               handleFilterOpenFromMenu(
                                 header.column.id,
-                                menuButtonRef.current,
+                                menuButtonRef.current
                               );
                               close();
                             }
@@ -185,7 +185,7 @@ export default function ColumnMenu({
                     </MenuItem>
                   </div>
                 </MenuItems>,
-                document.body,
+                document.body
               )}
           </>
         );

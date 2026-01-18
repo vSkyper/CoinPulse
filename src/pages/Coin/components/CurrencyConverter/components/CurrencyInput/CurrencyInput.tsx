@@ -9,7 +9,7 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
   return (
     <div className='w-full'>
-      <div className='flex items-center gap-3 px-3 py-2 min-h-[56px] rounded-xl bg-white/2 border border-white/5 transition-all duration-300 w-full focus-within:bg-white/4 focus-within:border-white/10 focus-within:ring-1 focus-within:ring-white/5 group'>
+      <div className='flex items-center gap-3 px-3 py-2 min-h-14 rounded-xl bg-white/2 border border-white/5 transition-all duration-300 w-full focus-within:bg-white/4 focus-within:border-white/10 focus-within:ring-1 focus-within:ring-white/5 group'>
         {/* Left Side: Avatar/Icon & Symbol */}
         <div className='flex items-center gap-2 min-w-fit'>
           {image ? (

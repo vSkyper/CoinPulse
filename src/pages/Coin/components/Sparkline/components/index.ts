@@ -1,4 +1,4 @@
-import ButtonComponent from './Button';
-import ChartComponent from './Chart';
+import Button from './Button';
+import Chart from './Chart';
 
-export { ButtonComponent, ChartComponent };
+export { Button, Chart };

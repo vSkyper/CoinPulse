@@ -5,7 +5,6 @@ import {
   MdChevronRight,
   MdCheck,
 } from 'react-icons/md';
-import { Table, PaginationState } from '@tanstack/react-table';
 import {
   Listbox,
   ListboxButton,
@@ -13,12 +12,7 @@ import {
   ListboxOption,
   Transition,
 } from '@headlessui/react';
-
-interface PaginationProps {
-  table: Table<any>;
-  pagination: PaginationState;
-  totalRows: number;
-}
+import { PaginationProps } from './interface';
 
 export default function Pagination({
   table,

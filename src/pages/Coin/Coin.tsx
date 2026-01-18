@@ -12,8 +12,8 @@ import {
 import { ErrorModal } from 'components';
 import { CoinResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
-import { useStaggeredAnimation } from 'hooks/useStaggeredAnimation';
 import { API_ENDPOINTS } from 'config/api';
+import { useStaggeredAnimation } from './hooks';
 
 const ANIMATION_DELAYS = {
   chart: 100,

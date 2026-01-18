@@ -26,14 +26,14 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
           value={formatCurrency(marketData.market_cap?.usd || 0)}
           icon={MdAttachMoney}
           variant='hero'
-          className='min-h-[90px]'
+          className='min-h-22.5'
         />
         <StatRow
           label='24h Trading Volume'
           value={formatCurrency(marketData.total_volume?.usd || 0)}
           icon={MdBarChart}
           variant='hero'
-          className='min-h-[90px]'
+          className='min-h-22.5'
         />
       </div>
 
