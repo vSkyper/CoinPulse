@@ -18,7 +18,7 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
     (marketData.total_volume?.usd || 0) / (marketData.market_cap?.usd || 1);
 
   return (
-    <div className='flex flex-col gap-4 mb-8'>
+    <div className='flex flex-col gap-4'>
       {/* Heavy Hero Stats - Row 1 */}
       <div className='grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4'>
         <StatRow

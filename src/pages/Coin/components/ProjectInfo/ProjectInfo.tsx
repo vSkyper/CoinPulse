@@ -30,7 +30,7 @@ export default function ProjectInfo({
   if (!description && !developerData) return null;
 
   return (
-    <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-8'>
+    <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6'>
       {/* Description Column */}
       {description && (
         <div className='flex flex-col gap-3 sm:gap-4'>

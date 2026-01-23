@@ -21,7 +21,7 @@ export default function Sparkline({ id }: SparklineProps) {
   const [days, setDays] = useState<string>(DEFAULT_DAYS);
 
   const { data, error } = useFetch<SparklineResponse>(
-    API_ENDPOINTS.coinMarketChart(id, days)
+    API_ENDPOINTS.coinMarketChart(id, days),
   );
 
   const sparkline = data?.prices ? formatSparklineData(data.prices) : undefined;
@@ -29,7 +29,7 @@ export default function Sparkline({ id }: SparklineProps) {
   return (
     <>
       {/* Time Period Buttons */}
-      <div className='mb-4 sm:mb-3 flex justify-end'>
+      <div className='flex justify-end'>
         <div className='flex gap-1.5 sm:gap-1.5 p-1 sm:p-1 bg-white/2 rounded-xl sm:rounded-xl border border-white/5 shadow-highlight-neutral'>
           {buttons.map((button) => (
             <Button

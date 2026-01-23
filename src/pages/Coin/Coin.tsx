@@ -50,7 +50,7 @@ export default function Coin() {
         {/* Chart & Price Card Row */}
         <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-6 sm:mt-4'>
           <div className='sm:col-span-8'>
-            <AnimatedSection show={animations.chart}>
+            <AnimatedSection show={animations.chart} className='mb-4 sm:mb-3'>
               <Sparkline id={id} />
             </AnimatedSection>
           </div>
@@ -64,12 +64,18 @@ export default function Coin() {
 
         {/* Stats, Currency Converter & Links Row */}
         <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-8 sm:mt-6'>
-          <div className='sm:col-span-8'>
-            <AnimatedSection show={animations.marketStats}>
+          <div className='contents sm:col-span-8 sm:block'>
+            <AnimatedSection
+              show={animations.marketStats}
+              className='order-2 sm:order-0 mb-8'
+            >
               <MarketStats marketData={data.market_data} />
             </AnimatedSection>
 
-            <AnimatedSection show={animations.projectInfo} className='mt-8'>
+            <AnimatedSection
+              show={animations.projectInfo}
+              className='order-3 sm:order-0 sm:mt-8 mb-8'
+            >
               <ProjectInfo
                 description={data.description?.en}
                 developerData={data.developer_data}
@@ -77,10 +83,10 @@ export default function Coin() {
             </AnimatedSection>
           </div>
 
-          <div className='sm:col-span-4 flex flex-col gap-1.5 sm:gap-3'>
+          <div className='contents sm:col-span-4 sm:flex sm:flex-col sm:gap-3'>
             <AnimatedSection
               show={animations.currencyConverter}
-              className='relative z-20'
+              className='relative z-20 order-1 sm:order-0 mb-6 sm:mb-0'
             >
               <CurrencyConverter
                 id={id}
@@ -89,7 +95,10 @@ export default function Coin() {
               />
             </AnimatedSection>
 
-            <AnimatedSection show={animations.links}>
+            <AnimatedSection
+              show={animations.links}
+              className='order-4 sm:order-0 mt-0 sm:mt-4'
+            >
               <Links data={data} />
             </AnimatedSection>
           </div>
