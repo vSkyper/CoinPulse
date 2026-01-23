@@ -58,9 +58,7 @@
 @layer base {
   html,
   body {
-    overscroll-behavior-y: none;
-    overscroll-behavior-x: none;
-    overflow-x: hidden;
+    overscroll-behavior: none;
     min-width: 100%;
     background-color: #000;
     background-image:
