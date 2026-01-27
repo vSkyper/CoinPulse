@@ -63,7 +63,7 @@ export default function Coin() {
         </div>
 
         {/* Stats, Currency Converter & Links Row */}
-        <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-8 sm:mt-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-10 mt-8 sm:mt-6'>
           <div className='contents sm:col-span-8 sm:block'>
             <AnimatedSection
               show={animations.marketStats}
@@ -74,7 +74,7 @@ export default function Coin() {
 
             <AnimatedSection
               show={animations.projectInfo}
-              className='order-3 sm:order-0 sm:mt-8 mb-8'
+              className='order-3 sm:order-0 sm:mt-12 mb-8'
             >
               <ProjectInfo
                 description={data.description?.en}
@@ -83,7 +83,7 @@ export default function Coin() {
             </AnimatedSection>
           </div>
 
-          <div className='contents sm:col-span-4 sm:flex sm:flex-col sm:gap-3'>
+          <div className='contents sm:col-span-4 sm:flex sm:flex-col sm:gap-8'>
             <AnimatedSection
               show={animations.currencyConverter}
               className='relative z-20 order-1 sm:order-0 mb-6 sm:mb-0'

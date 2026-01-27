@@ -26,7 +26,8 @@ export default function Title() {
       </h1>
 
       {/* Mobile Title */}
-      <h1 className='block sm:hidden'>
+      {/* Mobile Title - Hidden to make room for SearchBar */}
+      <h1 className='hidden'>
         <Link
           to='/'
           className='relative flex items-center gap-0.5 font-black tracking-tighter text-base transition-all duration-300 hover:opacity-90'

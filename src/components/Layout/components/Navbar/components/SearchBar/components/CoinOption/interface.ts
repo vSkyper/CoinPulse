@@ -1,6 +1,6 @@
-import { CoinsListResponse } from 'interfaces';
+import { CoinsResponse, CoinsListResponse } from 'interfaces';
 
 export interface CoinOptionProps {
-  coin: CoinsListResponse;
+  coin: CoinsResponse | CoinsListResponse;
   isFocused: boolean;
 }

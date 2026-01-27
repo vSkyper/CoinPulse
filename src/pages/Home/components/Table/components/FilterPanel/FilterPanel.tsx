@@ -53,7 +53,7 @@ export default function FilterPanel({
     anchorEl,
     filterRef,
     isHeaderVisible,
-    align
+    align,
   );
 
   return createPortal(
@@ -99,13 +99,13 @@ export default function FilterPanel({
             </span>
           </div>
         </div>
-        <button
-          onClick={() => setIsFilterOpen(false)}
-          className='p-2 rounded-xl text-zinc-500 hover:text-white hover:bg-white/5 transition-all'
-        >
-          <MdClose className='w-4 h-4' />
-        </button>
       </div>
+      <button
+        onClick={() => setIsFilterOpen(false)}
+        className='absolute top-3 right-3 p-2 rounded-xl text-zinc-500 hover:text-white hover:bg-white/5 transition-all'
+      >
+        <MdClose className='w-4 h-4' />
+      </button>
 
       <div className='space-y-3 sm:space-y-3'>
         <div className='grid grid-cols-2 gap-2 sm:gap-2'>
@@ -282,6 +282,6 @@ export default function FilterPanel({
         </button>
       </div>
     </Transition>,
-    document.body
+    document.body,
   );
 }
