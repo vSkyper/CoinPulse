@@ -3,10 +3,9 @@ import { useState } from 'react';
 import {
   MdDescription,
   MdCode,
-  MdExpandMore,
-  MdExpandLess,
   MdMergeType,
   MdHistory,
+  MdOpenInNew,
 } from 'react-icons/md';
 import {
   FaGithub,
@@ -18,13 +17,15 @@ import {
 } from 'react-icons/fa';
 import { formatNumber } from 'utils/formatters';
 import { ProjectInfoProps } from './interface';
-import { StatCard, PropsTooltip } from './components';
+import { StatCard, PropsTooltip, DescriptionModal } from './components';
 
 export default function ProjectInfo({
   description,
   developerData,
+  name,
+  image,
 }: ProjectInfoProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // If no data, return null to avoid empty section
   if (!description && !developerData) return null;
@@ -45,28 +46,30 @@ export default function ProjectInfo({
 
           <div className='bg-white/2 border border-white/5 rounded-3xl p-4 sm:p-5 shadow-highlight-neutral'>
             <div
-              className={`prose prose-invert prose-sm max-w-none text-white/70 leading-relaxed font-light text-xs ${
-                !isExpanded ? 'line-clamp-6 mask-fade-bottom' : ''
-              }`}
+              className={`prose prose-invert prose-sm max-w-none text-white/70 leading-relaxed font-light text-xs line-clamp-6 mask-fade-bottom`}
             >
               {parse(description)}
             </div>
 
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className='mt-3 flex items-center gap-1.5 text-[0.65rem] font-bold uppercase tracking-wider text-brand-primary hover:text-brand-primary/80 transition-colors cursor-pointer'
+              onClick={() => setIsModalOpen(true)}
+              className='mt-3 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-primary/10 hover:bg-brand-primary/20 text-[0.65rem] font-bold uppercase tracking-wider text-brand-primary transition-all duration-300 w-fit group border border-brand-primary/20 hover:border-brand-primary/40 focus:outline-none focus:ring-0'
             >
-              {isExpanded ? (
-                <>
-                  Read Less <MdExpandLess size={16} />
-                </>
-              ) : (
-                <>
-                  Read More <MdExpandMore size={16} />
-                </>
-              )}
+              <span>Read Full Description</span>
+              <MdOpenInNew
+                size={14}
+                className='group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform'
+              />
             </button>
           </div>
+
+          <DescriptionModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            description={description}
+            name={name}
+            image={image}
+          />
         </div>
       )}
 

@@ -79,6 +79,8 @@ export default function Coin() {
               <ProjectInfo
                 description={data.description?.en}
                 developerData={data.developer_data}
+                name={data.name}
+                image={data.image?.large || data.image?.small}
               />
             </AnimatedSection>
           </div>
