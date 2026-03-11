@@ -1,8 +1,9 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 
 interface State<T> {
   data?: T;
   error?: Error;
+  refetch: () => void;
 }
 
 type Action<T> =
@@ -12,13 +13,21 @@ type Action<T> =
 
 function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
   const cancelRequest = useRef<boolean>(false);
+  const [trigger, setTrigger] = useState(0);
 
-  const initialState: State<T> = {
+  const refetch = useCallback(() => {
+    setTrigger((prev) => prev + 1);
+  }, []);
+
+  const initialState: Omit<State<T>, 'refetch'> = {
     error: undefined,
     data: undefined,
   };
 
-  const fetchReducer = (state: State<T>, action: Action<T>): State<T> => {
+  const fetchReducer = (
+    state: Omit<State<T>, 'refetch'>,
+    action: Action<T>,
+  ): Omit<State<T>, 'refetch'> => {
     switch (action.type) {
       case 'loading':
         return { ...initialState };
@@ -63,9 +72,9 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
     return () => {
       cancelRequest.current = true;
     };
-  }, [url, options]);
+  }, [url, options, trigger]);
 
-  return state;
+  return { ...state, refetch };
 }
 
 export default useFetch;

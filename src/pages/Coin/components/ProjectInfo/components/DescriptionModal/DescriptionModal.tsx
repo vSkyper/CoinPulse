@@ -43,19 +43,20 @@ export default function DescriptionModal({
       />
 
       {/* Modal Card */}
-      <div className='relative w-full max-w-xl sm:max-w-3xl lg:max-w-4xl max-h-[85vh] sm:max-h-[80vh] flex flex-col transform overflow-hidden rounded-2xl sm:rounded-3xl bg-[#09090b]/40 backdrop-blur-2xl border border-white/10 shadow-2xl transition-all animate-in zoom-in-95 duration-300'>
+      <div className='relative w-full max-w-xl sm:max-w-3xl lg:max-w-4xl max-h-[85vh] sm:max-h-[80vh] flex flex-col transform overflow-hidden rounded-2xl sm:rounded-3xl bg-zinc-950 border border-white/5 shadow-2xl transition-all animate-in zoom-in-95 duration-300'>
         {/* Header */}
-        <div className='flex items-center justify-between p-3 sm:p-4 border-b border-white/5 shrink-0 bg-white/5'>
-          <div className='flex items-center gap-2 sm:gap-3'>
+        <div className='flex items-center justify-between p-4 sm:p-5 border-b border-white/5 shrink-0 bg-white/2 shadow-highlight-neutral'>
+          <div className='flex items-center gap-3 sm:gap-4'>
             {image && (
               <img
                 src={image}
                 alt={`${name} icon`}
-                className='w-5 h-5 sm:w-6 sm:h-6 rounded-full'
+                className='w-6 h-6 sm:w-7 sm:h-7 rounded-full shadow-badge'
               />
             )}
-            <h3 className='text-sm sm:text-base font-semibold text-white tracking-wide'>
-              About {name || 'Project'}
+            <h3 className='text-[0.65rem] sm:text-[0.8rem] mt-0.5 font-bold text-white/40 uppercase tracking-widest flex items-center gap-2'>
+                <span className='w-1.5 h-1.5 rounded-full bg-brand-primary shadow-glow-primary' />
+                About {name || 'Project'}
             </h3>
           </div>
           <button
@@ -68,14 +69,14 @@ export default function DescriptionModal({
         </div>
 
         {/* Content (Scrollable) */}
-        <div className='p-4 sm:p-7 overflow-y-auto custom-scrollbar overscroll-contain relative'>
+        <div className='p-4 sm:p-7 overflow-y-auto custom-scrollbar overscroll-contain relative bg-white/2'>
           <div className='prose prose-invert prose-sm sm:prose-base max-w-none text-white/80 leading-relaxed font-light tracking-wide prose-p:mb-3 sm:prose-p:mb-4 prose-p:text-[13px] sm:prose-p:text-[15px] prose-p:leading-relaxed text-[13px] sm:text-[15px] prose-a:text-brand-primary hover:prose-a:text-brand-primary/80 prose-strong:text-white prose-headings:text-white sm:prose-headings:text-base prose-headings:text-sm prose-ul:list-disc prose-ol:list-decimal prose-li:text-[13px] sm:prose-li:text-[15px]'>
             {parse(description)}
           </div>
         </div>
 
         {/* Bottom gradient fade for scroll indicator */}
-        <div className='absolute bottom-0 left-0 right-0 h-6 bg-linear-to-t from-[#09090b]/80 to-transparent pointer-events-none' />
+        <div className='absolute bottom-0 left-0 right-0 h-8 bg-linear-to-t from-zinc-950 to-transparent pointer-events-none' />
       </div>
     </div>
   );

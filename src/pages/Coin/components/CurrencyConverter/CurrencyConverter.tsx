@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { HiChevronDown } from 'react-icons/hi';
+import { MdRefresh } from 'react-icons/md';
 import {
   Combobox,
   ComboboxButton,
@@ -36,7 +37,7 @@ export default function CurrencyConverter({
   const { data: currencies, error: currenciesError } = useFetch<string[]>(
     API_ENDPOINTS.supportedCurrencies(),
   );
-  const { data: exchangeRate, error: exchangeRateError } =
+  const { data: exchangeRate, error: exchangeRateError, refetch: refetchExchangeRate } =
     useFetch<CryptoPriceResponse>(
       API_ENDPOINTS.exchangeRate(id, currencyOption),
     );
@@ -171,6 +172,11 @@ export default function CurrencyConverter({
     }
   };
 
+  const handleRefresh = () => {
+    setIsLoadingRate(true);
+    refetchExchangeRate();
+  };
+
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
@@ -182,6 +188,17 @@ export default function CurrencyConverter({
             <span className='w-1.5 h-1.5 rounded-full bg-brand-violet shadow-glow-primary' />
             Converter
           </h3>
+          <button
+            onClick={handleRefresh}
+            disabled={isLoadingRate}
+            className='p-2 rounded-lg text-white/30 hover:text-white/80 hover:bg-white/5 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group'
+            aria-label='Refresh exchange rate'
+          >
+            <MdRefresh
+              size={18}
+              className={`transition-all duration-500 ${isLoadingRate ? 'animate-spin text-brand-violet' : 'group-hover:rotate-180'}`}
+            />
+          </button>
         </div>
 
         {/* Currency Input Grid */}

@@ -131,3 +131,9 @@ input[type='number'] {
 .custom-scrollbar::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+/* Mask Utilities */
+.mask-fade-bottom {
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}

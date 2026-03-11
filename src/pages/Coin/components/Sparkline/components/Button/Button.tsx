@@ -23,7 +23,7 @@ export default function Button({
     <button
       type='button'
       onClick={handleClick}
-      className={`group relative min-w-10 sm:min-w-10 flex items-center justify-center font-bold select-none transition-colors duration-300 ease-out px-3 sm:px-2.5 py-1.5 sm:py-1 text-[0.65rem] sm:text-[0.65rem] tracking-wide rounded-lg sm:rounded-lg ${visibilityClass} ${
+      className={`group relative min-w-10 sm:min-w-10 flex items-center justify-center font-bold select-none transition-colors duration-300 ease-out px-2.5 sm:px-2.5 py-1 sm:py-1 text-[0.65rem] sm:text-[0.65rem] tracking-wide rounded-lg sm:rounded-lg ${visibilityClass} ${
         isActive ? 'text-white' : 'text-white/50 hover:text-white'
       }`}
     >
