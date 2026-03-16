@@ -43,40 +43,40 @@ export default function DescriptionModal({
       />
 
       {/* Modal Card */}
-      <div className='relative w-full max-w-xl sm:max-w-3xl lg:max-w-4xl max-h-[85vh] sm:max-h-[80vh] flex flex-col transform overflow-hidden rounded-2xl sm:rounded-3xl bg-zinc-950 border border-white/5 shadow-2xl transition-all animate-in zoom-in-95 duration-300'>
+      <div className='relative w-full max-w-xl sm:max-w-2xl lg:max-w-3xl max-h-[85vh] sm:max-h-[80vh] flex flex-col transform overflow-hidden rounded-2xl sm:rounded-3xl bg-glass/95 backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/50 transition-all animate-in zoom-in-95 duration-300'>
         {/* Header */}
-        <div className='flex items-center justify-between p-4 sm:p-5 border-b border-white/5 shrink-0 bg-white/2 shadow-highlight-neutral'>
-          <div className='flex items-center gap-3 sm:gap-4'>
+        <div className='flex items-center justify-between px-4 py-2.5 sm:p-5 border-b border-white/5 shrink-0 bg-white/2 shadow-highlight-neutral'>
+          <div className='flex items-center gap-2.5 sm:gap-4'>
             {image && (
               <img
                 src={image}
                 alt={`${name} icon`}
-                className='w-6 h-6 sm:w-7 sm:h-7 rounded-full shadow-badge'
+                className='w-5 h-5 sm:w-7 sm:h-7 rounded-full shadow-badge'
               />
             )}
-            <h3 className='text-[0.65rem] sm:text-[0.8rem] mt-0.5 font-bold text-white/40 uppercase tracking-widest flex items-center gap-2'>
-                <span className='w-1.5 h-1.5 rounded-full bg-brand-primary shadow-glow-primary' />
-                About {name || 'Project'}
+            <h3 className='text-[0.6rem] sm:text-[0.8rem] mt-0.5 font-bold text-white/40 uppercase tracking-widest flex items-center'>
+              <span className='w-1.5 h-1.5 rounded-full bg-brand-primary shadow-glow-primary' />
+              About {name || 'Project'}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className='p-1.5 -mr-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/10 transition-colors active:scale-95'
+            className='p-1 sm:p-1.5 -mr-1 sm:-mr-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/10 transition-colors active:scale-95'
             aria-label='Close modal'
           >
-            <MdClose size={20} />
+            <MdClose className='w-4 h-4 sm:w-5 sm:h-5' />
           </button>
         </div>
 
         {/* Content (Scrollable) */}
-        <div className='p-4 sm:p-7 overflow-y-auto custom-scrollbar overscroll-contain relative bg-white/2'>
-          <div className='prose prose-invert prose-sm sm:prose-base max-w-none text-white/80 leading-relaxed font-light tracking-wide prose-p:mb-3 sm:prose-p:mb-4 prose-p:text-[13px] sm:prose-p:text-[15px] prose-p:leading-relaxed text-[13px] sm:text-[15px] prose-a:text-brand-primary hover:prose-a:text-brand-primary/80 prose-strong:text-white prose-headings:text-white sm:prose-headings:text-base prose-headings:text-sm prose-ul:list-disc prose-ol:list-decimal prose-li:text-[13px] sm:prose-li:text-[15px]'>
-            {parse(description)}
+        <div className='p-4 pb-10 sm:p-10 overflow-y-auto custom-scrollbar overscroll-contain relative'>
+          <div className='text-xs sm:text-[1rem] prose prose-invert max-w-none text-white/80 font-normal tracking-wide prose-p:text-[0.7rem] sm:prose-p:text-[0.95rem] prose-p:leading-relaxed sm:prose-p:leading-loose prose-p:mb-4 sm:prose-p:mb-6 prose-a:text-brand-primary hover:prose-a:text-brand-primary/80 prose-strong:text-white/90'>
+            {parse(description.replace(/\r?\n\r?\n/g, '<br /><br />'))}
           </div>
         </div>
 
         {/* Bottom gradient fade for scroll indicator */}
-        <div className='absolute bottom-0 left-0 right-0 h-8 bg-linear-to-t from-zinc-950 to-transparent pointer-events-none' />
+        <div className='absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-glass to-transparent pointer-events-none' />
       </div>
     </div>
   );

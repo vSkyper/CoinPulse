@@ -1,4 +1,10 @@
-import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
+import {
+  useState,
+  useCallback,
+  useLayoutEffect,
+  useEffect,
+  RefObject,
+} from 'react';
 
 interface Position {
   top: number;
@@ -74,7 +80,7 @@ function calculatePosition(
 export function useFilterPosition(
   isFilterOpen: boolean,
   anchorEl: HTMLElement | null,
-  filterRef: React.RefObject<HTMLDivElement | null>,
+  filterRef: RefObject<HTMLDivElement | null>,
   isHeaderVisible: boolean,
   align: 'left' | 'right' = 'right',
 ) {
@@ -109,7 +115,7 @@ export function useFilterPosition(
         if (typeof filterRef === 'function') {
           (filterRef as any)(node);
         } else {
-          (filterRef as React.RefObject<HTMLDivElement | null>).current = node;
+          (filterRef as RefObject<HTMLDivElement | null>).current = node;
         }
       }
       // Calculate initial position

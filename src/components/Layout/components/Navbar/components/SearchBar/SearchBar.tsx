@@ -1,4 +1,4 @@
-import { useState, Fragment, useMemo } from 'react';
+import { useState, Fragment, useMemo, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Combobox,
@@ -64,7 +64,7 @@ export default function SearchBar() {
 
   const placeholder = allCoins ? 'Search coins...' : 'Loading coins...';
 
-  const handleKeyDownInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDownInput = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') {
       setQuery('');
     }

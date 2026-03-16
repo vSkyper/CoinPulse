@@ -5,6 +5,7 @@ import {
   formatCompactNumber,
   formatPercentage,
   formatNumber,
+  formatCurrency,
 } from 'utils/formatters';
 
 export default function Cards({ toggle, globalData }: CardsProps) {
@@ -14,6 +15,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
     {
       key: 'marketCap',
       value: formatCompactCurrency(data.total_market_cap.usd),
+      fullValue: formatCurrency(data.total_market_cap.usd),
       mobileValue: formatCompactNumber(data.total_market_cap.usd),
       label: 'Market Cap',
       color: 'var(--color-brand-violet)',
@@ -26,6 +28,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
     {
       key: 'totalVolume',
       value: formatCompactCurrency(data.total_volume.usd),
+      fullValue: formatCurrency(data.total_volume.usd),
       mobileValue: formatCompactNumber(data.total_volume.usd),
       label: '24h Volume',
       color: 'var(--color-brand-violet-light)',
@@ -34,6 +37,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
     {
       key: 'btcDominance',
       value: formatPercentage(data.market_cap_percentage.btc),
+      fullValue: `${data.market_cap_percentage.btc}%`,
       label: 'BTC Dominance',
       color: 'var(--color-brand-bitcoin)',
       timeout: 200,
@@ -41,6 +45,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
     {
       key: 'ethDominance',
       value: formatPercentage(data.market_cap_percentage.eth),
+      fullValue: `${data.market_cap_percentage.eth}%`,
       label: 'ETH Dominance',
       color: 'var(--color-brand-ethereum)',
       timeout: 300,
@@ -48,6 +53,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
     {
       key: 'activeCryptos',
       value: formatNumber(data.active_cryptocurrencies),
+      fullValue: data.active_cryptocurrencies?.toLocaleString('en-US'),
       label: 'Cryptos',
       color: 'white',
       timeout: 400,
@@ -55,6 +61,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
     {
       key: 'markets',
       value: formatNumber(data.markets),
+      fullValue: data.markets?.toLocaleString('en-US'),
       label: 'Markets',
       color: 'white',
       timeout: 500,

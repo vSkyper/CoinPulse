@@ -1,5 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface ButtonProps {
-  setDays: React.Dispatch<React.SetStateAction<string>>;
+  setDays: Dispatch<SetStateAction<string>>;
   actualDays: string;
   days: string;
   daysFormatted: string;

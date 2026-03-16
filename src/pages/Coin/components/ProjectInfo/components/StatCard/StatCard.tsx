@@ -1,6 +1,6 @@
 import { formatNumber } from 'utils/formatters';
 import { StatCardProps } from './interface';
-import PropsTooltip from '../PropsTooltip';
+import { Tooltip } from 'components';
 
 export default function StatCard({
   icon: Icon,
@@ -10,7 +10,8 @@ export default function StatCard({
   color,
   bg,
   disableTooltip,
-}: StatCardProps) {
+  fullValue,
+}: StatCardProps & { fullValue?: string | number }) {
   const displayValue = customValue
     ? customValue
     : value
@@ -25,18 +26,22 @@ export default function StatCard({
 
   return (
     <div className='bg-white/2 border border-white/5 rounded-lg sm:rounded-xl p-2.5 sm:p-2.5 shadow-highlight-neutral flex flex-col gap-0.5 sm:gap-1'>
-      <div className='flex items-center justify-between opacity-80'>
+      <div className='flex items-center justify-between opacity-80 gap-2'>
         <span className='text-[0.55rem] sm:text-[0.5rem] font-bold uppercase tracking-widest text-white/40 truncate pr-1'>
           {label}
         </span>
-        <div className={`p-0.5 sm:p-1 rounded-md ${bg} ${color}`}>
+        <div className={`p-0.5 sm:p-1 rounded-md ${bg} ${color} shrink-0`}>
           <Icon className='w-3 h-3 sm:w-2.5 sm:h-2.5' />
         </div>
       </div>
       {disableTooltip ? (
         content
       ) : (
-        <PropsTooltip content={displayValue}>{content}</PropsTooltip>
+        <Tooltip
+          content={fullValue !== undefined ? fullValue : displayValue}
+        >
+          {content}
+        </Tooltip>
       )}
     </div>
   );

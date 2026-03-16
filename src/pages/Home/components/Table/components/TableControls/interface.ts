@@ -1,8 +1,10 @@
+import { MouseEvent, RefObject, ReactNode } from 'react';
+
 export interface TableControlsProps {
   globalFilter: string;
   setGlobalFilter: (value: string) => void;
-  handleFilterClick: (e: React.MouseEvent) => void;
+  handleFilterClick: (e: MouseEvent) => void;
   isFilterOpen: boolean;
-  filterButtonRef: React.RefObject<HTMLButtonElement | null>;
-  children?: React.ReactNode;
+  filterButtonRef: RefObject<HTMLButtonElement | null>;
+  children?: ReactNode;
 }

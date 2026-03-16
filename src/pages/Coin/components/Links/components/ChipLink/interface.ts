@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+
 export interface ChipLinkProps {
   href: string;
-  children: React.ReactNode;
-  left?: React.ReactNode;
+  children: ReactNode;
+  left?: ReactNode;
   className?: string;
 }

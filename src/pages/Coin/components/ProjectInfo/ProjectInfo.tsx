@@ -17,7 +17,8 @@ import {
 } from 'react-icons/fa';
 import { formatNumber } from 'utils/formatters';
 import { ProjectInfoProps } from './interface';
-import { StatCard, PropsTooltip, DescriptionModal } from './components';
+import { StatCard, DescriptionModal } from './components';
+import { Tooltip } from 'components';
 
 export default function ProjectInfo({
   description,
@@ -99,6 +100,7 @@ export default function ProjectInfo({
                   icon={FaGithub}
                   label='GitHub Stars'
                   value={developerData.stars}
+                  fullValue={developerData.stars?.toLocaleString('en-US')}
                   color='text-brand-github'
                   bg='bg-brand-github/10'
                 />
@@ -106,6 +108,7 @@ export default function ProjectInfo({
                   icon={FaCodeBranch}
                   label='Forks'
                   value={developerData.forks}
+                  fullValue={developerData.forks?.toLocaleString('en-US')}
                   color='text-brand-github/70'
                   bg='bg-brand-github/5'
                 />
@@ -113,6 +116,9 @@ export default function ProjectInfo({
                   icon={FaUsers}
                   label='Contributors'
                   value={developerData.pull_request_contributors}
+                  fullValue={developerData.pull_request_contributors?.toLocaleString(
+                    'en-US',
+                  )}
                   color='text-brand-github/70'
                   bg='bg-brand-github/5'
                 />
@@ -122,6 +128,7 @@ export default function ProjectInfo({
                   icon={FaEye}
                   label='Subscribers'
                   value={developerData.subscribers}
+                  fullValue={developerData.subscribers?.toLocaleString('en-US')}
                   color='text-brand-github/70'
                   bg='bg-brand-github/5'
                 />
@@ -129,6 +136,7 @@ export default function ProjectInfo({
                   icon={FaExclamationCircle}
                   label='Total Issues'
                   value={developerData.total_issues}
+                  fullValue={developerData.total_issues?.toLocaleString('en-US')}
                   color='text-brand-github/70'
                   bg='bg-brand-github/5'
                 />
@@ -136,6 +144,7 @@ export default function ProjectInfo({
                   icon={FaCheckCircle}
                   label='Closed Issues'
                   value={developerData.closed_issues}
+                  fullValue={developerData.closed_issues?.toLocaleString('en-US')}
                   color='text-brand-positive'
                   bg='bg-brand-positive/10'
                 />
@@ -145,6 +154,9 @@ export default function ProjectInfo({
                   icon={MdCode}
                   label='4w Commits'
                   value={developerData.commit_count_4_weeks}
+                  fullValue={developerData.commit_count_4_weeks?.toLocaleString(
+                    'en-US',
+                  )}
                   color='text-brand-accent'
                   bg='bg-brand-accent/10'
                 />
@@ -152,6 +164,9 @@ export default function ProjectInfo({
                   icon={MdMergeType}
                   label='PRs Merged'
                   value={developerData.pull_requests_merged}
+                  fullValue={developerData.pull_requests_merged?.toLocaleString(
+                    'en-US',
+                  )}
                   color='text-brand-accent'
                   bg='bg-brand-accent/10'
                 />
@@ -160,37 +175,41 @@ export default function ProjectInfo({
                   label='4w Changes'
                   customValue={
                     developerData.code_additions_deletions_4_weeks ? (
-                      <div className='flex items-center justify-center gap-0.5 font-mono text-xs sm:text-xs'>
-                        <PropsTooltip
-                          className='w-auto'
-                          content={`+${formatNumber(
-                            developerData.code_additions_deletions_4_weeks
-                              .additions,
-                          )}`}
-                        >
-                          <span className='text-brand-positive cursor-pointer active:opacity-80 transition-opacity'>
-                            +
-                            {formatNumber(
+                      <div className='flex flex-col sm:flex-row sm:items-baseline justify-start sm:gap-1 font-mono text-xs sm:text-xs'>
+                        <span className='text-brand-positive font-bold text-xs sm:text-xs min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[80%] sm:max-w-[40%]'>
+                          <Tooltip
+                            className='w-auto'
+                            content={`+${formatNumber(
                               developerData.code_additions_deletions_4_weeks
                                 .additions,
-                            )}
-                          </span>
-                        </PropsTooltip>
-                        <span className='text-white/20 text-xs'>/</span>
-                        <PropsTooltip
-                          className='w-auto'
-                          content={`${formatNumber(
-                            developerData.code_additions_deletions_4_weeks
-                              .deletions,
-                          )}`}
-                        >
-                          <span className='text-brand-negative cursor-pointer active:opacity-80 transition-opacity'>
-                            {formatNumber(
+                            )}`}
+                          >
+                            <span className='cursor-pointer active:opacity-80 transition-opacity'>
+                              +
+                              {formatNumber(
+                                developerData.code_additions_deletions_4_weeks
+                                  .additions,
+                              )}
+                            </span>
+                          </Tooltip>
+                        </span>
+                        <span className='hidden sm:inline text-white/20 text-xs shrink-0'>/</span>
+                        <span className='text-brand-negative font-bold text-xs sm:text-xs min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[80%] sm:max-w-[40%]'>
+                          <Tooltip
+                            className='w-auto'
+                            content={`${formatNumber(
                               developerData.code_additions_deletions_4_weeks
                                 .deletions,
-                            )}
-                          </span>
-                        </PropsTooltip>
+                            )}`}
+                          >
+                            <span className='cursor-pointer active:opacity-80 transition-opacity'>
+                              {formatNumber(
+                                developerData.code_additions_deletions_4_weeks
+                                  .deletions,
+                              )}
+                            </span>
+                          </Tooltip>
+                        </span>
                       </div>
                     ) : (
                       'N/A'

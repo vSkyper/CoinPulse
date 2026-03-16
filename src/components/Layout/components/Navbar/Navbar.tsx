@@ -1,13 +1,13 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { SearchBar, Title } from './components';
 import { useNavbar } from 'context/NavbarContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Navbar() {
   const { isHeaderVisible } = useNavbar();
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };

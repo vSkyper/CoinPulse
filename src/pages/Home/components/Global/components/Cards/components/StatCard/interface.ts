@@ -1,6 +1,7 @@
 export interface CardConfig {
   key: string;
   value: string;
+  fullValue?: string | number;
   mobileValue?: string;
   label: string;
   color: string;

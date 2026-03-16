@@ -1,7 +1,7 @@
 import { ExtremeValueRowProps } from './interface';
 import { format } from 'date-fns';
 import { formatCurrency } from 'utils/formatters';
-import TruncatedTooltip from '../Tooltip/Tooltip';
+import { Tooltip } from 'components';
 
 export default function ExtremeValueRow({
   label,
@@ -9,16 +9,17 @@ export default function ExtremeValueRow({
   percentage,
   date,
   icon: Icon,
-}: ExtremeValueRowProps) {
+  fullValue,
+}: ExtremeValueRowProps & { fullValue?: string | number }) {
   return (
     <div className='flex flex-col h-full bg-white/2 border border-white/5 rounded-2xl p-2.5 sm:p-3.5 overflow-hidden relative shadow-highlight-neutral'>
       {/* Header */}
-      <div className='flex justify-between items-start w-full mb-1'>
-        <span className='text-[0.6rem] uppercase tracking-widest font-bold text-white/50'>
+      <div className='flex justify-between items-start w-full mb-1 gap-2'>
+        <span className='text-[0.6rem] uppercase tracking-widest font-bold text-white/50 truncate pr-2'>
           {label}
         </span>
         {Icon && (
-          <div className='text-white/20 p-1'>
+          <div className='text-white/20 p-1 shrink-0'>
             <Icon size={18} />
           </div>
         )}
@@ -27,7 +28,12 @@ export default function ExtremeValueRow({
       {/* Main Content: Price & Badge Grouped */}
       <div className='flex flex-row items-center gap-2 mb-4'>
         <div className='font-bold text-base sm:text-xl text-white tracking-tight min-w-0 overflow-hidden'>
-          <TruncatedTooltip value={formatCurrency(price)} />
+          <Tooltip
+            value={formatCurrency(price)}
+            content={
+              fullValue !== undefined ? fullValue : formatCurrency(price)
+            }
+          />
         </div>
         <div
           className={`text-[0.6rem] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5 shrink-0 ${

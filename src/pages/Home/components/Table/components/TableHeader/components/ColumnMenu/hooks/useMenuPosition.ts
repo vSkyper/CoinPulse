@@ -1,4 +1,10 @@
-import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
+import {
+  useState,
+  useCallback,
+  useLayoutEffect,
+  useEffect,
+  RefObject,
+} from 'react';
 
 interface Position {
   top: number;
@@ -64,7 +70,7 @@ function calculatePosition(
 export function useMenuPosition(
   isOpen: boolean,
   anchorEl: HTMLElement | null,
-  menuRef: React.RefObject<HTMLDivElement | null>,
+  menuRef: RefObject<HTMLDivElement | null>,
   align: 'left' | 'right' = 'right',
   strategy: 'fixed' | 'absolute' = 'fixed',
 ) {

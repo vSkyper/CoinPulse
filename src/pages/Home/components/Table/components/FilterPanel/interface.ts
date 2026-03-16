@@ -1,8 +1,9 @@
+import { RefObject } from 'react';
 import { Table } from '@tanstack/react-table';
 
 export interface FilterPanelProps {
   isFilterOpen: boolean;
-  filterRef: React.RefObject<HTMLDivElement | null>;
+  filterRef: RefObject<HTMLDivElement | null>;
   setIsFilterOpen: (value: boolean) => void;
   activeFilterColumn: string;
   handleColumnChange: (newCol: string) => void;

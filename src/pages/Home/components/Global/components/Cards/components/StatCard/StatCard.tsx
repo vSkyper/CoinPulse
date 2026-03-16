@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { StatCardProps } from './interface';
+import { Tooltip } from 'components';
 
 export default function StatCard({
   config,
@@ -42,19 +43,27 @@ export default function StatCard({
           <div className='flex items-center justify-center gap-2 sm:gap-2'>
             {/* Mobile value - shorter */}
             {config.mobileValue && (
-              <h3 className='block sm:hidden text-lg font-bold text-white text-center wrap-break-word'>
-                {config.mobileValue}
+              <h3 className='block sm:hidden w-full text-lg font-bold text-white text-center wrap-break-word'>
+                <Tooltip
+                  value={config.mobileValue}
+                  content={config.fullValue || config.value}
+                  className='text-center'
+                />
               </h3>
             )}
             {/* Desktop value - full */}
             <h3
               className={
                 config.mobileValue
-                  ? 'hidden sm:block text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-text'
-                  : 'text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-text'
+                  ? 'hidden sm:block w-full text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-text'
+                  : 'w-full text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-text'
               }
             >
-              {config.value}
+              <Tooltip
+                value={config.value}
+                content={config.fullValue || config.value}
+                className='text-center'
+              />
             </h3>
 
             {hasPercentage && config.percentage && (

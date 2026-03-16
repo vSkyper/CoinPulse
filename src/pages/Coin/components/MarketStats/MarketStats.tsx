@@ -1,5 +1,6 @@
 import { MarketStatsProps } from './interface';
-import { ExtremeValueRow, StatRow, Tooltip } from './components';
+import { ExtremeValueRow, StatRow } from './components';
+import { Tooltip } from 'components';
 import { formatCurrency, formatNumber } from 'utils/formatters';
 import {
   MdEmojiEvents,
@@ -39,6 +40,10 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
         <StatRow
           label='Market Capitalization'
           value={formatCurrency(marketData.market_cap?.usd || 0)}
+          fullValue={marketData.market_cap?.usd?.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
           icon={MdAttachMoney}
           variant='hero'
           className='min-h-20.5'
@@ -46,6 +51,10 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
         <StatRow
           label='24h Trading Volume'
           value={formatCurrency(marketData.total_volume?.usd || 0)}
+          fullValue={marketData.total_volume?.usd?.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
           icon={MdBarChart}
           variant='hero'
           className='min-h-20.5'
@@ -64,21 +73,30 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
           value={formatCurrency(
             (marketData.fully_diluted_valuation as { usd: number })?.usd || 0,
           )}
+          fullValue={(
+            marketData.fully_diluted_valuation as { usd: number }
+          )?.usd?.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
           icon={MdToken}
         />
         <StatRow
           label='Volume / Market Cap'
           value={formatNumber(volumeToMarketCap, 4)}
+          fullValue={volumeToMarketCap}
           icon={MdPieChart}
         />
         <StatRow
           label='Circulating Supply'
           value={formatNumber(marketData.circulating_supply || 0)}
+          fullValue={marketData.circulating_supply?.toLocaleString('en-US')}
           icon={MdToken}
         />
         <StatRow
           label='Total Supply'
           value={formatNumber(marketData.total_supply || 0)}
+          fullValue={marketData.total_supply?.toLocaleString('en-US')}
           icon={MdDataSaverOff}
         />
       </div>
@@ -90,12 +108,22 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
           value={
             <div className='flex items-baseline gap-2 mt-1'>
               <span className='text-brand-negative font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]'>
-                <Tooltip value={formatCurrency(marketData.low_24h?.usd || 0)} />
+                <Tooltip
+                  value={formatCurrency(marketData.low_24h?.usd || 0)}
+                  content={marketData.low_24h?.usd?.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}
+                />
               </span>
               <span className='text-white/20 text-sm'>/</span>
               <span className='text-brand-positive font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]'>
                 <Tooltip
                   value={formatCurrency(marketData.high_24h?.usd || 0)}
+                  content={marketData.high_24h?.usd?.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}
                 />
               </span>
             </div>
@@ -106,6 +134,10 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
         <ExtremeValueRow
           label='All-Time High'
           price={marketData.ath?.usd || 0}
+          fullValue={marketData.ath?.usd?.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
           percentage={marketData.ath_change_percentage?.usd || 0}
           date={marketData.ath_date?.usd || 0}
           icon={MdTrendingUp}
@@ -114,6 +146,10 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
         <ExtremeValueRow
           label='All-Time Low'
           price={marketData.atl?.usd || 0}
+          fullValue={marketData.atl?.usd?.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
           percentage={marketData.atl_change_percentage?.usd || 0}
           date={marketData.atl_date?.usd || 0}
           icon={MdTrendingDown}

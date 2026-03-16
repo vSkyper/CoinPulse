@@ -1,5 +1,5 @@
 import { StatRowProps } from './interface';
-import TruncatedTooltip from '../Tooltip/Tooltip';
+import { Tooltip } from 'components';
 
 export default function StatRow({
   label,
@@ -7,7 +7,8 @@ export default function StatRow({
   className = '',
   icon: Icon,
   variant = 'default',
-}: StatRowProps) {
+  fullValue,
+}: StatRowProps & { fullValue?: string | number }) {
   const isHero = variant === 'hero';
 
   return (
@@ -23,7 +24,7 @@ export default function StatRow({
       <div className='relative z-10 flex justify-between items-start w-full'>
         <div className='flex flex-col gap-1'>
           <span
-            className={`uppercase tracking-widest font-bold ${
+            className={`uppercase tracking-widest font-bold truncate pr-2 ${
               isHero
                 ? 'text-[0.6rem] text-violet-200/70'
                 : 'text-[0.55rem] text-white/40'
@@ -46,8 +47,9 @@ export default function StatRow({
 
       <div className='relative z-10 mt-1 pt-0'>
         {typeof value === 'string' || typeof value === 'number' ? (
-          <TruncatedTooltip
+          <Tooltip
             value={value}
+            content={fullValue !== undefined ? fullValue : value}
             className={`font-bold tracking-tight text-white w-full truncate text-left focus:outline-none cursor-pointer active:opacity-80 transition-opacity ${
               isHero ? 'text-base sm:text-xl' : 'text-base sm:text-lg'
             }`}

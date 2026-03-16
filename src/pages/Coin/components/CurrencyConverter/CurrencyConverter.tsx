@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { HiChevronDown } from 'react-icons/hi';
 import { MdRefresh } from 'react-icons/md';
 import {
@@ -37,10 +37,13 @@ export default function CurrencyConverter({
   const { data: currencies, error: currenciesError } = useFetch<string[]>(
     API_ENDPOINTS.supportedCurrencies(),
   );
-  const { data: exchangeRate, error: exchangeRateError, refetch: refetchExchangeRate } =
-    useFetch<CryptoPriceResponse>(
-      API_ENDPOINTS.exchangeRate(id, currencyOption),
-    );
+  const {
+    data: exchangeRate,
+    error: exchangeRateError,
+    refetch: refetchExchangeRate,
+  } = useFetch<CryptoPriceResponse>(
+    API_ENDPOINTS.exchangeRate(id, currencyOption),
+  );
 
   const currentRate = exchangeRate?.[id]?.[currencyOption];
   const lastUpdated = exchangeRate?.[id]?.last_updated_at;
@@ -128,7 +131,7 @@ export default function CurrencyConverter({
     if (value) setCurrencyOption(value);
   };
 
-  const handleCryptoInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCryptoInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     setCryptoAmount(value);
@@ -149,9 +152,7 @@ export default function CurrencyConverter({
     }
   };
 
-  const handleCurrencyInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleCurrencyInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     setCurrencyAmount(value);
@@ -231,7 +232,7 @@ export default function CurrencyConverter({
                       className='w-full bg-transparent text-xs sm:text-sm font-bold uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/20 selection:bg-brand-violet/30'
                       displayValue={() => currencyOption.toUpperCase()}
                       enterKeyHint='done'
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setQuery(e.target.value)
                       }
                       onKeyDown={handleKeyDown}

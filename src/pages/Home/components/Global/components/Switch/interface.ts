@@ -1,5 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface SwitchProps {
   toggle: boolean;
-  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  setToggle: Dispatch<SetStateAction<boolean>>;
   mobile: boolean;
 }
