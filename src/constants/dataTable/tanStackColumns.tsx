@@ -1,15 +1,38 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link as RouterLink } from 'react-router-dom';
 import { AreaChart, Area, YAxis } from 'recharts';
-import { MdArrowDropUp, MdArrowDropDown } from 'react-icons/md';
+import { MdArrowDropUp, MdArrowDropDown, MdStar, MdStarBorder } from 'react-icons/md';
 import {
   formatCurrency,
   formatCompactCurrency,
   formatPercentage,
 } from 'utils/formatters';
 import { CoinsResponse } from 'interfaces';
+import { useFavorites } from 'context/FavoritesContext';
 
 const columnHelper = createColumnHelper<CoinsResponse>();
+
+function FavoriteStar({ id }: { id: string }) {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const active = isFavorite(id);
+  
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        toggleFavorite(id);
+      }}
+      className='flex items-center justify-center p-1.5 focus:outline-none hover:bg-white/5 rounded-full transition-colors'
+      title={active ? 'Remove from favorites' : 'Add to favorites'}
+    >
+      {active ? (
+        <MdStar className='text-brand-violet text-lg' />
+      ) : (
+        <MdStarBorder className='text-white/40 hover:text-white/80 text-lg transition-colors' />
+      )}
+    </button>
+  );
+}
 
 const COIN_NAME_CLASSES =
   'text-white/95 font-bold truncate group-hover:text-brand-violet text-sm sm:text-sm transition-colors duration-300 leading-tight';
@@ -105,6 +128,15 @@ function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
 }
 
 export const columns = [
+  columnHelper.display({
+    id: 'favorite',
+    header: '',
+    meta: {
+      align: 'center',
+    },
+    cell: (info) => <FavoriteStar id={info.row.original.id} />,
+    size: 50,
+  }),
   columnHelper.accessor('name', {
     header: 'Name',
     meta: {

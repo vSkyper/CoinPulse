@@ -1,4 +1,4 @@
-import { useState, Fragment, useMemo, KeyboardEvent } from 'react';
+import { useState, Fragment, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Combobox,
@@ -16,35 +16,12 @@ import { useNavbar } from 'context/NavbarContext';
 const BLUR_DELAY = 100;
 
 export default function SearchBar() {
-  const [query, setQuery] = useState<string>('');
   const [selectedCoin, setSelectedCoin] = useState<
     CoinsResponse | CoinsListResponse | null
   >(null);
 
   const navigate = useNavigate();
-  const { allCoins, popularCoins, error } = useNavbar();
-
-  const filteredCoins = useMemo(() => {
-    if (query === '') {
-      return (popularCoins || []).slice(0, 7);
-    }
-
-    const searchResults = (allCoins || [])
-      .filter(
-        (coin) =>
-          coin.name.toLowerCase().startsWith(query.toLowerCase()) ||
-          coin.symbol.toLowerCase().startsWith(query.toLowerCase()),
-      )
-      .slice(0, 50);
-
-    const marketMap = new Map<string, CoinsResponse>();
-    (popularCoins || []).forEach((coin) => marketMap.set(coin.id, coin));
-
-    return searchResults.map((coin) => {
-      const richData = marketMap.get(coin.id);
-      return richData || coin;
-    });
-  }, [query, allCoins, popularCoins]);
+  const { searchQuery: query, setSearchQuery: setQuery, filteredCoins, isLoading, error } = useNavbar();
 
   const handleChange = (coin: CoinsResponse | CoinsListResponse | null) => {
     if (!coin) return;
@@ -62,7 +39,7 @@ export default function SearchBar() {
 
   if (error) return <ErrorModal />;
 
-  const placeholder = allCoins ? 'Search coins...' : 'Loading coins...';
+  const placeholder = !isLoading ? 'Search coins...' : 'Loading coins...';
 
   const handleKeyDownInput = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') {
@@ -86,7 +63,7 @@ export default function SearchBar() {
             as='div'
             className='relative transform transition-transform duration-300 w-full'
           >
-            <SearchIconContainer isLoading={!allCoins && !popularCoins} />
+            <SearchIconContainer isLoading={isLoading} />
 
             <ComboboxInput
               className='w-full bg-white/7 backdrop-blur-xl border border-white/8 text-white rounded-2xl py-2 pl-12 pr-4 text-[15px] font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-white/12 focus:border-white/20 focus:ring-1 focus:ring-white/20 hover:bg-white/12 hover:border-white/20'
@@ -101,7 +78,7 @@ export default function SearchBar() {
 
           <Transition
             as={Fragment}
-            show={open && filteredCoins.length > 0}
+            show={open && (filteredCoins.length > 0 || query !== '')}
             enter='transition duration-200 ease-out'
             enterFrom='transform scale-95 opacity-0 translate-y-2'
             enterTo='transform scale-100 opacity-100 translate-y-0'

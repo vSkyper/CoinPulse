@@ -43,7 +43,7 @@ export default function CoinOption({ coin, isFocused }: CoinOptionProps) {
         </div>
       </div>
 
-      {currentPrice !== undefined && priceChange !== undefined && (
+      {currentPrice != null && priceChange != null && (
         <div className='flex flex-col items-end gap-0'>
           {/* Price */}
           <span className='text-[11px] sm:text-[13px] font-medium text-white'>
@@ -61,7 +61,7 @@ export default function CoinOption({ coin, isFocused }: CoinOptionProps) {
             }`}
           >
             {isPositive ? '+' : ''}
-            {priceChange?.toFixed(2)}%
+            {priceChange.toFixed(2)}%
           </div>
         </div>
       )}

@@ -41,6 +41,7 @@ export default function Coin() {
     <main className='relative w-full min-h-screen flex flex-col'>
       <div className='relative z-1 container mx-auto px-4 sm:px-8 pb-12 flex-1'>
         <CoinHeader
+          id={id}
           name={data.name}
           symbol={data.symbol}
           image={data.image?.large}

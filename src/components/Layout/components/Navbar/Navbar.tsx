@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { SearchBar, Title } from './components';
+import { SearchBar, Title, FavoritesDropdown } from './components';
 import { useNavbar } from 'context/NavbarContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -47,9 +47,10 @@ export default function Navbar() {
                     <Title />
                   </div>
 
-                  {/* Right Section: Search Bar */}
-                  <div className='flex-1 max-w-2xl ml-6 sm:mx-4'>
+                  {/* Right Section: Search Bar & Favorites */}
+                  <div className='flex items-center flex-1 max-w-2xl ml-6 sm:mx-4 gap-2'>
                     <SearchBar />
+                    <FavoritesDropdown />
                   </div>
                 </div>
               </motion.div>

@@ -46,6 +46,7 @@ export const API_ENDPOINTS = {
     page?: number;
     sparkline?: boolean;
     price_change_percentage?: string;
+    ids?: string;
   }) =>
     buildUrl('/coins/markets', {
       vs_currency: params?.vs_currency || 'usd',
@@ -54,6 +55,7 @@ export const API_ENDPOINTS = {
       page: params?.page || 1,
       sparkline: params?.sparkline ? 'true' : 'false',
       price_change_percentage: params?.price_change_percentage || '',
+      ...(params?.ids ? { ids: params.ids } : {}),
     }),
 
   // Individual coin details
