@@ -56,20 +56,20 @@ export default function FavoritesDropdown() {
               leaveTo='transform opacity-0 scale-95 translate-y-2'
             >
               <MenuItems className='absolute right-0 mt-2 w-72 sm:w-80 origin-top-right rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-2 focus:outline-none max-h-96 overflow-y-auto custom-scrollbar'>
-                <div className='px-3 py-2 text-xs font-bold text-white/50 uppercase tracking-wider border-b border-white/5 mb-1'>
+                <div className='px-3 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium text-zinc-500'>
                   Your Favorites
                 </div>
 
                 {favorites.length === 0 ? (
-                  <div className='px-4 py-8 text-center text-sm text-white/40'>
+                  <div className='px-3 py-6 sm:py-8 text-center text-[12px] sm:text-[13px] text-zinc-500'>
                     You haven't added any favorites yet.
                   </div>
                 ) : !coins && !error ? (
-                  <div className='px-4 py-8 text-center text-sm text-white/40'>
+                  <div className='px-3 py-6 sm:py-8 text-center text-[12px] sm:text-[13px] text-zinc-500'>
                     Loading favorites...
                   </div>
                 ) : error ? (
-                  <div className='px-4 py-8 text-center text-sm text-brand-negative'>
+                  <div className='px-3 py-6 sm:py-8 text-center text-[12px] sm:text-[13px] text-brand-negative'>
                     Failed to load favorites.
                   </div>
                 ) : (
@@ -83,27 +83,30 @@ export default function FavoritesDropdown() {
                         {({ focus }) => (
                           <Link
                             to={`/coins/${coin.id}`}
-                            className={`flex items-center justify-between px-3 py-2.5 rounded-xl transition-colors ${
+                            className={`flex items-center justify-between px-2 py-1.5 sm:px-3 sm:py-1.5 rounded-xl transition-colors ${
                               focus ? 'bg-white/10' : 'hover:bg-white/5'
                             }`}
                           >
-                            <div className='flex items-center gap-3'>
+                            <div className='flex items-center gap-2 sm:gap-2.5 min-w-0'>
                               <img
                                 src={coin.image}
                                 alt={coin.name}
-                                className='w-8 h-8 rounded-full'
+                                className='w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-full object-cover bg-white/10'
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                }}
                               />
-                              <div className='flex flex-col'>
-                                <span className='text-sm font-bold text-white/90'>
+                              <div className='flex flex-col min-w-0'>
+                                <span className='font-semibold text-[11px] sm:text-[13px] truncate text-white'>
                                   {coin.name}
                                 </span>
-                                <span className='text-xs text-white/50 uppercase'>
+                                <span className='text-[9px] sm:text-[11px] font-medium text-zinc-500 uppercase tracking-tight'>
                                   {coin.symbol}
                                 </span>
                               </div>
                             </div>
                             <div
-                              className={`text-xs font-bold ${isPositive ? 'text-brand-positive' : 'text-brand-negative'}`}
+                              className={`text-[9px] sm:text-[11px] font-medium ${isPositive ? 'text-brand-positive' : 'text-brand-negative'}`}
                             >
                               {isPositive ? '+' : ''}
                               {formatPercentage(Math.abs(change7d))}
