@@ -55,7 +55,10 @@ export default function FavoritesDropdown() {
               leaveFrom='transform opacity-100 scale-100 translate-y-0'
               leaveTo='transform opacity-0 scale-95 translate-y-2'
             >
-              <MenuItems className='absolute right-0 mt-2 w-72 sm:w-80 origin-top-right rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-2 focus:outline-none max-h-96 overflow-y-auto custom-scrollbar'>
+              <MenuItems
+                modal={false}
+                className='absolute right-0 mt-2 w-72 sm:w-80 origin-top-right rounded-2xl bg-glass/95 border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-2 focus:outline-none max-h-96 overflow-y-auto custom-scrollbar'
+              >
                 <div className='px-3 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium text-zinc-500'>
                   Your Favorites
                 </div>

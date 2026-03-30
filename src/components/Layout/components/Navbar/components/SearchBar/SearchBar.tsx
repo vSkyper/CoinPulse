@@ -21,7 +21,13 @@ export default function SearchBar() {
   >(null);
 
   const navigate = useNavigate();
-  const { searchQuery: query, setSearchQuery: setQuery, filteredCoins, isLoading, error } = useNavbar();
+  const {
+    searchQuery: query,
+    setSearchQuery: setQuery,
+    filteredCoins,
+    isLoading,
+    error,
+  } = useNavbar();
 
   const handleChange = (coin: CoinsResponse | CoinsListResponse | null) => {
     if (!coin) return;
@@ -88,7 +94,7 @@ export default function SearchBar() {
           >
             <ComboboxOptions
               modal={false}
-              className={`absolute mt-2 w-full overflow-hidden rounded-2xl bg-glass/95 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-2 ${
+              className={`absolute mt-2 w-full overflow-hidden rounded-2xl bg-glass/95 border border-white/10 ring-1 ring-white/5 shadow-popover z-50 p-2 ${
                 query === '' ? '' : 'max-h-80 overflow-y-auto custom-scrollbar'
               }`}
             >
