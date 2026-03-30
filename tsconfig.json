@@ -19,14 +19,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./src/",
     "paths": {
-      "@/components": ["@components/*"],
-      "@/constants": ["@constants/*"],
-      "@/hooks": ["@hooks/*"],
-      "@/interfaces": ["@interfaces/*"],
-      "@/pages": ["@pages/*"],
-      "@/context": ["@context/*"]
+      "@/components": ["@/src/components/*"],
+      "@/constants": ["@/src/constants/*"],
+      "@/hooks": ["@/src/hooks/*"],
+      "@/interfaces": ["@/src/interfaces/*"],
+      "@/pages": ["@/src/pages/*"],
+      "@/context": ["@/src/context/*"]
     }
   },
   "include": ["src"],
