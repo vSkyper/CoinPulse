@@ -11,7 +11,7 @@ export default function Home() {
     API_ENDPOINTS.coinsMarkets({
       sparkline: true,
       price_change_percentage: '1h,24h,7d',
-    })
+    }),
   );
 
   const hasError = globalDataError || coinsError;

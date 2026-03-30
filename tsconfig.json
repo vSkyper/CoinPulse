@@ -20,12 +20,13 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/components": ["@/src/components/*"],
-      "@/constants": ["@/src/constants/*"],
-      "@/hooks": ["@/src/hooks/*"],
-      "@/interfaces": ["@/src/interfaces/*"],
-      "@/pages": ["@/src/pages/*"],
-      "@/context": ["@/src/context/*"]
+      "@/components": ["./src/@components/*"],
+      "@/constants": ["./src/@constants/*"],
+      "@/hooks": ["./src/@hooks/*"],
+      "@/interfaces": ["./src/@interfaces/*"],
+      "@/pages": ["./src/@pages/*"],
+      "@/context": ["./src/@context/*"],
+      "*": ["./src/*"]
     }
   },
   "include": ["src"],
