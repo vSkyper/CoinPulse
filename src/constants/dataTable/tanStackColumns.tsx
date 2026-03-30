@@ -128,9 +128,10 @@ function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
 }
 
 export const columns = [
-  columnHelper.display({
+  columnHelper.accessor((row) => row.id, {
     id: 'favorite',
     header: '',
+    enableSorting: false,
     meta: {
       align: 'center',
     },

@@ -38,9 +38,11 @@ export default function TableHeader({
                 tabIndex={context === 'sticky' ? -1 : 0}
                 onClick={(e) => {
                   e.preventDefault();
-                  header.column.getToggleSortingHandler()?.(e);
+                  if (header.column.getCanSort()) {
+                    header.column.getToggleSortingHandler()?.(e);
+                  }
                 }}
-                className={`relative group px-4 sm:px-3 py-3 sm:py-2.5 text-white/40 font-extrabold text-[10px] sm:text-[0.65rem] tracking-widest uppercase transition-colors duration-200 select-none hover:text-white/90 focus:text-white/90 focus:outline-none cursor-pointer ${
+                className={`relative group px-4 sm:px-3 py-3 sm:py-2.5 text-white/40 font-extrabold text-[10px] sm:text-[0.65rem] tracking-widest uppercase transition-colors duration-200 select-none ${header.column.getCanSort() ? 'hover:text-white/90 focus:text-white/90 cursor-pointer' : ''} focus:outline-none ${
                   isLeft ? 'text-left' : isRight ? 'text-right' : 'text-center'
                 }`}
                 style={{
@@ -61,11 +63,13 @@ export default function TableHeader({
                       isLeft ? 'gap-1 flex-row-reverse' : 'relative'
                     }`}
                   >
-                    <SortIcon
-                      key={String(isSorted)}
-                      align={align}
-                      isSorted={isSorted}
-                    />
+                    {header.column.getCanSort() && (
+                      <SortIcon
+                        key={String(isSorted)}
+                        align={align}
+                        isSorted={isSorted}
+                      />
+                    )}
                     {flexRender(
                       header.column.columnDef.header,
                       header.getContext()

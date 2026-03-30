@@ -118,12 +118,12 @@ export default function FilterPanel({
               <div className='relative'>
                 <ListboxButton className='relative w-full cursor-pointer rounded-lg bg-white/5 hover:bg-white/10 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'>
                   <span className='block truncate font-bold tracking-wide'>
-                    {
-                      table
-                        .getAllColumns()
-                        .find((col) => col.id === activeFilterColumn)?.columnDef
-                        .header as string
-                    }
+                    {activeFilterColumn === 'favorite'
+                      ? 'Favorite'
+                      : (table
+                          .getAllColumns()
+                          .find((col) => col.id === activeFilterColumn)
+                          ?.columnDef.header as string)}
                   </span>
                   <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-2'>
                     <MdKeyboardArrowDown
@@ -159,7 +159,9 @@ export default function FilterPanel({
                                 selected ? 'text-white' : ''
                               }`}
                             >
-                              {column.columnDef.header as string}
+                              {column.id === 'favorite'
+                                ? 'Favorite'
+                                : (column.columnDef.header as string)}
                             </span>
                             {selected ? (
                               <span className='absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-2 text-brand-violet'>
@@ -246,7 +248,7 @@ export default function FilterPanel({
         </div>
 
         {/* Value Input */}
-        {!['up', 'down'].includes(activeOperator) && (
+        {!['up', 'down', 'added', 'not added'].includes(activeOperator) && (
           <div className='flex flex-col gap-1 sm:gap-1'>
             <span className='text-[10px] sm:text-[10px] font-semibold text-white/40 uppercase tracking-wider ml-1'>
               Value
@@ -270,7 +272,7 @@ export default function FilterPanel({
       <div className='flex justify-end gap-2 sm:gap-2 mt-4 sm:mt-4 pt-3 sm:pt-3 border-t border-white/5'>
         <button
           onClick={handleFilterClear}
-          className='px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-white/5 rounded-xl transition-all font-medium'
+          className='px-3 py-2 text-xs font-medium text-brand-negative/80 hover:text-brand-negative hover:bg-brand-negative/10 rounded-xl transition-all'
         >
           Reset
         </button>

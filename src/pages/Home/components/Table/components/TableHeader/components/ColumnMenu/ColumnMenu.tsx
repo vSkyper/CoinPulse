@@ -87,39 +87,12 @@ export default function ColumnMenu({
                   }}
                   className='absolute w-36 sm:w-36 origin-top-right divide-y divide-white/5 rounded-xl bg-black/90 py-1 text-xs shadow-popover focus:outline-none border border-white/10 ring-1 ring-white/5 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
                 >
-                  <div className='px-1 py-1'>
-                    <MenuItem>
-                      {({ focus, close }) => {
-                        const isSorted = header.column.getIsSorted();
-                        const showDesc = !isSorted || isSorted === 'asc';
-                        return (
-                          <button
-                            type='button'
-                            className={`${
-                              focus
-                                ? 'bg-white/10 text-white'
-                                : 'text-white/70 hover:text-white'
-                            } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              header.column.toggleSorting(showDesc);
-                              close();
-                            }}
-                          >
-                            {showDesc ? (
-                              <MdArrowDownward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                            ) : (
-                              <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                            )}
-                            {showDesc ? 'Sort by DESC' : 'Sort by ASC'}
-                          </button>
-                        );
-                      }}
-                    </MenuItem>
-                    <MenuItem>
-                      {({ focus, close }) => {
-                        const isSorted = header.column.getIsSorted();
-                        if (isSorted) {
+                  {header.column.getCanSort() && (
+                    <div className='px-1 py-1'>
+                      <MenuItem>
+                        {({ focus, close }) => {
+                          const isSorted = header.column.getIsSorted();
+                          const showDesc = !isSorted || isSorted === 'asc';
                           return (
                             <button
                               type='button'
@@ -130,36 +103,65 @@ export default function ColumnMenu({
                               } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
                               onClick={(e) => {
                                 e.preventDefault();
-                                header.column.clearSorting();
+                                header.column.toggleSorting(showDesc);
                                 close();
                               }}
                             >
-                              <MdClose className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                              Unsort
+                              {showDesc ? (
+                                <MdArrowDownward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                              ) : (
+                                <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                              )}
+                              {showDesc ? 'Sort by DESC' : 'Sort by ASC'}
                             </button>
                           );
-                        }
-                        return (
-                          <button
-                            type='button'
-                            className={`${
-                              focus
-                                ? 'bg-white/10 text-white'
-                                : 'text-white/70 hover:text-white'
-                            } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              header.column.toggleSorting(false);
-                              close();
-                            }}
-                          >
-                            <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
-                            Sort by ASC
-                          </button>
-                        );
-                      }}
-                    </MenuItem>
-                  </div>
+                        }}
+                      </MenuItem>
+                      <MenuItem>
+                        {({ focus, close }) => {
+                          const isSorted = header.column.getIsSorted();
+                          if (isSorted) {
+                            return (
+                              <button
+                                type='button'
+                                className={`${
+                                  focus
+                                    ? 'bg-white/10 text-white'
+                                    : 'text-white/70 hover:text-white'
+                                } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  header.column.clearSorting();
+                                  close();
+                                }}
+                              >
+                                <MdClose className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                                Unsort
+                              </button>
+                            );
+                          }
+                          return (
+                            <button
+                              type='button'
+                              className={`${
+                                focus
+                                  ? 'bg-white/10 text-white'
+                                  : 'text-white/70 hover:text-white'
+                              } group flex w-full items-center rounded-lg px-2 py-1.5 text-xs transition-colors`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                header.column.toggleSorting(false);
+                                close();
+                              }}
+                            >
+                              <MdArrowUpward className='mr-2 h-4 w-4 text-white/40 group-hover:text-white/90 transition-colors' />
+                              Sort by ASC
+                            </button>
+                          );
+                        }}
+                      </MenuItem>
+                    </div>
+                  )}
                   <div className='px-1 py-1'>
                     <MenuItem>
                       {({ focus, close }) => (

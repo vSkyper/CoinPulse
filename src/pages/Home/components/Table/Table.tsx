@@ -13,6 +13,7 @@ import { createPortal } from 'react-dom';
 import { useState, useEffect, useRef } from 'react';
 import { MdSearchOff } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { useFavorites } from 'context/FavoritesContext';
 import { TableProps } from './interface';
 import { columns } from 'constants/dataTable';
 import { PAGINATION_CONFIG, customFilterFn } from 'utils/table';
@@ -56,6 +57,7 @@ export default function Table({ coins }: TableProps) {
   }, [sorting]);
 
   const navigate = useNavigate();
+  const { favorites } = useFavorites();
 
   // Custom Hooks
   const { isHeaderVisible, tableRef, scrollContainerRef } = useStickyHeader();
@@ -77,6 +79,9 @@ export default function Table({ coins }: TableProps) {
       columnFilters,
       pagination,
       globalFilter,
+    },
+    meta: {
+      favorites,
     },
   });
 

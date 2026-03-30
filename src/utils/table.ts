@@ -13,6 +13,7 @@ export const STRING_OPERATORS = [
 ];
 export const NUMBER_OPERATORS = ['=', '>', '<', '>=', '<=', '!='];
 export const TREND_OPERATORS = ['up', 'down'];
+export const FAVORITE_OPERATORS = ['added', 'not added'];
 
 export const PERCENTAGE_COLUMNS = [
   'price_change_percentage_1h_in_currency',
@@ -26,6 +27,8 @@ export const getOperatorsForColumn = (columnId: string) => {
   }
 
   switch (columnId) {
+    case 'favorite':
+      return FAVORITE_OPERATORS;
     case 'name':
     case 'symbol':
       return STRING_OPERATORS;
@@ -45,6 +48,14 @@ export const customFilterFn: FilterFn<any> = (row, columnId, filterValue) => {
   const { operator, value } = filterValue || {};
 
   if (!operator) return true;
+
+  // Handle Favorite Operators
+  if (FAVORITE_OPERATORS.includes(operator)) {
+    const favorites = row.getAllCells()[0].getContext().table.options
+      .meta?.favorites;
+    const isFav = favorites?.includes(row.original.id) ?? false;
+    return operator === 'added' ? isFav : !isFav;
+  }
 
   // Handle Trend Operators (up/down)
   if (TREND_OPERATORS.includes(operator)) {
