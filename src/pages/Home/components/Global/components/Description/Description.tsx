@@ -1,4 +1,4 @@
-import { DescriptionProps } from './interface';
+import type { DescriptionProps } from './interface';
 import { Highlight } from './components';
 import {
   formatCompactCurrency,
@@ -15,7 +15,7 @@ export default function Description({ globalData }: DescriptionProps) {
     return {
       marketCap: formatCompactCurrency(data.total_market_cap.usd),
       marketCapChange: `${marketCapChange >= 0 ? '+' : ''}${formatPercentage(
-        marketCapChange
+        marketCapChange,
       )}`,
       totalVolume: formatCompactCurrency(data.total_volume.usd),
       btcDominance: formatPercentage(data.market_cap_percentage.btc),
@@ -30,9 +30,9 @@ export default function Description({ globalData }: DescriptionProps) {
     : 'text-brand-positive';
 
   return (
-    <p className='text-sm sm:text-sm text-white/70 leading-relaxed max-w-3xl font-medium tracking-wide'>
+    <p className="text-sm sm:text-sm text-white/70 leading-relaxed max-w-3xl font-medium tracking-wide">
       The global cryptocurrency market cap today is{' '}
-      <Highlight className='text-white font-black tracking-tight'>
+      <Highlight className="text-white font-black tracking-tight">
         {stats().marketCap}
       </Highlight>
       , a{' '}
@@ -41,19 +41,19 @@ export default function Description({ globalData }: DescriptionProps) {
       </Highlight>{' '}
       change in the last 24 hours. Total cryptocurrency trading volume in the
       last day is at{' '}
-      <Highlight className='text-white font-black tracking-tight'>
+      <Highlight className="text-white font-black tracking-tight">
         {stats().totalVolume}
       </Highlight>
       . Bitcoin dominance is at{' '}
-      <Highlight className='text-brand-bitcoin'>
+      <Highlight className="text-brand-bitcoin">
         {stats().btcDominance}
       </Highlight>{' '}
       and Ethereum dominance is at{' '}
-      <Highlight className='text-brand-ethereum'>
+      <Highlight className="text-brand-ethereum">
         {stats().ethDominance}
       </Highlight>
       . CoinGecko API is now tracking{' '}
-      <Highlight className='text-white font-black tracking-tight'>
+      <Highlight className="text-white font-black tracking-tight">
         {stats().cryptocurrencies}
       </Highlight>{' '}
       cryptocurrencies.

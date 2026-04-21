@@ -5,7 +5,7 @@ import {
   useEffect,
   useLayoutEffect,
 } from 'react';
-import { Table, ColumnFiltersState } from '@tanstack/react-table';
+import type { Table, ColumnFiltersState } from '@tanstack/react-table';
 import { getOperatorsForColumn } from 'utils/table';
 
 interface UseTableFiltersProps {

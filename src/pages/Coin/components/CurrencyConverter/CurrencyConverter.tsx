@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, type ChangeEvent } from 'react';
 import { HiChevronDown } from 'react-icons/hi';
 import { MdRefresh } from 'react-icons/md';
 import {
@@ -10,9 +10,9 @@ import {
   Transition,
 } from '@headlessui/react';
 import useFetch from 'hooks/useFetch';
-import { CryptoPriceResponse } from 'interfaces';
+import type { CryptoPriceResponse } from 'interfaces';
 import { ErrorModal } from 'components';
-import { CurrencyConverterProps } from './interface';
+import type { CurrencyConverterProps } from './interface';
 import { CurrencyInput } from './components';
 import { API_ENDPOINTS } from 'config/api';
 import { formatRateWithSuffix, formatToFullPrecision } from 'utils/formatters';
@@ -181,19 +181,19 @@ export default function CurrencyConverter({
   if (currenciesError || exchangeRateError) return <ErrorModal />;
 
   return (
-    <div className='relative z-10 p-5 rounded-3xl bg-white/2 border border-white/5 shadow-highlight-neutral transition-all duration-300'>
-      <div className='relative'>
+    <div className="relative z-10 p-5 rounded-3xl bg-white/2 border border-white/5 shadow-highlight-neutral transition-all duration-300">
+      <div className="relative">
         {/* Header */}
-        <div className='flex items-center justify-between mb-4 relative z-10'>
-          <h3 className='text-[0.6rem] uppercase tracking-widest font-bold text-white/50 flex items-center gap-2'>
-            <span className='w-1.5 h-1.5 rounded-full bg-brand-violet shadow-glow-primary' />
+        <div className="flex items-center justify-between mb-4 relative z-10">
+          <h3 className="text-[0.6rem] uppercase tracking-widest font-bold text-white/50 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-violet shadow-glow-primary" />
             Converter
           </h3>
           <button
             onClick={handleRefresh}
             disabled={isLoadingRate}
-            className='p-2 rounded-lg text-white/30 hover:text-white/80 hover:bg-white/5 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group'
-            aria-label='Refresh exchange rate'
+            className="p-2 rounded-lg text-white/30 hover:text-white/80 hover:bg-white/5 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
+            aria-label="Refresh exchange rate"
           >
             <MdRefresh
               size={18}
@@ -203,7 +203,7 @@ export default function CurrencyConverter({
         </div>
 
         {/* Currency Input Grid */}
-        <div className='flex flex-col gap-3 relative z-20'>
+        <div className="flex flex-col gap-3 relative z-20">
           {/* Crypto Input */}
           <CurrencyInput
             label={symbol.toUpperCase()}
@@ -220,39 +220,39 @@ export default function CurrencyConverter({
             value={currencyAmount}
             onChange={handleCurrencyInputChange}
           >
-            <div className='w-18 sm:w-19'>
+            <div className="w-18 sm:w-19">
               <Combobox
                 value={currencyOption}
                 onChange={handleChangeAutocomplete}
               >
-                <div className='relative'>
-                  <div className='relative flex items-center justify-between gap-1 group bg-white/2 hover:bg-white/4 px-2 py-1.5 rounded-lg border border-white/5 hover:border-white/10 transition-all duration-200 w-full focus-within:border-brand-violet/50 focus-within:shadow-glow-primary'>
+                <div className="relative">
+                  <div className="relative flex items-center justify-between gap-1 group bg-white/2 hover:bg-white/4 px-2 py-1.5 rounded-lg border border-white/5 hover:border-white/10 transition-all duration-200 w-full focus-within:border-brand-violet/50 focus-within:shadow-glow-primary">
                     <ComboboxInput
-                      autoComplete='off'
-                      className='w-full bg-transparent text-xs sm:text-sm font-bold uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/20 selection:bg-brand-violet/30'
+                      autoComplete="off"
+                      className="w-full bg-transparent text-xs sm:text-sm font-bold uppercase focus:outline-none text-white tracking-wide cursor-pointer placeholder-white/20 selection:bg-brand-violet/30"
                       displayValue={() => currencyOption.toUpperCase()}
-                      enterKeyHint='done'
+                      enterKeyHint="done"
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setQuery(e.target.value)
                       }
                       onKeyDown={handleKeyDown}
                     />
-                    <ComboboxButton className='cursor-pointer p-0.5 rounded-md hover:bg-white/10 active:scale-95 transition-all duration-200'>
-                      <HiChevronDown className='w-3.5 h-3.5 text-white/30 group-hover:text-white/60 transition-colors duration-200 shrink-0' />
+                    <ComboboxButton className="cursor-pointer p-0.5 rounded-md hover:bg-white/10 active:scale-95 transition-all duration-200">
+                      <HiChevronDown className="w-3.5 h-3.5 text-white/30 group-hover:text-white/60 transition-colors duration-200 shrink-0" />
                     </ComboboxButton>
                   </div>
 
                   <Transition
-                    as='div'
-                    leave='transition ease-in duration-100'
-                    leaveFrom='opacity-100'
-                    leaveTo='opacity-0'
+                    as="div"
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
                     afterLeave={() => setQuery('')}
                   >
                     {filteredCurrencies.length > 0 && (
                       <ComboboxOptions
                         modal={false}
-                        className='absolute top-full left-0 z-50 mt-1 w-24 overflow-auto custom-scrollbar rounded-xl bg-black/90 py-1 text-xs shadow-popover focus:outline-none border border-white/10 ring-1 ring-white/5'
+                        className="absolute top-full left-0 z-50 mt-1 w-24 overflow-auto custom-scrollbar rounded-xl bg-black/90 py-1 text-xs shadow-popover focus:outline-none border border-white/10 ring-1 ring-white/5"
                       >
                         {filteredCurrencies.map((option) => (
                           <ComboboxOption
@@ -266,7 +266,7 @@ export default function CurrencyConverter({
                               }`
                             }
                           >
-                            <span className='block truncate font-bold tracking-wide'>
+                            <span className="block truncate font-bold tracking-wide">
                               {option.toUpperCase()}
                             </span>
                           </ComboboxOption>
@@ -281,28 +281,28 @@ export default function CurrencyConverter({
         </div>
 
         {/* Exchange Rate Display */}
-        <div className='flex items-center justify-between mt-4 px-1'>
+        <div className="flex items-center justify-between mt-4 px-1">
           {/* Rate */}
-          <div className='flex items-center gap-2'>
-            <div className='text-[0.65rem] font-bold text-white/40 uppercase tracking-widest'>
+          <div className="flex items-center gap-2">
+            <div className="text-[0.65rem] font-bold text-white/40 uppercase tracking-widest">
               Rate
             </div>
             {isLoadingRate ? (
-              <div className='animate-pulse h-3 w-12 bg-white/10 rounded' />
+              <div className="animate-pulse h-3 w-12 bg-white/10 rounded" />
             ) : (
               currentRate && (
-                <div className='flex items-center gap-1.5'>
-                  <div className='font-medium text-xs text-white/90 flex items-center gap-1'>
+                <div className="flex items-center gap-1.5">
+                  <div className="font-medium text-xs text-white/90 flex items-center gap-1">
                     <span>
                       1{' '}
-                      <span className='text-white/50'>
+                      <span className="text-white/50">
                         {symbol.toUpperCase()}
                       </span>
                     </span>
-                    <span className='text-white/30'>≈</span>
-                    <span className='tracking-wide'>
+                    <span className="text-white/30">≈</span>
+                    <span className="tracking-wide">
                       {rateValue}{' '}
-                      <span className='text-white/50'>{rateSymbol}</span>
+                      <span className="text-white/50">{rateSymbol}</span>
                     </span>
                   </div>
                   {change24h !== undefined && change24h !== null && (
@@ -323,7 +323,7 @@ export default function CurrencyConverter({
           </div>
 
           {/* Last Update */}
-          <div className='text-[0.6rem] font-medium text-white/30'>
+          <div className="text-[0.6rem] font-medium text-white/30">
             {lastUpdated
               ? `${new Date(lastUpdated * 1000).toLocaleTimeString([], {
                   hour: '2-digit',

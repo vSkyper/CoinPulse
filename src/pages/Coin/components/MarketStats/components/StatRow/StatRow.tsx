@@ -1,4 +1,4 @@
-import { StatRowProps } from './interface';
+import type { StatRowProps } from './interface';
 import { Tooltip } from 'components';
 
 export default function StatRow({
@@ -21,8 +21,8 @@ export default function StatRow({
           : 'bg-white/2 border-white/5 shadow-highlight-neutral'
       } ${className}`}
     >
-      <div className='relative z-10 flex justify-between items-start w-full'>
-        <div className='flex flex-col gap-1'>
+      <div className="relative z-10 flex justify-between items-start w-full">
+        <div className="flex flex-col gap-1">
           <span
             className={`uppercase tracking-widest font-bold truncate pr-2 ${
               isHero
@@ -45,7 +45,7 @@ export default function StatRow({
         )}
       </div>
 
-      <div className='relative z-10 mt-1 pt-0'>
+      <div className="relative z-10 mt-1 pt-0">
         {typeof value === 'string' || typeof value === 'number' ? (
           <Tooltip
             value={value}
@@ -55,7 +55,7 @@ export default function StatRow({
             }`}
           />
         ) : (
-          <div className='relative z-10'>{value}</div>
+          <div className="relative z-10">{value}</div>
         )}
       </div>
     </div>

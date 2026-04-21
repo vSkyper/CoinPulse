@@ -1,4 +1,4 @@
-import { FilterFn } from '@tanstack/react-table';
+import type { FilterFn } from '@tanstack/react-table';
 
 export const PAGINATION_CONFIG = {
   pageSize: 50,

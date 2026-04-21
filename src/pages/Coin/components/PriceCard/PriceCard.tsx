@@ -1,12 +1,12 @@
 import { Price, PriceChange } from './components';
 import { priceChange } from 'constants/coin';
-import { PriceCardProps } from './interface';
+import type { PriceCardProps } from './interface';
 import { formatCurrency } from 'utils/formatters';
 
 const calculateProgressBar = (
   current: number,
   low: number,
-  high: number
+  high: number,
 ): number => {
   const range = high - low || 1;
   const position = current - low;
@@ -24,26 +24,26 @@ export default function PriceCard({ data }: PriceCardProps) {
   const progressBar = calculateProgressBar(currentPrice, low24h, high24h);
 
   return (
-    <div className='relative z-10'>
+    <div className="relative z-10">
       {/* Current Price */}
-      <div className='text-2xl sm:text-3xl font-black text-white tracking-tighter mb-2'>
+      <div className="text-2xl sm:text-3xl font-black text-white tracking-tighter mb-2">
         <Price marketData={market_data} />
       </div>
 
       {/* 24h Price Range */}
-      <div className='mt-4 sm:mt-4 p-4 sm:p-4 rounded-2xl bg-white/2 border border-white/5 shadow-highlight-neutral'>
-        <div className='text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-wider mb-2 sm:mb-3'>
+      <div className="mt-4 sm:mt-4 p-4 sm:p-4 rounded-2xl bg-white/2 border border-white/5 shadow-highlight-neutral">
+        <div className="text-[0.65rem] sm:text-xs font-bold text-white/40 uppercase tracking-wider mb-2 sm:mb-3">
           24h Price Range
         </div>
-        <div className='relative'>
-          <div className='h-1.5 w-full bg-white/10 rounded-full overflow-hidden'>
+        <div className="relative">
+          <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
             <div
-              className='h-full bg-linear-to-r from-brand-violet to-brand-positive rounded-full shadow-glow-accent'
+              className="h-full bg-linear-to-r from-brand-violet to-brand-positive rounded-full shadow-glow-accent"
               style={{ width: `${progressBar}%` }}
             />
           </div>
 
-          <div className='flex justify-between mt-2 text-xs sm:text-sm font-mono text-white/60'>
+          <div className="flex justify-between mt-2 text-xs sm:text-sm font-mono text-white/60">
             <div>{formatCurrency(low24h)}</div>
             <div>{formatCurrency(high24h)}</div>
           </div>
@@ -51,7 +51,7 @@ export default function PriceCard({ data }: PriceCardProps) {
       </div>
 
       {/* Price Change Grid */}
-      <div className='grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2 mt-4 sm:mt-3'>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2 mt-4 sm:mt-3">
         {priceChange.map((days) => (
           <PriceChange key={days} marketData={market_data} days={days} />
         ))}

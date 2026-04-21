@@ -1,9 +1,9 @@
-import { CoinsResponse } from './coins';
-import { CoinsListResponse } from './coinsList';
-import { GlobalDataResponse } from './globalData';
-import { CoinResponse, MarketDataResponse } from './coin';
-import { SparklineResponse } from './sparkline';
-import { CryptoPriceResponse } from './cryptoPrice';
+import type { CoinResponse, MarketDataResponse } from './coin';
+import type { CoinsResponse } from './coins';
+import type { CoinsListResponse } from './coinsList';
+import type { CryptoPriceResponse } from './cryptoPrice';
+import type { GlobalDataResponse } from './globalData';
+import type { SparklineResponse } from './sparkline';
 
 export type {
   CoinsResponse,

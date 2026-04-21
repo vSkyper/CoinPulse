@@ -1,4 +1,4 @@
-import { PercentageBadgeProps } from './interface';
+import type { PercentageBadgeProps } from './interface';
 import { formatPercentage } from 'utils/formatters';
 
 export default function PercentageBadge({ value }: PercentageBadgeProps) {

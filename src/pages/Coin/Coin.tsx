@@ -11,7 +11,7 @@ import {
   ProjectInfo,
 } from './components';
 import { ErrorModal } from 'components';
-import { CoinResponse } from 'interfaces';
+import type { CoinResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
 import { API_ENDPOINTS } from 'config/api';
 import { useStaggeredAnimation } from './hooks';
@@ -38,8 +38,8 @@ export default function Coin() {
   if (!data) return <Skeleton />;
 
   return (
-    <main className='relative w-full min-h-screen flex flex-col'>
-      <div className='relative z-1 container mx-auto px-4 sm:px-8 pb-12 flex-1'>
+    <main className="relative w-full min-h-screen flex flex-col">
+      <div className="relative z-1 container mx-auto px-4 sm:px-8 pb-12 flex-1">
         <CoinHeader
           id={id}
           name={data.name}
@@ -49,14 +49,14 @@ export default function Coin() {
         />
 
         {/* Chart & Price Card Row */}
-        <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-6 sm:mt-4'>
-          <div className='sm:col-span-8'>
-            <AnimatedSection show={animations.chart} className='mb-4 sm:mb-3'>
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-6 sm:mt-4">
+          <div className="sm:col-span-8">
+            <AnimatedSection show={animations.chart} className="mb-4 sm:mb-3">
               <Sparkline id={id} />
             </AnimatedSection>
           </div>
 
-          <div className='sm:col-span-4'>
+          <div className="sm:col-span-4">
             <AnimatedSection show={animations.priceCard}>
               <PriceCard data={data} />
             </AnimatedSection>
@@ -64,18 +64,18 @@ export default function Coin() {
         </div>
 
         {/* Stats, Currency Converter & Links Row */}
-        <div className='grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-10 mt-8 sm:mt-6'>
-          <div className='contents sm:col-span-8 sm:block'>
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-10 mt-8 sm:mt-6">
+          <div className="contents sm:col-span-8 sm:block">
             <AnimatedSection
               show={animations.marketStats}
-              className='order-2 sm:order-0 mb-8'
+              className="order-2 sm:order-0 mb-8"
             >
               <MarketStats marketData={data.market_data} />
             </AnimatedSection>
 
             <AnimatedSection
               show={animations.projectInfo}
-              className='order-3 sm:order-0 sm:mt-12 mb-8'
+              className="order-3 sm:order-0 sm:mt-12 mb-8"
             >
               <ProjectInfo
                 description={data.description?.en}
@@ -86,10 +86,10 @@ export default function Coin() {
             </AnimatedSection>
           </div>
 
-          <div className='contents sm:col-span-4 sm:flex sm:flex-col sm:gap-8'>
+          <div className="contents sm:col-span-4 sm:flex sm:flex-col sm:gap-8">
             <AnimatedSection
               show={animations.currencyConverter}
-              className='relative z-20 order-1 sm:order-0 mb-6 sm:mb-0'
+              className="relative z-20 order-1 sm:order-0 mb-6 sm:mb-0"
             >
               <CurrencyConverter
                 id={id}
@@ -100,7 +100,7 @@ export default function Coin() {
 
             <AnimatedSection
               show={animations.links}
-              className='order-4 sm:order-0 mt-0 sm:mt-4'
+              className="order-4 sm:order-0 mt-0 sm:mt-4"
             >
               <Links data={data} />
             </AnimatedSection>

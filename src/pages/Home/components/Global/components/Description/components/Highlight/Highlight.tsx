@@ -1,4 +1,4 @@
-import { HighlightProps } from './interface';
+import type { HighlightProps } from './interface';
 
 export default function Highlight({ children, className }: HighlightProps) {
   return (

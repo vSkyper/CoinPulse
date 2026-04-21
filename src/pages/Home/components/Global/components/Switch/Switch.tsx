@@ -1,4 +1,4 @@
-import { SwitchProps } from './interface';
+import type { SwitchProps } from './interface';
 import {
   MdBarChart as BarChartIcon,
   MdOutlineBarChart as BarChartOutlinedIcon,
@@ -27,15 +27,15 @@ export default function Switch({ toggle, setToggle, mobile }: SwitchProps) {
         onClick={handleToggle}
         className={buttonClasses}
         aria-pressed={toggle}
-        aria-label='Toggle statistics display'
+        aria-label="Toggle statistics display"
       >
         {/* Shine effect */}
         <span
-          className='absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-all duration-500 group-hover:left-full'
-          aria-hidden='true'
+          className="absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-all duration-500 group-hover:left-full"
+          aria-hidden="true"
         />
 
-        <span className='relative z-10 flex items-center gap-2 transition-all duration-200'>
+        <span className="relative z-10 flex items-center gap-2 transition-all duration-200">
           <Icon
             size={iconSize}
             style={{

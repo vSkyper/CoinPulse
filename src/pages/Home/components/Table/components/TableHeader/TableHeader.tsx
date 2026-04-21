@@ -1,6 +1,6 @@
 import { flexRender } from '@tanstack/react-table';
 import { ColumnMenu, SortIcon } from './components';
-import { TableHeaderProps } from './interface';
+import type { TableHeaderProps } from './interface';
 
 export default function TableHeader({
   table,
@@ -18,7 +18,7 @@ export default function TableHeader({
       {table.getHeaderGroups().map((headerGroup) => (
         <tr
           key={headerGroup.id}
-          className='border-b border-white/5 last:border-b-0'
+          className="border-b border-white/5 last:border-b-0"
         >
           {headerGroup.headers.map((header) => {
             const align = header.column.columnDef.meta?.align ?? 'center';
@@ -72,7 +72,7 @@ export default function TableHeader({
                     )}
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext()
+                      header.getContext(),
                     )}
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { MarketStatsProps } from './interface';
+import type { MarketStatsProps } from './interface';
 import { ExtremeValueRow, StatRow } from './components';
 import { Tooltip } from 'components';
 import { formatCurrency, formatNumber } from 'utils/formatters';
@@ -19,14 +19,14 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
     (marketData.total_volume?.usd || 0) / (marketData.market_cap?.usd || 1);
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className="flex flex-col gap-4">
       {/* Heavy Hero Stats - Row 1 */}
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4'>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
         <StatRow
-          label='Market Cap Rank'
+          label="Market Cap Rank"
           value={
-            <div className='flex items-center gap-2'>
-              <span className='font-bold text-base sm:text-xl text-brand-violet drop-shadow-text'>
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-base sm:text-xl text-brand-violet drop-shadow-text">
                 {marketData.market_cap_rank
                   ? `#${marketData.market_cap_rank}`
                   : 'N/A'}
@@ -34,40 +34,40 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
             </div>
           }
           icon={MdEmojiEvents}
-          variant='hero'
-          className='min-h-20.5'
+          variant="hero"
+          className="min-h-20.5"
         />
         <StatRow
-          label='Market Capitalization'
+          label="Market Capitalization"
           value={formatCurrency(marketData.market_cap?.usd || 0)}
           fullValue={marketData.market_cap?.usd?.toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD',
           })}
           icon={MdAttachMoney}
-          variant='hero'
-          className='min-h-20.5'
+          variant="hero"
+          className="min-h-20.5"
         />
         <StatRow
-          label='24h Trading Volume'
+          label="24h Trading Volume"
           value={formatCurrency(marketData.total_volume?.usd || 0)}
           fullValue={marketData.total_volume?.usd?.toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD',
           })}
           icon={MdBarChart}
-          variant='hero'
-          className='min-h-20.5'
+          variant="hero"
+          className="min-h-20.5"
         />
       </div>
 
       {/* Secondary Stats - Row 2 */}
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4'>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <StatRow
           label={
             <>
-              <span className='sm:hidden'>FDV</span>
-              <span className='hidden sm:inline'>Fully Diluted Valuation</span>
+              <span className="sm:hidden">FDV</span>
+              <span className="hidden sm:inline">Fully Diluted Valuation</span>
             </>
           }
           value={formatCurrency(
@@ -82,19 +82,19 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
           icon={MdToken}
         />
         <StatRow
-          label='Volume / Market Cap'
+          label="Volume / Market Cap"
           value={formatNumber(volumeToMarketCap, 4)}
           fullValue={volumeToMarketCap}
           icon={MdPieChart}
         />
         <StatRow
-          label='Circulating Supply'
+          label="Circulating Supply"
           value={formatNumber(marketData.circulating_supply || 0)}
           fullValue={marketData.circulating_supply?.toLocaleString('en-US')}
           icon={MdToken}
         />
         <StatRow
-          label='Total Supply'
+          label="Total Supply"
           value={formatNumber(marketData.total_supply || 0)}
           fullValue={marketData.total_supply?.toLocaleString('en-US')}
           icon={MdDataSaverOff}
@@ -102,12 +102,12 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
       </div>
 
       {/* Performance & Range - Row 3 */}
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <StatRow
-          label='24h Range'
+          label="24h Range"
           value={
-            <div className='flex items-baseline gap-2 mt-1'>
-              <span className='text-brand-negative font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]'>
+            <div className="flex items-baseline gap-2 mt-1">
+              <span className="text-brand-negative font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]">
                 <Tooltip
                   value={formatCurrency(marketData.low_24h?.usd || 0)}
                   content={marketData.low_24h?.usd?.toLocaleString('en-US', {
@@ -116,8 +116,8 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
                   })}
                 />
               </span>
-              <span className='text-white/20 text-sm'>/</span>
-              <span className='text-brand-positive font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]'>
+              <span className="text-white/20 text-sm">/</span>
+              <span className="text-brand-positive font-bold text-base sm:text-lg min-w-0 overflow-hidden text-ellipsis whitespace-nowrap max-w-[40%]">
                 <Tooltip
                   value={formatCurrency(marketData.high_24h?.usd || 0)}
                   content={marketData.high_24h?.usd?.toLocaleString('en-US', {
@@ -132,7 +132,7 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
         />
 
         <ExtremeValueRow
-          label='All-Time High'
+          label="All-Time High"
           price={marketData.ath?.usd || 0}
           fullValue={marketData.ath?.usd?.toLocaleString('en-US', {
             style: 'currency',
@@ -144,7 +144,7 @@ export default function MarketStats({ marketData }: MarketStatsProps) {
         />
 
         <ExtremeValueRow
-          label='All-Time Low'
+          label="All-Time Low"
           price={marketData.atl?.usd || 0}
           fullValue={marketData.atl?.usd?.toLocaleString('en-US', {
             style: 'currency',

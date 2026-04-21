@@ -1,5 +1,5 @@
-import { RefObject } from 'react';
-import { SortingState, ColumnFiltersState } from '@tanstack/react-table';
+import type { RefObject } from 'react';
+import type { SortingState, ColumnFiltersState } from '@tanstack/react-table';
 
 export interface StickyHeaderProps {
   table: any;

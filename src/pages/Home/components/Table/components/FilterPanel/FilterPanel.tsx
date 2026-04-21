@@ -15,7 +15,7 @@ import {
 } from 'react-icons/md';
 import { getOperatorsForColumn } from 'utils/table';
 import { useFilterPosition } from './hooks';
-import { FilterPanelProps } from './interface';
+import type { FilterPanelProps } from './interface';
 
 export default function FilterPanel({
   isFilterOpen,
@@ -59,7 +59,7 @@ export default function FilterPanel({
   return createPortal(
     <Transition
       show={isFilterOpen}
-      as='div'
+      as="div"
       ref={setRefs}
       style={{
         ...(position
@@ -78,23 +78,23 @@ export default function FilterPanel({
           : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-[90vw] sm:w-80 h-fit bg-white/2 backdrop-blur-xl border border-white/5 rounded-2xl sm:rounded-2xl shadow-popover p-3 sm:p-5'
       }
       onMouseDown={(e) => e.stopPropagation()}
-      enter='transition ease-out duration-300'
-      enterFrom='opacity-0 translate-y-2 scale-95'
-      enterTo='opacity-100 translate-y-0 scale-100'
-      leave='transition ease-in duration-200'
-      leaveFrom='opacity-100 translate-y-0 scale-100'
-      leaveTo='opacity-0 translate-y-2 scale-95'
+      enter="transition ease-out duration-300"
+      enterFrom="opacity-0 translate-y-2 scale-95"
+      enterTo="opacity-100 translate-y-0 scale-100"
+      leave="transition ease-in duration-200"
+      leaveFrom="opacity-100 translate-y-0 scale-100"
+      leaveTo="opacity-0 translate-y-2 scale-95"
     >
-      <div className='flex items-center justify-between mb-4 sm:mb-5'>
-        <div className='flex items-center gap-3'>
-          <div className='p-2 rounded-xl bg-white/5 text-white ring-1 ring-white/10'>
-            <MdFilterList className='w-4 h-4' />
+      <div className="flex items-center justify-between mb-4 sm:mb-5">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-white/5 text-white ring-1 ring-white/10">
+            <MdFilterList className="w-4 h-4" />
           </div>
           <div>
-            <span className='font-bold text-sm text-white block'>
+            <span className="font-bold text-sm text-white block">
               Filter Columns
             </span>
-            <span className='text-[10px] text-zinc-500 font-medium'>
+            <span className="text-[10px] text-zinc-500 font-medium">
               Customize your view
             </span>
           </div>
@@ -102,22 +102,22 @@ export default function FilterPanel({
       </div>
       <button
         onClick={() => setIsFilterOpen(false)}
-        className='absolute top-3 right-3 p-2 rounded-xl text-zinc-500 hover:text-white hover:bg-white/5 transition-all'
+        className="absolute top-3 right-3 p-2 rounded-xl text-zinc-500 hover:text-white hover:bg-white/5 transition-all"
       >
-        <MdClose className='w-4 h-4' />
+        <MdClose className="w-4 h-4" />
       </button>
 
-      <div className='space-y-3 sm:space-y-3'>
-        <div className='grid grid-cols-2 gap-2 sm:gap-2'>
+      <div className="space-y-3 sm:space-y-3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-2">
           {/* Column Select */}
-          <div className='flex flex-col gap-1 sm:gap-1'>
-            <span className='text-[10px] sm:text-[10px] font-semibold text-white/40 uppercase tracking-wider ml-1'>
+          <div className="flex flex-col gap-1 sm:gap-1">
+            <span className="text-[10px] sm:text-[10px] font-semibold text-white/40 uppercase tracking-wider ml-1">
               Column
             </span>
             <Listbox value={activeFilterColumn} onChange={handleColumnChange}>
-              <div className='relative'>
-                <ListboxButton className='relative w-full cursor-pointer rounded-lg bg-white/5 hover:bg-white/10 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'>
-                  <span className='block truncate font-bold tracking-wide'>
+              <div className="relative">
+                <ListboxButton className="relative w-full cursor-pointer rounded-lg bg-white/5 hover:bg-white/10 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200">
+                  <span className="block truncate font-bold tracking-wide">
                     {activeFilterColumn === 'favorite'
                       ? 'Favorite'
                       : (table
@@ -125,22 +125,22 @@ export default function FilterPanel({
                           .find((col) => col.id === activeFilterColumn)
                           ?.columnDef.header as string)}
                   </span>
-                  <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-2'>
+                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-2">
                     <MdKeyboardArrowDown
-                      className='h-3 w-3 sm:h-4 sm:w-4 text-white/50'
-                      aria-hidden='true'
+                      className="h-3 w-3 sm:h-4 sm:w-4 text-white/50"
+                      aria-hidden="true"
                     />
                   </span>
                 </ListboxButton>
                 <Transition
                   as={Fragment}
-                  leave='transition ease-in duration-100'
-                  leaveFrom='opacity-100'
-                  leaveTo='opacity-0'
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-xl bg-black/90 border border-white/10 ring-1 ring-white/5 py-1 text-xs shadow-popover focus:outline-none z-50'
+                    className="absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-xl bg-black/90 border border-white/10 ring-1 ring-white/5 py-1 text-xs shadow-popover focus:outline-none z-50"
                   >
                     {table.getAllColumns().map((column) => (
                       <ListboxOption
@@ -164,10 +164,10 @@ export default function FilterPanel({
                                 : (column.columnDef.header as string)}
                             </span>
                             {selected ? (
-                              <span className='absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-2 text-brand-violet'>
+                              <span className="absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-2 text-brand-violet">
                                 <MdCheck
-                                  className='h-3 w-3 sm:h-3 sm:w-3'
-                                  aria-hidden='true'
+                                  className="h-3 w-3 sm:h-3 sm:w-3"
+                                  aria-hidden="true"
                                 />
                               </span>
                             ) : null}
@@ -182,32 +182,32 @@ export default function FilterPanel({
           </div>
 
           {/* Operator Select */}
-          <div className='flex flex-col gap-1 sm:gap-1'>
-            <span className='text-[10px] sm:text-[10px] font-semibold text-white/40 uppercase tracking-wider ml-1'>
+          <div className="flex flex-col gap-1 sm:gap-1">
+            <span className="text-[10px] sm:text-[10px] font-semibold text-white/40 uppercase tracking-wider ml-1">
               Condition
             </span>
             <Listbox value={activeOperator} onChange={setActiveOperator}>
-              <div className='relative'>
-                <ListboxButton className='relative w-full cursor-pointer rounded-lg bg-white/5 hover:bg-white/10 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'>
-                  <span className='block truncate font-bold tracking-wide'>
+              <div className="relative">
+                <ListboxButton className="relative w-full cursor-pointer rounded-lg bg-white/5 hover:bg-white/10 py-2 pl-3 pr-8 text-left text-xs text-white border border-white/5 hover:border-white/10 ring-1 ring-white/5 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200">
+                  <span className="block truncate font-bold tracking-wide">
                     {activeOperator}
                   </span>
-                  <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-2'>
+                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-2">
                     <MdKeyboardArrowDown
-                      className='h-3 w-3 sm:h-4 sm:w-4 text-white/50'
-                      aria-hidden='true'
+                      className="h-3 w-3 sm:h-4 sm:w-4 text-white/50"
+                      aria-hidden="true"
                     />
                   </span>
                 </ListboxButton>
                 <Transition
                   as={Fragment}
-                  leave='transition ease-in duration-100'
-                  leaveFrom='opacity-100'
-                  leaveTo='opacity-0'
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
                 >
                   <ListboxOptions
                     modal={false}
-                    className='absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-xl bg-black/90 border border-white/10 ring-1 ring-white/5 py-1 text-xs shadow-popover focus:outline-none z-50'
+                    className="absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-xl bg-black/90 border border-white/10 ring-1 ring-white/5 py-1 text-xs shadow-popover focus:outline-none z-50"
                   >
                     {getOperatorsForColumn(activeFilterColumn).map((op) => (
                       <ListboxOption
@@ -229,10 +229,10 @@ export default function FilterPanel({
                               {op}
                             </span>
                             {selected ? (
-                              <span className='absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-2 text-brand-violet'>
+                              <span className="absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-2 text-brand-violet">
                                 <MdCheck
-                                  className='h-3 w-3 sm:h-3 sm:w-3'
-                                  aria-hidden='true'
+                                  className="h-3 w-3 sm:h-3 sm:w-3"
+                                  aria-hidden="true"
                                 />
                               </span>
                             ) : null}
@@ -249,36 +249,36 @@ export default function FilterPanel({
 
         {/* Value Input */}
         {!['up', 'down', 'added', 'not added'].includes(activeOperator) && (
-          <div className='flex flex-col gap-1 sm:gap-1'>
-            <span className='text-[10px] sm:text-[10px] font-semibold text-white/40 uppercase tracking-wider ml-1'>
+          <div className="flex flex-col gap-1 sm:gap-1">
+            <span className="text-[10px] sm:text-[10px] font-semibold text-white/40 uppercase tracking-wider ml-1">
               Value
             </span>
             <input
-              autoComplete='off'
+              autoComplete="off"
               value={activeValue}
               onChange={(e) => setActiveValue(e.target.value)}
-              placeholder='Enter value...'
+              placeholder="Enter value..."
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   handleFilterSave();
                 }
               }}
-              className='w-full bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 ring-1 ring-white/5 rounded-xl py-2 px-3 text-xs text-white font-medium placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200'
+              className="w-full bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 ring-1 ring-white/5 rounded-xl py-2 px-3 text-xs text-white font-medium placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-brand-violet/40 transition-all duration-200"
             />
           </div>
         )}
       </div>
 
-      <div className='flex justify-end gap-2 sm:gap-2 mt-4 sm:mt-4 pt-3 sm:pt-3 border-t border-white/5'>
+      <div className="flex justify-end gap-2 sm:gap-2 mt-4 sm:mt-4 pt-3 sm:pt-3 border-t border-white/5">
         <button
           onClick={handleFilterClear}
-          className='px-3 py-2 text-xs font-medium text-brand-negative/80 hover:text-brand-negative hover:bg-brand-negative/10 rounded-xl transition-all'
+          className="px-3 py-2 text-xs font-medium text-brand-negative/80 hover:text-brand-negative hover:bg-brand-negative/10 rounded-xl transition-all"
         >
           Reset
         </button>
         <button
           onClick={handleFilterSave}
-          className='px-4 py-2 text-xs font-bold text-white bg-brand-violet hover:bg-brand-violet/90 rounded-xl shadow-glow-primary ring-1 ring-white/10 transition-all duration-200'
+          className="px-4 py-2 text-xs font-bold text-white bg-brand-violet hover:bg-brand-violet/90 rounded-xl shadow-glow-primary ring-1 ring-white/10 transition-all duration-200"
         >
           Apply Filter
         </button>

@@ -1,4 +1,4 @@
-import { CoinOptionProps } from './interface';
+import type { CoinOptionProps } from './interface';
 
 export default function CoinOption({ coin, isFocused }: CoinOptionProps) {
   const imageUrl = 'image' in coin ? coin.image : undefined;
@@ -16,20 +16,20 @@ export default function CoinOption({ coin, isFocused }: CoinOptionProps) {
         isFocused ? 'bg-white/5' : 'bg-transparent'
       }`}
     >
-      <div className='flex items-center gap-2 sm:gap-2.5 min-w-0'>
+      <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
         {/* Coin Image */}
         {imageUrl && (
           <img
             src={imageUrl}
             alt={coin.name}
-            className='w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-full object-cover bg-white/10'
+            className="w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-full object-cover bg-white/10"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}
           />
         )}
         {/* Name and Symbol */}
-        <div className='flex flex-col min-w-0'>
+        <div className="flex flex-col min-w-0">
           <span
             className={`font-semibold text-[11px] sm:text-[13px] truncate transition-colors duration-200 ${
               isFocused ? 'text-white' : 'text-zinc-200'
@@ -37,16 +37,16 @@ export default function CoinOption({ coin, isFocused }: CoinOptionProps) {
           >
             {coin.name}
           </span>
-          <span className='text-[9px] sm:text-[11px] font-medium text-zinc-500 uppercase tracking-tight'>
+          <span className="text-[9px] sm:text-[11px] font-medium text-zinc-500 uppercase tracking-tight">
             {coin.symbol}
           </span>
         </div>
       </div>
 
       {currentPrice != null && priceChange != null && (
-        <div className='flex flex-col items-end gap-0'>
+        <div className="flex flex-col items-end gap-0">
           {/* Price */}
-          <span className='text-[11px] sm:text-[13px] font-medium text-white'>
+          <span className="text-[11px] sm:text-[13px] font-medium text-white">
             $
             {currentPrice.toLocaleString('en-US', {
               maximumFractionDigits: 2,

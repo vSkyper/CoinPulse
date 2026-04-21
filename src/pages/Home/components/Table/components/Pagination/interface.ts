@@ -1,4 +1,4 @@
-import { PaginationState, Table } from '@tanstack/react-table';
+import type { PaginationState, Table } from '@tanstack/react-table';
 
 export interface PaginationProps {
   table: Table<any>;

@@ -1,4 +1,4 @@
-import { SortingState, Table } from '@tanstack/react-table';
+import type { SortingState, Table } from '@tanstack/react-table';
 
 export interface TableHeaderProps {
   table: Table<any>;

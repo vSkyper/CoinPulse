@@ -1,5 +1,11 @@
-import { createContext, useContext, useState, useMemo, ReactNode } from 'react';
-import { CoinsListResponse, CoinsResponse } from 'interfaces';
+import {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  type ReactNode,
+} from 'react';
+import type { CoinsListResponse, CoinsResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
 import { useDebounce } from 'hooks/useDebounce';
 import { API_ENDPOINTS } from 'config/api';
@@ -41,7 +47,7 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
       .filter(
         (coin) =>
           coin.name.toLowerCase().startsWith(queryLower) ||
-          coin.symbol.toLowerCase().startsWith(queryLower)
+          coin.symbol.toLowerCase().startsWith(queryLower),
       )
       .slice(0, 50);
   }, [searchQuery, allCoins]);
@@ -49,13 +55,15 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
   // Debounce the list of IDs needing rich data
   const targetIds = useMemo(
     () => basicSearchResults.map((c) => c.id).join(','),
-    [basicSearchResults]
+    [basicSearchResults],
   );
   const debouncedIds = useDebounce(targetIds, 400);
 
   // Only fetch rich data for debounced IDs
   const { data: richSearchData, error: richError } = useFetch<CoinsResponse[]>(
-    debouncedIds ? API_ENDPOINTS.coinsMarkets({ ids: debouncedIds }) : undefined
+    debouncedIds
+      ? API_ENDPOINTS.coinsMarkets({ ids: debouncedIds })
+      : undefined,
   );
 
   // Map everything together
@@ -98,4 +106,3 @@ export function useNavbar() {
   }
   return context;
 }
-

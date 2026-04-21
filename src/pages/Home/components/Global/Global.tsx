@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Cards, Description, Switch } from './components';
-import { GlobalProps } from './interface';
+import type { GlobalProps } from './interface';
 
 export default function Global({ globalData }: GlobalProps) {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -11,24 +11,24 @@ export default function Global({ globalData }: GlobalProps) {
 
   return (
     <>
-      <div className='mb-8 sm:mb-6'>
-        <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-3'>
+      <div className="mb-8 sm:mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-3">
           {/* Header and Description */}
-          <div className='flex-1'>
-            <h1 className='text-2xl sm:text-2xl font-black mb-4 sm:mb-1.5 tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40 drop-shadow-text'>
+          <div className="flex-1">
+            <h1 className="text-2xl sm:text-2xl font-black mb-4 sm:mb-1.5 tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-white via-white to-white/40 drop-shadow-text">
               Global Cryptocurrency Market
             </h1>
             <Description globalData={globalData} />
           </div>
 
           {/* Desktop Switch */}
-          <div className='hidden sm:flex sm:justify-end'>
+          <div className="hidden sm:flex sm:justify-end">
             <Switch toggle={toggle} setToggle={setToggle} mobile={false} />
           </div>
         </div>
 
         {/* Mobile Switch */}
-        <div className='sm:hidden pt-6'>
+        <div className="sm:hidden pt-6">
           <Switch toggle={toggle} setToggle={setToggle} mobile />
         </div>
       </div>

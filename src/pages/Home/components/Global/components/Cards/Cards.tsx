@@ -1,5 +1,5 @@
-import { StatCard, CardConfig } from './components';
-import { CardsProps } from './interface';
+import { StatCard, type CardConfig } from './components';
+import type { CardsProps } from './interface';
 import {
   formatCompactCurrency,
   formatCompactNumber,
@@ -69,7 +69,7 @@ export default function Cards({ toggle, globalData }: CardsProps) {
   ];
 
   return (
-    <div className='grid grid-cols-2 sm:grid-cols-6 gap-3 sm:gap-4'>
+    <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 sm:gap-4">
       {cardConfigs.map((config) => (
         <StatCard key={config.key} config={config} toggle={toggle} />
       ))}

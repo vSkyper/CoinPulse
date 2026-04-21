@@ -5,16 +5,16 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   flexRender,
-  SortingState,
-  PaginationState,
-  ColumnFiltersState,
+  type SortingState,
+  type PaginationState,
+  type ColumnFiltersState,
 } from '@tanstack/react-table';
 import { createPortal } from 'react-dom';
 import { useState, useEffect, useRef } from 'react';
 import { MdSearchOff } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { useFavorites } from 'context/FavoritesContext';
-import { TableProps } from './interface';
+import type { TableProps } from './interface';
 import { columns } from 'constants/dataTable';
 import { PAGINATION_CONFIG, customFilterFn } from 'utils/table';
 import { useStickyHeader, useTableFilters } from './hooks';
@@ -117,13 +117,13 @@ export default function Table({ coins }: TableProps) {
             columnFilters={columnFilters}
             handleMenuOpen={handleMenuOpen}
           />,
-          document.getElementById('sticky-header-portal') as HTMLElement
+          document.getElementById('sticky-header-portal') as HTMLElement,
         )
       : null;
 
   return (
-    <div className='mt-6 sm:mt-6 relative'>
-      <div className='flex flex-col w-full rounded-3xl border border-white/5 bg-white/2 shadow-highlight-neutral'>
+    <div className="mt-6 sm:mt-6 relative">
+      <div className="flex flex-col w-full rounded-3xl border border-white/5 bg-white/2 shadow-highlight-neutral">
         <TableControls
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}
@@ -150,19 +150,19 @@ export default function Table({ coins }: TableProps) {
           />
         </TableControls>
 
-        <div className='h-px w-full bg-linear-to-r from-transparent via-white/5 to-transparent' />
+        <div className="h-px w-full bg-linear-to-r from-transparent via-white/5 to-transparent" />
 
-        <div ref={scrollContainerRef} className='overflow-x-auto'>
+        <div ref={scrollContainerRef} className="overflow-x-auto">
           <table
             ref={tableRef}
-            className='w-full border-collapse border-spacing-0 table-fixed'
+            className="w-full border-collapse border-spacing-0 table-fixed"
           >
             <TableHeader
               table={table}
               handleFilterOpenFromMenu={handleFilterOpenFromMenu}
               handleMenuOpen={handleMenuOpen}
               className={isHeaderVisible ? 'opacity-0 pointer-events-none' : ''}
-              context='main'
+              context="main"
               sorting={sorting}
             />
             <tbody>
@@ -171,7 +171,7 @@ export default function Table({ coins }: TableProps) {
                   <tr
                     key={row.id}
                     onClick={() => navigate(`/coins/${row.original.id}`)}
-                    className='cursor-pointer transition-colors duration-150 ease-out hover:bg-white/5 focus-within:bg-brand-violet/5 active:bg-brand-violet/10 border-b border-white/5 sm:border-0 last:border-0'
+                    className="cursor-pointer transition-colors duration-150 ease-out hover:bg-white/5 focus-within:bg-brand-violet/5 active:bg-brand-violet/10 border-b border-white/5 sm:border-0 last:border-0"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td
@@ -188,27 +188,27 @@ export default function Table({ coins }: TableProps) {
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </td>
                     ))}
                   </tr>
                 ))
               ) : (
-                <tr className='border-b border-white/3'>
+                <tr className="border-b border-white/3">
                   <td
                     colSpan={table.getVisibleFlatColumns().length}
-                    className='py-12 sm:py-20 text-center'
+                    className="py-12 sm:py-20 text-center"
                   >
-                    <div className='flex flex-col items-center justify-center gap-2 text-white/40'>
-                      <div className='p-4 rounded-full bg-white/5'>
+                    <div className="flex flex-col items-center justify-center gap-2 text-white/40">
+                      <div className="p-4 rounded-full bg-white/5">
                         <MdSearchOff size={32} />
                       </div>
-                      <div className='flex flex-col gap-1'>
-                        <span className='font-bold text-lg text-white/60'>
+                      <div className="flex flex-col gap-1">
+                        <span className="font-bold text-lg text-white/60">
                           No coins found
                         </span>
-                        <span className='text-xs sm:text-sm'>
+                        <span className="text-xs sm:text-sm">
                           Try adjusting your search query or filters to find
                           what you're looking for.
                         </span>
@@ -218,7 +218,7 @@ export default function Table({ coins }: TableProps) {
                           setGlobalFilter('');
                           setColumnFilters([]);
                         }}
-                        className='mt-3 text-xs text-brand-violet hover:text-brand-violet/80 hover:underline transition-all'
+                        className="mt-3 text-xs text-brand-violet hover:text-brand-violet/80 hover:underline transition-all"
                       >
                         Clear all filters
                       </button>

@@ -9,7 +9,7 @@ import {
 } from 'recharts';
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { ChartProps } from './interface';
+import type { ChartProps } from './interface';
 import { CustomTooltip } from './components';
 
 const getTickFormat = (days: string, value: string): string => {
@@ -62,21 +62,21 @@ export default function Chart({ sparkline, days }: ChartProps) {
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
         >
           <defs>
-            <linearGradient id='colorViolet' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='0%' stopColor='#8b5cf6' stopOpacity={0.4} />
-              <stop offset='100%' stopColor='#8b5cf6' stopOpacity={0} />
+            <linearGradient id="colorViolet" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#8b5cf6" stopOpacity={0.4} />
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0} />
             </linearGradient>
           </defs>
 
           <CartesianGrid
             opacity={0.1}
             vertical={false}
-            strokeDasharray='3 3'
-            stroke='#ffffff'
+            strokeDasharray="3 3"
+            stroke="#ffffff"
           />
 
           <XAxis
-            dataKey='date'
+            dataKey="date"
             axisLine={false}
             tickLine={false}
             tickFormatter={handleTickFormatterXAxis}
@@ -91,7 +91,7 @@ export default function Chart({ sparkline, days }: ChartProps) {
           />
 
           <YAxis
-            dataKey='value'
+            dataKey="value"
             domain={['auto', 'auto']}
             axisLine={false}
             tickLine={false}
@@ -117,11 +117,11 @@ export default function Chart({ sparkline, days }: ChartProps) {
           />
 
           <Area
-            type='monotone'
-            dataKey='value'
-            stroke='#8b5cf6'
+            type="monotone"
+            dataKey="value"
+            stroke="#8b5cf6"
             strokeWidth={3}
-            fill='url(#colorViolet)'
+            fill="url(#colorViolet)"
             activeDot={{
               r: 6,
               stroke: '#8b5cf6',

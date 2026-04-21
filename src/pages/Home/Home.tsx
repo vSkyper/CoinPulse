@@ -1,6 +1,6 @@
 import { Global, Table, Skeleton } from './components';
 import useFetch from 'hooks/useFetch';
-import { CoinsResponse, GlobalDataResponse } from 'interfaces';
+import type { CoinsResponse, GlobalDataResponse } from 'interfaces';
 import { ErrorModal } from 'components';
 import { API_ENDPOINTS } from 'config/api';
 
@@ -22,8 +22,8 @@ export default function Home() {
   if (isLoading) return <Skeleton />;
 
   return (
-    <main className='relative w-full min-h-screen flex flex-col'>
-      <div className='relative z-1 container mx-auto px-4 sm:px-8 pb-12 flex-1'>
+    <main className="relative w-full min-h-screen flex flex-col">
+      <div className="relative z-1 container mx-auto px-4 sm:px-8 pb-12 flex-1">
         <Global globalData={globalData} />
         <Table coins={coins} />
       </div>

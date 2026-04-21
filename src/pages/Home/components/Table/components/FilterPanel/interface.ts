@@ -1,5 +1,5 @@
-import { RefObject } from 'react';
-import { Table } from '@tanstack/react-table';
+import type { RefObject } from 'react';
+import type { Table } from '@tanstack/react-table';
 
 export interface FilterPanelProps {
   isFilterOpen: boolean;

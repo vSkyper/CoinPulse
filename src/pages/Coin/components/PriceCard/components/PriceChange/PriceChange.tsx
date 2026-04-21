@@ -1,5 +1,5 @@
-import { MarketDataResponse } from 'interfaces';
-import { PriceChangeProps } from './interface';
+import type { MarketDataResponse } from 'interfaces';
+import type { PriceChangeProps } from './interface';
 import { formatPercentage } from 'utils/formatters';
 
 export default function PriceChange({ marketData, days }: PriceChangeProps) {
@@ -12,7 +12,7 @@ export default function PriceChange({ marketData, days }: PriceChangeProps) {
   const topBarClass = isPositive ? 'bg-brand-positive' : 'bg-brand-negative';
 
   return (
-    <div className='col-span-1'>
+    <div className="col-span-1">
       <div
         className={`flex flex-col items-center justify-center relative overflow-hidden bg-white/2 rounded-xl p-4 sm:p-3 border border-white/5 shadow-highlight-neutral transition-all duration-300 ${colorClass}`}
       >
@@ -20,12 +20,12 @@ export default function PriceChange({ marketData, days }: PriceChangeProps) {
           className={`absolute top-0 left-0 right-0 h-1 rounded-t-xl opacity-100 ${topBarClass}`}
         />
 
-        <div className='font-bold text-sm sm:text-base mb-1 tracking-tight'>
+        <div className="font-bold text-sm sm:text-base mb-1 tracking-tight">
           {isPositive && '+'}
           {formatPercentage(priceChange)}
         </div>
 
-        <div className='text-[0.6rem] sm:text-xs text-white/40 font-bold uppercase tracking-wide whitespace-nowrap'>
+        <div className="text-[0.6rem] sm:text-xs text-white/40 font-bold uppercase tracking-wide whitespace-nowrap">
           {days} Change
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { PriceProps } from './interface';
+import type { PriceProps } from './interface';
 import { formatCurrency, formatPercentage } from 'utils/formatters';
 
 export default function Price({ marketData }: PriceProps) {
@@ -8,8 +8,8 @@ export default function Price({ marketData }: PriceProps) {
   const isPositive = priceChange >= 0;
 
   return (
-    <div className='flex items-center justify-start mt-5 sm:mt-0'>
-      <h3 className='text-2xl sm:text-3xl font-black tracking-tighter text-white drop-shadow-(--shadow-glow-neutral)'>
+    <div className="flex items-center justify-start mt-5 sm:mt-0">
+      <h3 className="text-2xl sm:text-3xl font-black tracking-tighter text-white drop-shadow-(--shadow-glow-neutral)">
         {formatCurrency(currentPrice)}
       </h3>
 

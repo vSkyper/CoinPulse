@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { Button, Chart } from './components';
 import { InlineLoader } from 'components';
-import { SparklineResponse } from 'interfaces';
+import type { SparklineResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
 import { buttons } from 'constants/coin';
-import { SparklineProps } from './interface';
+import type { SparklineProps } from './interface';
 import { API_ENDPOINTS } from 'config/api';
 
 const DEFAULT_DAYS = '7';
@@ -29,32 +29,32 @@ export default function Sparkline({ id }: SparklineProps) {
   return (
     <>
       {/* Time Period Buttons */}
-      <div className='flex justify-end'>
-        <div className='flex gap-1.5 sm:gap-1.5 p-1 sm:p-1 bg-white/2 rounded-xl sm:rounded-xl border border-white/5 shadow-highlight-neutral'>
+      <div className="flex justify-end">
+        <div className="flex gap-1.5 sm:gap-1.5 p-1 sm:p-1 bg-white/2 rounded-xl sm:rounded-xl border border-white/5 shadow-highlight-neutral">
           {buttons.map((button) => (
             <Button
               key={button.days}
               {...button}
               setDays={setDays}
               actualDays={days}
-              layoutId='sparkline-pill'
+              layoutId="sparkline-pill"
             />
           ))}
         </div>
       </div>
 
       {/* Chart Container */}
-      <div className='relative w-full overflow-hidden sm:p-0 bg-transparent h-62.5 sm:h-112.5 transition-all duration-500'>
+      <div className="relative w-full overflow-hidden sm:p-0 bg-transparent h-62.5 sm:h-112.5 transition-all duration-500">
         {/* Loading State */}
         {!data && !error && (
-          <div className='absolute inset-0 z-20 flex items-center justify-center bg-transparent'>
-            <InlineLoader text='Loading chart...' />
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-transparent">
+            <InlineLoader text="Loading chart..." />
           </div>
         )}
 
         {/* Error State */}
         {error && (
-          <div className='absolute inset-0 z-20 flex flex-col items-center justify-center bg-transparent text-slate-400 gap-2'>
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-transparent text-slate-400 gap-2">
             <p>Chart data unavailable</p>
           </div>
         )}

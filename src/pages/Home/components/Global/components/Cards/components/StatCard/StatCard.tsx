@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StatCardProps } from './interface';
+import type { StatCardProps } from './interface';
 import { Tooltip } from 'components';
 
 export default function StatCard({
@@ -38,16 +38,16 @@ export default function StatCard({
         transitionDelay: show ? `${config.timeout}ms` : '0ms',
       }}
     >
-      <div className='flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-white/2 rounded-2xl p-3 sm:p-4 border border-white/5 shadow-highlight-neutral group'>
-        <div className='flex flex-col gap-2 sm:gap-1.5 w-full items-center relative z-10'>
-          <div className='flex items-center justify-center gap-2 sm:gap-2'>
+      <div className="flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-white/2 rounded-2xl p-3 sm:p-4 border border-white/5 shadow-highlight-neutral group">
+        <div className="flex flex-col gap-2 sm:gap-1.5 w-full items-center relative z-10">
+          <div className="flex items-center justify-center gap-2 sm:gap-2">
             {/* Mobile value - shorter */}
             {config.mobileValue && (
-              <h3 className='block sm:hidden w-full text-lg font-bold text-white text-center wrap-break-word'>
+              <h3 className="block sm:hidden w-full text-lg font-bold text-white text-center wrap-break-word">
                 <Tooltip
                   value={config.mobileValue}
                   content={config.fullValue || config.value}
-                  className='text-center'
+                  className="text-center"
                 />
               </h3>
             )}
@@ -62,7 +62,7 @@ export default function StatCard({
               <Tooltip
                 value={config.value}
                 content={config.fullValue || config.value}
-                className='text-center'
+                className="text-center"
               />
             </h3>
 
@@ -81,7 +81,7 @@ export default function StatCard({
           </div>
         </div>
 
-        <p className='mt-1 text-[0.6rem] sm:text-[0.6rem] text-white/40 font-bold text-center uppercase tracking-widest transition-colors'>
+        <p className="mt-1 text-[0.6rem] sm:text-[0.6rem] text-white/40 font-bold text-center uppercase tracking-widest transition-colors">
           {config.label}
         </p>
       </div>

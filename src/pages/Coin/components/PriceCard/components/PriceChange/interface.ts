@@ -1,4 +1,4 @@
-import { MarketDataResponse } from 'interfaces';
+import type { MarketDataResponse } from 'interfaces';
 
 export interface PriceChangeProps {
   marketData: MarketDataResponse;

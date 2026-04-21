@@ -1,5 +1,5 @@
 import { MdArrowDownward, MdArrowUpward } from 'react-icons/md';
-import { SortIconProps } from './interface';
+import type { SortIconProps } from './interface';
 
 export default function SortIcon({ align, isSorted }: SortIconProps) {
   const isLeft = align === 'left';
@@ -15,8 +15,8 @@ export default function SortIcon({ align, isSorted }: SortIconProps) {
     return (
       <span className={`flex items-center ${iconClass}`}>
         <MdArrowUpward
-          size='1.2rem'
-          className='text-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200'
+          size="1.2rem"
+          className="text-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         />
       </span>
     );
@@ -25,9 +25,9 @@ export default function SortIcon({ align, isSorted }: SortIconProps) {
   return (
     <span className={`flex items-center ${iconClass}`}>
       {isSorted === 'asc' ? (
-        <MdArrowUpward size='1.2rem' className='text-white/60' />
+        <MdArrowUpward size="1.2rem" className="text-white/60" />
       ) : (
-        <MdArrowDownward size='1.2rem' className='text-white/60' />
+        <MdArrowDownward size="1.2rem" className="text-white/60" />
       )}
     </span>
   );

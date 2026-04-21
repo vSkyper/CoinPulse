@@ -132,7 +132,7 @@ export function useFilterPosition(
   useEffect(() => {
     if (!isFilterOpen || !anchorEl || !filterRef.current) return;
 
-    let startTime = performance.now();
+    const startTime = performance.now();
     let frameId: number;
 
     const loop = () => {

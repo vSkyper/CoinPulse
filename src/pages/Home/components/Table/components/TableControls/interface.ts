@@ -1,4 +1,4 @@
-import { MouseEvent, RefObject, ReactNode } from 'react';
+import type { MouseEvent, RefObject, ReactNode } from 'react';
 
 export interface TableControlsProps {
   globalFilter: string;

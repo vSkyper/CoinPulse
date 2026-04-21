@@ -1,4 +1,4 @@
-import { CoinsResponse } from 'interfaces';
+import type { CoinsResponse } from 'interfaces';
 
 export interface TableProps {
   coins: CoinsResponse[];

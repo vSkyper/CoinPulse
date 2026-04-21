@@ -1,13 +1,18 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link as RouterLink } from 'react-router-dom';
 import { AreaChart, Area, YAxis } from 'recharts';
-import { MdArrowDropUp, MdArrowDropDown, MdStar, MdStarBorder } from 'react-icons/md';
+import {
+  MdArrowDropUp,
+  MdArrowDropDown,
+  MdStar,
+  MdStarBorder,
+} from 'react-icons/md';
 import {
   formatCurrency,
   formatCompactCurrency,
   formatPercentage,
 } from 'utils/formatters';
-import { CoinsResponse } from 'interfaces';
+import type { CoinsResponse } from 'interfaces';
 import { useFavorites } from 'context/FavoritesContext';
 
 const columnHelper = createColumnHelper<CoinsResponse>();
@@ -15,20 +20,20 @@ const columnHelper = createColumnHelper<CoinsResponse>();
 function FavoriteStar({ id }: { id: string }) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const active = isFavorite(id);
-  
+
   return (
     <button
       onClick={(e) => {
         e.stopPropagation();
         toggleFavorite(id);
       }}
-      className='flex items-center justify-center p-1.5 focus:outline-none hover:bg-white/5 rounded-full transition-colors'
+      className="flex items-center justify-center p-1.5 focus:outline-none hover:bg-white/5 rounded-full transition-colors"
       title={active ? 'Remove from favorites' : 'Add to favorites'}
     >
       {active ? (
-        <MdStar className='text-brand-violet text-lg' />
+        <MdStar className="text-brand-violet text-lg" />
       ) : (
-        <MdStarBorder className='text-white/40 hover:text-white/80 text-lg transition-colors' />
+        <MdStarBorder className="text-white/40 hover:text-white/80 text-lg transition-colors" />
       )}
     </button>
   );
@@ -42,20 +47,20 @@ function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
     <RouterLink
       to={`/coins/${row.id}`}
       onClick={(e) => e.stopPropagation()}
-      className='flex items-center gap-3 sm:gap-2 group relative w-full'
+      className="flex items-center gap-3 sm:gap-2 group relative w-full"
     >
-      <div className='w-8 h-8 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-badge group-hover:scale-110 transition-transform duration-300'>
+      <div className="w-8 h-8 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-badge group-hover:scale-110 transition-transform duration-300">
         <img
           src={row.image}
           alt={`${value} logo`}
-          className='w-full h-full object-cover'
+          className="w-full h-full object-cover"
         />
       </div>
-      <div className='flex flex-col min-w-0 justify-center'>
+      <div className="flex flex-col min-w-0 justify-center">
         <span className={COIN_NAME_CLASSES} title={String(value)}>
           {value}
         </span>
-        <span className='text-[0.65rem] sm:text-[0.6rem] font-bold text-white/40 uppercase tracking-wider group-hover:text-brand-violet transition-colors duration-300 leading-tight mt-0.5'>
+        <span className="text-[0.65rem] sm:text-[0.6rem] font-bold text-white/40 uppercase tracking-wider group-hover:text-brand-violet transition-colors duration-300 leading-tight mt-0.5">
           {row.symbol}
         </span>
       </div>
@@ -66,8 +71,8 @@ function CoinName({ row, value }: { row: CoinsResponse; value: string }) {
 function SymbolBadge({ value }: { value: string }) {
   const label = String(value ?? '').toUpperCase();
   return (
-    <div className='flex items-center justify-center w-full'>
-      <span className='flex items-center justify-center w-fit h-fit font-bold rounded-lg transition-all duration-200 hover:bg-white/10 bg-white/5 border border-white/10 text-white/90 tracking-wide text-[0.65rem] sm:text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1'>
+    <div className="flex items-center justify-center w-full">
+      <span className="flex items-center justify-center w-fit h-fit font-bold rounded-lg transition-all duration-200 hover:bg-white/10 bg-white/5 border border-white/10 text-white/90 tracking-wide text-[0.65rem] sm:text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1">
         {label}
       </span>
     </div>
@@ -84,8 +89,8 @@ function PercentageChange({ value }: { value: number }) {
     <div
       className={`flex items-center justify-center gap-0.5 font-bold ${colorClass}`}
     >
-      <Icon className='text-lg! sm:text-xl!' />
-      <span className='text-xs sm:text-xs'>{label}</span>
+      <Icon className="text-lg! sm:text-xl!" />
+      <span className="text-xs sm:text-xs">{label}</span>
     </div>
   );
 }
@@ -99,20 +104,20 @@ function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
 
   const prices = value.price;
   const sampledData = prices.filter(
-    (_: number, index: number) => index % 2 === 0
+    (_: number, index: number) => index % 2 === 0,
   );
 
   return (
-    <div className='w-full h-full flex items-center justify-center py-1'>
+    <div className="w-full h-full flex items-center justify-center py-1">
       <AreaChart data={sampledData} width={120} height={40}>
         <defs>
-          <linearGradient id={gradientId} x1='0' y1='0' x2='0' y2='1'>
-            <stop offset='5%' stopColor={color} stopOpacity={0.3} />
-            <stop offset='95%' stopColor={color} stopOpacity={0} />
+          <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor={color} stopOpacity={0.3} />
+            <stop offset="95%" stopColor={color} stopOpacity={0} />
           </linearGradient>
         </defs>
         <Area
-          type='monotone'
+          type="monotone"
           dataKey={(value) => value}
           stroke={color}
           strokeWidth={2}

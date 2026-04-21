@@ -1,4 +1,4 @@
-import { AnimatedSectionProps } from './interface';
+import type { AnimatedSectionProps } from './interface';
 
 export default function AnimatedSection({
   show,

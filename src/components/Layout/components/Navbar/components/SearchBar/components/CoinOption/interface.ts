@@ -1,4 +1,4 @@
-import { CoinsResponse, CoinsListResponse } from 'interfaces';
+import type { CoinsResponse, CoinsListResponse } from 'interfaces';
 
 export interface CoinOptionProps {
   coin: CoinsResponse | CoinsListResponse;
