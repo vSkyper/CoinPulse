@@ -10,7 +10,7 @@ import {
   Skeleton,
   ProjectInfo,
 } from './components';
-import { ErrorModal } from 'components';
+import { NotFound } from 'pages';
 import type { CoinResponse } from 'interfaces';
 import useFetch from 'hooks/useFetch';
 import { API_ENDPOINTS } from 'config/api';
@@ -33,7 +33,7 @@ export default function Coin() {
 
   const animations = useStaggeredAnimation(ANIMATION_DELAYS, !!data);
 
-  if (!id || error) return <ErrorModal />;
+  if (!id || error) return <NotFound />;
 
   if (!data) return <Skeleton />;
 

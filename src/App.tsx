@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Coin, Home } from 'pages';
+import { Coin, Home, NotFound } from 'pages';
 import { Layout } from 'components';
 
 export default function App() {
@@ -14,6 +14,10 @@ export default function App() {
         {
           path: '/coins/:id',
           element: <Coin />,
+        },
+        {
+          path: '*',
+          element: <NotFound />,
         },
       ],
     },
