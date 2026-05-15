@@ -29,13 +29,13 @@ export default function StickyHeader({
   }, [scrollContainerRef]);
 
   return (
-    <div ref={headerScrollRef} className="w-full overflow-hidden">
-      <table className="w-full border-collapse border-spacing-0 table-fixed">
+    <div ref={headerScrollRef} className='w-full overflow-hidden'>
+      <table className='w-full border-collapse border-spacing-0 table-fixed'>
         <TableHeader
           table={table}
           handleFilterOpenFromMenu={handleFilterOpenFromMenu}
           handleMenuOpen={handleMenuOpen}
-          context="sticky"
+          context='sticky'
           sorting={sorting}
         />
       </table>

@@ -1,5 +1,4 @@
-import { useState, Fragment, KeyboardEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Fragment } from 'react';
 import {
   Combobox,
   ComboboxInput,
@@ -8,74 +7,43 @@ import {
   ComboboxButton,
   Transition,
 } from '@headlessui/react';
-import type { CoinsListResponse, CoinsResponse } from 'interfaces';
 import { ErrorModal } from 'components';
 import { CoinOption, EmptyState, SearchIconContainer } from './components';
-import { useNavbar } from 'context/NavbarContext';
-
-const BLUR_DELAY = 100;
+import { useSearchBar } from './hooks';
 
 export default function SearchBar() {
-  const [selectedCoin, setSelectedCoin] = useState<
-    CoinsResponse | CoinsListResponse | null
-  >(null);
-
-  const navigate = useNavigate();
   const {
-    searchQuery: query,
-    setSearchQuery: setQuery,
+    selectedCoin,
+    query,
+    setQuery,
     filteredCoins,
     isLoading,
     error,
-  } = useNavbar();
-
-  const handleChange = (coin: CoinsResponse | CoinsListResponse | null) => {
-    if (!coin) return;
-    setSelectedCoin(null);
-    setQuery('');
-    navigate(`/coins/${coin.id}`);
-  };
-
-  const handleBlur = () => {
-    setTimeout(() => setQuery(''), BLUR_DELAY);
-  };
-
-  const displayValue = (coin: CoinsResponse | CoinsListResponse | null) =>
-    coin ? `${coin.name} (${coin.symbol?.toUpperCase()})` : '';
+    handleChange,
+    handleBlur,
+    displayValue,
+    handleKeyDownInput,
+  } = useSearchBar();
 
   if (error) return <ErrorModal />;
 
   const placeholder = !isLoading ? 'Search coins...' : 'Loading coins...';
 
-  const handleKeyDownInput = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Escape') {
-      setQuery('');
-    }
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      if (filteredCoins.length > 0) {
-        const firstResult = filteredCoins[0];
-        handleChange(firstResult);
-        event.currentTarget.blur();
-      }
-    }
-  };
-
   return (
     <Combobox value={selectedCoin} onChange={handleChange}>
       {({ open }) => (
-        <div className="relative w-full group">
+        <div className='relative w-full group'>
           <ComboboxButton
-            as="div"
-            className="relative transform transition-transform duration-300 w-full"
+            as='div'
+            className='relative transform transition-transform duration-300 w-full'
           >
             <SearchIconContainer isLoading={isLoading} />
 
             <ComboboxInput
-              className="w-full bg-white/7 backdrop-blur-xl border border-white/8 text-white rounded-2xl py-2 pl-12 pr-4 text-[15px] font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-white/12 focus:border-white/20 focus:ring-1 focus:ring-white/20 hover:bg-white/12 hover:border-white/20"
+              className='w-full bg-white/7 backdrop-blur-xl border border-white/8 text-white rounded-2xl py-2 pl-12 pr-4 text-[15px] font-medium tracking-wide placeholder:text-zinc-500 transition-all duration-300 outline-none focus:outline-none focus:bg-white/12 focus:border-white/20 focus:ring-1 focus:ring-white/20 hover:bg-white/12 hover:border-white/20'
               placeholder={placeholder}
               displayValue={displayValue}
-              enterKeyHint="go"
+              enterKeyHint='go'
               onChange={(event) => setQuery(event.target.value)}
               onBlur={handleBlur}
               onKeyDown={handleKeyDownInput}
@@ -85,12 +53,12 @@ export default function SearchBar() {
           <Transition
             as={Fragment}
             show={open && (filteredCoins.length > 0 || query !== '')}
-            enter="transition duration-200 ease-out"
-            enterFrom="transform scale-95 opacity-0 translate-y-2"
-            enterTo="transform scale-100 opacity-100 translate-y-0"
-            leave="transition duration-150 ease-in"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 translate-y-2"
+            enter='transition duration-200 ease-out'
+            enterFrom='transform scale-95 opacity-0 translate-y-2'
+            enterTo='transform scale-100 opacity-100 translate-y-0'
+            leave='transition duration-150 ease-in'
+            leaveFrom='opacity-100 translate-y-0'
+            leaveTo='opacity-0 translate-y-2'
           >
             <ComboboxOptions
               modal={false}
@@ -98,7 +66,7 @@ export default function SearchBar() {
                 query === '' ? '' : 'max-h-80 overflow-y-auto custom-scrollbar'
               }`}
             >
-              <div className="px-3 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium text-zinc-500">
+              <div className='px-3 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium text-zinc-500'>
                 {query === '' ? 'Popular tokens' : 'Search results'}
               </div>
 
@@ -109,7 +77,7 @@ export default function SearchBar() {
                   <ComboboxOption
                     key={coin.id}
                     value={coin}
-                    className="relative cursor-pointer select-none rounded-xl transition-all duration-200 bg-transparent"
+                    className='relative cursor-pointer select-none rounded-xl transition-all duration-200 bg-transparent'
                   >
                     {({ focus }) => (
                       <CoinOption coin={coin} isFocused={focus} />

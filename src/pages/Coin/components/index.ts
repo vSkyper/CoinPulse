@@ -1,21 +1,5 @@
-import Sparkline from './Sparkline';
-import PriceCard from './PriceCard';
-import MarketStats from './MarketStats';
-import CurrencyConverter from './CurrencyConverter';
-import Links from './Links';
-import CoinHeader from './CoinHeader';
-import AnimatedSection from './AnimatedSection';
 import Skeleton from './Skeleton';
-import ProjectInfo from './ProjectInfo';
+import CoinHero from './CoinHero';
+import CoinDetails from './CoinDetails';
 
-export {
-  Sparkline,
-  PriceCard,
-  MarketStats,
-  CurrencyConverter,
-  Links,
-  CoinHeader,
-  AnimatedSection,
-  Skeleton,
-  ProjectInfo,
-};
+export { Skeleton, CoinHero, CoinDetails };

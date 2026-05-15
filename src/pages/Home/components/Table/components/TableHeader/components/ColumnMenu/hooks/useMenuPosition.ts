@@ -3,7 +3,7 @@ import {
   useCallback,
   useLayoutEffect,
   useEffect,
-  RefObject,
+  type RefObject,
 } from 'react';
 
 interface Position {
