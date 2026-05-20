@@ -1,4 +1,5 @@
 import Button from './Button';
-import Chart from './Chart';
+import LineChart from './LineChart';
+import CandlestickChart from './CandlestickChart';
 
-export { Button, Chart };
+export { Button, LineChart, CandlestickChart };

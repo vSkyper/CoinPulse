@@ -3,7 +3,11 @@ import type { CoinsResponse } from './coins';
 import type { CoinsListResponse } from './coinsList';
 import type { CryptoPriceResponse } from './cryptoPrice';
 import type { GlobalDataResponse } from './globalData';
-import type { SparklineResponse } from './sparkline';
+import type {
+  SparklineResponse,
+  OhlcResponse,
+  CandlestickData,
+} from './sparkline';
 
 export type {
   CoinsResponse,
@@ -13,4 +17,6 @@ export type {
   MarketDataResponse,
   SparklineResponse,
   CryptoPriceResponse,
+  OhlcResponse,
+  CandlestickData,
 };

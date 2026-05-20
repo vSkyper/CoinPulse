@@ -11,20 +11,10 @@ export const useMobile = () => {
 
     handler(mq);
 
-    if ('addEventListener' in mq) {
-      mq.addEventListener('change', handler);
-    } else {
-      // @ts-ignore
-      mq.addListener(handler);
-    }
+    mq.addEventListener('change', handler);
 
     return () => {
-      if ('removeEventListener' in mq) {
-        mq.removeEventListener('change', handler);
-      } else {
-        // @ts-ignore
-        mq.removeListener(handler);
-      }
+      mq.removeEventListener('change', handler);
     };
   }, []);
 

@@ -3,36 +3,40 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  AreaChart,
-  Area,
+  BarChart,
+  Bar,
+  Brush,
   ResponsiveContainer,
 } from 'recharts';
-import type { ChartProps } from './interface';
-import { CustomTooltip } from './components';
-import { useMobile } from './hooks';
-import { getTickFormat } from './utils';
+import type { CandlestickChartProps } from './interface';
+import { CustomCandlestick, CandlestickTooltip } from './components';
+import { useMobile } from '../hooks';
+import { getTickFormat } from '../utils';
 
-
-export default function Chart({ sparkline, days }: ChartProps) {
+export default function CandlestickChart({ data, days }: CandlestickChartProps) {
   const { isMobile } = useMobile();
 
   const handleTickFormatterXAxis = (value: string) =>
     getTickFormat(days, value);
 
+  // Map the data so Recharts can scale the Bar to cover the [low, high] range.
+  const chartData = data.map((item) => ({
+    ...item,
+    range: [item.low, item.high],
+  }));
+
+  // Calculate domain min/max with a small 5% padding
+  const minValue = Math.min(...data.map((d) => d.low));
+  const maxValue = Math.max(...data.map((d) => d.high));
+  const padding = Math.max((maxValue - minValue) * 0.05, 1);
+
   return (
     <div style={{ width: '100%', height: '100%' }}>
       <ResponsiveContainer>
-        <AreaChart
-          data={sparkline}
+        <BarChart
+          data={chartData}
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
         >
-          <defs>
-            <linearGradient id="colorViolet" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8b5cf6" stopOpacity={0.4} />
-              <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-
           <CartesianGrid
             opacity={0.1}
             vertical={false}
@@ -45,7 +49,7 @@ export default function Chart({ sparkline, days }: ChartProps) {
             axisLine={false}
             tickLine={false}
             tickFormatter={handleTickFormatterXAxis}
-            hide={isMobile}
+            hide={false}
             minTickGap={30}
             tick={{
               fill: 'rgba(255, 255, 255, 0.4)',
@@ -56,8 +60,7 @@ export default function Chart({ sparkline, days }: ChartProps) {
           />
 
           <YAxis
-            dataKey="value"
-            domain={['auto', 'auto']}
+            domain={[minValue - padding, maxValue + padding]}
             axisLine={false}
             tickLine={false}
             tickCount={6}
@@ -73,29 +76,25 @@ export default function Chart({ sparkline, days }: ChartProps) {
           />
 
           <Tooltip
-            content={CustomTooltip}
-            cursor={{
-              stroke: 'rgba(255, 255, 255, 0.1)',
-              strokeWidth: 1,
-              strokeDasharray: '4 4',
-            }}
+            content={CandlestickTooltip}
+            cursor={{ fill: 'rgba(255, 255, 255, 0.05)' }}
           />
 
-          <Area
-            type="monotone"
-            dataKey="value"
-            stroke="#8b5cf6"
-            strokeWidth={3}
-            fill="url(#colorViolet)"
-            activeDot={{
-              r: 6,
-              stroke: '#8b5cf6',
-              strokeWidth: 0,
-              fill: '#fff',
-            }}
-            animationDuration={1500}
+          <Bar
+            dataKey="range"
+            shape={<CustomCandlestick />}
+            isAnimationActive={false}
           />
-        </AreaChart>
+
+          <Brush
+            dataKey="date"
+            height={20}
+            stroke="rgba(139, 92, 246, 0.5)"
+            fill="rgba(0, 0, 0, 0.2)"
+            tickFormatter={handleTickFormatterXAxis}
+            travellerWidth={10}
+          />
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );

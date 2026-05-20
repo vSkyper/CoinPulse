@@ -2,9 +2,12 @@ import parse from 'html-react-parser';
 import { useState } from 'react';
 import { MdDescription } from 'react-icons/md';
 import type { ProjectDescriptionProps } from './interface';
+import ProjectDescriptionModal from './components/ProjectDescriptionModal';
 
-export default function ProjectDescription({ description }: ProjectDescriptionProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+export default function ProjectDescription({
+  description,
+}: ProjectDescriptionProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-3 sm:gap-4 h-full">
@@ -20,9 +23,7 @@ export default function ProjectDescription({ description }: ProjectDescriptionPr
           </div>
         </div>
 
-        <div
-          className={`relative flex-1 overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? '' : 'max-h-48 mask-fade-bottom'}`}
-        >
+        <div className="relative flex-1 overflow-hidden max-h-48 mask-fade-bottom">
           <div className="flex flex-col gap-3 sm:gap-4">
             {description
               .split(/\r?\n\r?\n/)
@@ -43,26 +44,29 @@ export default function ProjectDescription({ description }: ProjectDescriptionPr
         </div>
 
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className={`mt-3 flex items-center justify-center gap-2 w-full py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl text-[0.6rem] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 border focus:outline-none focus:ring-0 group shrink-0 ${
-            isExpanded
-              ? 'bg-brand-violet/10 hover:bg-brand-violet/20 text-brand-violet border-brand-violet/20 hover:border-brand-violet/40'
-              : 'bg-white/5 hover:bg-white/10 text-white/40 hover:text-white/80 border-white/10 hover:border-white/20'
-          }`}
+          onClick={() => setIsModalOpen(true)}
+          className="relative mt-3 flex items-center justify-center gap-2 w-full py-2 sm:py-3 rounded-xl text-[0.65rem] sm:text-xs font-bold uppercase tracking-widest transition-all duration-500 border focus:outline-none focus:ring-0 group shrink-0 overflow-hidden bg-white/5 hover:bg-brand-violet/10 text-white/60 hover:text-white border-white/10 hover:border-brand-violet/40 shadow-sm hover:shadow-[0_0_20px_-3px_rgba(139,92,246,0.2)] backdrop-blur-md"
         >
-          <span>{isExpanded ? 'Show Less' : 'Read Full Description'}</span>
-          <div className="transition-transform duration-300">
+          {/* Shine effect on hover */}
+          <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
+
+          <span className="relative z-10 transition-colors duration-300">
+            Read Full Description
+          </span>
+          <div className="relative z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[8deg]">
             <MdDescription
-              size={16}
-              className={`transition-colors duration-300 ${
-                isExpanded
-                  ? 'text-brand-violet/70 group-hover:text-brand-violet'
-                  : 'text-white/30 group-hover:text-white/70'
-              }`}
+              size={18}
+              className="transition-colors duration-500 text-white/40 group-hover:text-brand-violet/90"
             />
           </div>
         </button>
       </div>
+
+      <ProjectDescriptionModal
+        description={description}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

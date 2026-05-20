@@ -76,6 +76,13 @@ export const API_ENDPOINTS = {
       days: String(days),
     }),
 
+  // Coin OHLC chart
+  coinOhlc: (id: string, days: string | number) =>
+    buildUrl(`/coins/${id}/ohlc`, {
+      vs_currency: 'usd',
+      days: String(days),
+    }),
+
   // Supported currencies
   supportedCurrencies: () => buildUrl('/simple/supported_vs_currencies'),
 
