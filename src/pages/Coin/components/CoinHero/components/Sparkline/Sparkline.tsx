@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
 import { MdShowChart, MdCandlestickChart } from 'react-icons/md';
 import { Button, LineChart, CandlestickChart } from './components';
 import { InlineLoader } from 'components';
@@ -61,25 +62,54 @@ export default function Sparkline({ id }: SparklineProps) {
         <div className="flex w-full sm:w-auto gap-1 p-1 bg-white/2 rounded-xl border border-white/5 shadow-highlight-neutral">
           <button
             onClick={() => setChartType('line')}
-            className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-2 py-1.5 sm:px-3 sm:py-1.5 rounded-lg text-[0.65rem] sm:text-xs font-semibold transition-all duration-300 ${
+            className={`group relative flex-1 sm:flex-none flex items-center justify-center font-bold select-none transition-colors duration-300 ease-out px-2 py-1.5 sm:px-3 sm:py-1.5 text-[0.65rem] sm:text-[0.65rem] tracking-wide rounded-lg sm:rounded-lg ${
               chartType === 'line'
-                ? 'bg-brand-violet/20 text-brand-violet shadow-[0_0_15px_-3px_rgba(139,92,246,0.3)]'
-                : 'text-white/40 hover:text-white/80 hover:bg-white/5'
+                ? 'text-white'
+                : 'text-white/50 hover:text-white'
             }`}
           >
-            <MdShowChart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            Line
+            {chartType === 'line' && (
+              <motion.div
+                layoutId="chart-type-pill"
+                className="absolute inset-0 bg-brand-violet shadow-glow-primary border border-white/20 rounded-lg sm:rounded-lg overflow-hidden"
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              >
+                <span className="absolute inset-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/10 to-transparent animate-[shine_2s_infinite]" />
+              </motion.div>
+            )}
+            {chartType !== 'line' && (
+              <div className="absolute inset-0 rounded-lg sm:rounded-lg bg-linear-to-b from-white/15 to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/0 group-hover:border-white/10 shadow-glass-button group-hover:shadow-glass-button-hover" />
+            )}
+            <span className="relative z-10 flex items-center gap-1.5">
+              <MdShowChart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              Line
+            </span>
           </button>
+
           <button
             onClick={() => setChartType('candlestick')}
-            className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-2 py-1.5 sm:px-3 sm:py-1.5 rounded-lg text-[0.65rem] sm:text-xs font-semibold transition-all duration-300 ${
+            className={`group relative flex-1 sm:flex-none flex items-center justify-center font-bold select-none transition-colors duration-300 ease-out px-2 py-1.5 sm:px-3 sm:py-1.5 text-[0.65rem] sm:text-[0.65rem] tracking-wide rounded-lg sm:rounded-lg ${
               chartType === 'candlestick'
-                ? 'bg-brand-violet/20 text-brand-violet shadow-[0_0_15px_-3px_rgba(139,92,246,0.3)]'
-                : 'text-white/40 hover:text-white/80 hover:bg-white/5'
+                ? 'text-white'
+                : 'text-white/50 hover:text-white'
             }`}
           >
-            <MdCandlestickChart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            Candlestick
+            {chartType === 'candlestick' && (
+              <motion.div
+                layoutId="chart-type-pill"
+                className="absolute inset-0 bg-brand-violet shadow-glow-primary border border-white/20 rounded-lg sm:rounded-lg overflow-hidden"
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              >
+                <span className="absolute inset-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/10 to-transparent animate-[shine_2s_infinite]" />
+              </motion.div>
+            )}
+            {chartType !== 'candlestick' && (
+              <div className="absolute inset-0 rounded-lg sm:rounded-lg bg-linear-to-b from-white/15 to-white/5 opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/0 group-hover:border-white/10 shadow-glass-button group-hover:shadow-glass-button-hover" />
+            )}
+            <span className="relative z-10 flex items-center gap-1.5">
+              <MdCandlestickChart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              Candlestick
+            </span>
           </button>
         </div>
 
