@@ -13,7 +13,10 @@ import { CustomCandlestick, CandlestickTooltip } from './components';
 import { useMobile } from '../hooks';
 import { getTickFormat } from '../utils';
 
-export default function CandlestickChart({ data, days }: CandlestickChartProps) {
+export default function CandlestickChart({
+  data,
+  days,
+}: CandlestickChartProps) {
   const { isMobile } = useMobile();
 
   const handleTickFormatterXAxis = (value: string) =>
@@ -31,7 +34,7 @@ export default function CandlestickChart({ data, days }: CandlestickChartProps) 
   const padding = Math.max((maxValue - minValue) * 0.05, 1);
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div className="w-full h-full touch-pan-y">
       <ResponsiveContainer>
         <BarChart
           data={chartData}
@@ -88,11 +91,12 @@ export default function CandlestickChart({ data, days }: CandlestickChartProps) 
 
           <Brush
             dataKey="date"
-            height={20}
-            stroke="rgba(139, 92, 246, 0.5)"
-            fill="rgba(0, 0, 0, 0.2)"
+            height={24}
+            stroke="var(--color-brand-violet)"
+            fill="rgba(0, 0, 0, 0.3)"
             tickFormatter={handleTickFormatterXAxis}
-            travellerWidth={10}
+            travellerWidth={14}
+            className="text-[9px] sm:text-[10px] font-medium"
           />
         </BarChart>
       </ResponsiveContainer>
