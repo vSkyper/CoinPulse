@@ -13,7 +13,7 @@ export default function CandlestickTooltip({
   if (active && payload && payload.length) {
     // payload[0].payload contains the original data object
     const data = payload[0].payload as CandlestickData;
-    const isBullish = data.close >= data.open;
+    const isBullish = data.close > data.open;
     const colorClass = isBullish ? 'text-[var(--color-brand-positive)]' : 'text-[var(--color-brand-negative)]';
 
     return (

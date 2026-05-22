@@ -45,7 +45,7 @@ export default function ProjectDescription({
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="relative mt-3 flex items-center justify-center gap-2 w-full py-2 sm:py-3 rounded-xl text-[0.65rem] sm:text-xs font-bold uppercase tracking-widest transition-all duration-500 border focus:outline-none focus:ring-0 group shrink-0 overflow-hidden bg-white/5 hover:bg-brand-violet/10 text-white/60 hover:text-white border-white/10 hover:border-brand-violet/40 shadow-sm hover:shadow-[0_0_20px_-3px_rgba(139,92,246,0.2)] backdrop-blur-md"
+          className="relative mt-3 flex items-center justify-center gap-2 w-full py-2 sm:py-3 rounded-xl text-[0.65rem] sm:text-xs font-bold uppercase tracking-widest transition-all duration-500 border focus:outline-none focus:ring-0 group shrink-0 overflow-hidden bg-white/5 hover:bg-brand-violet/10 text-white/60 hover:text-white border-white/10 hover:border-brand-violet/40 shadow-sm hover:shadow-glow-primary backdrop-blur-md"
         >
           {/* Shine effect on hover */}
           <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />

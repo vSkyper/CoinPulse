@@ -17,7 +17,7 @@ export default function StatRow({
         isHero ? 'justify-center' : 'justify-start'
       } gap-1 px-3 py-2 sm:p-3.5 rounded-2xl border ${
         isHero
-          ? 'bg-linear-to-br from-violet-500/10 via-purple-500/5 to-white/5 border-violet-500/20 shadow-highlight-violet'
+          ? 'bg-linear-to-br from-brand-violet/10 via-brand-violet-light/5 to-white/5 border-brand-violet/20 shadow-highlight-violet'
           : 'bg-white/2 border-white/5 shadow-highlight-neutral'
       } ${className}`}
     >
@@ -26,7 +26,7 @@ export default function StatRow({
           <span
             className={`uppercase tracking-widest font-bold truncate pr-2 ${
               isHero
-                ? 'text-[0.6rem] text-violet-200/70'
+                ? 'text-[0.6rem] text-brand-violet-light/70'
                 : 'text-[0.55rem] text-white/40'
             }`}
           >
@@ -37,7 +37,7 @@ export default function StatRow({
         {Icon && (
           <div
             className={`transition-colors duration-300 ${
-              isHero ? 'text-violet-200/50' : 'text-white/20'
+              isHero ? 'text-brand-violet-light/50' : 'text-white/20'
             }`}
           >
             <Icon size={isHero ? 20 : 16} />

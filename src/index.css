@@ -137,3 +137,32 @@ input[type='number'] {
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
+
+/* Recharts Customizations */
+.recharts-brush > rect {
+  rx: 8px;
+  ry: 8px;
+}
+
+.recharts-brush-slide {
+  rx: 0px !important;
+  ry: 0px !important;
+  fill: var(--color-brand-violet) !important;
+  fill-opacity: 0.2 !important;
+}
+
+.recharts-brush-texts text {
+  fill: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+}
+
+/* Asymmetrical Traveller Shapes */
+.recharts-brush-slide + .recharts-brush-traveller .traveller-right-bg,
+.recharts-brush-slide + .recharts-brush-traveller .traveller-right-stroke {
+  display: none !important;
+}
+
+.recharts-brush-traveller + .recharts-brush-traveller .traveller-left-bg,
+.recharts-brush-traveller + .recharts-brush-traveller .traveller-left-stroke {
+  display: none !important;
+}

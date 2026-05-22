@@ -6,7 +6,7 @@ export default function FilterHeader({ onClose }: FilterHeaderProps) {
     <>
       <div className="flex items-center justify-between mb-4 sm:mb-5">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-white/5 text-white ring-1 ring-white/10">
+          <div className="p-2 rounded-xl bg-brand-violet/10 text-brand-violet ring-1 ring-brand-violet/20">
             <MdFilterList className="w-4 h-4" />
           </div>
           <div>

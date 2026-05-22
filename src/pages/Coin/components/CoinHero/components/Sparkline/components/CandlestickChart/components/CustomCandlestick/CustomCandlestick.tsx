@@ -20,8 +20,8 @@ export default function CustomCandlestick({
   const openY = y + (high - open) * ratio;
   const closeY = y + (high - close) * ratio;
 
-  const isBullish = close >= open;
-  // Green for bullish (closing higher), Red for bearish (closing lower)
+  const isBullish = close > open;
+  // Green for bullish (closing higher), Red for bearish (closing lower or flat)
   const color = isBullish ? 'var(--color-brand-positive)' : 'var(--color-brand-negative)';
 
   const bodyY = Math.min(openY, closeY);

@@ -9,9 +9,11 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import type { CandlestickChartProps } from './interface';
-import { CustomCandlestick, CandlestickTooltip } from './components';
+import { CustomCandlestick, CandlestickTooltip, CustomTraveller } from './components';
 import { useMobile } from '../hooks';
 import { getTickFormat } from '../utils';
+
+
 
 export default function CandlestickChart({
   data,
@@ -31,7 +33,7 @@ export default function CandlestickChart({
   // Calculate domain min/max with a small 5% padding
   const minValue = Math.min(...data.map((d) => d.low));
   const maxValue = Math.max(...data.map((d) => d.high));
-  const padding = Math.max((maxValue - minValue) * 0.05, 1);
+  const padding = (maxValue - minValue) * 0.05 || maxValue * 0.01 || 0.01;
 
   return (
     <div className="w-full h-full touch-pan-y">
@@ -69,7 +71,7 @@ export default function CandlestickChart({
             tickCount={6}
             tickFormatter={(val) => `$${val.toLocaleString()}`}
             hide={isMobile}
-            width={60}
+            width={80}
             tick={{
               fill: 'rgba(255, 255, 255, 0.4)',
               fontSize: 10,
@@ -92,11 +94,12 @@ export default function CandlestickChart({
           <Brush
             dataKey="date"
             height={24}
-            stroke="var(--color-brand-violet)"
-            fill="rgba(0, 0, 0, 0.3)"
+            stroke="rgba(255,255,255,0.1)"
+            fill="rgba(255, 255, 255, 0.02)"
             tickFormatter={handleTickFormatterXAxis}
-            travellerWidth={14}
-            className="text-[9px] sm:text-[10px] font-medium"
+            travellerWidth={16}
+            traveller={<CustomTraveller />}
+            className="text-[9px] sm:text-[10px] font-medium opacity-80"
           />
         </BarChart>
       </ResponsiveContainer>

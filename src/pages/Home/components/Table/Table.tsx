@@ -121,35 +121,34 @@ export default function Table({ coins }: TableProps) {
       : null;
 
   return (
-    <div className="mt-6 sm:mt-6 relative">
-      <div className="flex flex-col w-full rounded-3xl border border-white/5 bg-white/2 shadow-highlight-neutral">
-        <TableControls
-          globalFilter={globalFilter}
-          setGlobalFilter={setGlobalFilter}
-          handleFilterClick={handleFilterClick}
+    <div className="mt-8 sm:mt-8 relative flex flex-col gap-4 sm:gap-6">
+      <TableControls
+        globalFilter={globalFilter}
+        setGlobalFilter={setGlobalFilter}
+        handleFilterClick={handleFilterClick}
+        isFilterOpen={isFilterOpen}
+        filterButtonRef={filterButtonRef}
+      >
+        <FilterPanel
           isFilterOpen={isFilterOpen}
-          filterButtonRef={filterButtonRef}
-        >
-          <FilterPanel
-            isFilterOpen={isFilterOpen}
-            filterRef={filterRef}
-            setIsFilterOpen={setIsFilterOpen}
-            activeFilterColumn={activeFilterColumn}
-            handleColumnChange={handleColumnChange}
-            table={table}
-            activeOperator={activeOperator}
-            setActiveOperator={setActiveOperator}
-            activeValue={activeValue}
-            setActiveValue={setActiveValue}
-            handleFilterClear={handleFilterClear}
-            handleFilterSave={handleFilterSave}
-            anchorEl={filterAnchor}
-            isAnchoring={isAnchoring}
-            isHeaderVisible={isHeaderVisible}
-          />
-        </TableControls>
+          filterRef={filterRef}
+          setIsFilterOpen={setIsFilterOpen}
+          activeFilterColumn={activeFilterColumn}
+          handleColumnChange={handleColumnChange}
+          table={table}
+          activeOperator={activeOperator}
+          setActiveOperator={setActiveOperator}
+          activeValue={activeValue}
+          setActiveValue={setActiveValue}
+          handleFilterClear={handleFilterClear}
+          handleFilterSave={handleFilterSave}
+          anchorEl={filterAnchor}
+          isAnchoring={isAnchoring}
+          isHeaderVisible={isHeaderVisible}
+        />
+      </TableControls>
 
-        <div className="h-px w-full bg-linear-to-r from-transparent via-white/5 to-transparent" />
+      <div className="flex flex-col w-full rounded-3xl border border-white/5 bg-white/2 shadow-highlight-neutral">
 
         <div ref={scrollContainerRef} className="overflow-x-auto">
           <table
