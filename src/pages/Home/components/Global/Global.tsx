@@ -28,7 +28,7 @@ export default function Global({ globalData }: GlobalProps) {
         </div>
 
         {/* Mobile Switch */}
-        <div className="sm:hidden pt-6">
+        <div className="sm:hidden pt-5">
           <Switch toggle={toggle} setToggle={setToggle} mobile />
         </div>
       </div>

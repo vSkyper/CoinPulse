@@ -121,7 +121,7 @@ export default function Table({ coins }: TableProps) {
       : null;
 
   return (
-    <div className="mt-8 sm:mt-8 relative flex flex-col gap-4 sm:gap-6">
+    <div className="mt-2 sm:mt-8 relative flex flex-col gap-4 sm:gap-6">
       <TableControls
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}

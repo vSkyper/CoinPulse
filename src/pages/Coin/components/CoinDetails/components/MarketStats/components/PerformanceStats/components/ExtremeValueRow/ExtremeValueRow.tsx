@@ -26,7 +26,7 @@ export default function ExtremeValueRow({
       </div>
 
       {/* Main Content: Price & Badge Grouped */}
-      <div className="flex flex-row items-center gap-2 mb-4">
+      <div className="flex flex-row items-center gap-2 mb-2 sm:mb-4">
         <div className="font-bold text-base sm:text-xl text-white tracking-tight min-w-0 overflow-hidden">
           <Tooltip
             value={formatCurrency(price)}

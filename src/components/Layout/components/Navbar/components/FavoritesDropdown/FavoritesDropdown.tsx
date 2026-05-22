@@ -1,10 +1,5 @@
 import { Fragment } from 'react';
-import {
-  Menu,
-  MenuButton,
-  MenuItems,
-  Transition,
-} from '@headlessui/react';
+import { Menu, MenuButton, MenuItems, Transition } from '@headlessui/react';
 import { MdStar } from 'react-icons/md';
 import { useFavorites } from 'context/FavoritesContext';
 import useFetch from 'hooks/useFetch';
@@ -33,14 +28,14 @@ export default function FavoritesDropdown() {
           <>
             <div>
               <MenuButton
-                className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 focus:outline-none ${
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl transition-all duration-300 focus:outline-none ${
                   open || favorites.length > 0
                     ? 'bg-brand-violet/20 text-brand-violet border border-brand-violet/30'
                     : 'bg-white/5 text-white/60 hover:text-white/90 hover:bg-white/10 border border-white/10'
                 }`}
                 title="Favorites"
               >
-                <MdStar className="text-xl" />
+                <MdStar className="text-lg sm:text-xl" />
               </MenuButton>
             </div>
             <Transition
@@ -61,7 +56,11 @@ export default function FavoritesDropdown() {
                   Your Favorites
                 </div>
 
-                <FavoritesList favorites={favorites} coins={coins} error={error} />
+                <FavoritesList
+                  favorites={favorites}
+                  coins={coins}
+                  error={error}
+                />
               </MenuItems>
             </Transition>
           </>
@@ -70,4 +69,3 @@ export default function FavoritesDropdown() {
     </Menu>
   );
 }
-

@@ -19,7 +19,7 @@ export default function HeroStats({ marketData }: HeroStatsProps) {
         }
         icon={MdEmojiEvents}
         variant='hero'
-        className='min-h-20.5'
+        className='sm:min-h-20'
       />
       <StatRow
         label='Market Capitalization'
@@ -30,7 +30,7 @@ export default function HeroStats({ marketData }: HeroStatsProps) {
         })}
         icon={MdAttachMoney}
         variant='hero'
-        className='min-h-20.5'
+        className='sm:min-h-20'
       />
       <StatRow
         label='24h Trading Volume'
@@ -41,7 +41,7 @@ export default function HeroStats({ marketData }: HeroStatsProps) {
         })}
         icon={MdBarChart}
         variant='hero'
-        className='min-h-20.5'
+        className='sm:min-h-20'
       />
     </div>
   );

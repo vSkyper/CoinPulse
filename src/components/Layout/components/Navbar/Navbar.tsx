@@ -48,7 +48,7 @@ export default function Navbar() {
                   </div>
 
                   {/* Right Section: Search Bar & Favorites */}
-                  <div className='flex items-center flex-1 max-w-2xl ml-6 sm:mx-4 gap-2'>
+                  <div className='flex items-center flex-1 max-w-2xl ml-0 sm:mx-4 gap-2'>
                     <SearchBar />
                     <FavoritesDropdown />
                   </div>
@@ -76,7 +76,7 @@ export default function Navbar() {
       </nav>
 
       {/* Spacer */}
-      <div className='h-24 sm:h-32' />
+      <div className='h-20 sm:h-32' />
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function DeveloperActivity({
           </div>
         </div>
 
-        <div className='grid grid-cols-3 gap-2 sm:gap-3'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3'>
           {/* Row 1 */}
           <StatCard
             icon={FaGithub}
