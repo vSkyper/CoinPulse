@@ -24,7 +24,6 @@ export default function FilterPanel({
   handleFilterClear,
   handleFilterSave,
   anchorEl,
-  isAnchoring = false,
   isHeaderVisible,
 }: FilterPanelProps) {
   // Determine alignment based on active filter column
@@ -63,7 +62,6 @@ export default function FilterPanel({
               zIndex: 100,
             }
           : undefined),
-        opacity: isAnchoring ? 0 : undefined,
       }}
       className={
         position

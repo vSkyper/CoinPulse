@@ -33,11 +33,11 @@ export default function Sparkline({ id }: SparklineProps) {
   const [days, setDays] = useState<string>(DEFAULT_DAYS);
   const [chartType, setChartType] = useState<'line' | 'candlestick'>('line');
 
-  const { data: lineData, error: lineError } = useFetch<SparklineResponse>(
+  const { data: lineData, error: lineError, isLoading: lineLoading } = useFetch<SparklineResponse>(
     chartType === 'line' ? API_ENDPOINTS.coinMarketChart(id, days) : undefined,
   );
 
-  const { data: ohlcData, error: ohlcError } = useFetch<OhlcResponse>(
+  const { data: ohlcData, error: ohlcError, isLoading: ohlcLoading } = useFetch<OhlcResponse>(
     chartType === 'candlestick' ? API_ENDPOINTS.coinOhlc(id, days) : undefined,
   );
 
@@ -49,8 +49,8 @@ export default function Sparkline({ id }: SparklineProps) {
     : undefined;
 
   const isLoading =
-    (chartType === 'line' && !lineData && !lineError) ||
-    (chartType === 'candlestick' && !ohlcData && !ohlcError);
+    (chartType === 'line' && lineLoading) ||
+    (chartType === 'candlestick' && ohlcLoading);
 
   const error = chartType === 'line' ? lineError : ohlcError;
 

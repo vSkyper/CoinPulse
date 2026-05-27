@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, ElementType } from 'react';
 
 export interface StatCardProps {
-  icon: any;
+  icon: ElementType;
   label: string;
   value?: number;
   customValue?: ReactNode;

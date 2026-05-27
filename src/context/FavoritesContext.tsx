@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from 'react';
 
 interface FavoritesContextType {
   favorites: string[];
@@ -7,7 +13,7 @@ interface FavoritesContextType {
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
-  undefined
+  undefined,
 );
 
 const LOCAL_STORAGE_KEY = 'coinpulse_favorites';
@@ -45,12 +51,15 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite }}>
+    <FavoritesContext.Provider
+      value={{ favorites, toggleFavorite, isFavorite }}
+    >
       {children}
     </FavoritesContext.Provider>
   );
 }
 
+/* eslint-disable-next-line react-refresh/only-export-components */
 export function useFavorites() {
   const context = useContext(FavoritesContext);
   if (context === undefined) {

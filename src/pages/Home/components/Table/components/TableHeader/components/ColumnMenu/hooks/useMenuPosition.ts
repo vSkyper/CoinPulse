@@ -29,7 +29,7 @@ function calculatePosition(
   const gap = isMobile ? 14 : 16;
 
   let top = anchorRect.bottom + gap;
-  let left = 0;
+  let left: number;
 
   if (align === 'right') {
     left = anchorRect.right - menuWidth;
@@ -69,7 +69,7 @@ function calculatePosition(
 
 export function useMenuPosition(
   isOpen: boolean,
-  anchorEl: HTMLElement | null,
+  anchorRef: RefObject<HTMLElement | null>,
   menuRef: RefObject<HTMLDivElement | null>,
   align: 'left' | 'right' = 'right',
   strategy: 'fixed' | 'absolute' = 'fixed',
@@ -77,9 +77,9 @@ export function useMenuPosition(
   const [position, setPosition] = useState<Position | null>(null);
 
   const updatePosition = useCallback(() => {
-    if (isOpen && anchorEl && menuRef.current) {
+    if (isOpen && anchorRef.current && menuRef.current) {
       const newPos = calculatePosition(
-        anchorEl,
+        anchorRef.current,
         menuRef.current,
         align,
         strategy,
@@ -96,7 +96,7 @@ export function useMenuPosition(
         return newPos;
       });
     }
-  }, [isOpen, anchorEl, menuRef, align, strategy]);
+  }, [isOpen, anchorRef, menuRef, align, strategy]);
 
   useLayoutEffect(() => {
     updatePosition();
@@ -123,7 +123,7 @@ export function useMenuPosition(
   // Animation frame loop for smoother following during scroll/resize if needed
   // similar to useFilterPosition but maybe lighter
   useEffect(() => {
-    if (!isOpen || !anchorEl || !menuRef.current) return;
+    if (!isOpen || !anchorRef.current || !menuRef.current) return;
 
     let frameId: number;
     const loop = () => {
@@ -132,7 +132,7 @@ export function useMenuPosition(
     };
     loop();
     return () => cancelAnimationFrame(frameId);
-  }, [isOpen, anchorEl, menuRef, updatePosition]);
+  }, [isOpen, anchorRef, menuRef, updatePosition]);
 
   return position;
 }

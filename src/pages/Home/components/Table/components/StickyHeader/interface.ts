@@ -1,8 +1,9 @@
 import type { RefObject } from 'react';
-import type { SortingState, ColumnFiltersState } from '@tanstack/react-table';
+import type { ColumnFiltersState, SortingState, Table } from '@tanstack/react-table';
+import type { CoinsResponse } from 'interfaces';
 
 export interface StickyHeaderProps {
-  table: any;
+  table: Table<CoinsResponse>;
   handleFilterOpenFromMenu: (columnId: string, target: HTMLElement) => void;
   scrollContainerRef: RefObject<HTMLDivElement | null>;
   sorting: SortingState;

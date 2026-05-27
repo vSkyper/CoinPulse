@@ -8,15 +8,13 @@ export default function StatCard({
   className = '',
 }: Omit<StatCardProps, 'isMobile'>) {
   const [show, setShow] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
+  const isExiting = !toggle;
 
   useEffect(() => {
     if (toggle) {
-      setIsExiting(false);
       const timer = setTimeout(() => setShow(true), config.timeout);
       return () => clearTimeout(timer);
     } else {
-      setIsExiting(true);
       const reverseDelay = 400 - config.timeout;
       const timer = setTimeout(() => setShow(false), reverseDelay);
       return () => clearTimeout(timer);

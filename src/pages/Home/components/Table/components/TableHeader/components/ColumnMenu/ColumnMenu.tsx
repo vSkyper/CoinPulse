@@ -27,7 +27,7 @@ export default function ColumnMenu({
 
   const position = useMenuPosition(
     isOpen,
-    menuButtonRef.current,
+    menuButtonRef,
     menuRef,
     align,
     strategy,

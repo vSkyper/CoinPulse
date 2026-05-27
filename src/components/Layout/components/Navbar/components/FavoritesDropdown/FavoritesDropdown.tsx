@@ -19,7 +19,7 @@ export default function FavoritesDropdown() {
         })
       : undefined;
 
-  const { data: coins, error } = useFetch<CoinsResponse[]>(queryUrl);
+  const { data: coins, error, isLoading } = useFetch<CoinsResponse[]>(queryUrl);
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -60,6 +60,7 @@ export default function FavoritesDropdown() {
                   favorites={favorites}
                   coins={coins}
                   error={error}
+                  isLoading={isLoading}
                 />
               </MenuItems>
             </Transition>

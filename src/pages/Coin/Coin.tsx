@@ -13,7 +13,7 @@ import { ANIMATION_DELAYS } from './constants';
 
 export default function Coin() {
   const { id } = useParams();
-  const { data, error } = useFetch<CoinResponse>(
+  const { data, error, isLoading } = useFetch<CoinResponse>(
     id ? API_ENDPOINTS.coin(id) : undefined,
   );
 
@@ -21,7 +21,7 @@ export default function Coin() {
 
   if (!id || error) return <NotFound />;
 
-  if (!data) return <Skeleton />;
+  if (isLoading || !data) return <Skeleton />;
 
   return (
     <main className="relative w-full min-h-screen flex flex-col">

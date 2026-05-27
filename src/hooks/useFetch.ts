@@ -4,15 +4,19 @@ interface State<T> {
   data?: T;
   error?: Error;
   fetchedUrl?: string;
-  refetch: () => void;
 }
+
+type UseFetchResult<T> = State<T> & {
+  refetch: () => void;
+  isLoading: boolean;
+};
 
 type Action<T> =
   | { type: 'loading' }
   | { type: 'fetched'; payload: T; url: string }
-  | { type: 'error'; payload: Error };
+  | { type: 'error'; payload: Error; url: string };
 
-function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
+function useFetch<T = unknown>(url?: string, options?: RequestInit): UseFetchResult<T> {
   const cancelRequest = useRef<boolean>(false);
   const [trigger, setTrigger] = useState(0);
 
@@ -39,7 +43,7 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
           fetchedUrl: action.url,
         };
       case 'error':
-        return { ...initialState, error: action.payload };
+        return { ...initialState, error: action.payload, fetchedUrl: action.url };
       default:
         return state;
     }
@@ -68,7 +72,7 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
       } catch (error) {
         if (cancelRequest.current) return;
 
-        dispatch({ type: 'error', payload: error as Error });
+        dispatch({ type: 'error', payload: error as Error, url });
       }
     };
 
@@ -80,8 +84,9 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
   }, [url, options, trigger]);
 
   const isStale = !!url && state.fetchedUrl !== url;
+  const isLoading = isStale || (!!url && !state.data && !state.error);
 
-  return { ...state, data: isStale ? undefined : state.data, refetch };
+  return { ...state, data: isStale ? undefined : state.data, refetch, isLoading };
 }
 
 export default useFetch;

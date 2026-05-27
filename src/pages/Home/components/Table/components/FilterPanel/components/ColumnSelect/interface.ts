@@ -1,7 +1,8 @@
 import type { Table } from '@tanstack/react-table';
+import type { CoinsResponse } from 'interfaces';
 
 export interface ColumnSelectProps {
   activeFilterColumn: string;
-  handleColumnChange: (value: string) => void;
-  table: Table<any>;
+  handleColumnChange: (newCol: string) => void;
+  table: Table<CoinsResponse>;
 }

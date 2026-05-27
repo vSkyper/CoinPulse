@@ -84,6 +84,17 @@ export const formatCompactNumber = (
   return compactNumberFormatter.format(value);
 };
 
+const numberFormattersCache = new Map<number, Intl.NumberFormat>();
+function getNumberFormatter(digits: number) {
+  if (!numberFormattersCache.has(digits)) {
+    numberFormattersCache.set(
+      digits,
+      new Intl.NumberFormat('en-US', { maximumFractionDigits: digits }),
+    );
+  }
+  return numberFormattersCache.get(digits)!;
+}
+
 /**
  * Format a number with standard notation
  * Example: 1234.56 -> "1,234.56"
@@ -94,29 +105,37 @@ export const formatNumber = (
 ): string => {
   if (value == null) return 'N/A';
   if (maximumFractionDigits !== undefined) {
-    return value.toLocaleString('en-US', { maximumFractionDigits });
+    return getNumberFormatter(maximumFractionDigits).format(value);
   }
   return numberFormatter.format(value);
 };
+
+const currencySymbolsCache = new Map<string, string>();
+function getCurrencySymbol(currency: string) {
+  const upper = currency.toUpperCase();
+  if (!currencySymbolsCache.has(upper)) {
+    const parts = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: upper,
+    }).formatToParts(0);
+    const symbol = parts.find((p) => p.type === 'currency')?.value || upper;
+    currencySymbolsCache.set(upper, symbol);
+  }
+  return currencySymbolsCache.get(upper)!;
+}
+
+const rateNumberFormatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 8,
+});
 
 /**
  * Format a number as currency with specific currency and options
  */
 export const formatRateWithSuffix = (rate: number, currency: string) => {
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currency.toUpperCase(),
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 8,
-  });
-  const parts = formatter.formatToParts(rate);
-  const symbol = parts.find((p) => p.type === 'currency')?.value;
-  const val = parts
-    .filter((p) => p.type !== 'currency')
-    .map((p) => p.value)
-    .join('')
-    .trim();
-  return `${val} ${symbol}`;
+  const formattedVal = rateNumberFormatter.format(rate);
+  const symbol = getCurrencySymbol(currency);
+  return `${formattedVal} ${symbol}`;
 };
 
 /**

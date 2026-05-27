@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { formatPercentage } from 'utils/formatters';
 import type { FavoritesListProps } from './interface';
 
-export default function FavoritesList({ favorites, coins, error }: FavoritesListProps) {
+export default function FavoritesList({ favorites, coins, error, isLoading }: FavoritesListProps) {
   if (favorites.length === 0) {
     return (
       <div className="px-3 py-6 sm:py-8 text-center text-[12px] sm:text-[13px] text-zinc-500">
@@ -12,7 +12,7 @@ export default function FavoritesList({ favorites, coins, error }: FavoritesList
     );
   }
 
-  if (!coins && !error) {
+  if (isLoading) {
     return (
       <div className="px-3 py-6 sm:py-8 text-center text-[12px] sm:text-[13px] text-zinc-500">
         Loading favorites...

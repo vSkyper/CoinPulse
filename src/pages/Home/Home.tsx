@@ -5,9 +5,9 @@ import { ErrorModal } from 'components';
 import { API_ENDPOINTS } from 'config/api';
 
 export default function Home() {
-  const { data: globalData, error: globalDataError } =
+  const { data: globalData, error: globalDataError, isLoading: globalDataLoading } =
     useFetch<GlobalDataResponse>(API_ENDPOINTS.global());
-  const { data: coins, error: coinsError } = useFetch<CoinsResponse[]>(
+  const { data: coins, error: coinsError, isLoading: coinsLoading } = useFetch<CoinsResponse[]>(
     API_ENDPOINTS.coinsMarkets({
       sparkline: true,
       price_change_percentage: '1h,24h,7d',
@@ -15,11 +15,11 @@ export default function Home() {
   );
 
   const hasError = globalDataError || coinsError;
-  const isLoading = !globalData || !coins;
+  const isLoading = globalDataLoading || coinsLoading;
 
   if (hasError) return <ErrorModal />;
 
-  if (isLoading) return <Skeleton />;
+  if (isLoading || !globalData || !coins) return <Skeleton />;
 
   return (
     <main className="relative w-full min-h-screen flex flex-col">

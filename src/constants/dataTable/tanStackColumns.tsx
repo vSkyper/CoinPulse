@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link as RouterLink } from 'react-router-dom';
 import { AreaChart, Area, YAxis } from 'recharts';
@@ -95,7 +96,7 @@ function PercentageChange({ value }: { value: number }) {
   );
 }
 
-function SparklineChart({ row, value }: { row: CoinsResponse; value: any }) {
+function SparklineChart({ row, value }: { row: CoinsResponse; value: { price: number[] } }) {
   const isNegative = (row.price_change_percentage_7d_in_currency ?? 0) < 0;
   const color = isNegative
     ? 'var(--color-brand-negative)'

@@ -1,5 +1,6 @@
 import type { RefObject } from 'react';
 import type { Table } from '@tanstack/react-table';
+import type { CoinsResponse } from 'interfaces';
 
 export interface FilterPanelProps {
   isFilterOpen: boolean;
@@ -7,7 +8,7 @@ export interface FilterPanelProps {
   setIsFilterOpen: (value: boolean) => void;
   activeFilterColumn: string;
   handleColumnChange: (newCol: string) => void;
-  table: Table<any>;
+  table: Table<CoinsResponse>;
   activeOperator: string;
   setActiveOperator: (value: string) => void;
   activeValue: string;
@@ -15,6 +16,5 @@ export interface FilterPanelProps {
   handleFilterClear: () => void;
   handleFilterSave: () => void;
   anchorEl: HTMLElement | null;
-  isAnchoring?: boolean;
   isHeaderVisible: boolean;
 }

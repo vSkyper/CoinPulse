@@ -1,4 +1,5 @@
 import type { FilterFn } from '@tanstack/react-table';
+import type { CoinsResponse } from 'interfaces';
 
 export const PAGINATION_CONFIG = {
   pageSize: 50,
@@ -43,7 +44,7 @@ export const getOperatorsForColumn = (columnId: string) => {
   }
 };
 
-export const customFilterFn: FilterFn<any> = (row, columnId, filterValue) => {
+export const customFilterFn: FilterFn<CoinsResponse> = (row, columnId, filterValue) => {
   const rowValue = row.getValue(columnId);
   const { operator, value } = filterValue || {};
 

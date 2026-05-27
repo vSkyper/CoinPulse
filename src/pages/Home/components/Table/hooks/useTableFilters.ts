@@ -6,10 +6,11 @@ import {
   useLayoutEffect,
 } from 'react';
 import type { Table, ColumnFiltersState } from '@tanstack/react-table';
+import type { CoinsResponse } from 'interfaces';
 import { getOperatorsForColumn } from 'utils/table';
 
 interface UseTableFiltersProps {
-  table: Table<any>;
+  table: Table<CoinsResponse>;
   columnFilters: ColumnFiltersState;
   isHeaderVisible: boolean;
 }
@@ -24,7 +25,6 @@ export function useTableFilters({
   const [activeOperator, setActiveOperator] = useState<string>('contains');
   const [activeValue, setActiveValue] = useState<string>('');
   const [filterAnchor, setFilterAnchor] = useState<HTMLElement | null>(null);
-  const [isAnchoring, setIsAnchoring] = useState(false);
 
   const filterRef = useRef<HTMLDivElement>(null);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
@@ -52,12 +52,10 @@ export function useTableFilters({
   // Update anchor when switching between sticky and main header
   useLayoutEffect(() => {
     if (isFilterOpen && activeFilterColumn) {
-      setIsAnchoring(true);
       if (!isHeaderVisible) {
         if (filterButtonRef.current) {
           setFilterAnchor(filterButtonRef.current);
         }
-        setIsAnchoring(false);
         return;
       }
 
@@ -68,15 +66,13 @@ export function useTableFilters({
       if (newAnchor) {
         setFilterAnchor(newAnchor);
       }
-      // Regardless found or not, we stop "anchoring" state
-      setIsAnchoring(false);
     }
   }, [isHeaderVisible, isFilterOpen, activeFilterColumn]);
 
   const updateFilterStateForColumn = useCallback(
     (columnId: string) => {
       const existingFilter = columnFilters.find((f) => f.id === columnId)
-        ?.value as any;
+        ?.value as { operator: string; value: string } | undefined;
       const validOperators = getOperatorsForColumn(columnId);
 
       if (existingFilter) {
@@ -182,6 +178,5 @@ export function useTableFilters({
     handleFilterClear,
     handleColumnChange,
     handleMenuOpen,
-    isAnchoring,
   };
 }

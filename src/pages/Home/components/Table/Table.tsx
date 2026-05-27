@@ -101,7 +101,6 @@ export default function Table({ coins }: TableProps) {
     handleFilterClear,
     handleColumnChange,
     handleMenuOpen,
-    isAnchoring,
   } = useTableFilters({ table, columnFilters, isHeaderVisible });
 
   // Portal logic for sticky header
@@ -143,7 +142,6 @@ export default function Table({ coins }: TableProps) {
           handleFilterClear={handleFilterClear}
           handleFilterSave={handleFilterSave}
           anchorEl={filterAnchor}
-          isAnchoring={isAnchoring}
           isHeaderVisible={isHeaderVisible}
         />
       </TableControls>

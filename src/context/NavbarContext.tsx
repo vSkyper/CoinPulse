@@ -31,12 +31,12 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Fetch full list for search
-  const { data: allCoins, error: listError } = useFetch<CoinsListResponse[]>(
+  const { data: allCoins, error: listError, isLoading: isAllCoinsLoading } = useFetch<CoinsListResponse[]>(
     API_ENDPOINTS.coinsList(),
   );
 
   // Fetch top 7 for "Popular" section default
-  const { data: popularCoins, error: marketError } = useFetch<CoinsResponse[]>(
+  const { data: popularCoins, error: marketError, isLoading: isPopularLoading } = useFetch<CoinsResponse[]>(
     API_ENDPOINTS.coinsMarkets({ per_page: 7 }),
   );
 
@@ -61,7 +61,7 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
   const debouncedIds = useDebounce(targetIds, 400);
 
   // Only fetch rich data for debounced IDs
-  const { data: richSearchData, error: richError } = useFetch<CoinsResponse[]>(
+  const { data: richSearchData, error: richError, isLoading: isRichLoading } = useFetch<CoinsResponse[]>(
     debouncedIds
       ? API_ENDPOINTS.coinsMarkets({ ids: debouncedIds })
       : undefined,
@@ -78,10 +78,10 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
     return basicSearchResults.map((basic) => richMap.get(basic.id) || basic);
   }, [searchQuery, basicSearchResults, richSearchData, popularCoins]);
 
-  const isLoading = !allCoins && !popularCoins;
+  const isLoading = isAllCoinsLoading || isPopularLoading;
   const isSearchLoading =
     searchQuery.length > 0 &&
-    (debouncedIds !== targetIds || (!!debouncedIds && !richSearchData));
+    (debouncedIds !== targetIds || isRichLoading);
   const combinedError = listError || marketError || richError;
 
   return (
@@ -104,6 +104,7 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
   );
 }
 
+/* eslint-disable-next-line react-refresh/only-export-components */
 export function useNavbar() {
   const context = useContext(NavbarContext);
   if (context === undefined) {

@@ -3,7 +3,7 @@ import {
   useCallback,
   useLayoutEffect,
   useEffect,
-  RefObject,
+  type RefObject,
 } from 'react';
 
 interface Position {
@@ -32,7 +32,7 @@ function calculatePosition(
   const gap = strategy === 'fixed' ? (isMobile ? 8 : 16) : isMobile ? 12 : 12;
 
   let top = anchorRect.bottom + gap;
-  let left = 0;
+  let left: number;
 
   // Mobile: Center horizontally
   if (isMobile) {
@@ -112,11 +112,7 @@ export function useFilterPosition(
     (node: HTMLDivElement | null) => {
       // Update parent ref
       if (filterRef) {
-        if (typeof filterRef === 'function') {
-          (filterRef as any)(node);
-        } else {
-          (filterRef as RefObject<HTMLDivElement | null>).current = node;
-        }
+        (filterRef as React.RefObject<HTMLDivElement | null>).current = node;
       }
       // Calculate initial position
       if (node) updatePosition();
