@@ -36,7 +36,7 @@ export default function ColumnMenu({
   return (
     <Menu
       key={`menu-${isHeaderVisible}`}
-      as='div'
+      as="div"
       className={`absolute top-1/2 -translate-y-1/2 transition-opacity duration-200 ${
         header.column.columnDef.meta?.align === 'right'
           ? 'left-1 sm:left-2'
@@ -55,7 +55,7 @@ export default function ColumnMenu({
             <MenuButton
               ref={menuButtonRef}
               id={`${context}-menu-${header.column.id}`}
-              type='button'
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 handleMenuOpen();
@@ -66,7 +66,7 @@ export default function ColumnMenu({
                   : 'opacity-0 group-hover:opacity-100 group-active:opacity-100 focus-visible:opacity-100'
               }`}
             >
-              <MdMoreVert className='w-4 h-4 sm:w-4 sm:h-4' />
+              <MdMoreVert className="w-4 h-4 sm:w-4 sm:h-4" />
             </MenuButton>
             {open &&
               createPortal(
@@ -80,7 +80,7 @@ export default function ColumnMenu({
                     left: position?.left ?? 0,
                     opacity: position ? 1 : 0,
                   }}
-                  className='absolute w-36 sm:w-36 origin-top-right divide-y divide-white/5 rounded-xl bg-black/90 py-1 text-xs shadow-popover focus:outline-none border border-white/10 ring-1 ring-white/5 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0'
+                  className="absolute w-36 origin-top-right divide-y divide-white/5 rounded-2xl bg-white/2 backdrop-blur-xl py-2 px-1 text-xs shadow-popover focus:outline-none border border-white/5 z-50 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0"
                 >
                   <SortOptions header={header} />
                   <FilterOption

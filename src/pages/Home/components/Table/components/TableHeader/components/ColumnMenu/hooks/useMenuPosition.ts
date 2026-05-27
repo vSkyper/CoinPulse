@@ -26,7 +26,7 @@ function calculatePosition(
 
   const isMobile = viewportWidth < 640;
 
-  const gap = isMobile ? 14 : 16;
+  const gap = strategy === 'fixed' ? (isMobile ? 8 : 16) : (isMobile ? 8 : 16);
 
   let top = anchorRect.bottom + gap;
   let left: number;

@@ -29,7 +29,7 @@ function calculatePosition(
   const strategy = isHeaderVisible ? 'fixed' : 'absolute';
 
   // Gap calculation
-  const gap = strategy === 'fixed' ? (isMobile ? 8 : 16) : isMobile ? 12 : 12;
+  const gap = strategy === 'fixed' ? (isMobile ? 10 : 16) : isMobile ? 8 : 12;
 
   let top = anchorRect.bottom + gap;
   let left: number;
@@ -56,7 +56,7 @@ function calculatePosition(
   }
 
   // Add padding from top (navbar)
-  const minTop = strategy === 'fixed' ? (isMobile ? 60 : 16) : 0;
+  const minTop = strategy === 'fixed' ? (isMobile ? 40 : 16) : 0;
 
   if (top < minTop) top = minTop;
 
