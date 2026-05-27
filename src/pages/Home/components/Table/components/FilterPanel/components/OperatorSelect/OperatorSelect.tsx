@@ -41,7 +41,7 @@ export default function OperatorSelect({
           >
             <ListboxOptions
               modal={false}
-              className="absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-xl bg-black/90 border border-white/10 ring-1 ring-white/5 py-1 text-xs shadow-popover focus:outline-none z-50"
+              className="absolute mt-2 sm:mt-1 max-h-60 w-full overflow-auto custom-scrollbar rounded-2xl bg-brand-dark/95 border border-white/5 py-2 px-1 text-xs shadow-popover focus:outline-none z-50"
             >
               {getOperatorsForColumn(activeFilterColumn).map((op) => (
                 <ListboxOption

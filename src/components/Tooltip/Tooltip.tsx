@@ -33,7 +33,7 @@ export default function Tooltip({
       <PopoverPanel
         transition
         anchor={{ to: align, gap: 6 }}
-        className="z-50 bg-glass/95 backdrop-blur-2xl border border-white/10 rounded-md sm:rounded-lg px-2 py-1 sm:px-2 sm:py-1 shadow-xl shadow-black/50 transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 max-w-[min(90vw,300px)] break-all"
+        className="z-50 bg-glass/95 border border-white/10 rounded-md sm:rounded-lg px-2 py-1 sm:px-2 sm:py-1 shadow-xl shadow-black/50 transition duration-200 ease-out data-closed:scale-95 data-closed:opacity-0 max-w-[min(90vw,300px)] break-all"
       >
         <div className="font-mono font-medium text-white/90 text-[0.65rem] sm:text-xs tracking-wide">
           {displayContent}

@@ -80,7 +80,7 @@ export default function CurrencyDropdown({
             {filteredCurrencies.length > 0 && (
               <ComboboxOptions
                 modal={false}
-                className="absolute top-full left-0 z-50 mt-1 w-24 overflow-auto custom-scrollbar rounded-xl bg-black/90 py-1 text-xs shadow-popover focus:outline-none border border-white/10 ring-1 ring-white/5"
+                className="absolute top-full left-0 z-50 mt-1 w-24 overflow-auto custom-scrollbar rounded-2xl bg-brand-dark/95 py-2 px-1 text-xs shadow-popover focus:outline-none border border-white/5"
               >
                 {filteredCurrencies.map((option) => (
                   <ComboboxOption

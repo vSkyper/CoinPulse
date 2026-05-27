@@ -14,7 +14,9 @@ export default function CandlestickTooltip({
     // payload[0].payload contains the original data object
     const data = payload[0].payload as CandlestickData;
     const isBullish = data.close > data.open;
-    const colorClass = isBullish ? 'text-[var(--color-brand-positive)]' : 'text-[var(--color-brand-negative)]';
+    const colorClass = isBullish
+      ? 'text-[var(--color-brand-positive)]'
+      : 'text-[var(--color-brand-negative)]';
 
     return (
       <div className="bg-brand-dark/90 border border-white/10 p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-xl backdrop-blur-md text-[10px] sm:text-xs min-w-28 sm:min-w-35">

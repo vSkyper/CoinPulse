@@ -51,7 +51,7 @@ export default function FilterPanel({
   return createPortal(
     <Transition
       show={isFilterOpen}
-      as='div'
+      as="div"
       ref={setRefs}
       style={{
         ...(position
@@ -69,17 +69,17 @@ export default function FilterPanel({
           : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-[90vw] sm:w-80 h-fit bg-white/2 backdrop-blur-xl border border-white/5 rounded-2xl sm:rounded-2xl shadow-popover p-3 sm:p-5'
       }
       onMouseDown={(e) => e.stopPropagation()}
-      enter='transition ease-out duration-300'
-      enterFrom='opacity-0 translate-y-2 scale-95'
-      enterTo='opacity-100 translate-y-0 scale-100'
-      leave='transition ease-in duration-200'
-      leaveFrom='opacity-100 translate-y-0 scale-100'
-      leaveTo='opacity-0 translate-y-2 scale-95'
+      enter="transition ease-out duration-300"
+      enterFrom="opacity-0 translate-y-2 scale-95"
+      enterTo="opacity-100 translate-y-0 scale-100"
+      leave="transition ease-in duration-200"
+      leaveFrom="opacity-100 translate-y-0 scale-100"
+      leaveTo="opacity-0 translate-y-2 scale-95"
     >
       <FilterHeader onClose={() => setIsFilterOpen(false)} />
 
-      <div className='space-y-3 sm:space-y-3'>
-        <div className='grid grid-cols-2 gap-2 sm:gap-2'>
+      <div className="space-y-3 sm:space-y-3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-2">
           {/* Column Select */}
           <ColumnSelect
             activeFilterColumn={activeFilterColumn}
