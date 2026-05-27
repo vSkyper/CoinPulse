@@ -19,6 +19,7 @@ interface NavbarContextType {
   setSearchQuery: (query: string) => void;
   filteredCoins: (CoinsResponse | CoinsListResponse)[];
   isLoading: boolean;
+  isSearchLoading: boolean;
   error?: Error;
 }
 
@@ -78,6 +79,9 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
   }, [searchQuery, basicSearchResults, richSearchData, popularCoins]);
 
   const isLoading = !allCoins && !popularCoins;
+  const isSearchLoading =
+    searchQuery.length > 0 &&
+    (debouncedIds !== targetIds || (!!debouncedIds && !richSearchData));
   const combinedError = listError || marketError || richError;
 
   return (
@@ -91,6 +95,7 @@ export function NavbarProvider({ children }: { children: ReactNode }) {
         setSearchQuery,
         filteredCoins,
         isLoading,
+        isSearchLoading,
         error: combinedError,
       }}
     >

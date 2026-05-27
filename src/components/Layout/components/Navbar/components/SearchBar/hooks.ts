@@ -16,6 +16,7 @@ export const useSearchBar = () => {
     setSearchQuery: setQuery,
     filteredCoins,
     isLoading,
+    isSearchLoading,
     error,
   } = useNavbar();
 
@@ -53,6 +54,7 @@ export const useSearchBar = () => {
     setQuery,
     filteredCoins,
     isLoading,
+    isSearchLoading,
     error,
     handleChange,
     handleBlur,

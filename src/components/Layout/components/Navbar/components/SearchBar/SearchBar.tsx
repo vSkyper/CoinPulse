@@ -18,6 +18,7 @@ export default function SearchBar() {
     setQuery,
     filteredCoins,
     isLoading,
+    isSearchLoading,
     error,
     handleChange,
     handleBlur,
@@ -80,7 +81,11 @@ export default function SearchBar() {
                     className='relative cursor-pointer select-none rounded-xl transition-all duration-200 bg-transparent'
                   >
                     {({ focus }) => (
-                      <CoinOption coin={coin} isFocused={focus} />
+                      <CoinOption
+                        coin={coin}
+                        isFocused={focus}
+                        isSearchLoading={isSearchLoading}
+                      />
                     )}
                   </ComboboxOption>
                 ))

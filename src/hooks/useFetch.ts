@@ -3,12 +3,13 @@ import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 interface State<T> {
   data?: T;
   error?: Error;
+  fetchedUrl?: string;
   refetch: () => void;
 }
 
 type Action<T> =
   | { type: 'loading' }
-  | { type: 'fetched'; payload: T }
+  | { type: 'fetched'; payload: T; url: string }
   | { type: 'error'; payload: Error };
 
 function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
@@ -32,7 +33,11 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
       case 'loading':
         return { ...initialState };
       case 'fetched':
-        return { ...initialState, data: action.payload };
+        return {
+          ...initialState,
+          data: action.payload,
+          fetchedUrl: action.url,
+        };
       case 'error':
         return { ...initialState, error: action.payload };
       default:
@@ -59,7 +64,7 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
         const data = (await response.json()) as T;
         if (cancelRequest.current) return;
 
-        dispatch({ type: 'fetched', payload: data });
+        dispatch({ type: 'fetched', payload: data, url });
       } catch (error) {
         if (cancelRequest.current) return;
 
@@ -74,7 +79,9 @@ function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
     };
   }, [url, options, trigger]);
 
-  return { ...state, refetch };
+  const isStale = !!url && state.fetchedUrl !== url;
+
+  return { ...state, data: isStale ? undefined : state.data, refetch };
 }
 
 export default useFetch;
