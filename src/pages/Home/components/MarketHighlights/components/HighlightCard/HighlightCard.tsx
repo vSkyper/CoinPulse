@@ -33,7 +33,7 @@ export default function HighlightCard({ coin, type }: HighlightCardProps) {
       className="group relative flex flex-col p-3 sm:p-5 rounded-xl sm:rounded-3xl bg-white/2 hover:bg-white/5 border border-white/5 transition-all duration-300 overflow-hidden"
     >
       {/* Background Chart */}
-      <div className="absolute right-0 bottom-0 w-2/3 sm:w-full h-12 sm:h-16 opacity-30 group-hover:opacity-60 transition-all duration-300 pointer-events-none overflow-hidden flex items-end [-webkit-mask-image:linear-gradient(to_right,transparent,black_30%)] mask-[linear-gradient(to_right,transparent,black_30%)] sm:[-webkit-mask-image:none] sm:mask-none">
+      <div className="absolute right-0 bottom-0 w-2/3 sm:w-full h-12 sm:h-16 opacity-30 group-hover:opacity-60 transition-all duration-300 pointer-events-none overflow-hidden flex items-end [-webkit-mask-image:linear-gradient(to_right,transparent,black_30%)] mask-[linear-gradient(to_right,transparent,black_30%)]">
         {sampledData.length > 0 && (
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={sampledData}>

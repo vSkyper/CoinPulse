@@ -11,7 +11,7 @@ export default function Global({ globalData }: GlobalProps) {
 
   return (
     <>
-      <div className="relative mb-6 sm:mb-8 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-4xl bg-linear-to-b from-white/3 to-transparent border border-white/5 overflow-hidden">
+      <div className="relative mb-6 sm:mb-8 p-4 sm:p-6 rounded-3xl sm:rounded-4xl bg-linear-to-b from-white/3 to-transparent border border-white/5 overflow-hidden">
         {/* Animated Glow Orbs */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-violet/20 rounded-full blur-[120px] -translate-y-1/2 opacity-60 mix-blend-screen pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-bitcoin/10 rounded-full blur-[120px] translate-y-1/2 opacity-50 mix-blend-screen pointer-events-none" />

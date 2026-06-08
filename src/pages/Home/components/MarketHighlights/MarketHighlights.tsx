@@ -22,8 +22,8 @@ export default function MarketHighlights({ coins }: MarketHighlightsProps) {
   if (topGainers.length === 0 && topLosers.length === 0) return null;
 
   return (
-    <div className="mb-10 sm:mb-12">
-      <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
+    <div className="mb-10 sm:mb-12 relative z-10">
+      <div className="flex flex-col xl:flex-row gap-6 sm:gap-8">
         
         {/* Gainers Section */}
         {topGainers.length > 0 && (
@@ -34,7 +34,7 @@ export default function MarketHighlights({ coins }: MarketHighlightsProps) {
                 Top Gainers (24H)
               </h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
               {topGainers.map((coin) => (
                 <HighlightCard key={coin.id} coin={coin} type="gainer" />
               ))}
@@ -51,7 +51,7 @@ export default function MarketHighlights({ coins }: MarketHighlightsProps) {
                 Top Losers (24H)
               </h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
               {topLosers.map((coin) => (
                 <HighlightCard key={coin.id} coin={coin} type="loser" />
               ))}

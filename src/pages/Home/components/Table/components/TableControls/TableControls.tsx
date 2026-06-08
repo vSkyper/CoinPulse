@@ -13,16 +13,16 @@ export default function TableControls({
     <div className="relative z-20 w-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 px-2 sm:px-2 relative z-10 pb-2">
         {/* Title Section */}
-        <div className="flex items-center gap-3 w-full sm:w-auto">
-          <div className="flex w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-linear-to-br from-brand-violet/20 to-transparent items-center justify-center border border-brand-violet/20 shadow-[inset_0_0_12px_rgba(139,92,246,0.1)] shrink-0 relative overflow-hidden">
+        <div className="flex items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+          <div className="flex w-9 h-9 sm:w-12 sm:h-12 rounded-[0.85rem] sm:rounded-2xl bg-linear-to-br from-brand-violet/20 to-transparent items-center justify-center border border-brand-violet/20 shadow-[inset_0_0_12px_rgba(139,92,246,0.1)] shrink-0 relative overflow-hidden">
             <div className="absolute inset-0 bg-brand-violet/10 blur-xl"></div>
-            <MdAutoGraph className="w-5 h-5 sm:w-6 sm:h-6 text-brand-violet relative z-10 drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
+            <MdAutoGraph className="w-4 h-4 sm:w-6 sm:h-6 text-brand-violet relative z-10 drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
           </div>
           <div className="flex flex-col justify-center">
-            <h2 className="text-xl sm:text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-white via-white/90 to-white/50 tracking-tighter drop-shadow-sm">
+            <h2 className="text-lg sm:text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-white via-white/90 to-white/50 tracking-tighter drop-shadow-sm leading-none">
               Market Overview
             </h2>
-            <p className="text-xs font-medium text-white/50 tracking-wide mt-0.5">
+            <p className="text-[10px] sm:text-xs font-medium text-white/50 tracking-wide mt-1">
               Track top performing assets
             </p>
           </div>

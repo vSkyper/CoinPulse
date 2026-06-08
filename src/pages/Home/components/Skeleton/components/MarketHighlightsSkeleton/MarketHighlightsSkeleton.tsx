@@ -1,6 +1,7 @@
 export default function MarketHighlightsSkeleton() {
   return (
-    <div className="w-full flex flex-col sm:flex-row gap-4 sm:gap-6 mt-4 sm:mt-6 relative z-10">
+    <div className="mb-10 sm:mb-12 relative z-10">
+      <div className="flex flex-col xl:flex-row gap-6 sm:gap-8">
       {/* Top Gainers Column */}
       <div className="flex-1 flex flex-col gap-3 sm:gap-4">
         {/* Column Header */}
@@ -60,6 +61,7 @@ export default function MarketHighlightsSkeleton() {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </div>
