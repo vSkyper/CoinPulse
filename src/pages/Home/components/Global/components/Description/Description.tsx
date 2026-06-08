@@ -1,7 +1,7 @@
 import type { DescriptionProps } from './interface';
 import { Highlight } from './components';
 import {
-  formatCompactCurrency,
+  formatCurrency,
   formatPercentage,
   formatNumber,
 } from 'utils/formatters';
@@ -13,11 +13,11 @@ export default function Description({ globalData }: DescriptionProps) {
     const marketCapChange = data.market_cap_change_percentage_24h_usd;
 
     return {
-      marketCap: formatCompactCurrency(data.total_market_cap.usd),
+      marketCap: formatCurrency(data.total_market_cap.usd, true),
       marketCapChange: `${marketCapChange >= 0 ? '+' : ''}${formatPercentage(
         marketCapChange,
       )}`,
-      totalVolume: formatCompactCurrency(data.total_volume.usd),
+      totalVolume: formatCurrency(data.total_volume.usd, true),
       btcDominance: formatPercentage(data.market_cap_percentage.btc),
       ethDominance: formatPercentage(data.market_cap_percentage.eth),
       cryptocurrencies: formatNumber(data.active_cryptocurrencies),

@@ -4,53 +4,42 @@ import BigNumber from 'bignumber.js';
  * Formatting utilities for consistent data display across the application
  */
 
-/**
- * Currency formatter with full precision (up to 8 decimal places)
- */
-export const currencyFormatter = new Intl.NumberFormat('en-US', {
+const currencyFormatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 0,
   maximumFractionDigits: 8,
   style: 'currency',
   currency: 'USD',
 });
 
-/**
- * Compact currency formatter (e.g. $1.2M, $3.4B)
- */
-export const compactCurrencyFormatter = new Intl.NumberFormat('en-US', {
+const compactCurrencyFormatter = new Intl.NumberFormat('en-US', {
   notation: 'compact',
   maximumFractionDigits: 2,
   style: 'currency',
   currency: 'USD',
 });
 
-/**
- * Number formatter with compact notation (e.g., 1.2M, 3.4B)
- */
-export const compactNumberFormatter = new Intl.NumberFormat('en-US', {
+const compactNumberFormatter = new Intl.NumberFormat('en-US', {
   notation: 'compact',
   maximumFractionDigits: 2,
 });
 
-/**
- * Percentage formatter
- */
-export const percentageFormatter = new Intl.NumberFormat('en-US', {
+const percentageFormatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
   style: 'percent',
 });
 
-/**
- * Standard number formatter (e.g., 1,234.56)
- */
-export const numberFormatter = new Intl.NumberFormat('en-US');
+const numberFormatter = new Intl.NumberFormat('en-US');
 
 /**
- * Format a number as currency with full precision
+ * Format a number as currency with full precision or compact notation
  */
-export const formatCurrency = (value: number | null | undefined): string => {
+export const formatCurrency = (
+  value: number | null | undefined,
+  compact = false
+): string => {
   if (value == null) return 'N/A';
+  if (compact) return compactCurrencyFormatter.format(value);
   if (value > 0 && value < 0.01) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -63,33 +52,12 @@ export const formatCurrency = (value: number | null | undefined): string => {
 };
 
 /**
- * Format a number as compact currency (no decimals)
- */
-export const formatCompactCurrency = (
-  value: number | null | undefined,
-): string => {
-  if (value == null) return 'N/A';
-  return compactCurrencyFormatter.format(value);
-};
-
-/**
  * Format a number as percentage (expects value as number, not decimal)
  * Example: 5.5 -> "5.50%"
  */
 export const formatPercentage = (value: number | null | undefined): string => {
   if (value == null) return 'N/A';
   return percentageFormatter.format(value / 100);
-};
-
-/**
- * Format a number with compact notation
- * Example: 1200000 -> "1.2M"
- */
-export const formatCompactNumber = (
-  value: number | null | undefined,
-): string => {
-  if (value == null) return 'N/A';
-  return compactNumberFormatter.format(value);
 };
 
 const numberFormattersCache = new Map<number, Intl.NumberFormat>();
@@ -104,16 +72,16 @@ function getNumberFormatter(digits: number) {
 }
 
 /**
- * Format a number with standard notation
- * Example: 1234.56 -> "1,234.56"
+ * Format a number with standard or compact notation
  */
 export const formatNumber = (
   value: number | null | undefined,
-  maximumFractionDigits?: number,
+  options?: { compact?: boolean; maximumFractionDigits?: number }
 ): string => {
   if (value == null) return 'N/A';
-  if (maximumFractionDigits !== undefined) {
-    return getNumberFormatter(maximumFractionDigits).format(value);
+  if (options?.compact) return compactNumberFormatter.format(value);
+  if (options?.maximumFractionDigits !== undefined) {
+    return getNumberFormatter(options.maximumFractionDigits).format(value);
   }
   return numberFormatter.format(value);
 };

@@ -1,8 +1,6 @@
 import { StatCard, type CardConfig } from './components';
 import type { CardsProps } from './interface';
 import {
-  formatCompactCurrency,
-  formatCompactNumber,
   formatPercentage,
   formatNumber,
   formatCurrency,
@@ -14,9 +12,9 @@ export default function Cards({ toggle, globalData }: CardsProps) {
   const cardConfigs: CardConfig[] = [
     {
       key: 'marketCap',
-      value: formatCompactCurrency(data.total_market_cap.usd),
+      value: formatCurrency(data.total_market_cap.usd, true),
       fullValue: formatCurrency(data.total_market_cap.usd),
-      mobileValue: formatCompactNumber(data.total_market_cap.usd),
+      mobileValue: formatNumber(data.total_market_cap.usd, { compact: true }),
       label: 'Market Cap',
       color: 'var(--color-brand-violet)',
       percentage: {
@@ -27,9 +25,9 @@ export default function Cards({ toggle, globalData }: CardsProps) {
     },
     {
       key: 'totalVolume',
-      value: formatCompactCurrency(data.total_volume.usd),
+      value: formatCurrency(data.total_volume.usd, true),
       fullValue: formatCurrency(data.total_volume.usd),
-      mobileValue: formatCompactNumber(data.total_volume.usd),
+      mobileValue: formatNumber(data.total_volume.usd, { compact: true }),
       label: '24h Volume',
       color: 'var(--color-brand-violet-light)',
       timeout: 100,

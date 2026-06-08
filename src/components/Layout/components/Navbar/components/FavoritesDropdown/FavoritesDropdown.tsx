@@ -15,7 +15,6 @@ export default function FavoritesDropdown() {
     favorites.length > 0
       ? API_ENDPOINTS.coinsMarkets({
           ids: favorites.join(','),
-          price_change_percentage: '7d',
         })
       : undefined;
 

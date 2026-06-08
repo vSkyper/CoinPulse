@@ -10,7 +10,6 @@ import {
 } from 'react-icons/md';
 import {
   formatCurrency,
-  formatCompactCurrency,
   formatPercentage,
 } from 'utils/formatters';
 import type { CoinsResponse } from 'interfaces';
@@ -199,7 +198,7 @@ export const columns = [
     meta: {
       align: 'right',
     },
-    cell: (info) => formatCompactCurrency(Number(info.getValue() ?? 0)),
+    cell: (info) => formatCurrency(Number(info.getValue() ?? 0), true),
     size: 150,
   }),
   columnHelper.accessor('market_cap', {
@@ -207,7 +206,7 @@ export const columns = [
     meta: {
       align: 'right',
     },
-    cell: (info) => formatCompactCurrency(Number(info.getValue() ?? 0)),
+    cell: (info) => formatCurrency(Number(info.getValue() ?? 0), true),
     size: 150,
   }),
   columnHelper.accessor('sparkline_in_7d', {

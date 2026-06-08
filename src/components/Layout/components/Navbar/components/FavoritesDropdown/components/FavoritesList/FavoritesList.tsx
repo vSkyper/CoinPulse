@@ -1,9 +1,13 @@
 import { MenuItem } from '@headlessui/react';
 import { Link } from 'react-router-dom';
-import { formatPercentage } from 'utils/formatters';
 import type { FavoritesListProps } from './interface';
 
-export default function FavoritesList({ favorites, coins, error, isLoading }: FavoritesListProps) {
+export default function FavoritesList({
+  favorites,
+  coins,
+  error,
+  isLoading,
+}: FavoritesListProps) {
   if (favorites.length === 0) {
     return (
       <div className="px-3 py-6 sm:py-8 text-center text-[12px] sm:text-[13px] text-zinc-500">
@@ -31,8 +35,9 @@ export default function FavoritesList({ favorites, coins, error, isLoading }: Fa
   return (
     <>
       {coins?.map((coin) => {
-        const change7d = coin.price_change_percentage_7d_in_currency || 0;
-        const isPositive = change7d >= 0;
+        const currentPrice = coin.current_price;
+        const priceChange = coin.price_change_percentage_24h;
+        const isPositive = (priceChange || 0) >= 0;
 
         return (
           <MenuItem key={coin.id}>
@@ -61,11 +66,40 @@ export default function FavoritesList({ favorites, coins, error, isLoading }: Fa
                     </span>
                   </div>
                 </div>
-                <div
-                  className={`text-[9px] sm:text-[11px] font-medium ${isPositive ? 'text-brand-positive' : 'text-brand-negative'}`}
-                >
-                  {isPositive ? '+' : ''}
-                  {formatPercentage(Math.abs(change7d))}
+
+                <div className="flex flex-col items-end gap-0 shrink-0">
+                  {/* Price */}
+                  {currentPrice != null ? (
+                    <span className="text-[11px] sm:text-[13px] font-medium text-white">
+                      $
+                      {currentPrice.toLocaleString('en-US', {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      })}
+                    </span>
+                  ) : (
+                    <span className="text-[11px] sm:text-[13px] font-medium text-white/50">
+                      N/A
+                    </span>
+                  )}
+
+                  {/* 24h Change */}
+                  {priceChange != null ? (
+                    <div
+                      className={`flex items-center gap-0.5 text-[9px] sm:text-[11px] font-medium ${
+                        isPositive
+                          ? 'text-brand-positive'
+                          : 'text-brand-negative'
+                      }`}
+                    >
+                      {isPositive ? '+' : ''}
+                      {priceChange.toFixed(2)}%
+                    </div>
+                  ) : (
+                    <span className="text-[9px] sm:text-[11px] font-medium text-white/30">
+                      No Data
+                    </span>
+                  )}
                 </div>
               </Link>
             )}

@@ -57,38 +57,27 @@ export default function ProjectDescriptionModal({
             className="relative w-full sm:w-125 h-full bg-[#0B0B0F]/95 backdrop-blur-2xl border-l border-white/10 shadow-[-10px_0_40px_rgba(0,0,0,0.5)] flex flex-col"
           >
             {/* Header */}
-            <div className="relative flex items-start justify-between p-5 sm:p-8 shrink-0 overflow-hidden">
-              {/* Subtle top glow */}
-              <div className="absolute inset-0 bg-linear-to-b from-brand-violet/10 to-transparent opacity-50" />
-              {/* Refined gradient separator */}
-              <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
-
-              <div className="relative flex items-center gap-4 sm:gap-5">
-                {/* Circular Icon Badge */}
-                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-violet/10 border border-brand-violet/20 text-brand-violet shadow-[0_0_20px_rgba(139,92,246,0.15)]">
-                  <MdDescription className="w-5 h-5 sm:w-6 sm:h-6" />
+            <div className="flex items-center justify-between p-6 sm:p-8 border-b border-white/5 shrink-0 bg-white/[0.02]">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <MdDescription className="w-5 h-5 sm:w-6 sm:h-6 text-brand-violet" />
                 </div>
-
-                <div className="flex flex-col">
-                  <h3 className="text-base sm:text-xl font-black text-white tracking-tight drop-shadow-sm">
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-xs sm:text-sm font-bold text-white uppercase tracking-widest">
                     About Project
                   </h3>
-                  <div className="flex items-center gap-2 mt-1 sm:mt-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-violet shadow-glow-primary" />
-                    <p className="text-[9px] sm:text-[11px] text-white/50 uppercase tracking-[0.2em] font-medium">
-                      Detailed Overview
-                    </p>
-                  </div>
+                  <p className="text-[10px] sm:text-xs text-white/40 font-medium tracking-wide">
+                    Detailed Overview
+                  </p>
                 </div>
               </div>
 
-              {/* Elegant Close Button */}
+              {/* Close Button */}
               <button
                 onClick={onClose}
-                className="relative group flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/3 hover:bg-white/8 text-white/40 hover:text-white transition-all duration-300 ring-1 ring-white/5 hover:ring-white/20 focus:outline-none"
+                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all duration-300 border border-white/5 hover:border-white/10 focus:outline-none"
               >
-                <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500" />
-                <MdClose className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:rotate-90" />
+                <MdClose className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
 
