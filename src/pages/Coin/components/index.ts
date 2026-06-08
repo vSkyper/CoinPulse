@@ -1,5 +1,7 @@
 import Skeleton from './Skeleton';
-import CoinHero from './CoinHero';
-import CoinDetails from './CoinDetails';
+import CoinOverview from './CoinOverview';
 
-export { Skeleton, CoinHero, CoinDetails };
+export {
+  Skeleton,
+  CoinOverview,
+};

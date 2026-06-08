@@ -51,6 +51,14 @@ export const numberFormatter = new Intl.NumberFormat('en-US');
  */
 export const formatCurrency = (value: number | null | undefined): string => {
   if (value == null) return 'N/A';
+  if (value > 0 && value < 0.01) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 8,
+    }).format(value);
+  }
   return currencyFormatter.format(value);
 };
 

@@ -1,5 +1,4 @@
-import HeaderSkeleton from './HeaderSkeleton';
-import ChartAndPriceSkeleton from './ChartAndPriceSkeleton';
-import StatsAndLinksSkeleton from './StatsAndLinksSkeleton';
+import HeaderSkeleton from './HeaderSkeleton/HeaderSkeleton';
+import OverviewSkeleton from './OverviewSkeleton/OverviewSkeleton';
 
-export { HeaderSkeleton, ChartAndPriceSkeleton, StatsAndLinksSkeleton };
+export { HeaderSkeleton, OverviewSkeleton };

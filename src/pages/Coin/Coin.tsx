@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
 import {
   Skeleton,
-  CoinHero,
-  CoinDetails,
+  CoinOverview,
 } from './components';
 import { NotFound } from 'pages';
 import type { CoinResponse } from 'interfaces';
@@ -26,8 +25,7 @@ export default function Coin() {
   return (
     <main className="relative w-full min-h-screen flex flex-col">
       <div className="relative z-1 container mx-auto px-4 sm:px-8 pb-12 flex-1">
-        <CoinHero id={id} data={data} animations={animations} />
-        <CoinDetails id={id} data={data} animations={animations} />
+        <CoinOverview id={id} data={data} animations={animations} />
       </div>
     </main>
   );

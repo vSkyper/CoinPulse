@@ -12,8 +12,6 @@ export default function CoinOption({
       ? coin.price_change_percentage_24h
       : undefined;
 
-  console.log(coin.name, priceChange, currentPrice);
-
   const isPositive = (priceChange || 0) >= 0;
 
   return (
