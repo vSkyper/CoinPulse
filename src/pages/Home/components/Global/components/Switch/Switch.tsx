@@ -1,49 +1,37 @@
 import type { SwitchProps } from './interface';
 import {
-  MdBarChart as BarChartIcon,
-  MdOutlineBarChart as BarChartOutlinedIcon,
+  MdKeyboardArrowDown as ChevronDown,
+  MdKeyboardArrowUp as ChevronUp,
 } from 'react-icons/md';
 
-export default function Switch({ toggle, setToggle, mobile }: SwitchProps) {
+export default function Switch({ toggle, setToggle }: SwitchProps) {
   const handleToggle = () => {
     setToggle((prev) => !prev);
   };
 
-  const iconSize = mobile ? '1rem' : '1rem';
-
-  const sizeClasses = mobile ? 'px-4 py-2 text-xs' : 'px-5 py-2 text-sm';
-
   const stateClasses = toggle
-    ? 'bg-brand-violet border-brand-violet/50 text-white shadow-glow-primary hover:bg-brand-violet-light ring-1 ring-brand-violet/50'
-    : 'bg-white/2 border-white/5 text-white/60 hover:text-white hover:bg-white/5 hover:border-white/10 ring-1 ring-white/5';
+    ? 'bg-brand-violet/10 text-brand-violet hover:bg-brand-violet/20 shadow-glow-primary ring-1 ring-brand-violet/20 border border-brand-violet/20'
+    : 'bg-white/5 text-white/70 hover:text-white hover:bg-white/10 ring-1 ring-white/5 border border-white/5';
 
-  const buttonClasses = `flex items-center justify-center gap-2 font-bold rounded-full border transition-all duration-300 ease-out relative overflow-hidden group active:translate-y-0 ${sizeClasses} ${stateClasses}`;
+  const buttonClasses = `flex items-center justify-center gap-1.5 sm:gap-2 font-bold rounded-full transition-all duration-300 px-3 sm:px-5 py-1.5 sm:py-2.5 text-[10px] sm:text-sm group backdrop-blur-md ${stateClasses}`;
 
-  const Icon = toggle ? BarChartIcon : BarChartOutlinedIcon;
+  const Icon = toggle ? ChevronUp : ChevronDown;
 
   return (
-    <div className={mobile ? 'flex justify-center' : ''}>
+    <div className="flex w-full sm:w-auto">
       <button
         onClick={handleToggle}
         className={buttonClasses}
         aria-pressed={toggle}
         aria-label="Toggle statistics display"
       >
-        {/* Shine effect */}
-        <span
-          className="absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-all duration-500 group-hover:left-full"
-          aria-hidden="true"
-        />
-
-        <span className="relative z-10 flex items-center gap-2 transition-all duration-200">
-          <Icon
-            size={iconSize}
-            style={{
-              transition: 'all 200ms ease',
-            }}
-          />
-          <span>Show Stats</span>
+        <span className="grid">
+          <span className={`col-start-1 row-start-1 transition-opacity duration-300 ${toggle ? 'opacity-0' : 'opacity-100'}`}>Show Global Stats</span>
+          <span className={`col-start-1 row-start-1 transition-opacity duration-300 ${toggle ? 'opacity-100' : 'opacity-0'}`}>Hide Global Stats</span>
         </span>
+        <Icon
+          className={`transition-transform duration-300 w-3.5 h-3.5 sm:w-5 sm:h-5 ${toggle ? '' : 'group-hover:translate-y-0.5'}`}
+        />
       </button>
     </div>
   );

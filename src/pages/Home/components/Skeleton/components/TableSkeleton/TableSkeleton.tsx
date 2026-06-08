@@ -2,17 +2,17 @@ export default function TableSkeleton() {
   return (
     <div className="flex flex-col gap-4 sm:gap-6 w-full max-w-full mt-2 sm:mt-8 relative">
       {/* Market Overview Header (TableControls) Skeleton */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-3xl bg-white/2 border border-white/5 shadow-highlight-neutral overflow-hidden">
-        <div className="flex items-center gap-2.5 w-full sm:w-auto">
-          <div className="hidden sm:flex w-8 h-8 rounded-lg bg-white/5 animate-pulse shrink-0" />
-          <div className="flex flex-col gap-1.5">
-            <div className="h-5 sm:h-6 w-32 sm:w-40 bg-white/5 rounded-lg animate-pulse" />
-            <div className="h-2 sm:h-2.5 w-24 sm:w-32 bg-white/5 rounded animate-pulse" />
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 px-2 sm:px-2 relative z-10 pb-2">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/5 animate-pulse shrink-0" />
+          <div className="flex flex-col justify-center gap-1.5">
+            <div className="h-6 sm:h-7 w-32 sm:w-40 bg-white/5 rounded-lg animate-pulse" />
+            <div className="h-3 w-24 bg-white/5 rounded animate-pulse" />
           </div>
         </div>
-        <div className="flex items-stretch sm:items-center gap-2 sm:gap-2 w-full sm:w-auto">
-          <div className="h-8 sm:h-8 w-full sm:w-56 bg-white/5 rounded-xl animate-pulse" />
-          <div className="h-8 sm:h-8 w-16 sm:w-20 bg-white/5 rounded-xl animate-pulse shrink-0" />
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="h-9 w-full sm:w-56 bg-white/5 rounded-xl animate-pulse" />
+          <div className="h-9 w-20 bg-white/5 rounded-xl animate-pulse shrink-0" />
         </div>
       </div>
 

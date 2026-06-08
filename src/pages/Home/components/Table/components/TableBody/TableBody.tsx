@@ -14,7 +14,7 @@ export default function TableBody({
           <tr
             key={row.id}
             onClick={() => onRowClick(row.original.id)}
-            className="cursor-pointer transition-colors duration-150 ease-out hover:bg-white/5 focus-within:bg-brand-violet/5 active:bg-brand-violet/10 border-b border-white/5 sm:border-0 last:border-0"
+            className="group cursor-pointer transition-all duration-300 ease-out hover:bg-brand-violet/3 focus-within:bg-brand-violet/5 active:bg-brand-violet/10 border-b border-white/5 sm:border-0 last:border-0 relative shadow-[inset_0_0_0_0_var(--color-brand-violet)] hover:shadow-[inset_3px_0_0_0_var(--color-brand-violet)]"
           >
             {row.getVisibleCells().map((cell) => (
               <td

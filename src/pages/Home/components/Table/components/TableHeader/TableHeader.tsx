@@ -42,7 +42,9 @@ export default function TableHeader({
                     header.column.getToggleSortingHandler()?.(e);
                   }
                 }}
-                className={`relative group px-4 sm:px-3 ${
+                className={`relative group ${
+                  isLeft ? 'pl-4 pr-2 sm:px-3' : 'px-2 sm:px-3'
+                } ${
                   context === 'sticky' ? 'py-2 sm:py-2.5' : 'py-3 sm:py-4'
                 } text-white/40 font-extrabold text-[10px] sm:text-[0.65rem] tracking-widest uppercase transition-colors duration-200 select-none ${header.column.getCanSort() ? 'hover:text-white/90 focus:text-white/90 cursor-pointer' : ''} focus:outline-none ${
                   isLeft ? 'text-left' : isRight ? 'text-right' : 'text-center'

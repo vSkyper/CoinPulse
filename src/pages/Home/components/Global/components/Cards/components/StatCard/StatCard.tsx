@@ -36,12 +36,21 @@ export default function StatCard({
         transitionDelay: show ? `${config.timeout}ms` : '0ms',
       }}
     >
-      <div className="flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-white/2 rounded-2xl p-3 sm:p-4 border border-white/5 shadow-highlight-neutral group">
-        <div className="flex flex-col gap-2 sm:gap-1.5 w-full items-center relative z-10">
+      <div className="flex flex-col justify-center items-center relative overflow-hidden transition-all duration-300 bg-white/2 hover:bg-white/4 rounded-[1.25rem] p-3 sm:p-5 border border-white/5 hover:border-white/10 hover:-translate-y-0.5 shadow-highlight-neutral hover:shadow-[0_8px_30px_rgba(0,0,0,0.5)] group">
+        {/* Top Accent Line */}
+        <div
+          className="absolute top-0 inset-x-0 h-0.5 opacity-30 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            backgroundColor: config.color,
+            boxShadow: `0 0 10px ${config.color}`,
+          }}
+        />
+
+        <div className="flex flex-col gap-2 sm:gap-1 w-full items-center relative z-10">
           <div className="flex items-center justify-center gap-2 sm:gap-2">
             {/* Mobile value - shorter */}
             {config.mobileValue && (
-              <h3 className="block sm:hidden w-full text-lg font-bold text-white text-center wrap-break-word">
+              <h3 className="block sm:hidden w-full text-base font-bold text-white text-center wrap-break-word">
                 <Tooltip
                   value={config.mobileValue}
                   content={config.fullValue || config.value}
@@ -54,7 +63,7 @@ export default function StatCard({
               className={
                 config.mobileValue
                   ? 'hidden sm:block w-full text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-text'
-                  : 'w-full text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-text'
+                  : 'w-full text-base sm:text-lg font-bold text-white text-center wrap-break-word tracking-tight drop-shadow-text'
               }
             >
               <Tooltip

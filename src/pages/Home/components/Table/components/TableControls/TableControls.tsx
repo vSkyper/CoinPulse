@@ -11,18 +11,18 @@ export default function TableControls({
 }: TableControlsProps) {
   return (
     <div className="relative z-20 w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-3xl bg-white/2 border border-white/5 shadow-highlight-neutral overflow-hidden">
-        
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 px-2 sm:px-2 relative z-10 pb-2">
         {/* Title Section */}
-        <div className="flex items-center gap-2.5 w-full sm:w-auto">
-          <div className="hidden sm:flex w-8 h-8 rounded-lg bg-brand-violet/10 items-center justify-center border border-brand-violet/20 shadow-glow-primary shrink-0">
-            <MdAutoGraph className="w-4 h-4 text-brand-violet" />
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-linear-to-br from-brand-violet/20 to-transparent items-center justify-center border border-brand-violet/20 shadow-[inset_0_0_12px_rgba(139,92,246,0.1)] shrink-0 relative overflow-hidden">
+            <div className="absolute inset-0 bg-brand-violet/10 blur-xl"></div>
+            <MdAutoGraph className="w-5 h-5 sm:w-6 sm:h-6 text-brand-violet relative z-10 drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
           </div>
-          <div className="flex flex-col">
-            <h2 className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white via-white/90 to-white/70 tracking-tight">
+          <div className="flex flex-col justify-center">
+            <h2 className="text-xl sm:text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-white via-white/90 to-white/50 tracking-tighter drop-shadow-sm">
               Market Overview
             </h2>
-            <p className="text-[9px] sm:text-[10px] font-medium text-white/40 tracking-wider">
+            <p className="text-xs font-medium text-white/50 tracking-wide mt-0.5">
               Track top performing assets
             </p>
           </div>

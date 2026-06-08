@@ -57,7 +57,7 @@ export default function ProjectDescriptionModal({
             className="relative w-full sm:w-125 h-full bg-[#0B0B0F]/95 backdrop-blur-2xl border-l border-white/10 shadow-[-10px_0_40px_rgba(0,0,0,0.5)] flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 sm:p-8 border-b border-white/5 shrink-0 bg-white/[0.02]">
+            <div className="flex items-center justify-between p-6 sm:p-8 border-b border-white/5 shrink-0 bg-white/2">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
                   <MdDescription className="w-5 h-5 sm:w-6 sm:h-6 text-brand-violet" />
