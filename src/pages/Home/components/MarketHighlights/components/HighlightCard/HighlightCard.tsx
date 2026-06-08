@@ -89,7 +89,7 @@ export default function HighlightCard({ coin, type }: HighlightCardProps) {
         </span>
         <span className={`text-[10px] sm:text-sm font-bold ${colorClass}`}>
           {isGainer ? '+' : ''}
-          {formatPercentage(Math.abs(priceChange))}
+          {formatPercentage(priceChange)}
         </span>
       </div>
     </Link>

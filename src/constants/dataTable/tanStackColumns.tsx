@@ -8,10 +8,7 @@ import {
   MdStar,
   MdStarBorder,
 } from 'react-icons/md';
-import {
-  formatCurrency,
-  formatPercentage,
-} from 'utils/formatters';
+import { formatCurrency, formatPercentage } from 'utils/formatters';
 import type { CoinsResponse } from 'interfaces';
 import { useFavorites } from 'context/FavoritesContext';
 
@@ -95,7 +92,13 @@ function PercentageChange({ value }: { value: number }) {
   );
 }
 
-function SparklineChart({ row, value }: { row: CoinsResponse; value: { price: number[] } }) {
+function SparklineChart({
+  row,
+  value,
+}: {
+  row: CoinsResponse;
+  value: { price: number[] };
+}) {
   const isNegative = (row.price_change_percentage_7d_in_currency ?? 0) < 0;
   const color = isNegative
     ? 'var(--color-brand-negative)'
