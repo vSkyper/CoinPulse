@@ -94,6 +94,13 @@ export const API_ENDPOINTS = {
       include_last_updated_at: 'true',
       include_24hr_change: 'true',
     }),
+
+  // Trending searches
+  trending: () => buildUrl('/search/trending'),
+
+  // Coin historical data by date
+  coinHistory: (id: string, date: string) =>
+    buildUrl(`/coins/${id}/history`, { date }),
 } as const;
 
 export default API_ENDPOINTS;

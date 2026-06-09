@@ -19,35 +19,35 @@ export default function TableSkeleton() {
       {/* Table Content Skeleton */}
       <div className="w-full rounded-3xl bg-white/2 border border-white/5 shadow-highlight-neutral flex flex-col overflow-hidden relative">
         {/* Header */}
-        <div className="grid grid-cols-12 gap-4 sm:gap-2 px-4 sm:px-3 py-3 sm:py-2 border-b border-white/5 bg-transparent">
+        <div className="grid grid-cols-12 gap-4 sm:gap-2 px-4 sm:px-4 py-3 sm:py-4 border-b border-white/5 bg-transparent">
           {/* Name (Left) */}
           <div className="col-span-4 sm:col-span-3 flex items-center">
-            <div className="h-3 w-16 bg-white/5 rounded animate-pulse" />
+            <div className="h-3 sm:h-4 w-16 bg-white/5 rounded animate-pulse" />
           </div>
           {/* Other Headers */}
-          <div className="hidden sm:flex col-span-1 justify-center">
-            <div className="h-3 w-8 bg-white/5 rounded animate-pulse" />
+          <div className="hidden sm:flex col-span-1 justify-center items-center">
+            <div className="h-4 w-8 bg-white/5 rounded animate-pulse" />
           </div>
-          <div className="col-span-4 sm:col-span-2 flex justify-end">
-            <div className="h-3 w-16 bg-white/5 rounded animate-pulse" />
+          <div className="col-span-4 sm:col-span-2 flex justify-end items-center">
+            <div className="h-3 sm:h-4 w-16 bg-white/5 rounded animate-pulse" />
           </div>
-          <div className="hidden sm:flex col-span-1 justify-center">
-            <div className="h-3 w-8 bg-white/5 rounded animate-pulse" />
+          <div className="hidden sm:flex col-span-1 justify-center items-center">
+            <div className="h-4 w-8 bg-white/5 rounded animate-pulse" />
           </div>
-          <div className="hidden sm:flex col-span-1 justify-center">
-            <div className="h-3 w-8 bg-white/5 rounded animate-pulse" />
+          <div className="hidden sm:flex col-span-1 justify-center items-center">
+            <div className="h-4 w-8 bg-white/5 rounded animate-pulse" />
           </div>
-          <div className="hidden sm:flex col-span-1 justify-center">
-            <div className="h-3 w-8 bg-white/5 rounded animate-pulse" />
+          <div className="hidden sm:flex col-span-1 justify-center items-center">
+            <div className="h-4 w-8 bg-white/5 rounded animate-pulse" />
           </div>
-          <div className="hidden sm:flex col-span-1 justify-end">
-            <div className="h-3 w-12 bg-white/5 rounded animate-pulse" />
+          <div className="hidden sm:flex col-span-1 justify-end items-center">
+            <div className="h-4 w-12 bg-white/5 rounded animate-pulse" />
           </div>
-          <div className="hidden sm:flex col-span-1 justify-end">
-            <div className="h-3 w-12 bg-white/5 rounded animate-pulse" />
+          <div className="hidden sm:flex col-span-1 justify-end items-center">
+            <div className="h-4 w-12 bg-white/5 rounded animate-pulse" />
           </div>
-          <div className="col-span-4 sm:col-span-1 flex justify-center">
-            <div className="h-3 w-12 bg-white/5 rounded animate-pulse" />
+          <div className="col-span-4 sm:col-span-1 flex justify-center items-center">
+            <div className="h-3 sm:h-4 w-12 bg-white/5 rounded animate-pulse" />
           </div>
         </div>
 

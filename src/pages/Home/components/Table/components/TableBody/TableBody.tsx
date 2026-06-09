@@ -14,16 +14,17 @@ export default function TableBody({
           <tr
             key={row.id}
             onClick={() => onRowClick(row.original.id)}
-            className="group cursor-pointer transition-all duration-300 ease-out hover:bg-brand-violet/3 focus-within:bg-brand-violet/5 active:bg-brand-violet/10 border-b border-white/5 sm:border-0 last:border-0 relative shadow-[inset_0_0_0_0_var(--color-brand-violet)] hover:shadow-[inset_3px_0_0_0_var(--color-brand-violet)]"
+            className="group cursor-pointer transition-all duration-300 ease-out hover:bg-linear-to-r hover:from-white/5 hover:to-transparent focus-within:bg-white/5 active:bg-white/10 border-b border-white/5 relative shadow-[inset_0_0_0_0_var(--color-brand-violet)] hover:shadow-[inset_3px_0_0_0_var(--color-brand-violet)] animate-[fadeInUp_0.4s_ease-out_both]"
+            style={{ animationDelay: `${row.index * 30}ms` }}
           >
             {row.getVisibleCells().map((cell) => (
               <td
                 key={cell.id}
-                className={`py-0.5 sm:py-1.5 text-white/90 text-xs sm:text-xs font-medium ${(() => {
+                className={`py-0.5 sm:py-2 text-white/90 text-xs sm:text-[13px] font-medium transition-colors ${(() => {
                   const align = cell.column.columnDef.meta?.align ?? 'center';
-                  if (align === 'left') return 'pl-4 pr-2 sm:px-3 text-left';
-                  if (align === 'right') return 'px-2 sm:px-3 text-right';
-                  return 'px-2 sm:px-3 text-center';
+                  if (align === 'left') return 'pl-4 pr-2 sm:px-4 text-left';
+                  if (align === 'right') return 'px-2 sm:px-4 text-right';
+                  return 'px-2 sm:px-4 text-center';
                 })()}`}
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

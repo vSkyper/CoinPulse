@@ -8,6 +8,7 @@ import type {
   OhlcResponse,
   CandlestickData,
 } from './sparkline';
+import type { TrendingResponse, TrendingCoin } from './trending';
 
 export type {
   CoinsResponse,
@@ -19,4 +20,6 @@ export type {
   CryptoPriceResponse,
   OhlcResponse,
   CandlestickData,
+  TrendingResponse,
+  TrendingCoin,
 };

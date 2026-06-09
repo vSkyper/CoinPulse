@@ -1,4 +1,4 @@
-import { Global, Table, Skeleton, MarketHighlights } from './components';
+import { Global, Table, Skeleton, MarketHighlights, TrendingMarquee } from './components';
 import useFetch from 'hooks/useFetch';
 import type { CoinsResponse, GlobalDataResponse } from 'interfaces';
 import { ErrorModal } from 'components';
@@ -23,6 +23,7 @@ export default function Home() {
 
   return (
     <main className="relative w-full min-h-screen flex flex-col">
+      <TrendingMarquee />
       <div className="relative z-1 container mx-auto px-4 sm:px-8 pb-12 flex-1">
         <Global globalData={globalData} />
         <MarketHighlights coins={coins} />

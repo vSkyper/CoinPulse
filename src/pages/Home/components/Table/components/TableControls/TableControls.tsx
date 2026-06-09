@@ -31,13 +31,13 @@ export default function TableControls({
         {/* Controls Section (Search & Filter) */}
         <div className="flex items-stretch sm:items-center gap-2 sm:gap-2 w-full sm:w-auto">
           {/* Search Bar */}
-          <div className="relative group flex-1 sm:w-56">
-            <MdSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-brand-violet transition-colors w-4 h-4" />
+          <div className="relative group flex-1 sm:w-64">
+            <MdSearch className="absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-brand-violet transition-colors w-4 h-4 sm:w-4.5 sm:h-4.5" />
             <input
               value={globalFilter ?? ''}
               onChange={(e) => setGlobalFilter(e.target.value)}
               placeholder="Search coins..."
-              className="w-full bg-white/5 border border-white/5 ring-1 ring-white/5 rounded-xl py-1.5 pl-9 pr-3 text-xs font-medium text-white placeholder-white/40 focus:outline-none focus:border-white/20 focus:bg-white/10 focus:shadow-glow-neutral focus:ring-brand-violet/40 transition-all hover:bg-white/10 hover:border-white/10"
+              className="w-full bg-white/5 border border-white/5 ring-1 ring-white/5 rounded-xl sm:rounded-xl py-1.5 sm:py-2 pl-9 sm:pl-10 pr-3 sm:pr-3.5 text-xs sm:text-[13px] font-medium text-white placeholder-white/40 focus:outline-none focus:border-white/20 focus:bg-white/10 focus:shadow-glow-neutral focus:ring-brand-violet/40 transition-all hover:bg-white/10 hover:border-white/10"
             />
           </div>
 
@@ -45,13 +45,13 @@ export default function TableControls({
           <button
             ref={filterButtonRef}
             onClick={handleFilterClick}
-            className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl font-medium text-xs transition-all border shrink-0 ${
+            className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-xl font-medium text-xs sm:text-[13px] transition-all border shrink-0 ${
               isFilterOpen
                 ? 'bg-brand-violet/10 text-brand-violet border-brand-violet/20 shadow-glow-primary ring-1 ring-brand-violet/20'
                 : 'bg-white/5 text-white/70 border-white/5 hover:text-white hover:bg-white/10 hover:border-white/10 ring-1 ring-white/5 hover:shadow-glow-neutral'
             }`}
           >
-            <MdFilterList className="w-3.5 h-3.5" />
+            <MdFilterList className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span className="hidden sm:block">Filters</span>
           </button>
         </div>

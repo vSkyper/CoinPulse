@@ -63,13 +63,19 @@ export default function OverviewSkeleton() {
         </div>
       </div>
 
-      {/* Row 3: Project Info & Links */}
+      {/* Row 3: Interactive Widgets */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-10 items-start">
+        {/* ROI Calculator */}
+        <div className="h-80 w-full rounded-2xl bg-white/2 animate-pulse border border-white/5 shadow-highlight-neutral" />
+
+        {/* Community Pulse & Developer Activity */}
+        <div className="h-80 w-full rounded-2xl bg-white/2 animate-pulse border border-white/5 shadow-highlight-neutral" />
+      </div>
+
+      {/* Row 4: Project Info & Links */}
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-8 sm:mt-10">
         <div className="sm:col-span-8 flex flex-col gap-6 sm:gap-8">
           {/* Project Info */}
-          <div className="h-62.5 w-full rounded-3xl bg-white/2 animate-pulse border border-white/5 shadow-highlight-neutral" />
-
-          {/* Developer Activity */}
           <div className="h-62.5 w-full rounded-3xl bg-white/2 animate-pulse border border-white/5 shadow-highlight-neutral" />
         </div>
 

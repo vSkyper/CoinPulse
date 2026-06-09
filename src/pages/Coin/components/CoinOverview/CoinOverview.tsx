@@ -7,6 +7,8 @@ import {
   PriceRange,
   MarketStats,
   ProjectInfo,
+  RoiCalculator,
+  CommunityPulse,
 } from './components';
 import AnimatedSection from '../AnimatedSection';
 
@@ -31,7 +33,10 @@ export default function CoinOverview({
         <div className="sm:col-span-8 flex flex-col gap-6 sm:gap-8">
           {/* Mobile-only Price Range (above chart) */}
           <div className="block sm:hidden">
-            <AnimatedSection show={animations.priceCard} className="relative z-20">
+            <AnimatedSection
+              show={animations.priceCard}
+              className="relative z-20"
+            >
               <PriceRange marketData={data.market_data} />
             </AnimatedSection>
           </div>
@@ -71,14 +76,25 @@ export default function CoinOverview({
         </AnimatedSection>
       </div>
 
-      {/* Row 3: Project Info & Links */}
+      {/* Row 3: Interactive Widgets */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-10 items-start">
+        <AnimatedSection show={animations.projectInfo}>
+          <RoiCalculator id={id} marketData={data.market_data} />
+        </AnimatedSection>
+
+        <AnimatedSection show={animations.projectInfo} className="h-full">
+          <CommunityPulse
+            communityData={data.community_data}
+            developerData={data.developer_data}
+          />
+        </AnimatedSection>
+      </div>
+
+      {/* Row 4: Project Info & Links */}
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 mt-8 sm:mt-10">
         <div className="sm:col-span-8 flex flex-col gap-6 sm:gap-8">
           <AnimatedSection show={animations.projectInfo} className="w-full">
-            <ProjectInfo
-              description={data.description?.en}
-              developerData={data.developer_data}
-            />
+            <ProjectInfo description={data.description?.en} />
           </AnimatedSection>
         </div>
 
