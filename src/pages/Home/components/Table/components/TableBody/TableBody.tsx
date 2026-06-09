@@ -1,12 +1,21 @@
 import { flexRender } from '@tanstack/react-table';
 import { MdSearchOff } from 'react-icons/md';
+import { useEffect, useState } from 'react';
 import type { TableBodyProps } from './interface';
+
+let hasAnimated = false;
 
 export default function TableBody({
   table,
   onRowClick,
   onClearFilters,
 }: TableBodyProps) {
+  const [shouldAnimate] = useState(!hasAnimated);
+
+  useEffect(() => {
+    hasAnimated = true;
+  }, []);
+
   return (
     <tbody>
       {table.getRowModel().rows.length > 0 ? (
@@ -14,8 +23,8 @@ export default function TableBody({
           <tr
             key={row.id}
             onClick={() => onRowClick(row.original.id)}
-            className="group cursor-pointer transition-all duration-300 ease-out hover:bg-linear-to-r hover:from-white/5 hover:to-transparent focus-within:bg-white/5 active:bg-white/10 border-b border-white/5 relative shadow-[inset_0_0_0_0_var(--color-brand-violet)] hover:shadow-[inset_3px_0_0_0_var(--color-brand-violet)] animate-[fadeInUp_0.4s_ease-out_both]"
-            style={{ animationDelay: `${row.index * 30}ms` }}
+            className={`group cursor-pointer transition-all duration-300 ease-out hover:bg-linear-to-r hover:from-white/5 hover:to-transparent focus-within:bg-white/5 active:bg-white/10 border-b border-white/5 relative shadow-[inset_0_0_0_0_var(--color-brand-violet)] hover:shadow-[inset_3px_0_0_0_var(--color-brand-violet)] ${shouldAnimate ? 'animate-[fadeInUp_0.4s_ease-out_both]' : ''}`}
+            style={shouldAnimate ? { animationDelay: `${row.index * 30}ms` } : undefined}
           >
             {row.getVisibleCells().map((cell) => (
               <td

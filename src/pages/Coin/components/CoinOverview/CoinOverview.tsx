@@ -8,7 +8,7 @@ import {
   MarketStats,
   ProjectInfo,
   RoiCalculator,
-  CommunityPulse,
+  DeveloperActivity,
 } from './components';
 import AnimatedSection from '../AnimatedSection';
 
@@ -83,10 +83,7 @@ export default function CoinOverview({
         </AnimatedSection>
 
         <AnimatedSection show={animations.projectInfo} className="h-full">
-          <CommunityPulse
-            communityData={data.community_data}
-            developerData={data.developer_data}
-          />
+          <DeveloperActivity developerData={data.developer_data} />
         </AnimatedSection>
       </div>
 
