@@ -255,7 +255,7 @@ export default function RoiCalculator({ id, marketData }: RoiCalculatorProps) {
                   {formatCurrency(currentValue)}
                 </span>
                 <span
-                  className={`flex items-center gap-1 sm:gap-1 font-bold text-[11px] sm:text-[12px] ${
+                  className={`flex items-center gap-1 sm:gap-1 font-bold text-xs sm:text-sm ${
                     isPositive ? 'text-brand-positive' : 'text-brand-negative'
                   }`}
                 >
